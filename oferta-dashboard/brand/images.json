@@ -1,0 +1,172 @@
+{
+  "PG01": {
+    "file": "img/PG01.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/05/3-seeds-crispbreads-135-g-6acf535cc21b0337894418.jpg",
+    "confidence": "high"
+  },
+  "PG03": {
+    "file": "img/PG03.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/06/chrupkie-dynia-i-ser-135-g-pl-6ad75c3938346202588631.jpg",
+    "confidence": "high"
+  },
+  "PG04": {
+    "file": "img/PG04.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/20/chrupkie-ser-i-pomidor-135-pl-6ad7698741a86008024366.jpg",
+    "confidence": "high"
+  },
+  "PG05": {
+    "file": "img/PG05.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/20/chrupkie-ser-i-cebula-135-g-pl-6ad769a9675af124656287.jpg",
+    "confidence": "high"
+  },
+  "PG06": {
+    "file": "img/PG06.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/02/3-seeds-crispbread-180-g-6acf531e37fe0357449603.jpg",
+    "confidence": "high"
+  },
+  "PG07": {
+    "file": "img/PG07.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/products_category/images/products/2026/10/02/cheese-pumpkin-crispbread-180-g-6acf541e39ec4918220185.jpg",
+    "confidence": "high"
+  },
+  "PG10": {
+    "file": "img/PG10.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/products_category/images/products/2026/10/08/whatsapp-image-2026-10-15-at-15-07-04-6ad0d85f7ef04151724233.jpg",
+    "confidence": "high"
+  },
+  "PG11": {
+    "file": "img/PG11.webp",
+    "source_url": "https://www.galicrisp.pl/images/products/2026/10/09/whatsapp-image-2026-10-15-at-15-07-04-1-6ad0d8c38566c410235814.jpg",
+    "confidence": "high"
+  },
+  "PG13": {
+    "file": "img/PG13.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/14/artisan-superseeds-120-g-6ad0be4c59849057799743.png",
+    "confidence": "medium"
+  },
+  "PG14": {
+    "file": "img/PG14.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/14/artisan-pumpkin-and-cheese-120-g-6ad0be254cfc6831552210.png",
+    "confidence": "medium"
+  },
+  "PG15": {
+    "file": "img/PG15.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/products_category/images/products/2026/10/14/cheese-pumpkin-200g-6ad0dbc1d6746118631967.png",
+    "confidence": "high"
+  },
+  "PG16": {
+    "file": "img/PG16.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/products_category/images/products/2026/10/14/3-seeds-200g-6ad0dba1cfce0625491079.png",
+    "confidence": "high"
+  },
+  "PG17": {
+    "file": "img/PG17.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/09/proteina-onion-180-g-6ad080505075c022606834.png",
+    "confidence": "high"
+  },
+  "PG18": {
+    "file": "img/PG18.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/09/proteina-3-seeds-180-g-6ad08033d7b4e521745764.png",
+    "confidence": "high"
+  },
+  "PG19": {
+    "file": "img/PG19.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/07/3-seeds-sea-salt-6acf553bacc7d741241721.jpg",
+    "confidence": "high"
+  },
+  "PG20": {
+    "file": "img/PG20.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/08/triple-cheese-6acf5635d4b5a206662298.jpg",
+    "confidence": "high"
+  },
+  "PG21": {
+    "file": "img/PG21.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/08/tomato-basil-6acf56145794c253058943.jpg",
+    "confidence": "high"
+  },
+  "PG22": {
+    "file": "img/PG22.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/08/cheese-tomato-6acf55ed2cd2b183544153.jpg",
+    "confidence": "high"
+  },
+  "PG23": {
+    "file": "img/PG23.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/08/cheese-onion-6acf55c6e3583784553546.jpg",
+    "confidence": "high"
+  },
+  "PG24": {
+    "file": "img/PG24.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/06/sesame-burak-6acf550819d39849358115.jpg",
+    "confidence": "high"
+  },
+  "PG26": {
+    "file": "img/PG26.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/products_category/images/products/2026/10/16/deli-crackers-sourdough-130g-6ad20803e2618222470644.png",
+    "confidence": "medium"
+  },
+  "PG28": {
+    "file": "img/PG28.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/16/deli-cracker-5x5-100g-6ad2081c50dea117047349.png",
+    "confidence": "medium"
+  },
+  "PG29": {
+    "file": "img/PG29.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/16/deli-rosemary-100g-6ad2097e2881d095146776.png",
+    "confidence": "medium"
+  },
+  "PG30": {
+    "file": "img/PG30.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/16/olive-salt-120-g-6ad1f313eb36f393441161.png",
+    "confidence": "high"
+  },
+  "PG31": {
+    "file": "img/PG31.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/16/olive-herbs-focaccia-120-g-6ad1f2f74928c187171380.png",
+    "confidence": "high"
+  },
+  "PG32": {
+    "file": "img/PG32.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/15/3-cheeses-focaccia-120-g-6ad1f2e1a16b7211255168.png",
+    "confidence": "high"
+  },
+  "PG33": {
+    "file": "img/PG33.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/16/olive-herbs-focaccia-100-g-6ad1f34167c89624229302.png",
+    "confidence": "high"
+  },
+  "PG34": {
+    "file": "img/PG34.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/16/3-cheeses-focaccia-100-g-6ad1f32ce284c454216226.png",
+    "confidence": "high"
+  },
+  "PG35": {
+    "file": "img/PG35.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/products_category/images/products/2026/10/16/olive-salt-focaccia-100-g-6ad1f35502030899383379.png",
+    "confidence": "high"
+  },
+  "PG36": {
+    "file": "img/PG36.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/15/crispies-cheese-onion-6ad0ba92d84c2672519447.jpg",
+    "confidence": "high"
+  },
+  "PG37": {
+    "file": "img/PG37.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/15/crispies-gouda-cheese-6ad0ba557d638942303281.jpg",
+    "confidence": "high"
+  },
+  "PG38": {
+    "file": "img/PG38.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/15/straws-gouda-cheese-6ad0bfbc6d5cd881227722.jpg",
+    "confidence": "high"
+  },
+  "PG39": {
+    "file": "img/PG39.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/15/straws-seeds-and-gouda-cheese-6ad0c0181fb45741684543.jpg",
+    "confidence": "high"
+  },
+  "PG40": {
+    "file": "img/PG40.webp",
+    "source_url": "https://www.galicrisp.pl/media/cache/product_main/images/products/2026/10/15/mini-straws-gouda-cheese-6ad1f60c1a7e7352963150.jpg",
+    "confidence": "high"
+  }
+}
