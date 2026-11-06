@@ -61,6 +61,9 @@
   --red-deep:#8D0408;
   --red-mid:#AE0D17;
   --pack-bg:radial-gradient(120% 95% at 58% 44%, #D41F30 0%, #C5192B 48%, #9B080E 100%);
+  /* catalogue stage: brand red spot fading into a deep red vignette, plus a soft floor band */
+  --stage:radial-gradient(125% 105% at 50% 32%, #E8213F 0%, #CF1530 34%, #A20A15 70%, #640206 100%);
+  --stage-floor:linear-gradient(0deg, rgba(48,0,4,.40) 0%, rgba(48,0,4,.14) 12%, rgba(48,0,4,0) 24%);
 
   --f-display:"Oswald","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
   --f-ui:"Barlow","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -572,7 +575,7 @@ dialog[open]::backdrop{opacity:1}
   .hero{height:auto;min-height:0;max-height:none}
   .hero-img{height:100%;opacity:.55}
   .hero-shade{background:linear-gradient(180deg, rgba(141,4,8,.55) 0%, rgba(174,13,23,.88) 60%, var(--red-deep) 100%)}
-  .hero-in{grid-template-columns:minmax(0,1fr);padding:18px 18px 26px;gap:14px}
+  .hero-in{grid-template-columns:minmax(0,1fr);padding:18px 18px 36px;gap:14px}
   .hero-h{font-size:2.1rem}
   .hero-line{letter-spacing:.14em;font-size:var(--t-xs)}
   .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
@@ -591,6 +594,79 @@ dialog[open]::backdrop{opacity:1}
   .hdr-actions .btn .lbl{display:none}
   .hdr-actions .btn{padding:0 10px}
 }
+
+/* ---------- catalogue integration: packshots on a red stage, EAN + logistics, pallets ---------- */
+.pimg,.qv-media,.ph{background:var(--stage-floor), var(--stage)}
+.thumb{background:var(--stage)}
+.pimg img.pack{inset:8% 4% auto;width:92%;height:83%;object-fit:contain;object-position:50% 100%;transform-origin:50% 100%;
+  -webkit-mask-image:none;mask-image:none;filter:drop-shadow(0 9px 6px rgba(40,0,4,.46)) drop-shadow(0 2px 1.5px rgba(40,0,4,.4))}
+.qv-media img.pack{inset:auto 6% 11%;width:88%;height:min(76%, 380px);object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 14px 10px rgba(40,0,4,.48)) drop-shadow(0 3px 2px rgba(40,0,4,.4))}
+.thumb img.pack{object-fit:contain;object-position:50% 100%;padding:3px 2px 2px;filter:drop-shadow(0 2px 1.5px rgba(40,0,4,.55))}
+img.fly{background:transparent;box-shadow:none;border-radius:0;overflow:visible;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 16px 12px rgba(60,0,6,.42))}
+.fly:not(img){background:var(--stage)}
+.ph{color:#F6EAD8}
+.pcat{display:flex;flex-direction:column;gap:1px;min-width:0}
+.ean{font-family:var(--f-mono);font-size:11px;letter-spacing:.03em;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ean i{font-style:normal;font-family:var(--f-display);font-size:10px;letter-spacing:.12em;color:var(--ink-3);margin-right:5px}
+.plog{font-family:var(--f-num);font-size:12px;font-weight:500;color:var(--ink-3);font-variant-numeric:tabular-nums;line-height:1.35}
+table.ptable{min-width:1260px}
+.ptable td.ean{font-size:11.5px}
+.ptable .tname{min-width:210px}
+.qv-media img.web{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+/* quick view: photo switch + catalogue block */
+.qv-src{position:absolute;right:12px;bottom:62px;z-index:1;display:flex;gap:4px;padding:4px;border-radius:12px;background:rgba(19,15,16,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.qv-src button{display:flex;flex-direction:column;align-items:center;gap:2px;width:68px;padding:3px 3px 2px;border:1px solid transparent;border-radius:9px;background:transparent;color:#FFF7EE;font-size:10.5px;font-weight:600;line-height:1.2;transition:background .15s,border-color .15s}
+.qv-src button:hover{background:rgba(255,255,255,.1)}
+.qv-src button[aria-pressed="true"]{border-color:rgba(255,255,255,.85);background:rgba(255,255,255,.14)}
+.qv-src .sw-img{display:block;width:100%;height:40px;border-radius:6px;overflow:hidden;background:var(--stage)}
+.qv-src .sw-img img{position:static;inset:auto;width:100%;height:100%;object-fit:contain;display:block;padding:2px}
+.qv-src .sw-img.web img{object-fit:cover;padding:0}
+.qv-cat{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line);min-width:0}
+.qv-k{font-family:var(--f-display);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.qv-desc{margin:2px 0 0;font-size:var(--t-sm);color:var(--ink-2);line-height:1.45}
+.claims{display:flex;flex-wrap:wrap;gap:6px}
+.claim{display:inline-flex;align-items:center;min-height:24px;padding:0 10px;border-radius:999px;background:var(--good-soft);color:var(--good);font-size:11.5px;font-weight:600;line-height:1.2}
+.ean-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ean-big{font-family:var(--f-mono);font-size:var(--t-sm);letter-spacing:.05em;padding:3px 9px;border-radius:7px;background:var(--field);border:1px solid var(--line-strong);font-variant-numeric:tabular-nums;-webkit-user-select:all;user-select:all}
+.log-tbl{width:100%;border-collapse:collapse;font-size:var(--t-sm)}
+.log-tbl th{text-align:left;font-weight:500;color:var(--ink-2);padding:5px 10px 5px 0;border-bottom:1px solid var(--line)}
+.log-tbl td{text-align:right;padding:5px 0;border-bottom:1px solid var(--line);font-family:var(--f-num);font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink)}
+.log-tbl tr:last-child th,.log-tbl tr:last-child td{border-bottom:0}
+.log-tbl small{display:block;font-family:var(--f-ui);font-weight:400;font-size:11px;color:var(--ink-3)}
+.qv-note{margin:0;padding:6px 10px;border-left:2px solid color-mix(in srgb, var(--warn) 55%, transparent);background:color-mix(in srgb, var(--warn-soft) 60%, transparent);border-radius:0 6px 6px 0;font-size:var(--t-xs);color:var(--ink-3);line-height:1.4;overflow-wrap:anywhere}
+.qv-note b{font-family:var(--f-display);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:var(--warn);margin-right:4px}
+/* offer line: quantity mode (kartony / sztuki / palety), computed logistics, catalogue chip */
+.item-fields{align-items:start}
+.item-fields .f-mode{grid-column:span 2}
+.item-calc{grid-column:span 2;display:flex;flex-wrap:wrap;align-items:center;align-content:center;gap:2px 10px;min-height:32px;padding-top:6px;border-top:1px dashed var(--line);font-size:var(--t-xs);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.item-calc span{white-space:nowrap}
+.item-calc b{font-family:var(--f-num);font-weight:700;color:var(--ink-2)}
+.item-fields .lv-cell{padding-top:6px;border-top:1px dashed var(--line);justify-content:center;min-height:38px}
+.cat-fix{align-self:flex-start;margin-top:3px;display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 8px;border-radius:999px;border:1px dashed color-mix(in srgb, var(--warn) 60%, transparent);background:var(--warn-soft);color:var(--warn);font-family:var(--f-num);font-size:11.5px;font-weight:700;white-space:nowrap;transition:background .15s,scale .12s var(--ease)}
+.cat-fix:hover{background:color-mix(in srgb, var(--warn) 22%, transparent)}
+.cat-fix:active{scale:.94}
+.tot-log{justify-content:flex-start;flex-wrap:wrap;gap:2px 18px}
+.tot-log > span{display:inline-flex;align-items:baseline;gap:6px}
+/* preview document: company block + logistics sub-table */
+.paper table{min-width:700px}
+.paper th,.paper td{padding-left:5px;padding-right:5px}
+.paper thead th,.paper thead th.n{white-space:normal;vertical-align:bottom;line-height:1.3}
+.paper td.p-prod{min-width:190px}
+.paper .p-co{margin-top:8px;font-size:12px;line-height:1.5;color:var(--paper-ink-2);-webkit-user-select:text;user-select:text}
+.paper .p-co b{color:var(--paper-ink);font-weight:600}
+.paper .p-ean{font-family:var(--f-mono);font-size:11.5px;white-space:nowrap}
+.paper .p-sub2{color:var(--paper-ink-2);font-size:12px}
+.paper .p-sec{margin:24px 0 6px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-ink-2)}
+.paper .p-logi table{font-size:12px;min-width:720px}
+.paper .p-cofoot{margin-top:20px;padding-top:10px;border-top:1px solid var(--paper-line);display:flex;flex-wrap:wrap;gap:2px 14px;font-size:11px;color:var(--paper-ink-2)}
+/* hero tagline */
+.hero-tag{display:block;margin:0 0 6px;font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:var(--t-md);line-height:1.1;color:var(--gold);letter-spacing:.01em;opacity:.95}
+@media (max-width:700px){
+  .qv-src{bottom:58px}
+  .qv-src button{width:60px}
+  .qv-src .sw-img{height:30px}
+}
+@media (max-width:760px){ .hero-tag{font-size:var(--t-sm);margin-bottom:4px} }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   .card-in,.card-in:hover{transform:none;translate:none}
@@ -628,16 +704,17 @@ dialog[open]::backdrop{opacity:1}
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-in">
           <div class="hero-copy">
+            <span class="hero-tag" lang="en">Bake Beyond</span>
             <h2 class="hero-h">Feel the <em>Crunch</em></h2>
             <p class="hero-line"><b>Asortyment AKCEPT</b> · 04.11.2026 · 40 SKU</p>
           </div>
-          <ul class="hero-stats" aria-label="GaliCrisp w liczbach (galicrisp.pl)">
+          <ul class="hero-stats" aria-label="GaliCrisp w liczbach (katalog produktów)">
             <li><b>30+</b><span>lat doświadczenia</span></li>
             <li><b>20+</b><span>rynków eksportowych</span></li>
-            <li><b>35+</b><span>kategorii produktów</span></li>
+            <li><b>A+</b><span>BRCGS</span></li>
           </ul>
         </div>
-        <p class="hero-src">Dane: galicrisp.pl</p>
+        <p class="hero-src">Źródło: katalog produktów GaliCrisp</p>
       </section>
 
       <section class="tiles" aria-label="Podsumowanie">
@@ -654,7 +731,7 @@ dialog[open]::backdrop{opacity:1}
           <div class="search">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
             <label for="q" class="sr-only">Szukaj produktu</label>
-            <input id="q" type="search" placeholder="Szukaj: nazwa, linia, opis, ID…" autocomplete="off">
+            <input id="q" type="search" placeholder="Szukaj: nazwa, linia, opis, ID, EAN…" autocomplete="off">
             <kbd aria-hidden="true">/</kbd>
           </div>
           <label for="lineSel" class="sr-only">Linia produktowa</label>
@@ -735,6 +812,7 @@ dialog[open]::backdrop{opacity:1}
         </section>
       </div>
       <div class="totals" id="totals">
+        <div class="tot-row tot-log"><span>Kartony razem <b id="sCartons">0</b></span><span>Palety (szac.) <b id="sPallets">0</b></span></div>
         <div class="tot-row"><span>Suma netto (przed rabatem)</span><b id="sGross">—</b></div>
         <div class="tot-row"><span class="tot-disc"><label for="g-disc">Rabat globalny %</label><input class="inp r" id="g-disc" inputmode="decimal" autocomplete="off" placeholder="0"></span><b id="sDisc">—</b></div>
         <div class="tot-row grand"><span>Razem netto</span><b id="sTotal">—</b></div>
@@ -831,6 +909,7 @@ dialog[open]::backdrop{opacity:1}
         <dt>Opis roboczy</dt><dd id="qvNote"></dd>
         <dt>Kategoria (EN)</dt><dd id="qvCatEn"></dd>
       </dl>
+      <div class="qv-cat" id="qvCatalogue"></div>
       <div class="qv-actions">
         <span id="qvAction"></span>
         <span class="qv-hint">← → poprzedni / następny · Esc zamyka</span>
@@ -848,7 +927,11 @@ dialog[open]::backdrop{opacity:1}
 <script>
 const PRODUCTS = [{"id":"PG01","name":"CRISPBREAD 3 SEEDS 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic – seeded crispbread 3 ziarna","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG02","name":"CRISPBREAD SPELT & SUNFLOWER 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"Classic – orkisz słonecznik","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG03","name":"CRISPBREAD CHEESE & PUMPKIN 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"Classic – dynia ser","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG04","name":"CRISPBREAD CHEESE & TOMATO 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic -tomato & basil – na bazie twins receptury","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG05","name":"CRISPBREAD CHEESE & ONION 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic - cheese & onion","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG06","name":"CRISPBREAD 3 SEEDS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"3 seeded crispbread","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG07","name":"CRISPBREAD CHEESE & PUMPKIN 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"pumpkin cheese TESCO","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG08","name":"CRISPBREAD 5 GRAINS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"5 zbóż","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG09","name":"CRISPBREAD SPELT & SUNFLOWER 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"orkisz słonecznik","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG10","name":"DELI CRISPBREAD CARMELIZED ONION 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI- CARMELIZED ONION","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG11","name":"DELI CRISPBREAD CHEESE & TOMATO 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI- CHEESE AND TOMATO","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG12","name":"DELI CRISPBREAD TRIPLE CHEESE 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI Thin crispbread- 3 cheese","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG13","name":"ARTISAN CRISPBREAD SUPERSEEDS 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"ARTISAN SOURDOUGH CRISPBREAD","flavour":"SUPER SEEDS","weight":130,"weightUpdated":true,"isNew":false},{"id":"PG14","name":"ARTISAN CRISPBREAD CHEESE & PUMPKIN 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"ARTISAN SOURDOUGH CRISPBREAD","flavour":"PUMPKIN SER","weight":130,"weightUpdated":true,"isNew":false},{"id":"PG15","name":"WHOLEGRAIN CRISPBREAD PUMPKIN & CHEESE 200 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"WHOLEGRAIN CRISPBREAD","flavour":"wholegrain seeds & oats – cheese and pumpkin","weight":200,"weightUpdated":false,"isNew":false},{"id":"PG16","name":"WHOLEGRAIN CRISPBREAD 3 SEEDS 200 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"WHOLEGRAIN CRISPBREAD","flavour":"pełnoziarniste 3 ziarna","weight":200,"weightUpdated":false,"isNew":false},{"id":"PG17","name":"PROTEIN CRISPBREAD ONION 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"PROTEIN CRISPBREAD","flavour":"PROTEIN onion","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG18","name":"PROTEIN CRISPBREAD 3 SEEDS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"PROTEIN CRISPBREAD","flavour":"protein 3 seeds","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG19","name":"CRISPY FLATBREAD 3 SEEDS & SEA SALT 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"3 Seeds & Sea Salt","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG20","name":"CRISPY FLATBREAD TRIPLE CHEESE 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Tripple Cheese","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG21","name":"CRISPY FLATBREAD TOMATO & BASIL 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Tomato & Basil","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG22","name":"CRISPY FLATBREAD CHEESE & TOMATO 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Cheese & Tomato","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG23","name":"CRISPY FLATBREAD CHEESE & ONION 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Cheese & Onion","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG24","name":"CRISPY FLATBREAD SESAME & BEETROOT 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Sesame & Beetroot","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG25","name":"CRACKERS CHEESE & TOMATO 130 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI CLASSICCRACKERS","flavour":"Tomato & sesame and basil – zmiana smaku!","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG26","name":"CLASSIC CRACKERS WITH SOURDOUGH 130 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI CLASSICCRACKERS","flavour":"Sourdough – plain crackers","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG27","name":"SEEDED CRACKERS 100 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI SEEDED CRACKERS","flavour":"Seeds + poppy i sesame black and white","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG28","name":"CLASSIC CRACKERS 100 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI SEEDED CRACKERS","flavour":"Plain cracker","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG29","name":"CRACKERS ROSEMARY & SEA SALT 100 G","category":"CRACKERS","slide":"RYE CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"PREMIUM RYE CRACKERS","flavour":"rosemary and sea salt","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG30","name":"FOCACCIA OLIVE OIL & SEA SALT 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP foccacia","flavour":"Focaccia oliva and salt","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG31","name":"FOCACCIA OLIVE OIL & HERBS 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP foccacia","flavour":"Focaccia olive oil and herbs","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG32","name":"FOCACCIA TRIPLE CHEESE 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP focaccia cheese","flavour":"focaccia cheese","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG33","name":"FOCACCIA SNACKS OLIVE OIL & HERBS 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"Mini focaccia snack olive oil and herbs","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG34","name":"FOCACCIA SNACKS TRIPLE CHEESE 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"mini focaccia snack– 3 cheeses","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG35","name":"FOCACCIA SNACKS OLIVE OIL & SEA SALT 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"mini focaccia olive oil and sea salt","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG36","name":"CRISPIES GOUDA CHEESE & ONION 90 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Layered Cheese Crisp snack","line":"Cheese Crispies","flavour":"Gouda very old cheese taste + ONION","weight":90,"weightUpdated":false,"isNew":true},{"id":"PG37","name":"CRISPIES GOUDA CHEESE 90 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Layered Cheese Crisp snack","line":"Cheese Crispies","flavour":"Gouda very old cheese taste","weight":90,"weightUpdated":false,"isNew":true},{"id":"PG38","name":"STRAWS GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Cheese stick pastry","line":"cheese straws","flavour":"intensive gouda very Old taste","weight":100,"weightUpdated":false,"isNew":true},{"id":"PG39","name":"STRAWS SEEDS & GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Cheese stick pastry","line":"cheese straws","flavour":"cheese and seedes taste","weight":100,"weightUpdated":false,"isNew":true},{"id":"PG40","name":"MINI STRAWS GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Savoury Cheese Pastry Snacks","line":"Mini Straws","flavour":"Gouda very old","weight":100,"weightUpdated":false,"isNew":true}];
 
-/* packshots (galicrisp.pl), published next to the page; missing ids get a branded placeholder */
+/* product catalogue (brand/catalogue.json): EAN, logistics, catalogue packshots (img/packs). Names stay as in the assortment sheet. */
+const CATALOGUE = {"PG01":{"ean":"5906684920885","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"3 SEEDS","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG01.webp"},"PG02":{"ean":"5906684921363","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG02.webp"},"PG03":{"ean":"5906684921110","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG03.webp"},"PG04":{"ean":"5906684920908","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & TOMATO","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"products.json flavour note says 'tomato & basil – na bazie twins receptury'; catalogue and pack say CHEESE & TOMATO (name matches)","packshot":"packs/PG04.webp"},"PG05":{"ean":"5906684920892","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & ONION","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG05.webp"},"PG06":{"ean":"5906684921226","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG06.webp"},"PG07":{"ean":"5906684920915","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG07.webp"},"PG08":{"ean":"5906684921332","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"5 GRAINS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG08.webp"},"PG09":{"ean":"5906684921325","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG09.webp"},"PG10":{"ean":"5906684920946","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CARAMELIZED ONION","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":"spelling: products.json 'CARMELIZED' vs catalogue 'CARAMELIZED'","packshot":"packs/PG10.webp"},"PG11":{"ean":"5906684920953","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG11.webp"},"PG12":{"ean":"5906684920939","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG12.webp"},"PG13":{"ean":"5906684920922","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"SUPERSEEDS","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,74 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"catalogue confirms 130 g (galicrisp.pl image file names say 120 g)","packshot":"packs/PG13.webp"},"PG14":{"ean":"5906684921295","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"PUMPKIN & CHEESE","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,74 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"word order: products.json 'CHEESE & PUMPKIN' vs catalogue/pack 'PUMPKIN & CHEESE'; catalogue confirms 130 g (website file names say 120 g)","packshot":"packs/PG14.webp"},"PG15":{"ean":"5906684921219","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 204 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"word order: products.json 'PUMPKIN & CHEESE' vs catalogue/pack 'CHEESE & PUMPKIN'","packshot":"packs/PG15.webp"},"PG16":{"ean":"5906684921202","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"3 SEEDS","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 204 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG16.webp"},"PG17":{"ean":"5906684921028","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"ONION","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG17.webp"},"PG18":{"ean":"5906684921035","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG18.webp"},"PG19":{"ean":"5906684921011","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"3 SEEDS & SEA SALT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG19.webp"},"PG20":{"ean":"5906684920960","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG20.webp"},"PG21":{"ean":"5906684920977","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG21.webp"},"PG22":{"ean":"5906684920991","eanNote":"printed as '55906684920991' (14 digits, doubled leading 5); corrected to 5906684920991, check digit valid","catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG22.webp"},"PG23":{"ean":"5906684920984","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & ONION","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG23.webp"},"PG24":{"ean":"5906684921004","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"SESAME & BEETROOT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG24.webp"},"PG25":{"ean":"5906684921318","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 148 x 138 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":14,"cartonsPerPallet":280,"unitsPerPallet":2240,"palletHeight":"2,07 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":"products.json name 'CRACKERS CHEESE & TOMATO 130 G' / flavour 'Tomato & sesame and basil – zmiana smaku!' vs catalogue/pack 'TOMATO & BASIL' (no cheese)","packshot":"packs/PG25.webp"},"PG26":{"ean":"5906684921233","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 148 x 138 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":14,"cartonsPerPallet":280,"unitsPerPallet":2240,"palletHeight":"2,07 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG26.webp"},"PG27":{"ean":"5906684921349","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SEEDED","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 158 x 150 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":13,"cartonsPerPallet":260,"unitsPerPallet":2080,"palletHeight":"2,01 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG27.webp"},"PG28":{"ean":"5906684921301","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 158 x 150 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":13,"cartonsPerPallet":260,"unitsPerPallet":2080,"palletHeight":"2,01 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":"products.json 'CLASSIC CRACKERS 100 G', line 'DELI SEEDED CRACKERS', flavour 'Plain cracker' vs catalogue/pack 'SOURDOUGH' (wheat sourdough)","packshot":"packs/PG28.webp"},"PG29":{"ean":"5906684921288","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"ROSEMARY & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 158 x 150 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":13,"cartonsPerPallet":260,"unitsPerPallet":2080,"palletHeight":"2,01 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG29.webp"},"PG30":{"ean":"5906684921059","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG30.webp"},"PG31":{"ean":"5906684921066","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG31.webp"},"PG32":{"ean":"5906684921073","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG32.webp"},"PG33":{"ean":"5906684921134","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG33.webp"},"PG34":{"ean":"5906684921158","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG34.webp"},"PG35":{"ean":"5906684921127","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG35.webp"},"PG36":{"ean":"5906684921240","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE & ONION","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG36.webp"},"PG37":{"ean":"5906684921042","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG37.webp"},"PG38":{"ean":"5906684921257","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG38.webp"},"PG39":{"ean":"5906684921264","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"SEEDS & GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG39.webp"},"PG40":{"ean":"5906684921271","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"mini format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":"catalogue lists this as a second 'GOUDA CHEESE' without the word 'mini'; mapped to MINI STRAWS by elimination + pack shows short bite-size pieces (line text: 'classic and mini formats')","packshot":"packs/PG40.webp"}};
+const COMPANY = {"name":"Piekarnia Galicyjska Sp. z o.o.","addressLines":["Jeżowe 560E","37-430 Jeżowe"],"taxId":"865 240 01 78","phone":"+48 15 300 03 50","email":"info@galicrisp.pl"};
+
+/* website photos (galicrisp.pl): secondary image in quick view */
 const IMG = {"PG01":"img/PG01.webp","PG03":"img/PG03.webp","PG04":"img/PG04.webp","PG05":"img/PG05.webp","PG06":"img/PG06.webp","PG07":"img/PG07.webp","PG10":"img/PG10.webp","PG11":"img/PG11.webp","PG13":"img/PG13.webp","PG14":"img/PG14.webp","PG15":"img/PG15.webp","PG16":"img/PG16.webp","PG17":"img/PG17.webp","PG18":"img/PG18.webp","PG19":"img/PG19.webp","PG20":"img/PG20.webp","PG21":"img/PG21.webp","PG22":"img/PG22.webp","PG23":"img/PG23.webp","PG24":"img/PG24.webp","PG26":"img/PG26.webp","PG28":"img/PG28.webp","PG29":"img/PG29.webp","PG30":"img/PG30.webp","PG31":"img/PG31.webp","PG32":"img/PG32.webp","PG33":"img/PG33.webp","PG34":"img/PG34.webp","PG35":"img/PG35.webp","PG36":"img/PG36.webp","PG37":"img/PG37.webp","PG38":"img/PG38.webp","PG39":"img/PG39.webp","PG40":"img/PG40.webp"};
 
 /* ---------- reference maps ---------- */
@@ -885,8 +968,14 @@ const byId = Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
 PRODUCTS.forEach(p=>{
   p._line = lineName(p.line);
   p._cat = CAT[p.category] || {pl:p.category,en:p.category,key:'crisp'};
-  p._img = IMG[p.id] || null;
-  p._hay = [p.id,p.name,p.line,p._line,p.flavour,p.segment||'',p._cat.pl,p._cat.en].join(' ').toLowerCase();
+  p._k = CATALOGUE[p.id] || null;
+  p._ean = (p._k && p._k.ean) || '';
+  p._log = (p._k && p._k.logistics) || {};
+  p._pack = p._k && p._k.packshot ? 'img/' + p._k.packshot : null;
+  p._web = IMG[p.id] || null;
+  p._upc = p._log.unitsPerCarton || 12;
+  p._cpp = p._log.cartonsPerPallet || null;
+  p._hay = [p.id,p.name,p.line,p._line,p.flavour,p.segment||'',p._cat.pl,p._cat.en,p._ean,p._k?p._k.catalogueLine:'',p._k?p._k.catalogueFlavour:''].join(' ').toLowerCase();
 });
 
 const ICONS = {
@@ -908,6 +997,11 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const nf2 = new Intl.NumberFormat('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2});
 const nf0 = new Intl.NumberFormat('pl-PL',{maximumFractionDigits:0});
+const nfq = new Intl.NumberFormat('pl-PL',{maximumFractionDigits:2});
+const fmtQ = n => n==null || !isFinite(n) ? '—' : nfq.format(Math.round(n*100)/100);
+const fmtPal = n => n==null || !isFinite(n) ? '—' : (n>0 && n<0.005 ? '< 0,01' : fmtQ(n));
+const palWord = n => { if (n>0 && n<0.005) return 'palety'; const r = Math.round(n*100)/100; if (r!==Math.floor(r)) return 'palety'; if (r===1) return 'paleta'; const t = r%10, h = r%100; return (t>=2 && t<=4 && (h<10 || h>=20)) ? 'palety' : 'palet'; };
+const logLine = p => { const L = p._log; return [L.unitsPerCarton?`${L.unitsPerCarton} szt./karton`:'', L.cartonsPerPallet?`${L.cartonsPerPallet} kart./paleta`:'', L.shelfLifeDays?`${L.shelfLifeDays} dni`:''].filter(Boolean).join(' · '); };
 const money = (n,cur) => n==null || !isFinite(n) ? '—' : nf2.format(n) + ' ' + (cur || offer.meta.currency);
 const dec = n => n==null || !isFinite(n) ? '' : n.toFixed(2).replace('.',',');
 const parseNum = v => { if (v==null) return null; const s = String(v).trim().replace(/\s/g,'').replace(',','.'); if (s==='') return null; const n = Number(s); return isFinite(n) ? n : null; };
@@ -981,10 +1075,10 @@ function exampleOffer(){
   o.meta.terms = 'FCA, płatność 30 dni';
   o.meta.notes = 'Ceny do uzupełnienia po ustaleniu cennika.';
   o.items = [
-    {id:'PG12', price:null, mode:'kart', qty:10, upc:12, disc:0},
-    {id:'PG20', price:null, mode:'kart', qty:8,  upc:12, disc:0},
-    {id:'PG27', price:null, mode:'kart', qty:6,  upc:12, disc:0},
-    {id:'PG36', price:null, mode:'kart', qty:6,  upc:12, disc:0}
+    {id:'PG12', price:null, mode:'kart', qty:40, upc:byId.PG12._upc, disc:0},
+    {id:'PG20', price:null, mode:'pal',  qty:1,  upc:byId.PG20._upc, disc:0},
+    {id:'PG27', price:null, mode:'kart', qty:26, upc:byId.PG27._upc, disc:0},
+    {id:'PG36', price:null, mode:'kart', qty:30, upc:byId.PG36._upc, disc:0}
   ];
   return o;
 }
@@ -995,22 +1089,27 @@ function sanitizeOffer(o){
   if (o.meta && typeof o.meta==='object') Object.keys(meta).forEach(k=>{ const v = o.meta[k]; if (v!=null && v!=='') meta[k] = String(v); });
   if (!['PLN','EUR'].includes(meta.currency)) meta.currency = 'PLN';
   const items = Array.isArray(o.items) ? o.items.filter(i=>i && byId[i.id]).map(i=>({
-    id:i.id, price: typeof i.price==='number'?i.price:null, mode: i.mode==='szt'?'szt':'kart',
-    qty: Number(i.qty)||0, upc: Number(i.upc)>0?Number(i.upc):12, disc: Number(i.disc)||0
+    id:i.id, price: typeof i.price==='number'?i.price:null, mode: (i.mode==='szt' || (i.mode==='pal' && byId[i.id]._cpp)) ? i.mode : 'kart',
+    qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):byId[i.id]._upc, disc: Number(i.disc)||0
   })) : [];
   return {meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
 }
 let offer = sanitizeOffer(store.get(K_DRAFT)) || exampleOffer();
 const inOffer = id => offer.items.some(i=>i.id===id);
-const unitsOf = it => it.mode==='kart' ? (it.qty||0)*(it.upc||0) : (it.qty||0);
+/* quantity modes: kart (cartons), szt (units), pal (pallets → cartons = pallets × catalogue cartons/pallet) */
+const cppOf = it => (byId[it.id] && byId[it.id]._cpp) || null;
+const cartonsOf = it => it.mode==='kart' ? (it.qty||0) : it.mode==='pal' ? (it.qty||0)*(cppOf(it)||0) : (it.upc ? (it.qty||0)/it.upc : 0);
+const unitsOf = it => it.mode==='szt' ? (it.qty||0) : cartonsOf(it)*(it.upc||0);
+const palletsOf = it => { const c = cppOf(it); return c ? cartonsOf(it)/c : null; };
 const lineGross = it => it.price==null ? null : it.price*unitsOf(it);
 const lineValue = it => { const g = lineGross(it); return g==null ? null : g*(1-(it.disc||0)/100); };
 function totals(){
-  let gross=0, after=0, priced=0, unpriced=0;
+  let gross=0, after=0, priced=0, unpriced=0, cartons=0, pallets=0;
+  offer.items.forEach(it=>{ cartons += cartonsOf(it); pallets += palletsOf(it) || 0; });
   offer.items.forEach(it=>{ const g=lineGross(it); if(g==null){unpriced++;return;} priced++; gross+=g; after+=lineValue(it); });
   const gd = after*(offer.globalDiscount||0)/100;
   const total = after-gd;
-  return {gross, disc: gross-total, total, priced, unpriced, any: priced>0};
+  return {gross, disc: gross-total, total, priced, unpriced, any: priced>0, cartons, pallets};
 }
 
 let saveTimer=null;
@@ -1065,10 +1164,23 @@ function renderWeightChips(){
 }
 
 /* ---------- product media ---------- */
-function mediaHtml(p, eager){
-  if (p._img) return `<img src="${p._img}" alt="${esc(p.name)}" width="320" height="320" ${eager?'':'loading="lazy" '}decoding="async">`;
-  return `<span class="ph" role="img" aria-label="${esc(p.name)}: zdjęcie wkrótce">${ICONS[p._cat.key]}<small>Zdjęcie wkrótce</small></span>`;
+/* catalogue packshot first; the website photo only on request (quick view); generic fallback only if an image fails to load */
+const brokenImg = new Set();
+const phHtml = p => `<span class="ph" role="img" aria-label="${esc(p.name)}">${ICONS[p._cat.key]}</span>`;
+function mediaHtml(p, eager, which){
+  const web = which==='web' && p._web ? p._web : null;
+  const src = web || p._pack || p._web;
+  if (!src || brokenImg.has(src)) return phHtml(p);
+  const isPack = !web && src===p._pack;
+  return `<img class="${isPack?'pack':'web'}" data-pid="${p.id}" src="${src}" alt="${esc(p.name)}" width="${isPack?170:320}" height="${isPack?290:320}" ${eager?'':'loading="lazy" '}decoding="async">`;
 }
+document.addEventListener('error', e=>{
+  const im = e.target;
+  if (!im || im.tagName!=='IMG' || !im.dataset || !im.dataset.pid) return;
+  brokenImg.add(im.getAttribute('src'));
+  const p = byId[im.dataset.pid];
+  if (p && im.isConnected) im.outerHTML = phHtml(p);
+}, true);
 const thumbHtml = p => `<button type="button" class="thumb" data-qv="${p.id}" aria-label="Podgląd: ${esc(p.name)}">${mediaHtml(p)}</button>`;
 
 /* ---------- products ---------- */
@@ -1093,6 +1205,7 @@ function buildCard(p){
       <h3 class="pname">${esc(p.name)}</h3>
       <div class="pline">${esc(p._line)}${p.segment?` <span class="seg-name">· ${esc(segName(p.segment))}</span>`:''}</div>
       <div class="pnote"><i>opis roboczy</i>${esc(p.flavour)}</div>
+      <div class="pcat">${p._ean?`<span class="ean" title="Kod EAN (katalog)"><i>EAN</i>${p._ean}</span>`:''}${logLine(p)?`<span class="plog" title="Wg katalogu: szt. w kartonie · kartony na palecie · termin przydatności">${logLine(p)}</span>`:''}</div>
       <div class="card-foot"><span class="weight">${p.weight}<small> g</small></span><span class="ctl"></span></div>
     </div>
   </div>`;
@@ -1128,8 +1241,8 @@ function renderProducts(opts){
   if (!list.length){
     el.innerHTML = `<div class="empty glass"><h3>Nic tu nie chrupie</h3><p>Brak produktów dla tych filtrów. Zmień wyszukiwanie lub <button type="button" class="btn btn-sm" data-act="resetF">wyczyść filtry</button></p></div>${parking}`;
   } else if (ui.view==='table'){
-    el.innerHTML = `<div class="table-wrap glass"><table class="ptable"><thead><tr><th><span class="sr-only">Zdjęcie</span></th><th>ID</th><th>Nazwa</th><th>Kategoria</th><th>Linia</th><th style="text-align:right">Gramatura</th><th>Oznaczenia</th><th>Opis roboczy</th><th></th></tr></thead><tbody>${
-      list.map(p=>`<tr class="cat-${p._cat.key}${inOffer(p.id)?' in':''}" data-id="${p.id}"><td class="tthumb">${thumbHtml(p)}</td><td class="pid">${p.id}</td><td class="tname">${esc(p.name)}</td><td><span class="catdot">${esc(p._cat.pl)}</span></td><td>${esc(p._line)}</td><td class="num">${p.weight} g</td><td><div class="badges" style="justify-content:flex-start">${badges(p)}</div></td><td class="pnote">${esc(p.flavour)}</td><td style="text-align:right;white-space:nowrap">${addControl(p,true)}</td></tr>`).join('')
+    el.innerHTML = `<div class="table-wrap glass"><table class="ptable"><thead><tr><th><span class="sr-only">Zdjęcie</span></th><th>ID</th><th>EAN</th><th>Nazwa</th><th>Kategoria</th><th>Linia</th><th style="text-align:right">Gramatura</th><th style="text-align:right">Szt./karton</th><th style="text-align:right">Kart./paleta</th><th style="text-align:right">Termin</th><th>Oznaczenia</th><th>Opis roboczy</th><th></th></tr></thead><tbody>${
+      list.map(p=>`<tr class="cat-${p._cat.key}${inOffer(p.id)?' in':''}" data-id="${p.id}"><td class="tthumb">${thumbHtml(p)}</td><td class="pid">${p.id}</td><td class="ean">${p._ean||'—'}</td><td class="tname">${esc(p.name)}</td><td><span class="catdot">${esc(p._cat.pl)}</span></td><td>${esc(p._line)}</td><td class="num">${p.weight} g</td><td class="num">${p._log.unitsPerCarton||'—'}</td><td class="num">${p._log.cartonsPerPallet||'—'}</td><td class="num">${p._log.shelfLifeDays?p._log.shelfLifeDays+' dni':'—'}</td><td><div class="badges" style="justify-content:flex-start">${badges(p)}</div></td><td class="pnote">${esc(p.flavour)}</td><td style="text-align:right;white-space:nowrap">${addControl(p,true)}</td></tr>`).join('')
     }</tbody></table></div>${parking}`;
   } else if (ui.view==='lines'){
     const groups = [];
@@ -1190,7 +1303,7 @@ function renderProducts(opts){
 /* ---------- offer panel ---------- */
 function itemHtml(it, i, n){
   const p = byId[it.id];
-  const kart = it.mode==='kart';
+  const kart = it.mode==='kart', pal = it.mode==='pal';
   return `<li class="item cat-${p._cat.key}" data-id="${p.id}">
     <div class="item-head">
       <span class="item-no">${i+1}</span>
@@ -1204,11 +1317,12 @@ function itemHtml(it, i, n){
     </div>
     <div class="item-fields">
       <div class="fld"><label for="p-${p.id}">Cena netto/szt.</label><input class="inp r" id="p-${p.id}" data-f="price" inputmode="decimal" placeholder="—" value="${it.price==null?'':esc(String(it.price).replace('.',','))}"></div>
-      <div class="fld"><label for="q-${p.id}">Ilość (${kart?'kart.':'szt.'})</label><input class="inp r" id="q-${p.id}" data-f="qty" type="number" min="0" step="1" inputmode="numeric" value="${it.qty||''}"></div>
+      <div class="fld"><label for="q-${p.id}">Ilość (${kart?'kart.':pal?'palety':'szt.'})</label><input class="inp r" id="q-${p.id}" data-f="qty" type="number" min="0" step="${pal?'0.25':'1'}" inputmode="${pal?'decimal':'numeric'}" value="${it.qty||''}"></div>
       <div class="fld"><label for="d-${p.id}">Rabat %</label><input class="inp r" id="d-${p.id}" data-f="disc" inputmode="decimal" autocomplete="off" value="${it.disc?String(it.disc).replace('.',','):''}" placeholder="0"></div>
-      <div class="fld"><span id="ml-${p.id}">Ilość w</span><div class="seg" role="group" aria-labelledby="ml-${p.id}"><button type="button" id="m-${p.id}-kart" data-mode="kart" aria-pressed="${kart}">kartonach</button><button type="button" id="m-${p.id}-szt" data-mode="szt" aria-pressed="${!kart}">szt.</button></div></div>
-      <div class="fld"><label for="u-${p.id}">Szt. w kartonie</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"></div>
-      <div class="lv-cell"><span class="units" id="un-${p.id}"></span><span class="lv" id="lv-${p.id}">—</span></div>
+      <div class="fld f-mode"><span id="ml-${p.id}">Ilość w</span><div class="seg" role="group" aria-labelledby="ml-${p.id}"><button type="button" id="m-${p.id}-kart" data-mode="kart" aria-pressed="${kart}">kartonach</button><button type="button" id="m-${p.id}-szt" data-mode="szt" aria-pressed="${it.mode==='szt'}">sztukach</button><button type="button" id="m-${p.id}-pal" data-mode="pal" aria-pressed="${pal}"${p._cpp?'':' disabled'}>paletach</button></div></div>
+      <div class="fld"><label for="u-${p.id}">Szt. w kartonie</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"><button type="button" class="cat-fix" id="uf-${p.id}" data-upcfix title="Zastosuj wartość z katalogu: ${p._upc} szt. w kartonie"${it.upc===p._upc?' hidden':''}>katalog: ${p._upc}</button></div>
+      <div class="item-calc units" id="un-${p.id}" aria-live="off"></div>
+      <div class="lv-cell"><span class="lv" id="lv-${p.id}">—</span></div>
     </div>
   </li>`;
 }
@@ -1237,14 +1351,17 @@ function updateComputed(){
     if (!lv) return;
     const v = lineValue(it);
     lv.textContent = money(v,cur); lv.classList.toggle('dash', v==null);
-    const u = unitsOf(it);
-    un.textContent = it.mode==='kart' ? `= ${nf0.format(u)} szt.` : (it.upc ? `≈ ${nf2.format(u/it.upc).replace(/,00$/,'')} kart.` : '');
+    const u = unitsOf(it), c = cartonsOf(it), pl = palletsOf(it), cIs = Math.abs(c-Math.round(c))<1e-9;
+    un.innerHTML = `<span>${cIs?'':'≈ '}<b>${fmtQ(c)}</b> kart.</span><span><b>${nf0.format(u)}</b> szt.</span>${pl==null?'':`<span title="${byId[it.id]._cpp} kart. na palecie (katalog)"><b>${fmtPal(pl)}</b> ${palWord(pl)}</span>`}`;
+    const fx = document.getElementById('uf-'+it.id); if (fx) fx.hidden = it.upc===byId[it.id]._upc;
   });
   const t = totals();
   const fm = v => money(v,cur);
   setNum($('#sGross'), t.any ? t.gross : null, fm, '—');
   setNum($('#sDisc'), t.any ? t.disc : null, v => v>0.004 ? '−'+money(v,cur) : money(0,cur), '—');
   setNum($('#sTotal'), t.any ? t.total : null, fm, '—');
+  setNum($('#sCartons'), t.cartons, fmtQ, '0');
+  setNum($('#sPallets'), t.pallets, fmtPal, '0');
   const hint = $('#sHint');
   hint.hidden = !(offer.items.length && t.unpriced);
   hint.textContent = t.unpriced ? `Pozycje bez ceny: ${t.unpriced} z ${offer.items.length}` : '';
@@ -1336,7 +1453,7 @@ function afterAdd(ids, src){
 /* ---------- mutations ---------- */
 function addProducts(ids, srcEl){
   const added = [], src = ids.length===1 ? grab(srcEl) : null;
-  ids.forEach(id=>{ if(!inOffer(id) && byId[id]){ offer.items.push({id,price:null,mode:'kart',qty:1,upc:12,disc:0}); added.push(id); } });
+  ids.forEach(id=>{ if(!inOffer(id) && byId[id]){ offer.items.push({id,price:null,mode:'kart',qty:1,upc:byId[id]._upc,disc:0}); added.push(id); } });
   if (added.length){ persist(); renderItems(); renderProducts(); renderCatChips(); afterAdd(added, src); }
   return added.length;
 }
@@ -1398,7 +1515,7 @@ $('#items').addEventListener('input', e=>{
   const it = offer.items.find(i=>i.id===li.dataset.id); if (!it) return;
   const v = parseNum(e.target.value);
   if (f==='price') it.price = v==null ? null : Math.max(0,v);
-  if (f==='qty') it.qty = Math.max(0, Math.round(v||0));
+  if (f==='qty') it.qty = it.mode==='pal' ? Math.max(0, Math.round((v||0)*100)/100) : Math.max(0, Math.round(v||0));
   if (f==='disc') it.disc = Math.min(100, Math.max(0, v||0));
   if (f==='upc') it.upc = Math.max(1, Math.round(v||1));
   updateComputed(); persist();
@@ -1420,12 +1537,21 @@ $('#items').addEventListener('click', e=>{
     return;
   }
   if (e.target.closest('[data-rm]')){ removeProduct(id); toast(`Usunięto ${id} z oferty`); return; }
+  if (e.target.closest('[data-upcfix]')){
+    const it = offer.items[idx], p = byId[id]; if (!it) return;
+    it.upc = p._upc;
+    const u = document.getElementById('u-'+id); if (u) u.value = it.upc;
+    updateComputed(); persist(); pulse(u, 1.04); u?.focus();
+    toast(`Zastosowano katalog: ${p._upc} szt. w kartonie (${id})`);
+    return;
+  }
   const md = e.target.closest('[data-mode]');
   if (md){
     const it = offer.items[idx]; const m = md.dataset.mode; if (it.mode===m) return;
-    const units = unitsOf(it);
+    const units = unitsOf(it), cartons = cartonsOf(it), cpp = cppOf(it);
+    if (m==='pal' && !cpp) return;
     it.mode = m;
-    it.qty = m==='kart' ? Math.max(0, Math.round(units/(it.upc||1))) : units;
+    it.qty = m==='kart' ? Math.max(0, Math.round(cartons)) : m==='pal' ? Math.round(cartons/cpp*100)/100 : Math.round(units);
     persist(); renderItems(); document.getElementById(`m-${id}-${m}`)?.focus();
   }
 });
@@ -1444,7 +1570,35 @@ function confirmBox(title, text, okLabel){
 }
 
 /* ---------- quick view ---------- */
-let qvIds = [], qvIdx = 0;
+let qvIds = [], qvIdx = 0, qvSrc = 'pack';
+const SHELF_NOTE_PL = {'360 days testing in progress':'360 dni — w trakcie testów'};
+function qvCatalogueHtml(p){
+  const k = p._k;
+  if (!k) return '<p class="qv-desc">Brak danych w katalogu produktów.</p>';
+  const L = p._log, row = (a,b) => b==null || b==='' ? '' : `<tr><th scope="row">${a}</th><td>${b}</td></tr>`;
+  const facts = [`<dt>Linia katalogowa</dt><dd>${esc(k.catalogueLine)} · ${esc(k.catalogueFlavour)}</dd>`];
+  if (k.slices) facts.push(`<dt>Kromki</dt><dd class="tnum">${k.slices} w opakowaniu</dd>`);
+  if (k.packFormat) facts.push(`<dt>Format opak.</dt><dd lang="en">${esc(k.packFormat)}</dd>`);
+  const note = L.shelfLifeNote ? `<small>* ${esc(SHELF_NOTE_PL[L.shelfLifeNote] || L.shelfLifeNote)}</small>` : '';
+  const notes = [k.eanNote ? `EAN: ${k.eanNote}` : '', k.mismatch || ''].filter(Boolean);
+  return `<dl class="qv-dl">${facts.join('')}</dl>
+    <div><div class="qv-k">Opis z katalogu</div><p class="qv-desc" lang="en">${esc(k.description)}</p></div>
+    ${k.claims && k.claims.length ? `<div class="claims" lang="en">${k.claims.map(c=>`<span class="claim">${esc(c)}</span>`).join('')}</div>` : ''}
+    ${p._ean ? `<div class="ean-row"><span class="qv-k">EAN</span><span class="ean-big" id="qvEan">${p._ean}</span><button type="button" class="btn btn-sm" id="qvEanCopy" data-copyean="${p._ean}" aria-label="Kopiuj EAN ${p._ean}">Kopiuj</button></div>` : ''}
+    <div><div class="qv-k" id="qvLogT">Logistyka (katalog)</div>
+    <table class="log-tbl" aria-labelledby="qvLogT"><tbody>
+      ${row('Typ kartonu', L.cartonType ? esc(L.cartonType) : null)}${row('Wymiary kartonu', L.cartonDims ? esc(L.cartonDims) : null)}
+      ${row('Szt./karton', L.unitsPerCarton)}${row('Kartony/warstwa', L.cartonsPerLayer)}${row('Warstwy/paleta', L.layersPerPallet)}
+      ${row('Kartony/paleta', L.cartonsPerPallet)}${row('Szt./paleta', L.unitsPerPallet!=null ? nf0.format(L.unitsPerPallet) : null)}${row('Wysokość palety', L.palletHeight ? esc(L.palletHeight) : null)}
+      ${row('Termin przydatności', L.shelfLifeDays ? `${L.shelfLifeDays} dni${note}` : null)}
+    </tbody></table></div>
+    ${notes.map(n=>`<p class="qv-note"><b>Uwaga</b>${esc(n)}</p>`).join('')}`;
+}
+function selectEan(){
+  const el = $('#qvEan'); if (!el) return;
+  try { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } catch(e){}
+  toast('EAN zaznaczony — skopiuj Ctrl+C (⌘C)');
+}
 function qvActionHtml(p){
   return inOffer(p.id)
     ? `<span class="in-state"><span class="in-label">${SVG_CHECK}W ofercie</span><button type="button" class="btn btn-sm btn-danger" id="qvToggle" data-qvrm="${p.id}">Usuń z oferty</button></span>`
@@ -1454,7 +1608,9 @@ function renderQv(dir){
   const p = byId[qvIds[qvIdx]]; if (!p) return;
   const d0 = $('#qvDlg'), fa = document.activeElement, keep = d0.contains(fa) ? (fa.id || '') : null;
   const n = qvIds.length;
-  $('#qvMedia').innerHTML = `<div class="qv-img">${mediaHtml(p, true)}</div><span class="badges">${badges(p)}</span>
+  const showWeb = qvSrc==='web' && !!p._web;
+  const srcSwitch = p._web && p._pack ? `<div class="qv-src" role="group" aria-label="Zdjęcie produktu"><button type="button" id="qvSrcPack" data-qvsrc="pack" aria-pressed="${!showWeb}"><span class="sw-img"><img src="${p._pack}" alt="" width="34" height="58" decoding="async"></span>Katalog</button><button type="button" id="qvSrcWeb" data-qvsrc="web" aria-pressed="${showWeb}"><span class="sw-img web"><img src="${p._web}" alt="" width="64" height="40" decoding="async"></span>galicrisp.pl</button></div>` : '';
+  $('#qvMedia').innerHTML = `<div class="qv-img">${mediaHtml(p, true, showWeb?'web':'pack')}</div><span class="badges">${badges(p)}</span>${srcSwitch}
     <div class="qv-nav"><button type="button" class="icon-btn" id="qvPrev" data-qvnav="-1" aria-label="Poprzedni produkt"${n<2?' disabled':''}>${SVG_LEFT}</button><span class="qv-pos">${qvIdx+1} / ${n}</span><button type="button" class="icon-btn" id="qvNext" data-qvnav="1" aria-label="Następny produkt"${n<2?' disabled':''}>${SVG_RIGHT}</button></div>`;
   const qd = $('#qvDlg');
   qd.querySelector('.qv').className = `qv glass cat-${p._cat.key}`;
@@ -1466,6 +1622,7 @@ function renderQv(dir){
   $('#qvWeight').textContent = `${p.weight} g${p.weightUpdated?' · nowa gramatura':''}`;
   $('#qvNote').textContent = p.flavour;
   $('#qvCatEn').textContent = `${p._cat.en}${p.isNew?' · nowość':''}`;
+  $('#qvCatalogue').innerHTML = qvCatalogueHtml(p);
   $('#qvAction').innerHTML = qvActionHtml(p);
   /* re-rendered controls lose focus: put it back where it was */
   if (keep!==null && !d0.contains(document.activeElement)) (document.getElementById(keep) || $('#qvToggle'))?.focus({preventScroll:true});
@@ -1478,6 +1635,7 @@ function renderQv(dir){
 function openQv(id, ids){
   qvIds = ids && ids.includes(id) ? ids : [id];
   qvIdx = Math.max(0, qvIds.indexOf(id));
+  qvSrc = 'pack';
   renderQv(0);
   const d = $('#qvDlg');
   try { if (!d.open) d.showModal(); } catch(e){}
@@ -1493,6 +1651,19 @@ $('#qvDlg').addEventListener('click', e=>{
   const d = $('#qvDlg');
   if (e.target===d){ d.close(); return; }
   const nv = e.target.closest('[data-qvnav]'); if (nv){ navQv(Number(nv.dataset.qvnav)); return; }
+  const sv = e.target.closest('[data-qvsrc]');
+  if (sv){
+    if (qvSrc===sv.dataset.qvsrc) return;
+    qvSrc = sv.dataset.qvsrc; renderQv(0);
+    const g = G(); if (g) g.fromTo('#qvMedia .qv-img',{opacity:0, scale:.97},{opacity:1, scale:1, duration:.28, ease:'power2.out', clearProps:'opacity,transform,scale'});
+    return;
+  }
+  const ce = e.target.closest('[data-copyean]');
+  if (ce){
+    const ean = ce.dataset.copyean;
+    try { navigator.clipboard.writeText(ean).then(()=>{ toast(`Skopiowano EAN ${ean}`); pulse(ce, 1.06); }, selectEan); } catch(err){ selectEan(); }
+    return;
+  }
   const ad = e.target.closest('[data-qvadd]');
   if (ad){ const id = ad.dataset.qvadd; addProducts([id]); toast(`Dodano ${id} do oferty`); syncQv(); pulse($('#qvToggle'), 1.06); $('#qvToggle')?.focus(); return; }
   const rm = e.target.closest('[data-qvrm]');
@@ -1511,23 +1682,29 @@ $('#qvClose').addEventListener('click', ()=>$('#qvDlg').close());
 function exportRows(){
   return offer.items.map((it,i)=>{
     const p = byId[it.id];
-    return {lp:i+1, id:p.id, name:p.name, line:p._line, weight:p.weight, price:it.price, units:unitsOf(it), cartons: it.mode==='kart'?it.qty:(it.upc?it.qty/it.upc:null), upc:it.upc, disc:it.disc||0, value:lineValue(it)};
+    return {lp:i+1, id:p.id, ean:p._ean, name:p.name, line:p._line, weight:p.weight, price:it.price, units:unitsOf(it), cartons:cartonsOf(it), upc:it.upc, pallets:palletsOf(it), shelf:p._log.shelfLifeDays||null, disc:it.disc||0, value:lineValue(it)};
   });
 }
-const HEAD = ['Lp.','ID','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Ilość (kart.)','Szt. w kartonie','Rabat %','Wartość netto'];
+const HEAD = ['Lp.','ID','EAN','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Szt./karton','Kartony','Palety (szac.)','Termin przydatności (dni)','Rabat %','Wartość netto'];
+const num2 = n => n==null || !isFinite(n) ? '' : String(Math.round(n*100)/100).replace('.',',');
+const num3 = n => n==null || !isFinite(n) ? '' : String(Math.round(n*1000)/1000).replace('.',',');
+/* EAN as an Excel text formula so 13 digits are not shown as 5,9E+12 */
+const xlText = s => s ? `="${s}"` : '';
 function tableMatrix(){
-  const cur = offer.meta.currency, t = totals();
+  const cur = offer.meta.currency, t = totals(), W = HEAD.length;
   const rows = [HEAD.map(h=>h==='Cena netto/szt.'||h==='Wartość netto'?`${h} (${cur})`:h)];
-  exportRows().forEach(r=>rows.push([r.lp, r.id, r.name, r.line, r.weight, dec(r.price), r.units, r.cartons==null?'':String(Math.round(r.cartons*100)/100).replace('.',','), r.upc, String(r.disc).replace('.',','), dec(r.value)]));
+  exportRows().forEach(r=>rows.push([r.lp, r.id, xlText(r.ean), r.name, r.line, r.weight, dec(r.price), r.units, r.upc, num2(r.cartons), num3(r.pallets), r.shelf==null?'':r.shelf, String(r.disc).replace('.',','), dec(r.value)]));
+  const sum = (label, cells) => { const a = Array(W).fill(''); a[3] = label; Object.entries(cells).forEach(([k,v])=>{ a[+k] = v; }); return a; };
   rows.push([]);
-  rows.push(['','','Suma netto (przed rabatem)','','','','','','','', t.any?dec(t.gross):'']);
-  rows.push(['','',`Rabat (w tym globalny ${String(offer.globalDiscount||0).replace('.',',')}%)`,'','','','','','','', t.any?dec(-t.disc):'']);
-  rows.push(['','','Razem netto','','','','','','','', t.any?dec(t.total):'']);
+  rows.push(sum('Kartony razem / palety (szac.)', {9:num2(t.cartons), 10:num3(t.pallets)}));
+  rows.push(sum('Suma netto (przed rabatem)', {13: t.any?dec(t.gross):''}));
+  rows.push(sum(`Rabat (w tym globalny ${String(offer.globalDiscount||0).replace('.',',')}%)`, {13: t.any?dec(-t.disc):''}));
+  rows.push(sum('Razem netto', {13: t.any?dec(t.total):''}));
   return rows;
 }
 function metaRows(){
   const m = offer.meta;
-  return [['Oferta handlowa','Piekarnia Galicyjska'],['Klient',m.client],['Osoba kontaktowa',m.contact],['Data oferty',plDate(m.date)],['Ważna do',plDate(m.validUntil)],['Waluta',m.currency],['Incoterms / warunki',m.terms],['Uwagi',m.notes],[]];
+  return [['Oferta handlowa',COMPANY.name],['Adres',COMPANY.addressLines.join(', ')],['NIP',COMPANY.taxId],['Telefon',COMPANY.phone],['E-mail',COMPANY.email],[],['Klient',m.client],['Osoba kontaktowa',m.contact],['Data oferty',plDate(m.date)],['Ważna do',plDate(m.validUntil)],['Waluta',m.currency],['Incoterms / warunki',m.terms],['Uwagi',m.notes],[]];
 }
 function toCsv(){
   const q = v => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
@@ -1540,7 +1717,9 @@ function toTsv(){
 function toText(){
   const m = offer.meta, cur = m.currency, t = totals();
   const L = [];
-  L.push('OFERTA HANDLOWA · Piekarnia Galicyjska');
+  L.push('OFERTA HANDLOWA · GaliCrisp');
+  L.push(`${COMPANY.name} · ${COMPANY.addressLines.join(', ')}`);
+  L.push(`NIP: ${COMPANY.taxId} · tel. ${COMPANY.phone} · ${COMPANY.email}`);
   L.push('');
   if (m.client) L.push(`Klient: ${m.client}`);
   if (m.contact) L.push(`Osoba kontaktowa: ${m.contact}`);
@@ -1551,13 +1730,17 @@ function toText(){
   if (!offer.items.length) L.push('(brak pozycji)');
   offer.items.forEach((it,i)=>{
     const p = byId[it.id], u = unitsOf(it);
-    L.push(`${i+1}. ${p.name} [${p.id}]`);
+    L.push(`${i+1}. ${p.name} [${p.id}]${p._ean?` · EAN ${p._ean}`:''}`);
     L.push(`   ${p._line} · ${p.weight} g`);
-    const qty = it.mode==='kart' ? `${nf0.format(it.qty)} kart. × ${it.upc} szt. = ${nf0.format(u)} szt.` : `${nf0.format(u)} szt.`;
+    const qty = it.mode==='kart' ? `${nf0.format(it.qty)} kart. × ${it.upc} szt. = ${nf0.format(u)} szt.`
+      : it.mode==='pal' ? `${fmtQ(it.qty)} ${palWord(it.qty)} × ${p._cpp} kart. × ${it.upc} szt. = ${nf0.format(u)} szt.` : `${nf0.format(u)} szt.`;
     const price = it.price==null ? 'cena do ustalenia' : `${nf2.format(it.price)} ${cur}/szt. netto`;
     L.push(`   Ilość: ${qty} · Cena: ${price}${it.disc?` · Rabat: ${String(it.disc).replace('.',',')}%`:''}${lineValue(it)!=null?` · Wartość: ${money(lineValue(it),cur)}`:''}`);
+    const pl = palletsOf(it);
+    L.push(`   Logistyka: ${it.upc} szt./karton · ${fmtQ(cartonsOf(it))} kart.${pl!=null?` · ${fmtPal(pl)} ${palWord(pl)} (szac.)`:''}${p._log.shelfLifeDays?` · termin przydatności ${p._log.shelfLifeDays} dni`:''}`);
   });
   L.push('');
+  if (offer.items.length) L.push(`Kartony razem: ${fmtQ(t.cartons)} · Palety (szac.): ${fmtPal(t.pallets)}`);
   if (t.any){
     L.push(`Suma netto (przed rabatem): ${money(t.gross,cur)}`);
     if (t.disc>0) L.push(`Rabat${offer.globalDiscount?` (w tym globalny ${String(offer.globalDiscount).replace('.',',')}%)`:''}: −${money(t.disc,cur)}`);
@@ -1565,7 +1748,7 @@ function toText(){
     if (t.unpriced) L.push(`(pozycje bez ceny: ${t.unpriced} — nie wliczono ich do sumy)`);
   } else L.push('Ceny zostaną potwierdzone w osobnej wiadomości.');
   if (m.notes){ L.push(''); L.push('Uwagi:'); L.push(m.notes); }
-  L.push(''); L.push('Ceny netto, bez VAT.');
+  L.push(''); L.push('Ceny netto, bez VAT. EAN i dane logistyczne wg katalogu produktów GaliCrisp.');
   return L.join('\n');
 }
 function showCopyFallback(text){
@@ -1612,12 +1795,20 @@ $('#btnCsv').addEventListener('click', async ()=>{
 function renderPaper(){
   const m = offer.meta, cur = m.currency, t = totals();
   const rows = offer.items.map((it,i)=>{
-    const p = byId[it.id], u = unitsOf(it), v = lineValue(it);
-    return `<tr><td>${i+1}</td><td><b>${esc(p.name)}</b><br><span style="color:var(--paper-ink-2);font-size:12px">${p.id} · ${esc(p._line)}</span></td><td class="n">${p.weight} g</td><td class="n">${it.price==null?'—':nf2.format(it.price)}</td><td class="n">${nf0.format(u)}${it.mode==='kart'?`<br><span style="color:var(--paper-ink-2);font-size:12px">${nf0.format(it.qty)} × ${it.upc}</span>`:''}</td><td class="n">${it.disc?String(it.disc).replace('.',',')+'%':'—'}</td><td class="n"><b>${v==null?'—':nf2.format(v)}</b></td></tr>`;
+    const p = byId[it.id], u = unitsOf(it), v = lineValue(it), pl = palletsOf(it);
+    const how = it.mode==='kart' ? `${nf0.format(it.qty)} kart. × ${it.upc}` : it.mode==='pal' ? `${fmtQ(it.qty)} pal. × ${p._cpp} × ${it.upc}` : '';
+    return `<tr><td>${i+1}</td><td class="p-prod"><b>${esc(p.name)}</b><br><span class="p-sub2">${p.id} · ${p.weight} g · ${esc(p._line)}</span>${p._ean?`<br><span class="p-sub2">EAN <span class="p-ean">${p._ean}</span></span>`:''}</td><td class="n">${it.price==null?'—':nf2.format(it.price)}</td><td class="n">${nf0.format(u)}${how?`<br><span class="p-sub2">${how}</span>`:''}</td><td class="n">${it.upc}</td><td class="n">${fmtQ(cartonsOf(it))}</td><td class="n">${pl==null?'—':fmtPal(pl)}</td><td class="n">${it.disc?String(it.disc).replace('.',',')+'%':'—'}</td><td class="n"><b>${v==null?'—':nf2.format(v)}</b></td></tr>`;
   }).join('');
+  const logi = offer.items.map((it,i)=>{
+    const p = byId[it.id], L = p._log;
+    return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?nf0.format(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight||'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' dni'+(L.shelfLifeNote?'*':''):'—'}</td></tr>`;
+  }).join('');
+  const starNote = offer.items.some(it=>byId[it.id]._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(SHELF_NOTE_PL['360 days testing in progress'])}</div>` : '';
+  const co = COMPANY;
   $('#paper').innerHTML = `
     <div class="p-head">
-      <div><img class="p-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="p-brand">Piekarnia Galicyjska</div><div class="p-sub">Pieczywo chrupkie · krakersy · snacki piekarnicze · przekąski wytrawne</div></div>
+      <div><img class="p-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="p-brand">Piekarnia Galicyjska</div><div class="p-sub">Pieczywo chrupkie · krakersy · snacki piekarnicze · przekąski wytrawne</div>
+        <div class="p-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}<br>NIP: ${esc(co.taxId)} · tel. ${esc(co.phone)} · ${esc(co.email)}</div></div>
       <div class="p-doc"><div class="t">Oferta handlowa</div><div class="p-sub">z dnia ${plDate(m.date)} · ważna do ${plDate(m.validUntil)}</div></div>
     </div>
     <div class="p-parties">
@@ -1626,17 +1817,23 @@ function renderPaper(){
       <div><div class="p-k">Waluta · warunki</div><div class="p-v">${esc(cur)}${m.terms?' · '+esc(m.terms):''}</div></div>
     </div>
     <div class="p-tablewrap"><table>
-      <thead><tr><th>Lp.</th><th>Produkt</th><th class="n">Gramatura</th><th class="n">Cena netto/szt. (${esc(cur)})</th><th class="n">Ilość (szt.)</th><th class="n">Rabat</th><th class="n">Wartość netto (${esc(cur)})</th></tr></thead>
-      <tbody>${rows || '<tr><td colspan="7" style="text-align:center;color:var(--paper-ink-2);padding:24px">Brak pozycji w ofercie</td></tr>'}</tbody>
+      <thead><tr><th>Lp.</th><th>Produkt · EAN</th><th class="n">Cena netto/szt. (${esc(cur)})</th><th class="n">Ilość (szt.)</th><th class="n">Szt./ karton</th><th class="n">Kartony</th><th class="n">Palety (szac.)</th><th class="n">Rabat</th><th class="n">Wartość netto (${esc(cur)})</th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="9" style="text-align:center;color:var(--paper-ink-2);padding:24px">Brak pozycji w ofercie</td></tr>'}</tbody>
     </table></div>
     <div class="p-tot">
+      <div><span>Kartony razem</span><span>${fmtQ(t.cartons)}</span></div>
+      <div><span>Palety (szac.)</span><span>${fmtPal(t.pallets)}</span></div>
       <div><span>Suma netto</span><span>${t.any?money(t.gross,cur):'—'}</span></div>
       <div><span>Rabat${offer.globalDiscount?` (w tym ${String(offer.globalDiscount).replace('.',',')}% globalnie)`:''}</span><span>${t.any&&t.disc>0?'−'+money(t.disc,cur):'—'}</span></div>
       <div class="g"><span>Razem netto</span><span>${t.any?money(t.total,cur):'—'}</span></div>
     </div>
     ${t.unpriced&&offer.items.length?`<div class="p-foot">Pozycje bez ceny (${t.unpriced}) nie są wliczone do sumy.</div>`:''}
     ${m.notes?`<div class="p-notes"><div class="p-k" style="margin-bottom:4px">Uwagi</div>${esc(m.notes)}</div>`:''}
-    <div class="p-foot">Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026.</div>`;
+    ${logi ? `<div class="p-sec">Logistyka i termin przydatności</div><div class="p-tablewrap p-logi"><table>
+      <thead><tr><th>Lp.</th><th>ID</th><th>EAN</th><th>Typ kartonu</th><th>Wymiary kartonu</th><th class="n">Szt./karton</th><th class="n">Kart./paleta</th><th class="n">Szt./paleta</th><th class="n">Wys. palety</th><th class="n">Termin przydatności</th></tr></thead>
+      <tbody>${logi}</tbody></table></div>${starNote}` : ''}
+    <div class="p-foot">Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg katalogu produktów GaliCrisp; palety szacunkowe (kartony ÷ kartony na palecie).</div>
+    <div class="p-cofoot"><b>${esc(co.name)}</b><span>${co.addressLines.map(esc).join(', ')}</span><span>NIP: ${esc(co.taxId)}</span><span>tel. ${esc(co.phone)}</span><span>${esc(co.email)}</span></div>`;
 }
 $('#btnPreview').addEventListener('click', ()=>{ renderPaper(); try { $('#previewDlg').showModal(); } catch(e){} $('#pvClose').focus(); });
 $('#pvClose').addEventListener('click', ()=>$('#previewDlg').close());
