@@ -411,7 +411,7 @@ textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-h
 .inp.r{text-align:right}
 
 .items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.item{padding:10px 12px;border-radius:var(--r-md);border:1px solid var(--line-strong);background:var(--field);display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.item{padding:8px 12px 9px;border-radius:var(--r-md);border:1px solid var(--line-strong);background:var(--field);display:flex;flex-direction:column;gap:6px;overflow:hidden}
 .item.flash{animation:flash 1s ease-out}
 @keyframes flash{0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);border-color:var(--accent)}100%{box-shadow:0 0 0 10px transparent}}
 .item-head{display:flex;gap:10px;align-items:center}
@@ -427,7 +427,7 @@ textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-h
 .item-fields .inp{height:32px}
 .item-fields .fld > label,.item-fields .fld > span{font-size:11.5px}
 .item-fields .seg{width:100%;justify-content:stretch}
-.item-fields .seg button{flex:1;padding:0 6px;min-height:28px;font-size:var(--t-xs)}
+.item-fields .seg button{flex:1;padding:0 4px;min-height:24px;font-size:var(--t-xs)}
 .lv-cell{text-align:right;display:flex;flex-direction:column;justify-content:flex-end;gap:0;min-height:32px}
 .lv-cell .units{font-size:var(--t-xs);color:var(--ink-3);font-variant-numeric:tabular-nums}
 .lv-cell .lv{font-family:var(--f-num);font-weight:700;font-size:var(--t-md);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -544,6 +544,7 @@ dialog[open]::backdrop{opacity:1}
 .paper .p-brand{font-family:var(--f-display);font-size:1rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
 .paper .p-sub{color:var(--paper-ink-2);font-size:var(--t-sm)}
 .paper .p-doc{text-align:right}
+@media (max-width:560px){.paper .p-doc{text-align:left}}
 .paper .p-doc .t{font-family:var(--f-serif);font-style:italic;font-size:1.6rem;font-weight:500;line-height:1.1}
 .paper .p-parties{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:18px 0}
 .paper .p-k{font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--paper-ink-2);font-weight:400}
@@ -609,9 +610,27 @@ img.fly{background:transparent;box-shadow:none;border-radius:0;overflow:visible;
 .ean{font-family:var(--f-mono);font-size:11px;letter-spacing:.03em;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ean i{font-style:normal;font-family:var(--f-display);font-size:10px;letter-spacing:.12em;color:var(--ink-3);margin-right:5px}
 .plog{font-family:var(--f-num);font-size:12px;font-weight:500;color:var(--ink-3);font-variant-numeric:tabular-nums;line-height:1.35}
-table.ptable{min-width:1260px}
-.ptable td.ean{font-size:11.5px}
-.ptable .tname{min-width:210px}
+/* table: fits the board from ~1280px; name cell carries badges + working description, line cell the category */
+table.ptable{min-width:760px}
+.ptable th{padding:8px 8px;line-height:1.25;vertical-align:bottom}
+.ptable th.num{text-align:right}
+.ptable td{padding:7px 8px}
+.ptable td.pid{font-family:var(--f-num);font-size:var(--t-xs);color:var(--ink-3);white-space:nowrap;line-height:1.3}
+.ptable td.pid .ean{display:block;font-size:11.5px;color:var(--ink-2);font-weight:400;margin-top:1px}
+.ptable .tthumb{width:44px;padding-left:6px;padding-right:0}
+.ptable .tthumb .thumb{width:34px;height:34px;border-radius:8px}
+.ptable .tname{min-width:150px}
+.ptable .tname .tn{display:block;line-height:1.3}
+.ptable .tname .badges{justify-content:flex-start;margin:3px 0 1px}
+.ptable .tname .badge{height:18px;padding:0 6px;font-size:10px}
+.ptable .tname .pnote{display:block;font-weight:400;margin-top:2px}
+.ptable .tline{min-width:118px;line-height:1.3}
+.ptable .tline .catdot{display:flex;margin-top:3px;font-size:10.5px;letter-spacing:.05em;color:var(--ink-3);white-space:nowrap}
+.ptable .tline .catdot::before{flex:none}
+.ptable .tact{text-align:right;white-space:nowrap;width:1%}
+.ptable .tact .in-label{font-size:0;gap:0}
+.ptable .tact .in-label svg{width:16px;height:16px}
+.ptable .tact .btn-sm{padding:0 10px}
 .qv-media img.web{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
 /* quick view: photo switch + catalogue block */
 .qv-src{position:absolute;right:12px;bottom:62px;z-index:1;display:flex;gap:4px;padding:4px;border-radius:12px;background:rgba(19,15,16,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
@@ -636,28 +655,31 @@ table.ptable{min-width:1260px}
 .qv-note{margin:0;padding:6px 10px;border-left:2px solid color-mix(in srgb, var(--warn) 55%, transparent);background:color-mix(in srgb, var(--warn-soft) 60%, transparent);border-radius:0 6px 6px 0;font-size:var(--t-xs);color:var(--ink-3);line-height:1.4;overflow-wrap:anywhere}
 .qv-note b{font-family:var(--f-display);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:10px;color:var(--warn);margin-right:4px}
 /* offer line: quantity mode (kartony / sztuki / palety), computed logistics, catalogue chip */
-.item-fields{align-items:start}
-.item-fields .f-mode{grid-column:span 2}
-.item-calc{grid-column:span 2;display:flex;flex-wrap:wrap;align-items:center;align-content:center;gap:2px 10px;min-height:32px;padding-top:6px;border-top:1px dashed var(--line);font-size:var(--t-xs);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.item-fields{align-items:start;grid-template-columns:repeat(4,minmax(0,1fr))}
+.item-fields .fld > label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-fields .f-mode{grid-column:span 2;min-width:0}
+.item-calc{grid-column:span 2;display:flex;flex-wrap:wrap;align-items:center;align-content:center;gap:0 10px;min-height:32px;line-height:1.3;font-size:var(--t-xs);color:var(--ink-3);font-variant-numeric:tabular-nums}
 .item-calc span{white-space:nowrap}
 .item-calc b{font-family:var(--f-num);font-weight:700;color:var(--ink-2)}
-.item-fields .lv-cell{padding-top:6px;border-top:1px dashed var(--line);justify-content:center;min-height:38px}
+.item-fields .lv-cell{grid-column:1 / -1;flex-direction:row;align-items:baseline;justify-content:space-between;gap:10px;min-height:0;padding-top:5px;border-top:1px dashed var(--line)}
+.lv-k{font-size:var(--t-xs);color:var(--ink-3)}
 .cat-fix{align-self:flex-start;margin-top:3px;display:inline-flex;align-items:center;gap:4px;height:22px;padding:0 8px;border-radius:999px;border:1px dashed color-mix(in srgb, var(--warn) 60%, transparent);background:var(--warn-soft);color:var(--warn);font-family:var(--f-num);font-size:11.5px;font-weight:700;white-space:nowrap;transition:background .15s,scale .12s var(--ease)}
 .cat-fix:hover{background:color-mix(in srgb, var(--warn) 22%, transparent)}
 .cat-fix:active{scale:.94}
 .tot-log{justify-content:flex-start;flex-wrap:wrap;gap:2px 18px}
 .tot-log > span{display:inline-flex;align-items:baseline;gap:6px}
+.tot-log .tot-hint{margin-left:auto}
 /* preview document: company block + logistics sub-table */
-.paper table{min-width:700px}
+.paper table{min-width:620px}
 .paper th,.paper td{padding-left:5px;padding-right:5px}
 .paper thead th,.paper thead th.n{white-space:normal;vertical-align:bottom;line-height:1.3}
-.paper td.p-prod{min-width:190px}
+.paper td.p-prod{min-width:160px}
 .paper .p-co{margin-top:8px;font-size:12px;line-height:1.5;color:var(--paper-ink-2);-webkit-user-select:text;user-select:text}
 .paper .p-co b{color:var(--paper-ink);font-weight:600}
 .paper .p-ean{font-family:var(--f-mono);font-size:11.5px;white-space:nowrap}
 .paper .p-sub2{color:var(--paper-ink-2);font-size:12px}
 .paper .p-sec{margin:24px 0 6px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-ink-2)}
-.paper .p-logi table{font-size:12px;min-width:720px}
+.paper .p-logi table{font-size:12px;min-width:640px}
 .paper .p-cofoot{margin-top:20px;padding-top:10px;border-top:1px solid var(--paper-line);display:flex;flex-wrap:wrap;gap:2px 14px;font-size:11px;color:var(--paper-ink-2)}
 /* hero tagline */
 .hero-tag{display:block;margin:0 0 6px;font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:var(--t-md);line-height:1.1;color:var(--gold);letter-spacing:.01em;opacity:.95}
@@ -812,11 +834,10 @@ table.ptable{min-width:1260px}
         </section>
       </div>
       <div class="totals" id="totals">
-        <div class="tot-row tot-log"><span>Kartony razem <b id="sCartons">0</b></span><span>Palety (szac.) <b id="sPallets">0</b></span></div>
+        <div class="tot-row tot-log"><span>Kartony razem <b id="sCartons">0</b></span><span>Palety (szac.) <b id="sPallets">0</b></span><span class="tot-hint" id="sHint" hidden></span></div>
         <div class="tot-row"><span>Suma netto (przed rabatem)</span><b id="sGross">—</b></div>
         <div class="tot-row"><span class="tot-disc"><label for="g-disc">Rabat globalny %</label><input class="inp r" id="g-disc" inputmode="decimal" autocomplete="off" placeholder="0"></span><b id="sDisc">—</b></div>
         <div class="tot-row grand"><span>Razem netto</span><b id="sTotal">—</b></div>
-        <div class="tot-hint" id="sHint" hidden></div>
       </div>
       <div class="actions">
         <button class="btn btn-primary wide" id="btnPreview" type="button">
@@ -1003,7 +1024,8 @@ const fmtPal = n => n==null || !isFinite(n) ? '—' : (n>0 && n<0.005 ? '< 0,01'
 const palWord = n => { if (n>0 && n<0.005) return 'palety'; const r = Math.round(n*100)/100; if (r!==Math.floor(r)) return 'palety'; if (r===1) return 'paleta'; const t = r%10, h = r%100; return (t>=2 && t<=4 && (h<10 || h>=20)) ? 'palety' : 'palet'; };
 const logLine = p => { const L = p._log; return [L.unitsPerCarton?`${L.unitsPerCarton} szt./karton`:'', L.cartonsPerPallet?`${L.cartonsPerPallet} kart./paleta`:'', L.shelfLifeDays?`${L.shelfLifeDays} dni`:''].filter(Boolean).join(' · '); };
 const money = (n,cur) => n==null || !isFinite(n) ? '—' : nf2.format(n) + ' ' + (cur || offer.meta.currency);
-const dec = n => n==null || !isFinite(n) ? '' : n.toFixed(2).replace('.',',');
+const nfDec = new Intl.NumberFormat('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2,useGrouping:false});
+const dec = n => n==null || !isFinite(n) ? '' : nfDec.format(n).replace('\u2212','-');
 const parseNum = v => { if (v==null) return null; const s = String(v).trim().replace(/\s/g,'').replace(',','.'); if (s==='') return null; const n = Number(s); return isFinite(n) ? n : null; };
 const isoDate = d => { const z = new Date(d.getTime() - d.getTimezoneOffset()*60000); return z.toISOString().slice(0,10); };
 const plDate = iso => { if(!iso) return '—'; const [y,m,d] = iso.split('-'); return `${d}.${m}.${y}`; };
@@ -1090,7 +1112,8 @@ function sanitizeOffer(o){
   if (!['PLN','EUR'].includes(meta.currency)) meta.currency = 'PLN';
   const items = Array.isArray(o.items) ? o.items.filter(i=>i && byId[i.id]).map(i=>({
     id:i.id, price: typeof i.price==='number'?i.price:null, mode: (i.mode==='szt' || (i.mode==='pal' && byId[i.id]._cpp)) ? i.mode : 'kart',
-    qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):byId[i.id]._upc, disc: Number(i.disc)||0
+    qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):byId[i.id]._upc, disc: Number(i.disc)||0,
+    ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || byId[i.id]._cpp) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
   })) : [];
   return {meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
 }
@@ -1241,8 +1264,8 @@ function renderProducts(opts){
   if (!list.length){
     el.innerHTML = `<div class="empty glass"><h3>Nic tu nie chrupie</h3><p>Brak produktów dla tych filtrów. Zmień wyszukiwanie lub <button type="button" class="btn btn-sm" data-act="resetF">wyczyść filtry</button></p></div>${parking}`;
   } else if (ui.view==='table'){
-    el.innerHTML = `<div class="table-wrap glass"><table class="ptable"><thead><tr><th><span class="sr-only">Zdjęcie</span></th><th>ID</th><th>EAN</th><th>Nazwa</th><th>Kategoria</th><th>Linia</th><th style="text-align:right">Gramatura</th><th style="text-align:right">Szt./karton</th><th style="text-align:right">Kart./paleta</th><th style="text-align:right">Termin</th><th>Oznaczenia</th><th>Opis roboczy</th><th></th></tr></thead><tbody>${
-      list.map(p=>`<tr class="cat-${p._cat.key}${inOffer(p.id)?' in':''}" data-id="${p.id}"><td class="tthumb">${thumbHtml(p)}</td><td class="pid">${p.id}</td><td class="ean">${p._ean||'—'}</td><td class="tname">${esc(p.name)}</td><td><span class="catdot">${esc(p._cat.pl)}</span></td><td>${esc(p._line)}</td><td class="num">${p.weight} g</td><td class="num">${p._log.unitsPerCarton||'—'}</td><td class="num">${p._log.cartonsPerPallet||'—'}</td><td class="num">${p._log.shelfLifeDays?p._log.shelfLifeDays+' dni':'—'}</td><td><div class="badges" style="justify-content:flex-start">${badges(p)}</div></td><td class="pnote">${esc(p.flavour)}</td><td style="text-align:right;white-space:nowrap">${addControl(p,true)}</td></tr>`).join('')
+    el.innerHTML = `<div class="table-wrap glass"><table class="ptable"><thead><tr><th><span class="sr-only">Zdjęcie</span></th><th>ID · EAN</th><th>Nazwa · opis roboczy</th><th>Linia · kategoria</th><th class="num" title="Gramatura">Gram.</th><th class="num" title="Sztuk w kartonie (katalog)">Szt./<br>karton</th><th class="num" title="Kartonów na palecie (katalog)">Kart./<br>paleta</th><th class="num" title="Termin przydatności (katalog)">Termin</th><th><span class="sr-only">Oferta</span></th></tr></thead><tbody>${
+      list.map(p=>`<tr class="cat-${p._cat.key}${inOffer(p.id)?' in':''}" data-id="${p.id}"><td class="tthumb">${thumbHtml(p)}</td><td class="pid">${p.id}<span class="ean">${p._ean||'—'}</span></td><td class="tname"><span class="tn">${esc(p.name)}</span>${p.isNew||p.weightUpdated?`<span class="badges">${badges(p)}</span>`:''}<span class="pnote">${esc(p.flavour)}</span></td><td class="tline">${esc(p._line)}<span class="catdot">${esc(p._cat.pl)}</span></td><td class="num">${p.weight} g</td><td class="num">${p._log.unitsPerCarton||'—'}</td><td class="num">${p._log.cartonsPerPallet||'—'}</td><td class="num">${p._log.shelfLifeDays?p._log.shelfLifeDays+' dni':'—'}</td><td class="tact">${addControl(p,true)}</td></tr>`).join('')
     }</tbody></table></div>${parking}`;
   } else if (ui.view==='lines'){
     const groups = [];
@@ -1308,7 +1331,7 @@ function itemHtml(it, i, n){
     <div class="item-head">
       <span class="item-no">${i+1}</span>
       ${thumbHtml(p)}
-      <div class="item-title"><div class="item-name">${esc(p.name)}</div><div class="item-sub">${p.id} · <span class="tnum">${p.weight} g</span> · ${esc(p._line)}</div></div>
+      <div class="item-title"><div class="item-name">${esc(p.name)}</div><div class="item-sub" title="${p.id} · ${esc(p._line)}">${p.id} · ${esc(p._line)}</div></div>
       <div class="item-tools">
         <button type="button" class="icon-btn" data-move="-1" aria-label="Przesuń wyżej"${i===0?' disabled':''}>${SVG_UP}</button>
         <button type="button" class="icon-btn" data-move="1" aria-label="Przesuń niżej"${i===n-1?' disabled':''}>${SVG_DOWN}</button>
@@ -1316,13 +1339,13 @@ function itemHtml(it, i, n){
       </div>
     </div>
     <div class="item-fields">
-      <div class="fld"><label for="p-${p.id}">Cena netto/szt.</label><input class="inp r" id="p-${p.id}" data-f="price" inputmode="decimal" placeholder="—" value="${it.price==null?'':esc(String(it.price).replace('.',','))}"></div>
-      <div class="fld"><label for="q-${p.id}">Ilość (${kart?'kart.':pal?'palety':'szt.'})</label><input class="inp r" id="q-${p.id}" data-f="qty" type="number" min="0" step="${pal?'0.25':'1'}" inputmode="${pal?'decimal':'numeric'}" value="${it.qty||''}"></div>
+      <div class="fld"><label for="p-${p.id}" title="Cena netto za sztukę">Cena/szt.</label><input class="inp r" id="p-${p.id}" data-f="price" inputmode="decimal" placeholder="—" value="${it.price==null?'':esc(String(it.price).replace('.',','))}"></div>
+      <div class="fld"><label for="q-${p.id}">Ilość (${kart?'kart.':pal?'pal.':'szt.'})</label><input class="inp r" id="q-${p.id}" data-f="qty" inputmode="${pal?'decimal':'numeric'}" autocomplete="off" placeholder="0" value="${it.qty?String(it.qty).replace('.',','):''}"></div>
       <div class="fld"><label for="d-${p.id}">Rabat %</label><input class="inp r" id="d-${p.id}" data-f="disc" inputmode="decimal" autocomplete="off" value="${it.disc?String(it.disc).replace('.',','):''}" placeholder="0"></div>
-      <div class="fld f-mode"><span id="ml-${p.id}">Ilość w</span><div class="seg" role="group" aria-labelledby="ml-${p.id}"><button type="button" id="m-${p.id}-kart" data-mode="kart" aria-pressed="${kart}">kartonach</button><button type="button" id="m-${p.id}-szt" data-mode="szt" aria-pressed="${it.mode==='szt'}">sztukach</button><button type="button" id="m-${p.id}-pal" data-mode="pal" aria-pressed="${pal}"${p._cpp?'':' disabled'}>paletach</button></div></div>
-      <div class="fld"><label for="u-${p.id}">Szt. w kartonie</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"><button type="button" class="cat-fix" id="uf-${p.id}" data-upcfix title="Zastosuj wartość z katalogu: ${p._upc} szt. w kartonie"${it.upc===p._upc?' hidden':''}>katalog: ${p._upc}</button></div>
+      <div class="fld"><label for="u-${p.id}" title="Sztuk w kartonie">Szt./karton</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"><button type="button" class="cat-fix" id="uf-${p.id}" data-upcfix title="Zastosuj wartość z katalogu: ${p._upc} szt. w kartonie"${it.upc===p._upc?' hidden':''}>katalog: ${p._upc}</button></div>
+      <div class="f-mode"><span id="ml-${p.id}" class="sr-only">Ilość podana w</span><div class="seg" role="group" aria-labelledby="ml-${p.id}"><button type="button" id="m-${p.id}-kart" data-mode="kart" aria-pressed="${kart}">kartony</button><button type="button" id="m-${p.id}-szt" data-mode="szt" aria-pressed="${it.mode==='szt'}">sztuki</button><button type="button" id="m-${p.id}-pal" data-mode="pal" aria-pressed="${pal}"${p._cpp?'':' disabled'}>palety</button></div></div>
       <div class="item-calc units" id="un-${p.id}" aria-live="off"></div>
-      <div class="lv-cell"><span class="lv" id="lv-${p.id}">—</span></div>
+      <div class="lv-cell"><span class="lv-k">Wartość netto</span><span class="lv" id="lv-${p.id}">—</span></div>
     </div>
   </li>`;
 }
@@ -1515,7 +1538,7 @@ $('#items').addEventListener('input', e=>{
   const it = offer.items.find(i=>i.id===li.dataset.id); if (!it) return;
   const v = parseNum(e.target.value);
   if (f==='price') it.price = v==null ? null : Math.max(0,v);
-  if (f==='qty') it.qty = it.mode==='pal' ? Math.max(0, Math.round((v||0)*100)/100) : Math.max(0, Math.round(v||0));
+  if (f==='qty'){ it.qty = it.mode==='pal' ? Math.max(0, Math.round((v||0)*100)/100) : Math.max(0, Math.round(v||0)); delete it.src; }
   if (f==='disc') it.disc = Math.min(100, Math.max(0, v||0));
   if (f==='upc') it.upc = Math.max(1, Math.round(v||1));
   updateComputed(); persist();
@@ -1548,10 +1571,16 @@ $('#items').addEventListener('click', e=>{
   const md = e.target.closest('[data-mode]');
   if (md){
     const it = offer.items[idx]; const m = md.dataset.mode; if (it.mode===m) return;
-    const units = unitsOf(it), cartons = cartonsOf(it), cpp = cppOf(it);
+    const cpp = cppOf(it);
     if (m==='pal' && !cpp) return;
+    /* convert from the quantity the user last typed (it.src), not from an already rounded conversion,
+       so kart → pal → kart (or szt → kart → szt) comes back to the same number */
+    const src = it.src || {mode:it.mode, qty:it.qty};
+    const base = Object.assign({}, it, {mode:src.mode, qty:src.qty});
+    const units = unitsOf(base), cartons = cartonsOf(base);
     it.mode = m;
-    it.qty = m==='kart' ? Math.max(0, Math.round(cartons)) : m==='pal' ? Math.round(cartons/cpp*100)/100 : Math.round(units);
+    it.qty = m===src.mode ? src.qty : m==='kart' ? Math.max(0, Math.round(cartons)) : m==='pal' ? Math.round(cartons/cpp*100)/100 : Math.round(units);
+    it.src = {mode:src.mode, qty:src.qty};
     persist(); renderItems(); document.getElementById(`m-${id}-${m}`)?.focus();
   }
 });
