@@ -33,6 +33,7 @@
   --pill-ink:#FFFFFF;
   --caramel:#8B653E;
   --gold:#E8C088;
+  --pl-accent:#A27A45; --pl-text:#7A5A2E; --pl-badge-bg:#1E1A1B; --pl-badge-ink:#E8C088; --pl-tint:rgba(30,26,27,.07);
   --good:#2D7A4C;
   --good-soft:rgba(45,122,76,.12);
   --warn:#93560B;
@@ -88,6 +89,7 @@
     --accent:#E11339; --accent-hover:#F02A4E; --accent-ink:#FFFFFF; --accent-text:#FF6A84; --accent-soft:rgba(255,90,120,.13);
     --pill:#F2EBE3; --pill-ink:#130F10;
     --caramel:#D3A26E; --gold:#E8C088;
+    --pl-accent:#E8C088; --pl-text:#E8C088; --pl-badge-bg:#E8C088; --pl-badge-ink:#1A1314; --pl-tint:rgba(232,192,136,.08);
     --good:#72D39C; --good-soft:rgba(114,211,156,.14);
     --warn:#F2B552; --warn-soft:rgba(242,181,82,.14);
     --crit:#FF8A93; --crit-soft:rgba(255,138,147,.12);
@@ -111,6 +113,7 @@
   --accent:#E11339; --accent-hover:#F02A4E; --accent-ink:#FFFFFF; --accent-text:#FF6A84; --accent-soft:rgba(255,90,120,.13);
   --pill:#F2EBE3; --pill-ink:#130F10;
   --caramel:#D3A26E; --gold:#E8C088;
+  --pl-accent:#E8C088; --pl-text:#E8C088; --pl-badge-bg:#E8C088; --pl-badge-ink:#1A1314; --pl-tint:rgba(232,192,136,.08);
   --good:#72D39C; --good-soft:rgba(114,211,156,.14);
   --warn:#F2B552; --warn-soft:rgba(242,181,82,.14);
   --crit:#FF8A93; --crit-soft:rgba(255,138,147,.12);
@@ -409,6 +412,40 @@ table.ptable{width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width
 textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-height:1.4;font-family:var(--f-ui)}
 .inp:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent)}
 .inp.r{text-align:right}
+
+/* offer type: Oferta PG | Private Label */
+.offer-head{flex-wrap:wrap;row-gap:8px}
+.offer-head .oh-title{flex:1 1 auto;min-width:0}
+.otype{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:3px;margin-left:auto}
+.otype-lbl{font-family:var(--f-display);font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-3);line-height:14px}
+.otype-sw{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:2px;border-radius:999px;border:1px solid var(--field-border);background:var(--field);isolation:isolate}
+.otype-thumb{position:absolute;z-index:0;top:2px;bottom:2px;left:2px;width:calc(50% - 2px);border-radius:999px;background:var(--accent);box-shadow:0 4px 10px -5px rgba(141,4,8,.7);transition:transform .32s var(--ease)}
+.otype-sw[data-type="pl"] .otype-thumb{transform:translateX(100%)}
+.otype-sw button{position:relative;z-index:1;border:0;background:transparent;border-radius:999px;min-height:26px;padding:0 10px;font-size:var(--t-xs);font-weight:600;color:var(--ink-2);white-space:nowrap;cursor:pointer;transition:color .2s,scale .12s var(--ease)}
+.otype-sw button:hover{color:var(--ink)}
+.otype-sw button:active{scale:.95}
+.otype-sw button[aria-checked="true"]{color:var(--accent-ink)}
+.otype-sw button:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:999px}
+.pl-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:var(--pl-badge-bg);color:var(--pl-badge-ink);font-family:var(--f-num);font-size:11px;font-weight:700;letter-spacing:.06em;line-height:1;white-space:nowrap}
+.pl-badge[hidden]{display:none}
+.offer.is-pl .offer-head{background:linear-gradient(180deg,var(--pl-tint),transparent 85%),var(--glass-solid);box-shadow:inset 0 2px 0 var(--pl-accent);border-bottom-color:color-mix(in srgb, var(--pl-accent) 40%, transparent)}
+.offer.is-pl .offer-head h2::before{background:var(--pl-accent)}
+.pl-wrap{display:grid;grid-template-rows:0fr;margin-bottom:-12px;opacity:0;visibility:hidden;transition:grid-template-rows .34s var(--ease), margin-bottom .34s var(--ease), opacity .26s ease, visibility 0s linear .34s}
+.pl-wrap.open{grid-template-rows:1fr;margin-bottom:0;opacity:1;visibility:visible;transition:grid-template-rows .34s var(--ease), margin-bottom .34s var(--ease), opacity .26s ease .06s, visibility 0s}
+.pl-in{min-height:0;overflow:hidden}
+.pl-box{padding:10px 12px 12px;border-radius:var(--r-md);border:1px solid color-mix(in srgb, var(--pl-accent) 45%, transparent);background:linear-gradient(180deg,var(--pl-tint),transparent),var(--field)}
+.pl-box .section-title{color:var(--pl-text);font-weight:500}
+.otype-tag{flex:none;display:inline-grid;place-items:center;height:18px;padding:0 6px;border-radius:999px;font-family:var(--f-num);font-size:10px;font-weight:700;letter-spacing:.06em;background:var(--accent-soft);color:var(--accent-text)}
+.otype-tag.pl{background:var(--pl-badge-bg);color:var(--pl-badge-ink)}
+.saved-list .badge-type{height:19px;padding:0 7px;font-size:10px;vertical-align:1px;background:var(--accent-soft);color:var(--accent-text)}
+.saved-list .badge-type.pl{background:var(--pl-badge-bg);color:var(--pl-badge-ink)}
+.fab .fab-tag{display:inline-grid;place-items:center;height:20px;padding:0 6px;margin-left:-4px;border-radius:999px;background:var(--pl-badge-bg);color:var(--pl-badge-ink);font-family:var(--f-num);font-size:11px;letter-spacing:.06em}
+.fab .fab-tag[hidden]{display:none}
+.paper .p-pl{margin-top:4px;font-size:var(--t-sm);font-weight:600;color:#6B4E25}
+@media (max-width:1099.98px){
+  .otype{order:3;flex-basis:100%;flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .otype-sw button{min-height:30px;padding:0 14px;font-size:var(--t-sm)}
+}
 
 .items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .item{padding:8px 12px 9px;border-radius:var(--r-md);border:1px solid var(--line-strong);background:var(--field);display:flex;flex-direction:column;gap:6px;overflow:hidden}
@@ -803,21 +840,42 @@ table.ptable{min-width:760px}
 
     <aside class="offer glass" id="offer" aria-label="Oferta">
       <div class="offer-head">
-        <div>
-          <h2>Oferta</h2>
+        <div class="oh-title">
+          <h2>Oferta <span class="pl-badge" id="plBadge" hidden>PRIVATE LABEL</span></h2>
           <div class="autosave" id="autosave">Szkic zapisywany automatycznie</div>
+        </div>
+        <div class="otype" id="otype">
+          <span class="otype-lbl" id="otypeLbl">Typ oferty</span>
+          <div class="otype-sw" id="otypeSw" role="radiogroup" aria-labelledby="otypeLbl" data-type="pg">
+            <span class="otype-thumb" aria-hidden="true"></span>
+            <button type="button" role="radio" id="otype-pg" data-otype="pg" aria-checked="true" tabindex="0">Oferta PG</button>
+            <button type="button" role="radio" id="otype-pl" data-otype="pl" aria-checked="false" tabindex="-1">Private Label</button>
+          </div>
         </div>
         <button class="icon-btn sheet-close" id="sheetClose" type="button" aria-label="Zamknij panel oferty">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
         </button>
       </div>
       <div class="offer-body" id="offerBody">
+        <div class="pl-wrap" id="plWrap" inert>
+          <div class="pl-in">
+            <section class="pl-box" aria-labelledby="plTitle">
+              <h3 class="section-title" id="plTitle"><span>Private Label · produkcja pod marką klienta</span></h3>
+              <div class="meta-grid">
+                <div class="fld"><label for="o-brand">Marka klienta</label><input class="inp" id="o-brand" data-meta="brand" autocomplete="off"></div>
+                <div class="fld"><label for="o-moq">MOQ / minimalne zamówienie</label><input class="inp" id="o-moq" data-meta="moq" autocomplete="off" placeholder="np. 1 paleta na SKU"></div>
+                <div class="fld full"><label for="o-pack">Opakowanie</label><select class="inp" id="o-pack" data-meta="packaging"><option value="">— wybierz —</option><option>Projekt klienta</option><option>Projekt do opracowania przez PG</option><option>Do ustalenia</option></select></div>
+                <div class="fld full"><label for="o-lead">Termin realizacji</label><input class="inp" id="o-lead" data-meta="leadTime" autocomplete="off" placeholder="np. 6–8 tygodni od akceptacji projektu"></div>
+              </div>
+            </section>
+          </div>
+        </div>
         <div class="example-note" id="exampleNote" hidden>
           <span>Przykład — edytuj lub wyczyść</span>
           <button class="btn btn-sm btn-ghost" id="exampleOk" type="button">Zostaw i edytuj</button>
         </div>
         <details class="meta" id="metaBox">
-          <summary class="section-title"><span>Dane oferty</span><span class="meta-sum" id="metaSum"></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <summary class="section-title"><span>Dane oferty</span><span class="otype-tag" id="metaType" title="Typ oferty: Oferta PG">PG</span><span class="meta-sum" id="metaSum"></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
           <div class="meta-grid">
             <div class="fld full"><label for="o-client">Klient</label><input class="inp" id="o-client" data-meta="client" autocomplete="organization"></div>
             <div class="fld full"><label for="o-contact">Osoba kontaktowa</label><input class="inp" id="o-contact" data-meta="contact" autocomplete="name"></div>
@@ -871,7 +929,7 @@ table.ptable{min-width:760px}
 
 <div class="scrim" id="scrim"></div>
 <button class="fab" id="fab" type="button" aria-controls="offer" aria-expanded="false">
-  <span class="count" id="fabCount">0</span><span>Oferta</span><span class="fval" id="fabVal"></span>
+  <span class="count" id="fabCount">0</span><span>Oferta</span><span class="fab-tag" id="fabTag" title="Private Label" hidden>PL</span><span class="fval" id="fabVal"></span>
 </button>
 
 <dialog id="confirmDlg" aria-labelledby="cfTitle">
@@ -1087,7 +1145,19 @@ applyTheme();
 /* ---------- offer state ---------- */
 function newOffer(){
   const today = isoDate(new Date());
-  return {meta:{client:'',contact:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:''},items:[],globalDiscount:0,isExample:false,savedId:null};
+  return {type:'pg',meta:{client:'',contact:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null};
+}
+/* offer type: 'pg' = GaliCrisp brand (default, also for older saved offers), 'pl' = Private Label (client's brand) */
+const OTYPE_LBL = {pg:'Oferta PG', pl:'Private Label'};
+const PACK_OPTS = ['Projekt klienta','Projekt do opracowania przez PG','Do ustalenia'];
+const isPL = () => offer.type==='pl';
+const docTitle = () => isPL() ? 'Oferta Private Label' : 'Oferta handlowa — GaliCrisp';
+/* Private Label details, only the filled-in ones (empty for Oferta PG) */
+function plRows(){
+  if (!isPL()) return [];
+  const m = offer.meta;
+  return [['Marka klienta',m.brand],['Opakowanie',m.packaging],['MOQ / minimalne zamówienie',m.moq],['Termin realizacji',m.leadTime]]
+    .map(([k,v])=>[k,String(v||'').trim()]).filter(r=>r[1]);
 }
 function exampleOffer(){
   const o = newOffer();
@@ -1110,12 +1180,13 @@ function sanitizeOffer(o){
   const meta = base.meta;
   if (o.meta && typeof o.meta==='object') Object.keys(meta).forEach(k=>{ const v = o.meta[k]; if (v!=null && v!=='') meta[k] = String(v); });
   if (!['PLN','EUR'].includes(meta.currency)) meta.currency = 'PLN';
+  if (!PACK_OPTS.includes(meta.packaging)) meta.packaging = '';
   const items = Array.isArray(o.items) ? o.items.filter(i=>i && byId[i.id]).map(i=>({
     id:i.id, price: typeof i.price==='number'?i.price:null, mode: (i.mode==='szt' || (i.mode==='pal' && byId[i.id]._cpp)) ? i.mode : 'kart',
     qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):byId[i.id]._upc, disc: Number(i.disc)||0,
     ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || byId[i.id]._cpp) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
   })) : [];
-  return {meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
+  return {type: o.type==='pl' ? 'pl' : 'pg', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
 }
 let offer = sanitizeOffer(store.get(K_DRAFT)) || exampleOffer();
 const inOffer = id => offer.items.some(i=>i.id===id);
@@ -1361,7 +1432,31 @@ function renderMeta(){
   $('#g-disc').value = offer.globalDiscount ? String(offer.globalDiscount).replace('.',',') : '';
   $('#exampleNote').hidden = !offer.isExample;
   $('#metaBox').open = offer.items.length===0;
+  renderType();
   renderMetaSum();
+}
+let typeRendered = false;
+function renderType(){
+  const t = isPL() ? 'pl' : 'pg', pl = t==='pl';
+  if (!typeRendered){
+    /* first render (page load): show the saved state without sliding/expanding */
+    typeRendered = true;
+    const els = [$('#plWrap'), $('.otype-thumb')];
+    els.forEach(el=>{ el.style.transition = 'none'; });
+    requestAnimationFrame(()=>requestAnimationFrame(()=>els.forEach(el=>{ el.style.transition = ''; })));
+  }
+  $('#otypeSw').dataset.type = t;
+  ['pg','pl'].forEach(k=>{ const b = $('#otype-'+k); b.setAttribute('aria-checked', String(k===t)); b.tabIndex = k===t ? 0 : -1; });
+  $('#offer').classList.toggle('is-pl', pl);
+  $('#plBadge').hidden = !pl;
+  const w = $('#plWrap'); w.classList.toggle('open', pl); w.inert = !pl;
+  $('#fabTag').hidden = !pl;
+  const mt = $('#metaType'); mt.textContent = pl ? 'PL' : 'PG'; mt.title = 'Typ oferty: ' + OTYPE_LBL[t]; mt.classList.toggle('pl', pl);
+}
+function setType(t){
+  if (!OTYPE_LBL[t] || offer.type===t) return;
+  offer.type = t;
+  renderType(); persist();
 }
 function renderMetaSum(){
   const m = offer.meta;
@@ -1533,6 +1628,14 @@ document.querySelectorAll('[data-meta]').forEach(el=>{
 $('#o-date').addEventListener('change', e=>{ if (e.target.value){ offer.meta.validUntil = addDays(e.target.value,30); $('#o-valid').value = offer.meta.validUntil; persist(); } });
 $('#g-disc').addEventListener('input', e=>{ offer.globalDiscount = Math.min(100, Math.max(0, parseNum(e.target.value)||0)); updateComputed(); persist(); });
 $('#exampleOk').addEventListener('click', ()=>{ clearExampleFlag(); persist(); });
+$('#otypeSw').addEventListener('click', e=>{ const b = e.target.closest('[data-otype]'); if (b) setType(b.dataset.otype); });
+$('#otypeSw').addEventListener('keydown', e=>{
+  const k = e.key; let t = null;
+  if (k==='ArrowLeft' || k==='ArrowUp' || k==='ArrowRight' || k==='ArrowDown') t = isPL() ? 'pg' : 'pl'; /* two options: arrows move to the other one (wrapping) */
+  else if (k==='Home') t = 'pg'; else if (k==='End') t = 'pl';
+  if (!t) return;
+  e.preventDefault(); setType(t); $('#otype-'+t).focus();
+});
 $('#items').addEventListener('input', e=>{
   const li = e.target.closest('.item'); const f = e.target.dataset.f; if (!li || !f) return;
   const it = offer.items.find(i=>i.id===li.dataset.id); if (!it) return;
@@ -1733,7 +1836,7 @@ function tableMatrix(){
 }
 function metaRows(){
   const m = offer.meta;
-  return [['Oferta handlowa',COMPANY.name],['Adres',COMPANY.addressLines.join(', ')],['NIP',COMPANY.taxId],['Telefon',COMPANY.phone],['E-mail',COMPANY.email],[],['Klient',m.client],['Osoba kontaktowa',m.contact],['Data oferty',plDate(m.date)],['Ważna do',plDate(m.validUntil)],['Waluta',m.currency],['Incoterms / warunki',m.terms],['Uwagi',m.notes],[]];
+  return [[docTitle(),COMPANY.name],['Adres',COMPANY.addressLines.join(', ')],['NIP',COMPANY.taxId],['Telefon',COMPANY.phone],['E-mail',COMPANY.email],[],['Typ oferty',OTYPE_LBL[offer.type]],...plRows(),['Klient',m.client],['Osoba kontaktowa',m.contact],['Data oferty',plDate(m.date)],['Ważna do',plDate(m.validUntil)],['Waluta',m.currency],['Incoterms / warunki',m.terms],['Uwagi',m.notes],[]];
 }
 function toCsv(){
   const q = v => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
@@ -1741,15 +1844,17 @@ function toCsv(){
 }
 function toTsv(){
   const c = v => String(v ?? '').replace(/[\t\r\n]+/g,' ');
-  return tableMatrix().map(r=>r.map(c).join('\t')).join('\n');
+  return [['Typ oferty',OTYPE_LBL[offer.type]], ...plRows(), [], ...tableMatrix()].map(r=>r.map(c).join('\t')).join('\n');
 }
 function toText(){
   const m = offer.meta, cur = m.currency, t = totals();
   const L = [];
-  L.push('OFERTA HANDLOWA · GaliCrisp');
+  L.push(docTitle());
   L.push(`${COMPANY.name} · ${COMPANY.addressLines.join(', ')}`);
   L.push(`NIP: ${COMPANY.taxId} · tel. ${COMPANY.phone} · ${COMPANY.email}`);
   L.push('');
+  L.push(`Typ oferty: ${OTYPE_LBL[offer.type]}`);
+  plRows().forEach(([k,v])=>L.push(`${k}: ${v}`));
   if (m.client) L.push(`Klient: ${m.client}`);
   if (m.contact) L.push(`Osoba kontaktowa: ${m.contact}`);
   L.push(`Data oferty: ${plDate(m.date)}   Ważna do: ${plDate(m.validUntil)}`);
@@ -1809,7 +1914,7 @@ let downloads = null;
 $('#btnCsv').addEventListener('click', async ()=>{
   if (!downloads) return;
   if (!offer.items.length) return toast('Dodaj produkty, aby pobrać CSV', true);
-  const filename = `oferta_${offer.meta.client.trim() ? slug(offer.meta.client)+'_' : ''}${offer.meta.date || isoDate(new Date())}.csv`;
+  const filename = `oferta_${offer.meta.client.trim() ? slug(offer.meta.client)+'_' : ''}${offer.meta.date || isoDate(new Date())}${isPL()?'_PL':''}.csv`;
   try {
     await downloads.save({filename, data:new Blob(['﻿'+toCsv()],{type:'text/csv'})});
     toast(`Zapisano ${filename}`);
@@ -1838,12 +1943,14 @@ function renderPaper(){
     <div class="p-head">
       <div><img class="p-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="p-brand">Piekarnia Galicyjska</div><div class="p-sub">Pieczywo chrupkie · krakersy · snacki piekarnicze · przekąski wytrawne</div>
         <div class="p-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}<br>NIP: ${esc(co.taxId)} · tel. ${esc(co.phone)} · ${esc(co.email)}</div></div>
-      <div class="p-doc"><div class="t">Oferta handlowa</div><div class="p-sub">z dnia ${plDate(m.date)} · ważna do ${plDate(m.validUntil)}</div></div>
+      <div class="p-doc"><div class="t">${esc(docTitle())}</div>${isPL()?`<div class="p-pl">Produkcja pod marką klienta${m.brand.trim()?': '+esc(m.brand.trim()):''}</div>`:''}<div class="p-sub">z dnia ${plDate(m.date)} · ważna do ${plDate(m.validUntil)}</div></div>
     </div>
     <div class="p-parties">
       <div><div class="p-k">Klient</div><div class="p-v">${esc(m.client)||'—'}</div></div>
       <div><div class="p-k">Osoba kontaktowa</div><div class="p-v">${esc(m.contact)||'—'}</div></div>
       <div><div class="p-k">Waluta · warunki</div><div class="p-v">${esc(cur)}${m.terms?' · '+esc(m.terms):''}</div></div>
+      <div><div class="p-k">Typ oferty</div><div class="p-v">${OTYPE_LBL[offer.type]}</div></div>
+      ${plRows().map(([k,v])=>`<div><div class="p-k">${esc(k)}</div><div class="p-v">${esc(v)}</div></div>`).join('')}
     </div>
     <div class="p-tablewrap"><table>
       <thead><tr><th>Lp.</th><th>Produkt · EAN</th><th class="n">Cena netto/szt. (${esc(cur)})</th><th class="n">Ilość (szt.)</th><th class="n">Szt./ karton</th><th class="n">Kartony</th><th class="n">Palety (szac.)</th><th class="n">Rabat</th><th class="n">Wartość netto (${esc(cur)})</th></tr></thead>
@@ -1886,7 +1993,8 @@ function renderSaved(){
     const d = new Date(s.savedAt);
     const when = isNaN(d) ? '' : `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
     const n = (s.offer && s.offer.items || []).length;
-    return `<li data-sid="${esc(s.sid)}"><div><div class="sname">${esc(s.name)}${s.sid===offer.savedId?' <span class="badge badge-new">otwarta</span>':''}</div><div class="smeta">${when} · ${n} poz. · ${esc(s.offer?.meta?.currency||'')}</div></div><div class="sbtns"><button type="button" class="btn btn-sm" id="load-${esc(s.sid)}" data-load>Wczytaj</button><button type="button" class="btn btn-sm btn-ghost btn-danger" id="del-${esc(s.sid)}" data-del>Usuń</button></div></li>`;
+    const st = s.offer && s.offer.type==='pl' ? 'pl' : 'pg';
+    return `<li data-sid="${esc(s.sid)}"><div><div class="sname">${esc(s.name)} <span class="badge badge-type ${st}" title="Typ oferty">${OTYPE_LBL[st]}</span>${s.sid===offer.savedId?' <span class="badge badge-new">otwarta</span>':''}</div><div class="smeta">${when} · ${n} poz. · ${esc(s.offer?.meta?.currency||'')}</div></div><div class="sbtns"><button type="button" class="btn btn-sm" id="load-${esc(s.sid)}" data-load>Wczytaj</button><button type="button" class="btn btn-sm btn-ghost btn-danger" id="del-${esc(s.sid)}" data-del>Usuń</button></div></li>`;
   }).join('') : '<li style="justify-content:center;color:var(--ink-3)">Brak zapisanych ofert. Użyj „Zapisz szkic”.</li>';
 }
 $('#btnSaved').addEventListener('click', ()=>{ renderSaved(); try { $('#savedDlg').showModal(); } catch(e){} });
@@ -1915,8 +2023,8 @@ $('#savedList').addEventListener('click', e=>{
 $('#btnClear').addEventListener('click', async ()=>{
   const ok = await confirmBox('Wyczyścić ofertę?', 'Usunie to wszystkie pozycje i dane klienta z bieżącego szkicu. Zapisane oferty pozostaną bez zmian.', 'Wyczyść');
   if (!ok) return;
-  const cur = offer.meta.currency;
-  offer = newOffer(); offer.meta.currency = cur;
+  const cur = offer.meta.currency, typ = offer.type;
+  offer = newOffer(); offer.meta.currency = cur; offer.type = typ;
   persist(); refreshAll(); toast('Oferta wyczyszczona');
 });
 
