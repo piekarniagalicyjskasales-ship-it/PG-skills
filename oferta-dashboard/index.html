@@ -412,6 +412,41 @@ table.ptable{width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width
 textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-height:1.4;font-family:var(--f-ui)}
 .inp:focus{border-color:var(--focus);outline:none;box-shadow:0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent)}
 .inp.r{text-align:right}
+/* customer details inside "Dane oferty" */
+.meta-sub{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px;min-height:32px}
+.meta-sub h4{margin:0;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.meta-sub .btn svg{width:15px;height:15px}
+.meta-sub.terms{margin:14px 0 8px;padding-top:12px;border-top:1px solid var(--line);min-height:0}
+.fopt{font-weight:400;color:var(--ink-3)}
+.cust-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.cust-grid .full{grid-column:1 / -1}
+.cust-grid .addr3{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.25fr) minmax(0,1fr);gap:10px}
+@media (max-width:419.98px){.cust-grid,.cust-grid .addr3{grid-template-columns:minmax(0,1fr)}}
+.fhint{font-size:11.5px;line-height:1.3;color:var(--ink-3);font-weight:500;overflow-wrap:anywhere}
+.fhint.ok{color:var(--good)}
+.fhint.warn::before{content:"!";display:inline-grid;place-items:center;width:13px;height:13px;margin-right:4px;border-radius:50%;background:var(--warn-soft);color:var(--warn);font-size:9.5px;font-weight:800;vertical-align:1px}
+.inp.just-filled{border-color:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+/* paste & parse dialog */
+.dlg.cust-dlg{width:min(720px, calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain}
+.cust-dlg .cu-help{font-size:var(--t-sm)}
+.cu-text{min-height:150px;font-family:var(--f-mono);font-size:12.5px;line-height:1.45;white-space:pre-wrap}
+.cu-review{display:flex;flex-direction:column;gap:8px}
+.cu-review h4{margin:0;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.cu-empty{margin:0;padding:10px 12px;border-radius:var(--r-md);border:1px dashed var(--line-strong);color:var(--ink-3);font-size:var(--t-sm)}
+.cu-rows{display:flex;flex-direction:column;gap:6px}
+.cu-row{display:grid;grid-template-columns:auto minmax(0,9.5em) minmax(0,1fr);align-items:center;gap:6px 10px;padding:6px 10px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--field);transition:opacity .15s}
+.cu-row input[type=checkbox]{width:18px;height:18px;margin:0;accent-color:var(--accent);cursor:pointer}
+.cu-row label{font-size:var(--t-xs);font-weight:600;color:var(--ink-2);cursor:pointer}
+.cu-row .inp{height:32px}
+.cu-row .cu-old{grid-column:3;font-size:11.5px;color:var(--ink-3);overflow-wrap:anywhere;margin-top:-2px}
+.cu-row .cu-old s{color:var(--ink-3)}
+.cu-row .cu-old b{color:var(--warn);font-weight:700}
+.cu-row.conflict{border-style:dashed}
+.cu-row.off label,.cu-row.off .inp{opacity:.55}
+@media (max-width:560px){
+  .cu-row{grid-template-columns:auto minmax(0,1fr)}
+  .cu-row .inp,.cu-row .cu-old{grid-column:1 / -1}
+}
 
 /* offer type: Oferta PG | Private Label */
 .offer-head{flex-wrap:wrap;row-gap:8px}
@@ -615,6 +650,9 @@ dialog[open]::backdrop{opacity:1}
 .paper .p-parties{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:18px 0}
 .paper .p-k{font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--paper-ink-2);font-weight:400}
 .paper .p-v{font-weight:600;overflow-wrap:anywhere}
+.paper .p-cl{margin-top:4px;font-size:12.5px;line-height:1.5;overflow-wrap:anywhere}
+.paper .p-cc{margin-top:6px}
+.paper .p-ck{font-family:var(--f-display);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-ink-2);margin-right:3px}
 .paper .p-tablewrap{overflow-x:auto}
 .paper table{width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:600px}
 .paper th{text-align:left;font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--paper-ink-2);font-weight:400;padding:8px 6px;border-bottom:1px solid var(--paper-ink)}
@@ -916,9 +954,25 @@ table.ptable{min-width:760px}
         </div>
         <details class="meta" id="metaBox">
           <summary class="section-title"><span>Dane oferty</span><span class="otype-tag" id="metaType" title="Typ oferty: Oferta PG">PG</span><span class="otype-tag lang-tag" id="metaLang" title="Język oferty: angielski" hidden>EN</span><span class="meta-sum" id="metaSum"></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <div class="meta-grid">
-            <div class="fld full"><label for="o-client">Klient</label><input class="inp" id="o-client" data-meta="client" autocomplete="organization"></div>
+          <div class="meta-sub"><h4 id="custHead">Dane klienta</h4>
+            <button class="btn btn-sm btn-ghost" id="btnCustPaste" type="button" aria-haspopup="dialog" title="Wklej stopkę maila, dane z KRS/CEIDG lub wizytówkę — pola uzupełnią się same"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="4" width="10" height="4" rx="1"/><path d="M15 6h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2M9 13h6M9 17h4"/></svg>Wklej dane klienta</button>
+          </div>
+          <div class="cust-grid" role="group" aria-labelledby="custHead">
+            <div class="fld full"><label for="o-client">Klient</label><input class="inp" id="o-client" data-meta="client" autocomplete="organization" placeholder="Nazwa firmy — lub wklej tu pełne dane"></div>
+            <div class="fld full"><label for="o-c-street">Ulica i nr</label><input class="inp" id="o-c-street" data-meta="street" autocomplete="street-address"></div>
+            <div class="addr3">
+              <div class="fld"><label for="o-c-postal">Kod pocztowy</label><input class="inp" id="o-c-postal" data-meta="postal" autocomplete="postal-code"></div>
+              <div class="fld"><label for="o-c-city">Miejscowość</label><input class="inp" id="o-c-city" data-meta="city" autocomplete="address-level2"></div>
+              <div class="fld"><label for="o-c-country">Kraj</label><input class="inp" id="o-c-country" data-meta="country" autocomplete="country-name"></div>
+            </div>
+            <div class="fld"><label for="o-c-nip">NIP / VAT ID</label><input class="inp" id="o-c-nip" data-meta="nip" autocomplete="off" spellcheck="false" aria-describedby="o-c-nip-hint"><span class="fhint" id="o-c-nip-hint" aria-live="polite" hidden></span></div>
+            <div class="fld"><label for="o-c-krs">KRS / REGON <span class="fopt">(opcjonalnie)</span></label><input class="inp" id="o-c-krs" data-meta="krs" autocomplete="off" spellcheck="false"></div>
             <div class="fld full"><label for="o-contact">Osoba kontaktowa</label><input class="inp" id="o-contact" data-meta="contact" autocomplete="name"></div>
+            <div class="fld"><label for="o-c-email">E-mail</label><input class="inp" type="email" id="o-c-email" data-meta="email" autocomplete="email" spellcheck="false" aria-describedby="o-c-email-hint"><span class="fhint" id="o-c-email-hint" aria-live="polite" hidden></span></div>
+            <div class="fld"><label for="o-c-phone">Telefon</label><input class="inp" type="tel" id="o-c-phone" data-meta="phone" autocomplete="tel"></div>
+          </div>
+          <div class="meta-sub terms"><h4 id="termsHead">Warunki oferty</h4></div>
+          <div class="meta-grid" role="group" aria-labelledby="termsHead">
             <div class="fld"><label for="o-date">Data oferty</label><input class="inp" type="date" id="o-date" data-meta="date"></div>
             <div class="fld"><label for="o-valid">Ważna do</label><input class="inp" type="date" id="o-valid" data-meta="validUntil"></div>
             <div class="fld"><label for="o-cur">Waluta</label><select class="inp" id="o-cur" data-meta="currency"><option>PLN</option><option>EUR</option></select></div>
@@ -1002,6 +1056,24 @@ table.ptable{min-width:760px}
   </div>
 </dialog>
 
+<dialog id="custDlg" aria-labelledby="cuTitle" aria-describedby="cuHelp">
+  <div class="dlg glass cust-dlg">
+    <h3 id="cuTitle">Wklej dane klienta</h3>
+    <p class="cu-help" id="cuHelp">Wklej stopkę maila, dane z KRS/CEIDG albo wizytówkę i kliknij „Rozpoznaj”. Tekst jest analizowany tylko w tej przeglądarce — nic nie jest wysyłane.</p>
+    <label for="cuText" class="sr-only">Tekst z danymi klienta</label>
+    <textarea id="cuText" class="inp cu-text" rows="7" spellcheck="false" placeholder="Wklej stopkę maila, dane z KRS/CEIDG, wizytówkę…"></textarea>
+    <section class="cu-review" id="cuReview" aria-labelledby="cuRevTitle" hidden>
+      <h4 id="cuRevTitle" tabindex="-1">Rozpoznane dane</h4>
+      <div class="cu-rows" id="cuRows"></div>
+    </section>
+    <div class="dlg-actions">
+      <button class="btn" id="cuCancel" type="button">Anuluj</button>
+      <button class="btn" id="cuParse" type="button">Rozpoznaj</button>
+      <button class="btn btn-primary" id="cuApply" type="button" disabled>Zastosuj</button>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="previewDlg" aria-labelledby="pvTitle">
   <div class="preview-shell">
     <div class="preview-bar glass">
@@ -1051,10 +1123,10 @@ table.ptable{min-width:760px}
 
 
 <script>
-const PRODUCTS = [{"id":"PG01","name":"CRISPBREAD 3 SEEDS 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic – seeded crispbread 3 ziarna","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG02","name":"CRISPBREAD SPELT & SUNFLOWER 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"Classic – orkisz słonecznik","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG03","name":"CRISPBREAD CHEESE & PUMPKIN 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"Classic – dynia ser","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG04","name":"CRISPBREAD CHEESE & TOMATO 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic -tomato & basil – na bazie twins receptury","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG05","name":"CRISPBREAD CHEESE & ONION 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic - cheese & onion","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG06","name":"CRISPBREAD 3 SEEDS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"3 seeded crispbread","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG07","name":"CRISPBREAD CHEESE & PUMPKIN 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"pumpkin cheese TESCO","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG08","name":"CRISPBREAD 5 GRAINS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"5 zbóż","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG09","name":"CRISPBREAD SPELT & SUNFLOWER 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"orkisz słonecznik","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG10","name":"DELI CRISPBREAD CARMELIZED ONION 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI- CARMELIZED ONION","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG11","name":"DELI CRISPBREAD CHEESE & TOMATO 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI- CHEESE AND TOMATO","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG12","name":"DELI CRISPBREAD TRIPLE CHEESE 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI Thin crispbread- 3 cheese","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG13","name":"ARTISAN CRISPBREAD SUPERSEEDS 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"ARTISAN SOURDOUGH CRISPBREAD","flavour":"SUPER SEEDS","weight":130,"weightUpdated":true,"isNew":false},{"id":"PG14","name":"ARTISAN CRISPBREAD CHEESE & PUMPKIN 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"ARTISAN SOURDOUGH CRISPBREAD","flavour":"PUMPKIN SER","weight":130,"weightUpdated":true,"isNew":false},{"id":"PG15","name":"WHOLEGRAIN CRISPBREAD PUMPKIN & CHEESE 200 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"WHOLEGRAIN CRISPBREAD","flavour":"wholegrain seeds & oats – cheese and pumpkin","weight":200,"weightUpdated":false,"isNew":false},{"id":"PG16","name":"WHOLEGRAIN CRISPBREAD 3 SEEDS 200 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"WHOLEGRAIN CRISPBREAD","flavour":"pełnoziarniste 3 ziarna","weight":200,"weightUpdated":false,"isNew":false},{"id":"PG17","name":"PROTEIN CRISPBREAD ONION 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"PROTEIN CRISPBREAD","flavour":"PROTEIN onion","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG18","name":"PROTEIN CRISPBREAD 3 SEEDS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"PROTEIN CRISPBREAD","flavour":"protein 3 seeds","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG19","name":"CRISPY FLATBREAD 3 SEEDS & SEA SALT 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"3 Seeds & Sea Salt","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG20","name":"CRISPY FLATBREAD TRIPLE CHEESE 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Tripple Cheese","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG21","name":"CRISPY FLATBREAD TOMATO & BASIL 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Tomato & Basil","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG22","name":"CRISPY FLATBREAD CHEESE & TOMATO 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Cheese & Tomato","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG23","name":"CRISPY FLATBREAD CHEESE & ONION 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Cheese & Onion","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG24","name":"CRISPY FLATBREAD SESAME & BEETROOT 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Sesame & Beetroot","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG25","name":"CRACKERS CHEESE & TOMATO 130 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI CLASSICCRACKERS","flavour":"Tomato & sesame and basil – zmiana smaku!","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG26","name":"CLASSIC CRACKERS WITH SOURDOUGH 130 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI CLASSICCRACKERS","flavour":"Sourdough – plain crackers","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG27","name":"SEEDED CRACKERS 100 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI SEEDED CRACKERS","flavour":"Seeds + poppy i sesame black and white","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG28","name":"CLASSIC CRACKERS 100 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI SEEDED CRACKERS","flavour":"Plain cracker","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG29","name":"CRACKERS ROSEMARY & SEA SALT 100 G","category":"CRACKERS","slide":"RYE CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"PREMIUM RYE CRACKERS","flavour":"rosemary and sea salt","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG30","name":"FOCACCIA OLIVE OIL & SEA SALT 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP foccacia","flavour":"Focaccia oliva and salt","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG31","name":"FOCACCIA OLIVE OIL & HERBS 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP foccacia","flavour":"Focaccia olive oil and herbs","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG32","name":"FOCACCIA TRIPLE CHEESE 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP focaccia cheese","flavour":"focaccia cheese","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG33","name":"FOCACCIA SNACKS OLIVE OIL & HERBS 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"Mini focaccia snack olive oil and herbs","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG34","name":"FOCACCIA SNACKS TRIPLE CHEESE 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"mini focaccia snack– 3 cheeses","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG35","name":"FOCACCIA SNACKS OLIVE OIL & SEA SALT 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"mini focaccia olive oil and sea salt","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG36","name":"CRISPIES GOUDA CHEESE & ONION 90 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Layered Cheese Crisp snack","line":"Cheese Crispies","flavour":"Gouda very old cheese taste + ONION","weight":90,"weightUpdated":false,"isNew":true},{"id":"PG37","name":"CRISPIES GOUDA CHEESE 90 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Layered Cheese Crisp snack","line":"Cheese Crispies","flavour":"Gouda very old cheese taste","weight":90,"weightUpdated":false,"isNew":true},{"id":"PG38","name":"STRAWS GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Cheese stick pastry","line":"cheese straws","flavour":"intensive gouda very Old taste","weight":100,"weightUpdated":false,"isNew":true},{"id":"PG39","name":"STRAWS SEEDS & GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Cheese stick pastry","line":"cheese straws","flavour":"cheese and seedes taste","weight":100,"weightUpdated":false,"isNew":true},{"id":"PG40","name":"MINI STRAWS GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Savoury Cheese Pastry Snacks","line":"Mini Straws","flavour":"Gouda very old","weight":100,"weightUpdated":false,"isNew":true}];
+const PRODUCTS = [{"id":"PG01","name":"CRISPBREAD 3 SEEDS 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic – seeded crispbread 3 ziarna","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG02","name":"CRISPBREAD SPELT & SUNFLOWER 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"Classic – orkisz słonecznik","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG03","name":"CRISPBREAD CHEESE & PUMPKIN 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"Classic – dynia ser","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG04","name":"CRISPBREAD CHEESE & TOMATO 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic -tomato & basil – na bazie twins receptury","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG05","name":"CRISPBREAD CHEESE & ONION 135 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"CLASSIC crispbread","flavour":"classic - cheese & onion","weight":135,"weightUpdated":false,"isNew":false},{"id":"PG06","name":"CRISPBREAD 3 SEEDS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"3 seeded crispbread","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG07","name":"CRISPBREAD CHEESE & PUMPKIN 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"pumpkin cheese TESCO","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG08","name":"CRISPBREAD 5 GRAINS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"5 zbóż","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG09","name":"CRISPBREAD SPELT & SUNFLOWER 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"BAKERY","flavour":"orkisz słonecznik","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG10","name":"DELI CRISPBREAD CARMELIZED ONION 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI- CARMELIZED ONION","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG11","name":"DELI CRISPBREAD CHEESE & TOMATO 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI- CHEESE AND TOMATO","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG12","name":"DELI CRISPBREAD TRIPLE CHEESE 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"DELI SOURDOUGH CRISPBREAD","flavour":"DELI Thin crispbread- 3 cheese","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG13","name":"ARTISAN CRISPBREAD SUPERSEEDS 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"ARTISAN SOURDOUGH CRISPBREAD","flavour":"SUPER SEEDS","weight":130,"weightUpdated":true,"isNew":false},{"id":"PG14","name":"ARTISAN CRISPBREAD CHEESE & PUMPKIN 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"ARTISAN SOURDOUGH CRISPBREAD","flavour":"PUMPKIN SER","weight":130,"weightUpdated":true,"isNew":false},{"id":"PG15","name":"WHOLEGRAIN CRISPBREAD PUMPKIN & CHEESE 200 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"WHOLEGRAIN CRISPBREAD","flavour":"wholegrain seeds & oats – cheese and pumpkin","weight":200,"weightUpdated":false,"isNew":false},{"id":"PG16","name":"WHOLEGRAIN CRISPBREAD 3 SEEDS 200 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"WHOLEGRAIN CRISPBREAD","flavour":"pełnoziarniste 3 ziarna","weight":200,"weightUpdated":false,"isNew":false},{"id":"PG17","name":"PROTEIN CRISPBREAD ONION 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"PROTEIN CRISPBREAD","flavour":"PROTEIN onion","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG18","name":"PROTEIN CRISPBREAD 3 SEEDS 180 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"PROTEIN CRISPBREAD","flavour":"protein 3 seeds","weight":180,"weightUpdated":false,"isNew":false},{"id":"PG19","name":"CRISPY FLATBREAD 3 SEEDS & SEA SALT 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"3 Seeds & Sea Salt","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG20","name":"CRISPY FLATBREAD TRIPLE CHEESE 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Tripple Cheese","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG21","name":"CRISPY FLATBREAD TOMATO & BASIL 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Tomato & Basil","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG22","name":"CRISPY FLATBREAD CHEESE & TOMATO 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Cheese & Tomato","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG23","name":"CRISPY FLATBREAD CHEESE & ONION 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Cheese & Onion","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG24","name":"CRISPY FLATBREAD SESAME & BEETROOT 130 G","category":"CRISPBREAD","slide":"CRISPBREAD","segment":null,"line":"Flatbread","flavour":"Sesame & Beetroot","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG25","name":"CRACKERS TOMATO & BASIL 130 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI CLASSICCRACKERS","flavour":"Tomato & sesame and basil – zmiana smaku!","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG26","name":"CLASSIC CRACKERS WITH SOURDOUGH 130 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI CLASSICCRACKERS","flavour":"Sourdough – plain crackers","weight":130,"weightUpdated":false,"isNew":false},{"id":"PG27","name":"SEEDED CRACKERS 100 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI SEEDED CRACKERS","flavour":"Seeds + poppy i sesame black and white","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG28","name":"CLASSIC CRACKERS 100 G","category":"CRACKERS","slide":"CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"DELI SEEDED CRACKERS","flavour":"Plain cracker","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG29","name":"CRACKERS ROSEMARY & SEA SALT 100 G","category":"CRACKERS","slide":"RYE CRACKERS","segment":"CHEESE BOARD CRACKERS","line":"PREMIUM RYE CRACKERS","flavour":"rosemary and sea salt","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG30","name":"FOCACCIA OLIVE OIL & SEA SALT 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP foccacia","flavour":"Focaccia oliva and salt","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG31","name":"FOCACCIA OLIVE OIL & HERBS 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP foccacia","flavour":"Focaccia olive oil and herbs","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG32","name":"FOCACCIA TRIPLE CHEESE 120 G","category":"SNACKS","slide":"SNACKS","segment":"BAKERY DIP","line":"DIP focaccia cheese","flavour":"focaccia cheese","weight":120,"weightUpdated":false,"isNew":false},{"id":"PG33","name":"FOCACCIA SNACKS OLIVE OIL & HERBS 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"Mini focaccia snack olive oil and herbs","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG34","name":"FOCACCIA SNACKS TRIPLE CHEESE 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"mini focaccia snack– 3 cheeses","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG35","name":"FOCACCIA SNACKS OLIVE OIL & SEA SALT 100 G","category":"SNACKS","slide":"SNACKS","segment":"Bakery DIP snack","line":"DIP focaccia snack","flavour":"mini focaccia olive oil and sea salt","weight":100,"weightUpdated":false,"isNew":false},{"id":"PG36","name":"CRISPIES GOUDA CHEESE & ONION 90 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Layered Cheese Crisp snack","line":"Cheese Crispies","flavour":"Gouda very old cheese taste + ONION","weight":90,"weightUpdated":false,"isNew":true},{"id":"PG37","name":"CRISPIES GOUDA CHEESE 90 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Layered Cheese Crisp snack","line":"Cheese Crispies","flavour":"Gouda very old cheese taste","weight":90,"weightUpdated":false,"isNew":true},{"id":"PG38","name":"STRAWS GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Cheese stick pastry","line":"cheese straws","flavour":"intensive gouda very Old taste","weight":100,"weightUpdated":false,"isNew":true},{"id":"PG39","name":"STRAWS SEEDS & GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Cheese stick pastry","line":"cheese straws","flavour":"cheese and seedes taste","weight":100,"weightUpdated":false,"isNew":true},{"id":"PG40","name":"MINI STRAWS GOUDA CHEESE 100 G","category":"SAVOURY BISCUITS","slide":"SAVOURY BISCUITS","segment":"Savoury Cheese Pastry Snacks","line":"Mini Straws","flavour":"Gouda very old","weight":100,"weightUpdated":false,"isNew":true}];
 
 /* product catalogue (brand/catalogue.json): EAN, logistics, catalogue packshots (img/packs). Names stay as in the assortment sheet. */
-const CATALOGUE = {"PG01":{"ean":"5906684920885","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"3 SEEDS","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG01.webp"},"PG02":{"ean":"5906684921363","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG02.webp"},"PG03":{"ean":"5906684921110","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG03.webp"},"PG04":{"ean":"5906684920908","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & TOMATO","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"products.json flavour note says 'tomato & basil – na bazie twins receptury'; catalogue and pack say CHEESE & TOMATO (name matches)","packshot":"packs/PG04.webp"},"PG05":{"ean":"5906684920892","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & ONION","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG05.webp"},"PG06":{"ean":"5906684921226","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG06.webp"},"PG07":{"ean":"5906684920915","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG07.webp"},"PG08":{"ean":"5906684921332","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"5 GRAINS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG08.webp"},"PG09":{"ean":"5906684921325","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG09.webp"},"PG10":{"ean":"5906684920946","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CARAMELIZED ONION","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":"spelling: products.json 'CARMELIZED' vs catalogue 'CARAMELIZED'","packshot":"packs/PG10.webp"},"PG11":{"ean":"5906684920953","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG11.webp"},"PG12":{"ean":"5906684920939","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG12.webp"},"PG13":{"ean":"5906684920922","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"SUPERSEEDS","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,74 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"catalogue confirms 130 g (galicrisp.pl image file names say 120 g)","packshot":"packs/PG13.webp"},"PG14":{"ean":"5906684921295","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"PUMPKIN & CHEESE","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,74 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"word order: products.json 'CHEESE & PUMPKIN' vs catalogue/pack 'PUMPKIN & CHEESE'; catalogue confirms 130 g (website file names say 120 g)","packshot":"packs/PG14.webp"},"PG15":{"ean":"5906684921219","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 204 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":"word order: products.json 'PUMPKIN & CHEESE' vs catalogue/pack 'CHEESE & PUMPKIN'","packshot":"packs/PG15.webp"},"PG16":{"ean":"5906684921202","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"3 SEEDS","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 204 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG16.webp"},"PG17":{"ean":"5906684921028","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"ONION","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG17.webp"},"PG18":{"ean":"5906684921035","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"196 x 167 x 292 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG18.webp"},"PG19":{"ean":"5906684921011","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"3 SEEDS & SEA SALT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG19.webp"},"PG20":{"ean":"5906684920960","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG20.webp"},"PG21":{"ean":"5906684920977","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG21.webp"},"PG22":{"ean":"5906684920991","eanNote":"printed as '55906684920991' (14 digits, doubled leading 5); corrected to 5906684920991, check digit valid","catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG22.webp"},"PG23":{"ean":"5906684920984","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & ONION","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG23.webp"},"PG24":{"ean":"5906684921004","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"SESAME & BEETROOT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"85 x 190 x 398 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG24.webp"},"PG25":{"ean":"5906684921318","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 148 x 138 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":14,"cartonsPerPallet":280,"unitsPerPallet":2240,"palletHeight":"2,07 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":"products.json name 'CRACKERS CHEESE & TOMATO 130 G' / flavour 'Tomato & sesame and basil – zmiana smaku!' vs catalogue/pack 'TOMATO & BASIL' (no cheese)","packshot":"packs/PG25.webp"},"PG26":{"ean":"5906684921233","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 148 x 138 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":14,"cartonsPerPallet":280,"unitsPerPallet":2240,"palletHeight":"2,07 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG26.webp"},"PG27":{"ean":"5906684921349","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SEEDED","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 158 x 150 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":13,"cartonsPerPallet":260,"unitsPerPallet":2080,"palletHeight":"2,01 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG27.webp"},"PG28":{"ean":"5906684921301","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 158 x 150 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":13,"cartonsPerPallet":260,"unitsPerPallet":2080,"palletHeight":"2,01 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":"products.json 'CLASSIC CRACKERS 100 G', line 'DELI SEEDED CRACKERS', flavour 'Plain cracker' vs catalogue/pack 'SOURDOUGH' (wheat sourdough)","packshot":"packs/PG28.webp"},"PG29":{"ean":"5906684921288","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"ROSEMARY & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 158 x 150 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":13,"cartonsPerPallet":260,"unitsPerPallet":2080,"palletHeight":"2,01 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG29.webp"},"PG30":{"ean":"5906684921059","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG30.webp"},"PG31":{"ean":"5906684921066","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG31.webp"},"PG32":{"ean":"5906684921073","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG32.webp"},"PG33":{"ean":"5906684921134","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG33.webp"},"PG34":{"ean":"5906684921158","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG34.webp"},"PG35":{"ean":"5906684921127","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null},"mismatch":null,"packshot":"packs/PG35.webp"},"PG36":{"ean":"5906684921240","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE & ONION","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG36.webp"},"PG37":{"ean":"5906684921042","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG37.webp"},"PG38":{"ean":"5906684921257","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG38.webp"},"PG39":{"ean":"5906684921264","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"SEEDS & GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":null,"packshot":"packs/PG39.webp"},"PG40":{"ean":"5906684921271","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"mini format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"221 x 201 x 264 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":"360 days testing in progress"},"mismatch":"catalogue lists this as a second 'GOUDA CHEESE' without the word 'mini'; mapped to MINI STRAWS by elimination + pack shows short bite-size pieces (line text: 'classic and mini formats')","packshot":"packs/PG40.webp"}};
+const CATALOGUE = {"PG01":{"ean":"5906684920885","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"3 SEEDS","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG01.webp"},"PG02":{"ean":"5906684921363","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG02.webp"},"PG03":{"ean":"5906684921356","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG03.webp"},"PG04":{"ean":"5906684920908","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & TOMATO","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":"products.json flavour note says 'tomato & basil – na bazie twins receptury'; catalogue and pack say CHEESE & TOMATO (name matches)","packshot":"packs/PG04.webp"},"PG05":{"ean":"5906684920892","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & ONION","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG05.webp"},"PG06":{"ean":"5906684921226","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG06.webp"},"PG07":{"ean":"5906684920915","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG07.webp"},"PG08":{"ean":"5906684921332","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"5 GRAINS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG08.webp"},"PG09":{"ean":"5906684921325","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG09.webp"},"PG10":{"ean":"5906684920946","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CARAMELIZED ONION","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":"spelling: products.json 'CARMELIZED' vs catalogue 'CARAMELIZED'","packshot":"packs/PG10.webp"},"PG11":{"ean":"5906684920953","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG11.webp"},"PG12":{"ean":"5906684920939","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG12.webp"},"PG13":{"ean":"5906684920922","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"SUPERSEEDS","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":"catalogue confirms 130 g (galicrisp.pl image file names say 120 g)","packshot":"packs/PG13.webp"},"PG14":{"ean":"5906684921295","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"PUMPKIN & CHEESE","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":"word order: products.json 'CHEESE & PUMPKIN' vs catalogue/pack 'PUMPKIN & CHEESE'; catalogue confirms 130 g (website file names say 120 g)","packshot":"packs/PG14.webp"},"PG15":{"ean":"5906684921219","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"transparent foil, clip, and two labels"},"mismatch":"word order: products.json 'PUMPKIN & CHEESE' vs catalogue/pack 'CHEESE & PUMPKIN'","packshot":"packs/PG15.webp"},"PG16":{"ean":"5906684921202","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"3 SEEDS","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"transparent foil, clip, and two labels"},"mismatch":null,"packshot":"packs/PG16.webp"},"PG17":{"ean":"5906684921028","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"ONION","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null,"shelfLifePickupDays":180,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG17.webp"},"PG18":{"ean":"5906684921035","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null,"shelfLifePickupDays":180,"packaging":"printing cardboard and tear-off transparent foil"},"mismatch":null,"packshot":"packs/PG18.webp"},"PG19":{"ean":"5906684921011","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"3 SEEDS & SEA SALT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG19.webp"},"PG20":{"ean":"5906684920960","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG20.webp"},"PG21":{"ean":"5906684920977","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG21.webp"},"PG22":{"ean":"5906684920991","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG22.webp"},"PG23":{"ean":"5906684920984","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & ONION","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG23.webp"},"PG24":{"ean":"5906684921004","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"SESAME & BEETROOT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG24.webp"},"PG25":{"ean":"5906684921318","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 138 x 148 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":12,"cartonsPerPallet":240,"unitsPerPallet":1920,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":"Arkusz AKCEPT 04.11.2026: 'CRACKERS CHEESE & TOMATO 130 G' (opis: 'Tomato & sesame and basil – zmiana smaku!'); tabela produktów 11.2026 i katalog: TOMATO & BASIL","packshot":"packs/PG25.webp"},"PG26":{"ean":"5906684921233","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 138 x 148 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":12,"cartonsPerPallet":240,"unitsPerPallet":1920,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG26.webp"},"PG27":{"ean":"5906684921349","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SEEDED","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 150 x 158 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":11,"cartonsPerPallet":220,"unitsPerPallet":1760,"palletHeight":"1,80 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG27.webp"},"PG28":{"ean":"5906684921301","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 150 x 158 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":11,"cartonsPerPallet":220,"unitsPerPallet":1760,"palletHeight":"1,80 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":"products.json 'CLASSIC CRACKERS 100 G', line 'DELI SEEDED CRACKERS', flavour 'Plain cracker' vs catalogue/pack 'SOURDOUGH' (wheat sourdough)","packshot":"packs/PG28.webp"},"PG29":{"ean":"5906684921288","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"ROSEMARY & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 150 x 158 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":11,"cartonsPerPallet":220,"unitsPerPallet":1760,"palletHeight":"1,80 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG29.webp"},"PG30":{"ean":"5906684921059","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printing cardboard and transparent foil"},"mismatch":null,"packshot":"packs/PG30.webp"},"PG31":{"ean":"5906684921066","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printing cardboard and transparent foil"},"mismatch":null,"packshot":"packs/PG31.webp"},"PG32":{"ean":"5906684921073","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printing cardboard and transparent foil"},"mismatch":null,"packshot":"packs/PG32.webp"},"PG33":{"ean":"5906684921097","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil, one label"},"mismatch":null,"packshot":"packs/PG33.webp"},"PG34":{"ean":"5906684921103","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil, one label"},"mismatch":null,"packshot":"packs/PG34.webp"},"PG35":{"ean":"5906684921080","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil, one label"},"mismatch":null,"packshot":"packs/PG35.webp"},"PG36":{"ean":"5906684921240","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE & ONION","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG36.webp"},"PG37":{"ean":"5906684921042","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG37.webp"},"PG38":{"ean":"5906684921271","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG38.webp"},"PG39":{"ean":"5906684921264","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"SEEDS & GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG39.webp"},"PG40":{"ean":"5906684921257","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"mini format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":"catalogue lists this as a second 'GOUDA CHEESE' without the word 'mini'; mapped to MINI STRAWS by elimination + pack shows short bite-size pieces (line text: 'classic and mini formats')","packshot":"packs/PG40.webp"}};
 const COMPANY = {"name":"Piekarnia Galicyjska Sp. z o.o.","addressLines":["Jeżowe 560E","37-430 Jeżowe"],"taxId":"865 240 01 78","phone":"+48 15 300 03 50","email":"info@galicrisp.pl"};
 
 /* website photos (galicrisp.pl): secondary image in quick view */
@@ -1189,10 +1261,356 @@ function applyTheme(){
 $('#themeBtn').addEventListener('click', ()=>{ theme = THEMES[(THEMES.indexOf(theme)+1)%3]; store.set(K_THEME, theme); applyTheme(); toast(THEME_LBL[theme]); });
 applyTheme();
 
+/* ==parseCustomer== */
+/* ---------- customer paste parser ----------
+   parseCustomer(text) is pure and local (no network, no DOM): it reads an e-mail signature, a KRS/CEIDG block,
+   a business card or a one-line "Firma, ul. …, 00-000 Miasto, NIP …" and returns only the fields it actually found:
+   {client, contact, street, postal, city, country, nip, krs, email, phone}. It never makes values up. */
+const CUST_KEYS = ['client','contact','street','postal','city','country','nip','krs','email','phone'];
+const CUST_COUNTRIES = [
+  /* [VAT prefix, Polish, English, ...other spellings] */
+  ['PL','Polska','Poland','Rzeczpospolita Polska','Republic of Poland'],
+  ['DE','Niemcy','Germany','Deutschland','Bundesrepublik Deutschland'],
+  ['CZ','Czechy','Czech Republic','Czechia','Česko','Česká republika'],
+  ['SK','Słowacja','Slovakia','Slovensko','Slovenská republika','Slovak Republic'],
+  ['LT','Litwa','Lithuania','Lietuva'],
+  ['LV','Łotwa','Latvia','Latvija'],
+  ['EE','Estonia','Estonia','Eesti'],
+  ['HU','Węgry','Hungary','Magyarország'],
+  ['RO','Rumunia','Romania','România'],
+  ['NL','Holandia','Netherlands','The Netherlands','Nederland','Niderlandy','Holland'],
+  ['BE','Belgia','Belgium','België','Belgique'],
+  ['FR','Francja','France'],
+  ['GB','Wielka Brytania','United Kingdom','UK','U.K.','Great Britain','England','Anglia','Zjednoczone Królestwo'],
+  ['IE','Irlandia','Ireland','Éire'],
+  ['SE','Szwecja','Sweden','Sverige'],
+  ['DK','Dania','Denmark','Danmark'],
+  ['NO','Norwegia','Norway','Norge'],
+  ['FI','Finlandia','Finland','Suomi'],
+  ['AT','Austria','Austria','Österreich'],
+  ['CH','Szwajcaria','Switzerland','Schweiz','Suisse','Svizzera'],
+  ['IT','Włochy','Italy','Italia'],
+  ['ES','Hiszpania','Spain','España']
+];
+const VAT_FMT = {ATU:/^ATU\d{8}$/, BE:/^BE[01]\d{9}$/, BG:/^BG\d{9,10}$/, CY:/^CY\d{8}[A-Z]$/, CZ:/^CZ\d{8,10}$/, DE:/^DE\d{9}$/, DK:/^DK\d{8}$/,
+  EE:/^EE\d{9}$/, EL:/^EL\d{9}$/, ES:/^ES[A-Z0-9]\d{7}[A-Z0-9]$/, FI:/^FI\d{8}$/, FR:/^FR[A-HJ-NP-Z0-9]{2}\d{9}$/, GB:/^GB(?:\d{9}|\d{12})$/,
+  XI:/^XI(?:\d{9}|\d{12})$/, HR:/^HR\d{11}$/, HU:/^HU\d{8}$/, IE:/^IE\d[A-Z0-9+*]\d{5}[A-Z]{1,2}$/, IT:/^IT\d{11}$/, LT:/^LT(?:\d{9}|\d{12})$/,
+  LU:/^LU\d{8}$/, LV:/^LV\d{11}$/, MT:/^MT\d{8}$/, NL:/^NL\d{9}B\d{2}$/, PL:/^PL\d{10}$/, PT:/^PT\d{9}$/, RO:/^RO\d{2,10}$/, SE:/^SE\d{12}$/,
+  SI:/^SI\d{8}$/, SK:/^SK\d{10}$/, CHE:/^CHE\d{9}(?:MWST|TVA|IVA)?$/, NO:/^NO\d{9}(?:MVA)?$/};
+const VAT_CC = {ATU:'AT', CHE:'CH', EL:'GR', XI:'GB'};
+/* Polish NIP: 10 digits, weights 6-5-7-2-3-4-5-6-7, sum mod 11 = last digit */
+function nipChecksumOk(v){
+  const d = String(v||'').replace(/^PL/i,'').replace(/[\s\-.]/g,'');
+  if (!/^\d{10}$/.test(d)) return false;
+  const w = [6,5,7,2,3,4,5,6,7]; let s = 0;
+  for (let i=0;i<9;i++) s += w[i]*Number(d[i]);
+  const c = s % 11;
+  return c!==10 && c===Number(d[9]);
+}
+/* NIP/VAT for display and storage: separators removed; Polish NIP as 10 digits, other EU VAT IDs keep their country prefix */
+function normTaxId(v){
+  const s = String(v||'').toUpperCase().replace(/[\s.\-\/]/g,'');
+  return /^(?:PL)?\d{10}$/.test(s) ? s.replace(/^PL/,'') : s;
+}
+function parseCustomer(text){
+  const out = {}, prio = {};
+  const tidy = v => String(v==null?'':v).replace(/\s+/g,' ').replace(/^[\s,;:|·•–—\-]+|[\s,;:|·•–—\-]+$/g,'').replace(/^[(\[<]\s*[)\]>]$/,'').trim();
+  const put = (k, v, p=1) => { v = tidy(v); if (!v || !/[\p{L}\p{N}]/u.test(v)) return false; if (out[k]!=null && (prio[k]||0) >= p) return false; out[k] = v; prio[k] = p; return true; };
+  const low = s => String(s).toLocaleLowerCase('pl');
+  /* ALL-CAPS values from registries (KRS: "DŁUGA", "WARSZAWA") read better title-cased; Roman numerals stay */
+  const tcase = s => /\p{Ll}/u.test(s) || !/\p{Lu}{3}/u.test(s) ? s : low(s).replace(/(^|[\s\-.(\/])(\p{L}+)/gu, (m,a,w)=>a + (/^[ivxlc]+$/.test(w) && w.length<5 ? w.toUpperCase() : w.charAt(0).toLocaleUpperCase('pl') + w.slice(1)));
+
+  let t = String(text||'').replace(/\r\n?/g,'\n').replace(/[     \t\f\v]/g,' ').replace(/[​-‍⁠﻿]/g,'');
+  t = t.replace(/Firma,\s*pod którą spółka działa/gi,'Firma:').replace(/\bmailto:/gi,'');
+  const polishText = /[ąćęłńśźż]/i.test(t) || /\b(?:ul\.|nip|kom\.|tel\.|sp\.\s?z\s?o\.?o|spółka|pozdrawiam|ulica|miejscowość)/i.test(t);
+
+  /* ---- label vocabulary ---- */
+  const labelKind = raw => {
+    const l = low(raw).replace(/\s+/g,' ').replace(/[.:]+$/,'').trim();
+    if (!l || l.length>60) return null;
+    if (/^(?:fax|telefaks|telefax)\b/.test(l)) return 'fax';
+    if (/e-?mail|poczt\w* elektroniczn|^mail$|^e$/.test(l)) return 'email';
+    if (/\b(?:tel|telefon\w*|phone|mob|mobile|mobil|handy|kom|komórka|komórkowy|gsm|cell|cellphone)\b|^[tmp]$/.test(l)) return 'phone';
+    if (/\b(?:www|web|website|strona|internet|iban|bic|swift|konto|bank|pkd|hrb|hra|amtsgericht|registergericht|sąd|kapitał|share capital|forma prawna|status|geschäftsführer|vorstand|zarząd|zarządu|prezes|board|directors?|company (?:no|number|reg)\w*|registration|registered|data|date|godziny|hours|nr rachunku|account no)\b/.test(l)) return 'ignore';
+    if (/\b(?:krs|regon)\b/.test(l)) return 'krs';
+    if (/\b(?:nip|vat|tax ?id|tax ?no|tax number|tin|ust|ust-?id\w*|uid|btw|dič|ič dph|mwst|mva|tva|iva|p\.? ?iva)\b/.test(l)) return 'nip';
+    if (/osoba kontaktowa|osoba do kontaktu|^kontakt$|^contact(?: person| name)?$|ansprechpartner|imię i nazwisko|^name and surname$|^full name$|^attn$|^att$|^przedstawiciel$/.test(l)) return 'contact';
+    if (/\b(?:adres\w*|address|siedziba|anschrift|adresse|registered office|headquarters)\b/.test(l)) return 'address';
+    if (/^(?:ul|ulica|street|straße|strasse|str)$/.test(l)) return 'street';
+    if (/^(?:kod pocztowy|kod|post ?code|postal code|postal|zip|zip code|plz)$/.test(l)) return 'postal';
+    if (/^(?:miejscowość|miasto|city|town|ort|stadt|poczta)$/.test(l)) return 'city';
+    if (/^(?:kraj|country|land|państwo)$/.test(l)) return 'country';
+    if (/^(?:firma|nazwa|company|kontrahent|nabywca|odbiorca|klient|customer|organi[sz]ation|podmiot|sprzedawca)\b/.test(l)) return 'company';
+    return null;
+  };
+  const LBL_RE = /^([\p{L}][\p{L}\s.\/()&'\-]{0,58}?)\s*:\s*(.*)$/u;
+
+  /* ---- lines → segments ---- */
+  let lines = t.split('\n').map(l=>l.replace(/ {2,}/g,' ').trim().replace(/^(?:[>*•·]+\s*|-\s+|\d{1,2}\.(?=\p{L}))/u,'').trim()).filter(l=>l && !/^[-_=*~.]{2,}$/.test(l));
+  /* a label alone on its line ("NIP:", "Osoba kontaktowa") takes its value from the next line */
+  for (let i=0;i<lines.length-1;i++){
+    const m = lines[i].match(/^([\p{L}][\p{L}\s.\/\-]{0,40}?)\s*:?$/u);
+    if (m && labelKind(m[1]) && labelKind(m[1])!=='ignore' && m[1].split(/\s+/).length<=5 && !LBL_RE.test(lines[i+1])){ lines[i] = m[1] + ': ' + lines[i+1]; lines.splice(i+1,1); }
+  }
+  const segs = [];
+  lines.forEach((line, li)=>{
+    const seat = /^siedziba\b(?!\s*:)/i.test(line);
+    line.split(/\s*[;|]\s*|\s*(?<!\d),\s*|\s*,(?!\d)\s*|\s+[·•–—]\s+/).forEach(s=>{ s = s.trim(); if (s) segs.push({text:s, line:li, seat, used:false}); });
+  });
+  segs.forEach((s,i)=>{ s.idx = i; });
+
+  /* ---- pattern helpers ---- */
+  const EMAIL_RE = /[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)*\.[A-Za-z]{2,}/;
+  const digits = s => s.replace(/\D/g,'');
+  const vatFrom = (raw, strict) => {
+    /* reads a NIP / EU VAT ID at the start of raw; returns {len, value, cc} or null */
+    const R = raw.toUpperCase();
+    let m = R.match(/^(PL[\s\-]?)?(\d{3}[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}|\d{3}[\s\-]?\d{2}[\s\-]?\d{2}[\s\-]?\d{3})(?!\d)/);
+    if (m) return {len:m[0].length, value:digits(m[2]), cc: m[1] ? 'PL' : ''};
+    m = R.match(/^(ATU|CHE|[A-Z]{2})[\s\-]?([A-Z0-9](?:[\s.\-]?\d|[A-Z0-9]){5,15})(?![A-Z0-9])/);
+    if (m){
+      const pre = m[1], groups = m[2].split(/[\s.\-]/);
+      for (let n=groups.length; n>0; n--){
+        const v = pre + groups.slice(0,n).join(''), f = VAT_FMT[pre];
+        if (f ? f.test(v) : (!strict && v.length>=8 && v.length<=16 && /\d{5}/.test(v))){
+          const rx = new RegExp('^' + pre + '[\\s\\-]?' + groups.slice(0,n).map(g=>g.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('[\\s.\\-]?'));
+          const mm = R.match(rx);
+          return {len: mm ? mm[0].length : m[0].length, value: pre==='PL' ? v.slice(2) : v, cc: VAT_CC[pre] || pre};
+        }
+      }
+    }
+    if (!strict){ m = R.match(/^\d[\d\-]{6,16}\d(?!\d)/); if (m) return {len:m[0].length, value:digits(m[0]), cc:''}; }
+    return null;
+  };
+  const NIP_LBL = /(?:^|[^\p{L}])(NIP(?:[\s\-]?UE)?|VAT(?:[\s\-]?(?:ID|UE|EU|No|Nr|number|Reg(?:istration)?(?:\.?\s*No)?))?|EU[\s\-]?VAT(?:[\s\-]?(?:ID|No|number))?|Tax[\s\-]?(?:ID|No|number)|TIN|USt\.?[\s\-]?Id\.?(?:[\s\-]?Nr)?|UID(?:[\s\-]?Nr)?|BTW(?:[\s\-]?(?:nr|nummer))?|MWST|MVA|DIČ|IČ\s?DPH|P\.?\s?IVA|TVA)(?![\p{L}])\.?\s*(?:[:#]\s*)?(?:(?:nr|no|numer|number|nummer)\.?\s*:?\s*)?/iu;
+  const PHONE_LBL = /(?:^|[^\p{L}])(?:tel(?:efon)?|phone|mob(?:ile)?|mobil|handy|kom(?:órka)?|gsm|cell)(?![\p{L}])\.?(?:\s*\/\s*fax\.?)?\s*(?:[:#]\s*)?|(?:^|\s)[TMP]\s*:\s*/iu;
+  const phoneAt = s => { const m = s.match(/^\(?\+?\(?\d[\d\s\-.()]*\d\)?/); if (!m) return null; let v = m[0].trim(); const n = digits(v).length; if (n<6 || n>15) { const f = v.split(/\s{2,}|\s(?=\+)/)[0]; return digits(f).length>=6 && digits(f).length<=15 ? f : null; } return v; };
+  const cut = (w, start, len) => w.slice(0,start) + ' ' + w.slice(start+len);
+
+  /* ---- helpers that need the vocabulary ---- */
+  function countryName(v){
+    const k = low(String(v).trim().replace(/\.$/,'').replace(/\s+/g,' '));
+    for (const row of CUST_COUNTRIES) for (let i=1;i<row.length;i++) if (low(row[i].replace(/\.$/,''))===k) return row[i]==='U.K.' ? 'UK' : row[i];
+    return null;
+  }
+  function cleanCompany(v){
+    return String(v).replace(/\s+(?:z siedzibą|with (?:its )?registered office|registered (?:in|office)|mit sitz in|zarejestrowan[aey])\b.*$/i,'').trim();
+  }
+  /* ---- legal forms, titles, names ---- */
+  const LEGAL_I = /(?:^|[\s(,])(?:sp\.?\s?z\s?o\.?\s?o\.?|spółk[ai] z ograniczoną odpowiedzialnością|spółk[ai] akcyjn[aą]|spółk[ai] jawn[aą]|spółk[ai] komandytow[aą]|spółk[ai] komandytowo-akcyjn[aą]|spółk[ai] cywiln[aą]|spółk[ai] partnersk[aą]|s\.\s?a\.|sp\.\s?j\.|sp\.\s?k\.|sp\.\s?p\.|s\.\s?k\.\s?a\.|s\.\s?c\.|gmbh(?:\s?&\s?co\.?\s?kg)?|ltd\.?|limited|plc|llp|llc|inc\.?|incorporated|corp\.|b\.\s?v\.|n\.\s?v\.|s\.\s?r\.\s?o\.|spol\.\s?s\s?r\.\s?o\.|a\.\s?s\.|s\.\s?a\.\s?s\.|sarl|s\.\s?à\s?r\.\s?l\.|s\.\s?r\.\s?l\.|s\.\s?p\.\s?a\.|s\.\s?l\.|kft\.?|zrt\.?|nyrt\.?|d\.\s?o\.\s?o\.|e\.\s?k\.|uab|a\/s|aps)(?=$|[\s,.)])/i;
+  const LEGAL_CS = /(?:^|[\s(,])(?:AG|KG|OHG|UG|SE|SA|SAS|SRL|SpA|AB|AS|ASA|ApS|Oy|Oyj|BV|NV|SIA|OÜ|SRO)(?=$|[\s,.)])/;
+  const hasLegal = s => LEGAL_I.test(s) || LEGAL_CS.test(s);
+  const REGISTRY = /\b(?:sąd\w*|rejestr\w*|wydział\w*|amtsgericht|registergericht|forma prawna|formy prawnej|kapitał\w*|share capital|registered in|zarejestrowan\w*|hrb|nr rachunku|iban)\b/i;
+  const TITLE_W = new Set('kierownik kierowniczka manager managerin menedżer menadżer menedżerka menadżerka dyrektor dyrektorka director buyer kupiec kupcowa specjalista specjalistka specialist prezes wiceprezes ceo cfo coo cto cmo cpo owner właściciel właścicielka asystent asystentka assistant koordynator koordynatorka coordinator handlowiec przedstawiciel przedstawicielka einkäufer einkäuferin einkauf einkaufsleiter einkaufsleiterin leiter leiterin referent referentin head purchasing procurement zakupów zakupy zakupowy zakupowa kam category sales export eksportu lead członek zarządu board officer executive associate analyst analityk analityczka merchandiser trader negotiator inhaber geschäftsführer geschäftsführerin vertrieb verkauf ds. ds dział działu department team buying'.split(' '));
+  const BIZ_W = new Set('hurtownia sklep sklepy market markety delikatesy handel handlowy handlowa trade trading group grupa foods food polska poland spółka firma przedsiębiorstwo phu pphu fhu zakład piekarnia piekarnie cukiernia supermarket supermarkety hipermarket dystrybucja distribution distributor import export logistics logistyka holding company services solutions international europe store stores shop retail wholesale hurt detal centrum center centre biuro office obsługa klienta customer service private label bakery bakeries snacks dairy fresh grocery groceries market sieć sieci rynek regards pozdrawiam best kind dear dzień dobry hello'.split(' '));
+  const PARTICLE = new Set(['von','van','der','den','de','da','di','du','la','le','del','della','dos','das','zu','ten','ter']);
+  const HONOR = /^(?:pan|pani|mr|mrs|ms|miss|dr|mgr|inż|ing|prof|herr|frau|mag|lic)\.?$/i;
+  const NAME_TOK = /^[\p{Lu}][\p{Ll}'’]+(?:-[\p{Lu}][\p{Ll}'’]+)*$/u;
+  const wordsOf = s => s.split(/[\s\/]+/).map(x=>x.replace(/^[("„]+|[)",.;:”]+$/g,'')).filter(Boolean);
+  const isTitleWord = x => TITLE_W.has(low(x).replace(/[.,]$/,'')) || TITLE_W.has(low(x));
+  const isTitle = s => wordsOf(s).some(isTitleWord) || /\bhead of\b|\bds\.\s/i.test(s);
+  /* the person's name inside s: a run of 2–3 capitalised words (particles allowed) at the start or end, without titles/company words */
+  function nameIn(s, loose){
+    let toks = wordsOf(s);
+    while (toks.length && HONOR.test(toks[0])) toks.shift();
+    if (!toks.length || /\d|@/.test(toks.join(' ')) || hasLegal(s)) return null;
+    const okTok = x => NAME_TOK.test(x) && !isTitleWord(x) && !BIZ_W.has(low(x));
+    const run = arr => { const r = []; for (const x of arr){ if (okTok(x) || (r.length && PARTICLE.has(x))) r.push(x); else break; } while (r.length && PARTICLE.has(r[r.length-1])) r.pop(); return r; };
+    const a = run(toks), b = run(toks.slice().reverse()).reverse();
+    const fit = r => r.filter(x=>!PARTICLE.has(x)).length;
+    const min = loose ? 1 : 2;
+    const pick = [a,b].find(r=>fit(r)>=min && fit(r)<=3 && (r===a || r.length));
+    if (!pick) return null;
+    /* without a title in the same segment the whole segment must be the name */
+    if (!loose && pick.length!==toks.length && !toks.some(isTitleWord)) return null;
+    return pick.join(' ');
+  }
+  const GREET = /^(?:pozdrawiam(?: serdecznie| ciepło)?|serdecznie pozdrawiam|z poważaniem|z wyrazami szacunku|łączę pozdrowienia|dziękuję|dzięki|best(?: regards| wishes)?|kind regards|warm regards|regards|cheers|thanks|thank you|many thanks|sincerely|yours sincerely|yours faithfully|mit freundlichen grüßen|freundliche grüße|viele grüße|beste grüße|mfg|dzień dobry|witam|witajcie|szanown\w+(?: \w+)?|hello|hi|hey|dear\b.*|hallo|guten tag|sehr geehrte\b.*|cześć|met vriendelijke groet(?:en)?|med vänlig hälsning|s pozdravem|üdvözlettel)[\s!.,]*$/i;
+  const isSentence = s => { const w = s.split(/\s+/); return (w.length>=5 && (/[.?!:]$/.test(s) || w.filter(x=>/^\p{Ll}/u.test(x)).length*2>=w.length)) || (w.length>=3 && /^\p{Ll}/u.test(s)); };
+  const free = () => segs.filter(s=>!s.used);
+
+  /* ---- pass A: identifiers, e-mail, phone and "Label: value" pairs ---- */
+  let vatCC = '', krsNo = '', regonNo = '';
+  const krsParts = {};
+  segs.forEach(s=>{
+    let w = ' ' + s.text.replace(/\b(?:https?:\/\/|www\.)\S+/gi,' ') + ' ';
+    let m;
+    if ((m = w.match(/\bKRS\b[^\d\n]{0,14}?(\d(?:\s?\d){6,9})(?!\d)/i))){ if (!krsNo) krsNo = digits(m[1]); w = cut(w, m.index, m[0].length); }
+    if ((m = w.match(/\bREGON\b[^\d\n]{0,14}?(\d(?:[\s\-]?\d){8,13})(?!\d)/i))){ if (!regonNo) regonNo = digits(m[1]); w = cut(w, m.index, m[0].length); }
+    if ((m = w.match(EMAIL_RE))){ put('email', m[0].replace(/\.$/,''), 2); w = cut(w, m.index, m[0].length); }
+    if ((m = w.match(NIP_LBL))){
+      const st = m.index + m[0].length, v = vatFrom(w.slice(st), false);
+      if (v){ if (put('nip', v.value, 3) && v.cc) vatCC = v.cc; w = cut(w, m.index, m[0].length + v.len); }
+    }
+    if ((m = w.match(PHONE_LBL))){
+      const st = m.index + m[0].length, rest = w.slice(st).replace(/^\(\s*\+?\d{1,3}\s*\)\s*(?=\d)/, x=>x), v = phoneAt(rest);
+      if (v){ put('phone', v, 3); w = cut(w, m.index, m[0].length + rest.indexOf(v) + v.length); }
+    }
+    if ((m = w.match(/(?:^|[^\p{L}])(?:fax|telefaks|telefax)(?![\p{L}])\.?\s*:?\s*(\+?[\d(][\d\s\-.()]*\d)/iu))) w = cut(w, m.index, m[0].length);
+    if (!out.nip){
+      const re = /(?<![A-Z0-9])(ATU|CHE|AT|BE|BG|CY|CZ|DE|DK|EE|EL|ES|FI|FR|GB|XI|HR|HU|IE|IT|LT|LU|LV|MT|NL|PL|PT|RO|SE|SI|SK|NO)[\s\-]?(?=[0-9A-Z])/g;
+      let r; while ((r = re.exec(w))){ const v = vatFrom(w.slice(r.index), true); if (v && (v.cc || v.value)){ if (put('nip', v.value, 2)) vatCC = v.cc || 'PL'; w = cut(w, r.index, v.len); break; } }
+    }
+    if (!out.nip && (m = w.match(/(?<![\d\-])(\d{3}-\d{3}-\d{2}-\d{2}|\d{3}-\d{2}-\d{2}-\d{3}|\d{10})(?![\d\-])/)) && nipChecksumOk(digits(m[1]))){ put('nip', digits(m[1]), 1); w = cut(w, m.index, m[0].length); }
+    if ((m = w.match(/(?<![\w+])(?:\+|00)\s?\d[\d\s\-.()]{6,20}\d/)) && digits(m[0]).length>=8 && digits(m[0]).length<=15){ put('phone', m[0].trim(), 2); w = cut(w, m.index, m[0].length); }
+    if ((m = w.match(/(?<![\w\-])(?:\(\d{2}\)\s?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}|\d{2}[\s\-]\d{3}[\s\-]\d{2}[\s\-]\d{2}|\d{3}[\s\-]\d{3}[\s\-]\d{3})(?![\d\-])/))){ put('phone', m[0].trim(), 1); w = cut(w, m.index, m[0].length); }
+    w = w.replace(/<\s*>|\(\s*\)|\[\s*\]/g,' ').replace(/\s+/g,' ').trim();
+    s.rest = w;
+    /* "Label: value" */
+    const lm = w.match(LBL_RE);
+    let kind = null, val = w;
+    if (lm){ kind = labelKind(lm[1]) || 'unknown'; val = lm[2].trim(); }
+    else {
+      /* KRS extract style without colons: "ulica DŁUGA", "nr domu 5", "miejscowość WARSZAWA", "kod pocztowy 00-001", "kraj POLSKA" */
+      const km = w.replace(/^(?:siedziba|adres)\s+/i,'').match(/^(ulica|nr domu|nr lokalu|miejscowość|kod pocztowy|kraj|poczta|województwo|woj\.|powiat|gmina)\s+(.+)$/i);
+      if (km){
+        const k = low(km[1]), v = km[2].trim();
+        s.used = true;
+        if (k==='ulica') krsParts.street = v; else if (k==='nr domu') krsParts.house = v; else if (k==='nr lokalu') krsParts.flat = v;
+        else if (k==='miejscowość') put('city', tcase(v), s.seat ? 1 : 3);
+        else if (k==='kod pocztowy') put('postal', v, s.seat ? 1 : 3);
+        else if (k==='kraj') put('country', countryName(v) || tcase(v), 3);
+        return;
+      }
+    }
+    const meaningful = v => /\p{L}{2}/u.test(v.replace(/(?:^|[^\p{L}])(?:tel(?:efon)?|phone|mob(?:ile)?|kom(?:órka)?|gsm|cell|fax|e-?mail|mail|e|nip(?:\s?ue)?|vat(?:\s?id)?|regon|krs|www|nr|no)(?![\p{L}])\.?/giu,' ')) || digits(v).length>3;
+    if (kind){
+      s.label = kind;
+      if (['nip','krs','phone','email','fax','ignore'].includes(kind) || !val){ s.used = true; return; }
+      if (kind==='unknown'){ s.weak = true; s.text = val; return; }
+      if (kind==='company'){ s.used = true; put('client', cleanCompany(val), 5); return; }
+      if (kind==='contact'){ s.used = true; const n = nameIn(val, true); if (n) put('contact', n, 5); else if (!/\d/.test(val) && /\p{L}{2}/u.test(val)) put('contact', val, 4); return; }
+      if (kind==='street'){ s.used = true; put('street', tcase(val), 4); return; }
+      if (kind==='postal'){ s.used = true; put('postal', val, 4); return; }
+      if (kind==='city'){ s.used = true; put('city', tcase(val), 4); return; }
+      if (kind==='country'){ s.used = true; put('country', countryName(val) || tcase(val), 4); return; }
+      if (kind==='address'){ s.addr = true; s.text = val; return; }
+    }
+    if (!meaningful(w)){ s.used = true; return; }
+    s.text = w;
+  });
+  if (krsParts.street){ put('street', 'ul. ' + tcase(krsParts.street) + (krsParts.house ? ' ' + krsParts.house : '') + (krsParts.flat && /\w/.test(krsParts.flat) ? '/' + krsParts.flat : ''), 3); }
+  if (krsNo || regonNo) put('krs', [krsNo, regonNo].filter(Boolean).join(' / '), 3);
+
+
+  /* ---- pass B: postal code + city ---- */
+  const CITY_STOP = /^(?:ul\.?|al\.|pl\.|os\.|ulica|aleja|poczta|tel\.?|nip|vat)$/i;
+  const cityFrom = rest => {
+    const toks = rest.split(/\s+/).filter(Boolean), city = [];
+    let i = 0;
+    for (; i<toks.length; i++){
+      const x = toks[i];
+      if (CITY_STOP.test(x)) break;
+      if (/^[\p{L}][\p{L}'’.\-]*$/u.test(x) || (city.length && /^\d{1,2}$/.test(x) && i===toks.length-1) || (city.length && /^[\p{L}][\p{L}'’.\-]*\)?$/u.test(x))) city.push(x); else break;
+    }
+    let c = city.join(' '), country = null;
+    for (let n=Math.min(3, city.length-1); n>=1; n--){ const tail = city.slice(-n).join(' '), cn = countryName(tail); if (cn){ country = cn; c = city.slice(0,-n).join(' '); break; } }
+    return {city:c, country, rest: toks.slice(i).join(' ')};
+  };
+  let postalSeg = null;
+  for (const s of free()){
+    const x = s.text, p = s.addr ? 3 : s.seat ? 1 : 2;
+    let m, pre = '', code = null, after = '';
+    if ((m = x.match(/(?:^|[\s(])(?:PL[\-\s])?(?<![\d\-])(\d{2}-\d{3})(?![\d\-])\s*(.*)$/))){ code = m[1]; pre = x.slice(0, m.index); after = m[2]; }
+    else if ((m = x.match(/^([A-Z]{1,2}-\d{4,5})\s+(\p{L}.*)$/u))){ code = m[1]; after = m[2]; }
+    else if ((m = x.match(/^(\d{4}\s?[A-Z]{2})\s+(\p{L}.*)$/u))){ code = m[1]; after = m[2]; }
+    else if ((m = x.match(/^(\d{3}\s\d{2})\s+(\p{L}.*)$/u))){ code = m[1]; after = m[2]; }
+    else if ((m = x.match(/^(\d{4,5})\s+(\p{L}.*)$/u)) && !hasLegal(x)){ code = m[1]; after = m[2]; }
+    else if ((m = x.match(/^(\p{L}[\p{L}'’.\- ]{1,40}?)\s+([A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})$/u))){ code = m[2]; after = m[1]; }
+    else if ((m = x.match(/^([A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})$/))){
+      code = m[1];
+      const prev = segs[s.idx-1];
+      if (prev && !prev.used && /^[\p{Lu}][\p{L}'’.\-]*(?:\s[\p{L}'’.\-]+){0,2}$/u.test(prev.text) && !countryName(prev.text) && !hasLegal(prev.text) && !isTitle(prev.text)){ put('city', prev.text, p); prev.used = true; }
+    }
+    if (!code) continue;
+    if (!put('postal', code, p)) { if (out.postal!==code) continue; }
+    const c = cityFrom(after);
+    if (c.city) put('city', tcase(c.city), p);
+    if (c.country) put('country', c.country, 3);
+    s.text = [pre.trim(), c.rest].filter(Boolean).join(' ').trim();
+    s.hadPostal = true; postalSeg = s;
+    if (!s.text || !/\p{L}{2}/u.test(s.text)) s.used = true;
+    break;
+  }
+  /* ---- pass C: country on its own line ---- */
+  for (const s of free()){ const cn = countryName(s.text); if (cn){ put('country', cn, 3); s.used = true; } }
+
+  /* ---- pass D: street ---- */
+  const STREET_PRE = /^(?:ul\.|ul\s|ulica\s|al\.|aleja\s|aleje\s|pl\.|plac\s|os\.|osiedle\s|rondo\s|skwer\s|bulwar\s)/i;
+  const STREET_W = /(?:stra(?:ss|ß)e\b|str\.|\b(?:weg|gasse|platz|allee|ring|damm|street|road|rd\.?|lane|avenue|ave\.?|drive|close|court|square|boulevard|blvd\.?|rue|via|viale|calle|avenida|straat|laan|gracht|plein|kade|gatan|vägen|vej|gade|katu|ulice|náměstí|námestie|iela|gatvė|utca|tér|út|strada|unit|suite|floor|building|business park|industrial estate|trading estate)\b)/i;
+  const HOUSE_END = /(?:^|\s)\d{1,5}[A-Za-z]?(?:\s?[\/\\-]\s?\d{1,5}[A-Za-z]?)?(?:\s*(?:lok\.?|m\.|apt\.?|app\.?)\s*\d+[A-Za-z]?)?$/;
+  const HOUSE_START = /^\d{1,5}[A-Za-z]?(?:[\-\/]\d{1,5}[A-Za-z]?)?\s+\p{L}/u;
+  const NOT_STREET = /\b(?:nr|numer|zamówien\w*|faktur\w*|invoice|order|ofert\w*|offer|godz\w*|hours|szt|kg|palet\w*|karton\w*|dni|days|rok|year)\b|@/i;
+  const streetOk = s => !hasLegal(s.text) && (STREET_PRE.test(s.text) || !isTitle(s.text)) && !NOT_STREET.test(s.text) && digits(s.text).length<=10 && s.text.split(/\s+/).length<=8 && /\p{L}{2}/u.test(s.text);
+  let streetSeg = null;
+  const cand = free().filter(streetOk);
+  streetSeg = cand.find(s=>STREET_PRE.test(s.text)) || cand.find(s=>STREET_W.test(s.text) && (/\d/.test(s.text) || s.addr || (postalSeg && Math.abs(s.idx-postalSeg.idx)<=2)));
+  if (!streetSeg){
+    const weak = cand.filter(s=>(HOUSE_END.test(s.text) || HOUSE_START.test(s.text)) && !/^\d+$/.test(s.text));
+    streetSeg = weak.find(s=>s.addr || s.hadPostal || (postalSeg && (s.idx===postalSeg.idx-1 || s.line===postalSeg.line))) || (postalSeg && weak.length===1 ? weak[0] : null);
+  }
+  if (streetSeg){
+    let v = streetSeg.text; streetSeg.used = true;
+    for (let j=streetSeg.idx+1; j<segs.length; j++){
+      const n = segs[j];
+      if (n.used || n.line!==streetSeg.line || !streetOk(n)) break;
+      if (!(STREET_W.test(n.text) || /^(?:lok\.?|m\.|apt\.?|app\.?|flat|unit|suite|floor|piętro|bud\.?|budynek|klatka|\d)/i.test(n.text))) break;
+      v += ', ' + n.text; n.used = true;
+    }
+    put('street', tcase(v), streetSeg.addr ? 3 : 2);
+  }
+
+  /* ---- pass E: contact person ---- */
+  if (prio.contact==null || prio.contact<4){
+    const list = segs;
+    const near = (s, pred) => [list[s.idx-1], list[s.idx+1]].some(n=>n && pred(n));
+    const titleSeg = n => !n.used && isTitle(n.text) && !nameIn(n.text);
+    let best = null, bp = 0;
+    for (const s of free()){
+      if (s.weak || GREET.test(s.text) || isSentence(s.text.replace(/^(?:(?:pan|pani|mr|mrs|ms|dr|mgr|inż|ing|prof|herr|frau)\.?\s+)+/i,''))) continue;
+      const titled = isTitle(s.text);
+      const n = nameIn(s.text);
+      if (!n) continue;
+      let p = titled ? 3 : near(s, n2=>titleSeg(n2) || n2.label==='contact') ? 2 : 1;
+      if (p>bp){ best = {s, n}; bp = p; }
+    }
+    if (best){
+      /* a bare name as the very first line of registry-like data (NIP/KRS, no title anywhere) is the business name, e.g. a sole trader */
+      const firstFree = free()[0];
+      if (bp===1 && best.s===firstFree && (out.nip || out.krs) && prio.client==null && !segs.some(x=>isTitle(x.text))){ /* leave it for the company pass */ }
+      else { put('contact', best.n, bp); best.s.used = true; }
+    }
+    /* title-only segments are not company names */
+    free().forEach(s=>{ if (isTitle(s.text) && !hasLegal(s.text)) s.used = true; });
+  }
+
+  /* ---- pass F: company ---- */
+  if (prio.client==null){
+    const legal = free().find(s=>hasLegal(s.text) && !REGISTRY.test(s.text) && !isSentence(s.text.replace(LEGAL_I,'')));
+    if (legal){ put('client', cleanCompany(legal.text), 4); legal.used = true; }
+    else {
+      const f = free().find(s=>!s.weak && /\p{L}{2}/u.test(s.text) && !GREET.test(s.text) && !isSentence(s.text) && !REGISTRY.test(s.text) && s.text.split(/\s+/).length<=7 && !/^\d/.test(s.text));
+      if (f){ put('client', cleanCompany(f.text), 1); f.used = true; }
+    }
+  }
+  /* ---- pass G: country from the VAT prefix ---- */
+  if (!out.country && vatCC){
+    const row = CUST_COUNTRIES.find(r=>r[0]===vatCC);
+    if (row) put('country', polishText ? row[1] : row[2], 1);
+  }
+  if (out.nip) out.nip = normTaxId(out.nip);
+  if (out.email) out.email = out.email.replace(/[.,;]+$/,'');
+  if (out.phone) out.phone = out.phone.replace(/[\s\-.(]+$/,'');
+  const res = {};
+  CUST_KEYS.forEach(k=>{ if (out[k]) res[k] = out[k]; });
+  return res;
+}
+/* ==/parseCustomer== */
+
 /* ---------- offer state ---------- */
 function newOffer(){
   const today = isoDate(new Date());
-  return {type:'pg',lang:'pl',meta:{client:'',contact:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null};
+  return {type:'pg',lang:'pl',meta:{client:'',contact:'',street:'',postal:'',city:'',country:'',nip:'',krs:'',email:'',phone:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null};
 }
 /* offer type: 'pg' = GaliCrisp brand (default, also for older saved offers), 'pl' = Private Label (client's brand) */
 const OTYPE_LBL = {pg:'Oferta PG', pl:'Private Label'};
@@ -1211,7 +1629,9 @@ const I18N = {
     offerType:'Typ oferty', otype:{pg:'Oferta PG', pl:'Private Label'},
     brand:'Marka klienta', packaging:'Opakowanie', moq:'MOQ / minimalne zamówienie', leadTime:'Termin realizacji',
     pack:{'Projekt klienta':'Projekt klienta','Projekt do opracowania przez PG':'Projekt do opracowania przez PG','Do ustalenia':'Do ustalenia'},
-    client:'Klient', contact:'Osoba kontaktowa', date:'Data oferty', valid:'Ważna do', currency:'Waluta', terms:'Incoterms / warunki', termsShort:'Warunki', curTerms:'Waluta · warunki', notes:'Uwagi',
+    client:'Klient', contact:'Osoba kontaktowa', date:'Data oferty',
+    cStreet:'Ulica i nr', cPostal:'Kod pocztowy', cCity:'Miejscowość', cCountry:'Kraj', cTaxId:'NIP', cKrs:'KRS / REGON',
+    valid:'Ważna do', currency:'Waluta', terms:'Incoterms / warunki', termsShort:'Warunki', curTerms:'Waluta · warunki', notes:'Uwagi',
     dated:(d,v)=>`z dnia ${d} · ważna do ${v}`,
     th:{no:'Lp.', prod:'Produkt · EAN', price:'Cena netto/szt.', qty:'Ilość (szt.)', upc:'Szt./ karton', cartons:'Kartony', pallets:'Palety (szac.)', disc:'Rabat', value:'Wartość netto'},
     emptyRow:'Brak pozycji w ofercie',
@@ -1219,12 +1639,12 @@ const I18N = {
     discPaper:p=>` (w tym ${p}% globalnie)`, discText:p=>` (w tym globalny ${p}%)`,
     unpricedPaper:n=>`Pozycje bez ceny (${n}) nie są wliczone do sumy.`, unpricedText:n=>`(pozycje bez ceny: ${n} — nie wliczono ich do sumy)`,
     noPrices:'Ceny zostaną potwierdzone w osobnej wiadomości.',
-    logiTitle:'Logistyka i termin przydatności', lId:'ID', lEan:'EAN', lType:'Typ kartonu', lDims:'Wymiary kartonu', lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lShelf:'Termin przydatności',
+    logiTitle:'Logistyka i termin przydatności', lId:'ID', lEan:'EAN', lType:'Typ kartonu', lDims:'Wymiary kartonu (dł.×szer.×wys.)', lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lShelf:'Termin przydatności', lShelfPick:'Termin przy odbiorze',
     days:'dni', shelfNote:{'360 days testing in progress':'360 dni — w trakcie testów'},
-    foot:'Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg katalogu produktów GaliCrisp; palety szacunkowe (kartony ÷ kartony na palecie).',
-    footText:'Ceny netto, bez VAT. EAN i dane logistyczne wg katalogu produktów GaliCrisp.',
+    foot:'Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026); palety szacunkowe (kartony ÷ kartony na palecie).',
+    footText:'Ceny netto, bez VAT. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026).',
     items:'POZYCJE', noItems:'(brak pozycji)',
-    tQty:'Ilość', tPrice:'Cena', tDisc:'Rabat', tValue:'Wartość', tLogi:'Logistyka', tTbd:'cena do ustalenia', tPerUnit:'/szt. netto', tEst:'(szac.)', tShelf:'termin przydatności',
+    tQty:'Ilość', tPrice:'Cena', tDisc:'Rabat', tValue:'Wartość', tLogi:'Logistyka', tTbd:'cena do ustalenia', tPerUnit:'/szt. netto', tEst:'(szac.)', tShelf:'termin przydatności', tShelfPick:'przy odbiorze',
     ctn:'kart.', pcs:'szt.', palAbbr:()=>'pal.', perCarton:'szt./karton',
     head:['Lp.','ID','EAN','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Szt./karton','Kartony','Palety (szac.)','Termin przydatności (dni)','Rabat %','Wartość netto'],
     sumCP:'Kartony razem / palety (szac.)', sumDisc:p=>`Rabat (w tym globalny ${p}%)`,
@@ -1237,7 +1657,9 @@ const I18N = {
     offerType:'Offer type', otype:{pg:'GaliCrisp brand', pl:'Private Label'},
     brand:'Customer\'s brand', packaging:'Packaging', moq:'MOQ / minimum order quantity', leadTime:'Lead time',
     pack:{'Projekt klienta':'Customer\'s design','Projekt do opracowania przez PG':'Design developed by Piekarnia Galicyjska','Do ustalenia':'To be agreed'},
-    client:'Customer', contact:'Contact person', date:'Offer date', valid:'Valid until', currency:'Currency', terms:'Incoterms / terms', termsShort:'Terms', curTerms:'Currency · terms', notes:'Notes',
+    client:'Customer', contact:'Contact person', date:'Offer date',
+    cStreet:'Street address', cPostal:'Postal code', cCity:'City', cCountry:'Country', cTaxId:'VAT ID', cKrs:'Company reg. no. (KRS / REGON)',
+    valid:'Valid until', currency:'Currency', terms:'Incoterms / terms', termsShort:'Terms', curTerms:'Currency · terms', notes:'Notes',
     dated:(d,v)=>`dated ${d} · valid until ${v}`,
     th:{no:'No.', prod:'Product · EAN', price:'Net price/unit', qty:'Quantity (pcs)', upc:'Units/ carton', cartons:'Cartons', pallets:'Pallets (est.)', disc:'Discount', value:'Net value'},
     emptyRow:'No items in this offer',
@@ -1245,12 +1667,12 @@ const I18N = {
     discPaper:p=>` (incl. ${p}% overall)`, discText:p=>` (incl. ${p}% overall)`,
     unpricedPaper:n=>`Items without a price (${n}) are not included in the total.`, unpricedText:n=>`(items without a price: ${n} — not included in the total)`,
     noPrices:'Prices will be confirmed in a separate message.',
-    logiTitle:'Logistics and shelf life', lId:'ID', lEan:'EAN', lType:'Carton type', lDims:'Carton dimensions', lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lShelf:'Shelf life',
+    logiTitle:'Logistics and shelf life', lId:'ID', lEan:'EAN', lType:'Carton type', lDims:'Carton dimensions (L×W×H)', lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lShelf:'Shelf life', lShelfPick:'Min. shelf life at pick-up',
     days:'days', shelfNote:{'360 days testing in progress':'360 days — testing in progress'},
-    foot:'Prices are net, excluding VAT. Assortment as per the approved product list of 04/11/2026. EAN and logistics data as per the GaliCrisp product catalogue; pallet quantities are estimates (cartons ÷ cartons per pallet).',
-    footText:'Net prices, excluding VAT. EAN and logistics data as per the GaliCrisp product catalogue.',
+    foot:'Prices are net, excluding VAT. Assortment as per the approved product list of 04/11/2026. EAN and logistics data as per the GaliCrisp product table (11/2026); pallet quantities are estimates (cartons ÷ cartons per pallet).',
+    footText:'Net prices, excluding VAT. EAN and logistics data as per the GaliCrisp product table (11/2026).',
     items:'ITEMS', noItems:'(no items)',
-    tQty:'Quantity', tPrice:'Price', tDisc:'Discount', tValue:'Value', tLogi:'Logistics', tTbd:'price to be confirmed', tPerUnit:'/unit net', tEst:'(est.)', tShelf:'shelf life',
+    tQty:'Quantity', tPrice:'Price', tDisc:'Discount', tValue:'Value', tLogi:'Logistics', tTbd:'price to be confirmed', tPerUnit:'/unit net', tEst:'(est.)', tShelf:'shelf life', tShelfPick:'at pick-up',
     ctn:'ctn', pcs:'pcs', palAbbr:n=>palWordEn(n), perCarton:'pcs/carton',
     head:['No.','ID','EAN','Product name','Line','Weight (g)','Net price/unit','Quantity (pcs)','Units/carton','Cartons','Pallets (est.)','Shelf life (days)','Discount %','Net value'],
     sumCP:'Total cartons / pallets (est.)', sumDisc:p=>`Discount (incl. ${p}% overall)`,
@@ -1280,6 +1702,13 @@ function plRows(lg = docLang()){
   const m = offer.meta, D = I18N[lg];
   return [[D.brand,m.brand],[D.packaging,D.pack[m.packaging]||m.packaging],[D.moq,m.moq],[D.leadTime,m.leadTime]]
     .map(([k,v])=>[k,String(v||'').trim()]).filter(r=>r[1]);
+}
+/* customer details, only the filled-in ones; user-typed values are never translated */
+const cv = k => String(offer.meta[k] ?? '').trim();
+const custAddrLines = () => [cv('street'), [cv('postal'), cv('city')].filter(Boolean).join(' '), cv('country')].filter(Boolean);
+function custRows(lg = docLang()){
+  const D = I18N[lg];
+  return [[D.cStreet,cv('street')],[D.cPostal,cv('postal')],[D.cCity,cv('city')],[D.cCountry,cv('country')],[D.cTaxId,cv('nip')],[D.cKrs,cv('krs')],[D.email,cv('email')],[D.phone,cv('phone')]].filter(r=>r[1]);
 }
 function exampleOffer(){
   const o = newOffer();
@@ -1554,6 +1983,7 @@ function renderMeta(){
   $('#g-disc').value = offer.globalDiscount ? String(offer.globalDiscount).replace('.',',') : '';
   $('#exampleNote').hidden = !offer.isExample;
   $('#metaBox').open = offer.items.length===0;
+  updateCustHints();
   renderType();
   renderLang();
   renderMetaSum();
@@ -1771,7 +2201,7 @@ $('#products').addEventListener('click', e=>{
 /* ---------- events: offer ---------- */
 function clearExampleFlag(){ if (offer.isExample){ offer.isExample=false; $('#exampleNote').hidden=true; } }
 document.querySelectorAll('[data-meta]').forEach(el=>{
-  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency') updateComputed(); renderMetaSum(); persist(); });
+  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency') updateComputed(); if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
 });
 $('#o-date').addEventListener('change', e=>{ if (e.target.value){ offer.meta.validUntil = addDays(e.target.value,30); $('#o-valid').value = offer.meta.validUntil; persist(); } });
 $('#g-disc').addEventListener('input', e=>{ offer.globalDiscount = Math.min(100, Math.max(0, parseNum(e.target.value)||0)); updateComputed(); persist(); });
@@ -1860,6 +2290,106 @@ function confirmBox(title, text, okLabel){
   });
 }
 
+
+/* ---------- customer details: inline hints + "Wklej dane klienta" (paste & parse) ---------- */
+/* hints never block: a valid Polish NIP checksum gets a subtle tick, anything else a muted note */
+function taxIdHint(v){
+  const s = String(v||'').trim(); if (!s) return null;
+  const n = normTaxId(s);
+  if (/^\d{10}$/.test(n)) return nipChecksumOk(n) ? {ok:true, t:'✓ NIP poprawny'} : {t:'Błędna suma kontrolna NIP'};
+  const pre = /^(ATU|CHE)/.test(n) ? n.slice(0,3) : n.slice(0,2), f = VAT_FMT[pre];
+  if (f) return f.test(n) ? {ok:true, t:`✓ Format VAT UE (${VAT_CC[pre]||pre})`} : {t:`Nietypowy format numeru VAT (${VAT_CC[pre]||pre})`};
+  return {t:'Nietypowy format — NIP ma 10 cyfr, VAT UE np. DE123456789'};
+}
+function emailHint(v){
+  const s = String(v||'').trim(); if (!s) return null;
+  return /^[^\s@]+@[^\s@]+\.[^\s@.]{2,}$/.test(s) ? {ok:true, t:'✓ Poprawny format'} : {t:'Sprawdź adres e-mail'};
+}
+function setHint(id, h){
+  const el = document.getElementById(id); if (!el) return;
+  el.hidden = !h; el.textContent = h ? h.t : '';
+  el.className = 'fhint' + (h ? (h.ok ? ' ok' : ' warn') : '');
+}
+function updateCustHints(){ setHint('o-c-nip-hint', taxIdHint(offer.meta.nip)); setHint('o-c-email-hint', emailHint(offer.meta.email)); }
+
+const CUST_LBL = {client:'Klient (firma)', contact:'Osoba kontaktowa', street:'Ulica i nr', postal:'Kod pocztowy', city:'Miejscowość', country:'Kraj', nip:'NIP / VAT ID', krs:'KRS / REGON', email:'E-mail', phone:'Telefon'};
+const CUST_EL = {client:'o-client', contact:'o-contact', street:'o-c-street', postal:'o-c-postal', city:'o-c-city', country:'o-c-country', nip:'o-c-nip', krs:'o-c-krs', email:'o-c-email', phone:'o-c-phone'};
+const plPola = n => n===1 ? 'pole' : (n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 'pola' : 'pól';
+/* same value ignoring case/spacing (and separators for NIP/phone) */
+const custSame = (k, a, b) => { const f = v => k==='nip' ? normTaxId(v) : k==='phone' ? String(v).replace(/[^\d+]/g,'') : String(v).trim().replace(/\s+/g,' ').toLocaleLowerCase('pl'); return f(a)===f(b); };
+/* a paste into "Klient" is treated as full customer details when it spans lines or carries a NIP, e-mail or postal code */
+const looksLikeCustomerBlock = s => {
+  const t = String(s||'').trim();
+  return /\n/.test(t) || /[^\s@]+@[^\s@]+\.[A-Za-z]{2,}/.test(t) || /(?<![\d-])\d{2}-\d{3}(?![\d-])/.test(t) || /\b(?:NIP|VAT|REGON|KRS)\b/i.test(t)
+    || /(?<![\d-])(?:PL\s?)?(?:\d{3}[- ]?\d{3}[- ]?\d{2}[- ]?\d{2}|\d{3}[- ]?\d{2}[- ]?\d{2}[- ]?\d{3})(?![\d-])/.test(t);
+};
+function openCustDlg(text){
+  const d = $('#custDlg');
+  $('#cuText').value = text || '';
+  $('#cuReview').hidden = true; $('#cuRows').innerHTML = ''; $('#cuApply').disabled = true;
+  try { if (!d.open) d.showModal(); } catch(e){}
+  if (text) custParse(); else $('#cuText').focus();
+}
+function custParse(){
+  const txt = $('#cuText').value, found = parseCustomer(txt);
+  const keys = CUST_KEYS.filter(k=>found[k]);
+  $('#cuReview').hidden = false;
+  if (!keys.length){
+    $('#cuRows').innerHTML = `<p class="cu-empty">${txt.trim() ? 'Nie rozpoznano danych klienta. Sprawdź tekst albo uzupełnij pola ręcznie.' : 'Najpierw wklej tekst z danymi klienta.'}</p>`;
+    $('#cuApply').disabled = true; $('#cuText').focus();
+    return;
+  }
+  $('#cuRows').innerHTML = keys.map(k=>{
+    const cur = cv(k), nv = found[k], same = !!cur && custSame(k, cur, nv), conflict = !!cur && !same, on = !cur;
+    const note = conflict ? `<div class="cu-old" id="cu-old-${k}">Obecnie: <s>${esc(cur)}</s> → <b class="cu-new">${esc(nv)}</b> · zaznacz, aby zastąpić</div>`
+      : same ? `<div class="cu-old" id="cu-old-${k}">Bez zmian — ta wartość jest już w formularzu</div>` : '';
+    return `<div class="cu-row${conflict?' conflict':''}${on?'':' off'}" data-k="${k}">
+      <input type="checkbox" id="cu-on-${k}"${on?' checked':''}${note?` aria-describedby="cu-old-${k}"`:''}>
+      <label for="cu-on-${k}">${CUST_LBL[k]}</label>
+      <input class="inp" id="cu-v-${k}" value="${esc(nv)}" aria-label="${CUST_LBL[k]}: rozpoznana wartość" autocomplete="off" spellcheck="false">${note}</div>`;
+  }).join('');
+  $('#cuApply').disabled = false;
+  const g = G(); if (g) g.from('#cuRows .cu-row',{opacity:0, y:6, duration:.24, stagger:.025, ease:'power2.out', clearProps:'opacity,transform'});
+  $('#cuApply').focus();
+}
+function custApply(){
+  const changed = [];
+  $('#cuRows').querySelectorAll('.cu-row').forEach(row=>{
+    const k = row.dataset.k, v = row.querySelector('.inp').value.trim();
+    if (!CUST_EL[k] || !row.querySelector('input[type=checkbox]').checked || !v || v===cv(k)) return;
+    offer.meta[k] = v; changed.push(k);
+  });
+  $('#custDlg').close();
+  if (!changed.length){ toast('Dane klienta bez zmian'); return; }
+  clearExampleFlag();
+  $('#metaBox').open = true;
+  changed.forEach(k=>{
+    const el = document.getElementById(CUST_EL[k]); el.value = offer.meta[k];
+    el.classList.add('just-filled'); setTimeout(()=>el.classList.remove('just-filled'), 1800);
+  });
+  updateCustHints(); renderMetaSum(); persist();
+  toast(`Uzupełniono dane klienta (${changed.length} ${plPola(changed.length)})`);
+}
+$('#btnCustPaste').addEventListener('click', ()=>openCustDlg(''));
+$('#cuParse').addEventListener('click', custParse);
+$('#cuApply').addEventListener('click', custApply);
+$('#cuCancel').addEventListener('click', ()=>$('#custDlg').close());
+$('#cuText').addEventListener('keydown', e=>{ if (e.key==='Enter' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); custParse(); } });
+$('#cuRows').addEventListener('change', e=>{ const cb = e.target.closest('input[type=checkbox]'); if (cb) cb.closest('.cu-row').classList.toggle('off', !cb.checked); });
+$('#cuRows').addEventListener('input', e=>{
+  const inp = e.target.closest('.inp'); if (!inp) return;
+  const row = inp.closest('.cu-row'), cb = row.querySelector('input[type=checkbox]');
+  const nw = row.querySelector('.cu-new'); if (nw) nw.textContent = inp.value;
+  if (inp.value.trim() && !cb.checked){ cb.checked = true; row.classList.remove('off'); }
+});
+$('#o-client').addEventListener('paste', e=>{
+  let txt = '';
+  try { txt = (e.clipboardData && e.clipboardData.getData('text/plain')) || ''; } catch(err){}
+  if (!looksLikeCustomerBlock(txt)) return;   /* a plain company name pastes normally */
+  e.preventDefault();
+  openCustDlg(txt);
+});
+
 /* ---------- quick view ---------- */
 let qvIds = [], qvIdx = 0, qvSrc = 'pack';
 const SHELF_NOTE_PL = {'360 days testing in progress':'360 dni — w trakcie testów'};
@@ -1876,12 +2406,12 @@ function qvCatalogueHtml(p){
     <div><div class="qv-k">Opis z katalogu</div><p class="qv-desc" lang="en">${esc(k.description)}</p></div>
     ${k.claims && k.claims.length ? `<div class="claims" lang="en">${k.claims.map(c=>`<span class="claim">${esc(c)}</span>`).join('')}</div>` : ''}
     ${p._ean ? `<div class="ean-row"><span class="qv-k">EAN</span><span class="ean-big" id="qvEan">${p._ean}</span><button type="button" class="btn btn-sm" id="qvEanCopy" data-copyean="${p._ean}" aria-label="Kopiuj EAN ${p._ean}">Kopiuj</button></div>` : ''}
-    <div><div class="qv-k" id="qvLogT">Logistyka (katalog)</div>
+    <div><div class="qv-k" id="qvLogT">Logistyka i paletyzacja</div>
     <table class="log-tbl" aria-labelledby="qvLogT"><tbody>
-      ${row('Typ kartonu', L.cartonType ? esc(L.cartonType) : null)}${row('Wymiary kartonu', L.cartonDims ? esc(L.cartonDims) : null)}
+      ${row('Typ kartonu', L.cartonType ? esc(L.cartonType) : null)}${row('Wymiary kartonu (dł.×szer.×wys.)', L.cartonDims ? esc(L.cartonDims) : null)}${row('Opakowanie', L.packaging ? `<span lang="en">${esc(L.packaging)}</span>` : null)}
       ${row('Szt./karton', L.unitsPerCarton)}${row('Kartony/warstwa', L.cartonsPerLayer)}${row('Warstwy/paleta', L.layersPerPallet)}
       ${row('Kartony/paleta', L.cartonsPerPallet)}${row('Szt./paleta', L.unitsPerPallet!=null ? nf0.format(L.unitsPerPallet) : null)}${row('Wysokość palety', L.palletHeight ? esc(L.palletHeight) : null)}
-      ${row('Termin przydatności', L.shelfLifeDays ? `${L.shelfLifeDays} dni${note}` : null)}
+      ${row('Termin przydatności', L.shelfLifeDays ? `${L.shelfLifeDays} dni${note}` : null)}${row('Termin przy odbiorze', L.shelfLifePickupDays ? `min. ${L.shelfLifePickupDays} dni` : null)}
     </tbody></table></div>
     ${notes.map(n=>`<p class="qv-note"><b>Uwaga</b>${esc(n)}</p>`).join('')}`;
 }
@@ -1996,7 +2526,7 @@ function tableMatrix(){
 }
 function metaRows(){
   const m = offer.meta, D = I18N[docLang()], F = FMT[docLang()];
-  return [[docTitle(),COMPANY.name],[D.address,COMPANY.addressLines.join(', ')],[D.taxId,COMPANY.taxId],[D.phone,COMPANY.phone],[D.email,COMPANY.email],[],[D.offerType,D.otype[offer.type]],...plRows(),[D.client,m.client],[D.contact,m.contact],[D.date,F.date(m.date)],[D.valid,F.date(m.validUntil)],[D.currency,m.currency],[D.terms,m.terms],[D.notes,m.notes],[]];
+  return [[docTitle(),COMPANY.name],[D.address,COMPANY.addressLines.join(', ')],[D.taxId,COMPANY.taxId],[D.phone,COMPANY.phone],[D.email,COMPANY.email],[],[D.offerType,D.otype[offer.type]],...plRows(),[D.client,m.client],...custRows(),[D.contact,m.contact],[D.date,F.date(m.date)],[D.valid,F.date(m.validUntil)],[D.currency,m.currency],[D.terms,m.terms],[D.notes,m.notes],[]];
 }
 function toCsv(){
   const q = v => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
@@ -2005,7 +2535,8 @@ function toCsv(){
 function toTsv(){
   const c = v => String(v ?? '').replace(/[\t\r\n]+/g,' ');
   const D = I18N[docLang()];
-  return [[D.offerType,D.otype[offer.type]], ...plRows(), [], ...tableMatrix()].map(r=>r.map(c).join('\t')).join('\n');
+  const cust = [[D.client,cv('client')], ...custRows(), [D.contact,cv('contact')]].filter(r=>r[1]);
+  return [[D.offerType,D.otype[offer.type]], ...plRows(), ...cust, [], ...tableMatrix()].map(r=>r.map(c).join('\t')).join('\n');
 }
 function toText(){
   const lg = docLang(), D = I18N[lg], F = FMT[lg];
@@ -2018,6 +2549,9 @@ function toText(){
   L.push(`${D.offerType}: ${D.otype[offer.type]}`);
   plRows().forEach(([k,v])=>L.push(`${k}: ${v}`));
   if (m.client) L.push(`${D.client}: ${m.client}`);
+  const addr = custAddrLines();
+  if (addr.length) L.push(`${D.address}: ${addr.join(', ')}`);
+  [['nip',D.cTaxId],['krs',D.cKrs],['email',D.email],['phone',D.phone]].forEach(([k,l])=>{ if (cv(k)) L.push(`${l}: ${cv(k)}`); });
   if (m.contact) L.push(`${D.contact}: ${m.contact}`);
   L.push(`${D.date}: ${F.dateLong(m.date)}   ${D.valid}: ${F.dateLong(m.validUntil)}`);
   L.push(`${D.currency}: ${cur}${m.terms?`   ${D.termsShort}: ${m.terms}`:''}`);
@@ -2034,7 +2568,7 @@ function toText(){
     const price = it.price==null ? D.tTbd : `${F.n2(it.price)} ${cur}${D.tPerUnit}`;
     L.push(`   ${D.tQty}: ${qty} · ${D.tPrice}: ${price}${it.disc?` · ${D.tDisc}: ${F.pct(it.disc)}%`:''}${lineValue(it)!=null?` · ${D.tValue}: ${F.money(lineValue(it),cur)}`:''}`);
     const pl = palletsOf(it);
-    L.push(`   ${D.tLogi}: ${it.upc} ${D.perCarton} · ${F.q(cartonsOf(it))} ${D.ctn}${pl!=null?` · ${F.pal(pl)} ${F.palWord(pl)} ${D.tEst}`:''}${p._log.shelfLifeDays?` · ${D.tShelf} ${p._log.shelfLifeDays} ${D.days}`:''}`);
+    L.push(`   ${D.tLogi}: ${it.upc} ${D.perCarton} · ${F.q(cartonsOf(it))} ${D.ctn}${pl!=null?` · ${F.pal(pl)} ${F.palWord(pl)} ${D.tEst}`:''}${p._log.shelfLifeDays?` · ${D.tShelf} ${p._log.shelfLifeDays} ${D.days}${p._log.shelfLifePickupDays?` (${D.tShelfPick} ${p._log.shelfLifePickupDays} ${D.days})`:''}`:''}`);
   });
   L.push('');
   if (offer.items.length) L.push(`${D.totCartons}: ${F.q(t.cartons)} · ${D.totPallets}: ${F.pal(t.pallets)}`);
@@ -2100,10 +2634,11 @@ function renderPaper(){
   }).join('');
   const logi = offer.items.map((it,i)=>{
     const p = byId[it.id], L = p._log;
-    return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?F.n0(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight?F.height(L.palletHeight):'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' '+D.days+(L.shelfLifeNote?'*':''):'—'}</td></tr>`;
+    return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?F.n0(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight?F.height(L.palletHeight):'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' '+D.days+(L.shelfLifeNote?'*':''):'—'}</td><td class="n">${L.shelfLifePickupDays?L.shelfLifePickupDays+' '+D.days:'—'}</td></tr>`;
   }).join('');
   const starNote = offer.items.some(it=>byId[it.id]._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(D.shelfNote['360 days testing in progress'])}</div>` : '';
   const co = COMPANY;
+  const clientLines = [...custAddrLines().map(esc), ...[['nip',D.cTaxId],['krs',D.cKrs],['email',D.email],['phone',D.phone]].filter(([k])=>cv(k)).map(([k,l])=>`<span class="p-ck">${esc(l)}</span> ${esc(cv(k))}`)];
   const catLine = CAT_ORDER.map((c,i)=>{ const s = D.cats[c].toLowerCase(); return i ? s : s.charAt(0).toUpperCase() + s.slice(1); }).join(' · ');
   $('#paper').lang = lg;
   $('#paper').innerHTML = `
@@ -2113,8 +2648,7 @@ function renderPaper(){
       <div class="p-doc"><div class="t">${esc(docTitle())}</div>${isPL()?`<div class="p-pl">${esc(D.plSub)}${m.brand.trim()?': '+esc(m.brand.trim()):''}</div>`:''}<div class="p-sub">${D.dated(F.dateLong(m.date), F.dateLong(m.validUntil))}</div></div>
     </div>
     <div class="p-parties">
-      <div><div class="p-k">${D.client}</div><div class="p-v">${esc(m.client)||'—'}</div></div>
-      <div><div class="p-k">${D.contact}</div><div class="p-v">${esc(m.contact)||'—'}</div></div>
+      <div class="p-client"><div class="p-k">${D.client}</div><div class="p-v">${esc(m.client)||'—'}</div>${clientLines.length?`<div class="p-cl">${clientLines.join('<br>')}</div>`:''}${cv('contact')?`<div class="p-cl p-cc"><span class="p-ck">${D.contact}</span> ${esc(cv('contact'))}</div>`:''}</div>
       <div><div class="p-k">${D.curTerms}</div><div class="p-v">${esc(cur)}${m.terms?' · '+esc(m.terms):''}</div></div>
       <div><div class="p-k">${D.offerType}</div><div class="p-v">${D.otype[offer.type]}</div></div>
       ${plRows().map(([k,v])=>`<div><div class="p-k">${esc(k)}</div><div class="p-v">${esc(v)}</div></div>`).join('')}
@@ -2133,7 +2667,7 @@ function renderPaper(){
     ${t.unpriced&&offer.items.length?`<div class="p-foot">${D.unpricedPaper(t.unpriced)}</div>`:''}
     ${m.notes?`<div class="p-notes"><div class="p-k" style="margin-bottom:4px">${D.notes}</div>${esc(m.notes)}</div>`:''}
     ${logi ? `<div class="p-sec">${D.logiTitle}</div><div class="p-tablewrap p-logi"><table>
-      <thead><tr><th>${D.th.no}</th><th>${D.lId}</th><th>${D.lEan}</th><th>${D.lType}</th><th>${D.lDims}</th><th class="n">${D.lUpc}</th><th class="n">${D.lCpp}</th><th class="n">${D.lUpp}</th><th class="n">${D.lHeight}</th><th class="n">${D.lShelf}</th></tr></thead>
+      <thead><tr><th>${D.th.no}</th><th>${D.lId}</th><th>${D.lEan}</th><th>${D.lType}</th><th>${D.lDims}</th><th class="n">${D.lUpc}</th><th class="n">${D.lCpp}</th><th class="n">${D.lUpp}</th><th class="n">${D.lHeight}</th><th class="n">${D.lShelf}</th><th class="n">${D.lShelfPick}</th></tr></thead>
       <tbody>${logi}</tbody></table></div>${starNote}` : ''}
     <div class="p-foot">${esc(D.foot)}</div>
     <div class="p-cofoot"><b>${esc(co.name)}</b><span>${co.addressLines.map(esc).join(', ')}</span><span>${D.taxId}: ${esc(co.taxId)}</span><span>${D.phoneShort} ${esc(co.phone)}</span><span>${esc(co.email)}</span></div>`;
