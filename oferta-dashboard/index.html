@@ -441,10 +441,39 @@ textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-h
 .saved-list .badge-type.pl{background:var(--pl-badge-bg);color:var(--pl-badge-ink)}
 .fab .fab-tag{display:inline-grid;place-items:center;height:20px;padding:0 6px;margin-left:-4px;border-radius:999px;background:var(--pl-badge-bg);color:var(--pl-badge-ink);font-family:var(--f-num);font-size:11px;letter-spacing:.06em}
 .fab .fab-tag[hidden]{display:none}
+/* offer document language: PL | EN (compact switch in the type column; also in the preview bar) */
+.otype-top{align-self:stretch;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.olang{display:flex;align-items:center;gap:6px}
+.olang-long{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.olang-sw{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:2px;border-radius:999px;border:1px solid var(--field-border);background:var(--field);isolation:isolate}
+.olang-thumb{position:absolute;z-index:0;top:2px;bottom:2px;left:2px;width:calc(50% - 2px);border-radius:999px;background:var(--pill);transition:transform .28s var(--ease)}
+.olang-sw[data-lang="en"] .olang-thumb{transform:translateX(100%)}
+.olang-sw button{position:relative;z-index:1;border:0;background:transparent;border-radius:999px;min-height:16px;min-width:28px;padding:0 7px;font-family:var(--f-num);font-size:11px;font-weight:700;letter-spacing:.06em;line-height:1;color:var(--ink-2);cursor:pointer;transition:color .2s,scale .12s var(--ease)}
+.olang-sw button::after{content:"";position:absolute;inset:-4px 0 -3px}
+.olang-sw button:hover{color:var(--ink)}
+.olang-sw button:active{scale:.94}
+.olang-sw button[aria-checked="true"]{color:var(--pill-ink)}
+.olang-sw button:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:999px}
+.pv-lang{display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:4px}
+@media (max-width:559.98px){
+  .preview-bar{border-radius:var(--r-lg)}
+  .pv-lang{order:3;flex-basis:100%;justify-content:space-between;margin:0;padding:8px 0 0;border-top:1px solid var(--line)}
+}
+.pv-lang .olang-sw button{min-height:28px;min-width:40px;padding:0 10px;font-size:12px}
+.pv-lang .olang-sw button::after{content:none}
+.otype-tag[hidden]{display:none}
+.otype-tag.lang-tag,.saved-list .badge-lang{background:transparent;color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line-strong)}
+.fab .fab-tag.lang-tag{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75)}
 .paper .p-pl{margin-top:4px;font-size:var(--t-sm);font-weight:600;color:#6B4E25}
 @media (max-width:1099.98px){
   .otype{order:3;flex-basis:100%;flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
   .otype-sw button{min-height:30px;padding:0 14px;font-size:var(--t-sm)}
+  .otype{flex-wrap:wrap;row-gap:8px}
+  .otype-top{display:contents}
+  .olang{order:3;flex-basis:100%;justify-content:space-between;gap:10px}
+  .olang-long{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto}
+  .olang-sw button{min-height:30px;min-width:48px;padding:0 14px;font-size:var(--t-sm)}
+  .olang-sw button::after{content:none}
 }
 
 .items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
@@ -596,6 +625,7 @@ dialog[open]::backdrop{opacity:1}
 .paper .p-tot .g{font-weight:800;font-size:1.1rem;border-top:2px solid var(--paper-ink);padding-top:6px;margin-top:4px}
 .paper .p-notes{margin-top:22px;padding-top:12px;border-top:1px solid var(--paper-line);font-size:var(--t-sm);white-space:pre-wrap}
 .paper .p-foot{margin-top:24px;font-size:11px;color:var(--paper-ink-2)}
+.paper .p-desc{display:inline-block;max-width:46ch;margin-top:2px;line-height:1.35;font-style:italic}
 
 /* fly-to-offer clone */
 .fly{position:fixed;z-index:95;pointer-events:none;margin:0;border-radius:14px;overflow:hidden;background:var(--pack-bg);box-shadow:0 18px 36px -12px rgba(70,0,6,.6);will-change:transform,opacity;object-fit:contain;-webkit-mask-image:none;mask-image:none;transform-origin:0 0}
@@ -845,7 +875,17 @@ table.ptable{min-width:760px}
           <div class="autosave" id="autosave">Szkic zapisywany automatycznie</div>
         </div>
         <div class="otype" id="otype">
-          <span class="otype-lbl" id="otypeLbl">Typ oferty</span>
+          <div class="otype-top">
+            <span class="otype-lbl" id="otypeLbl">Typ oferty</span>
+            <div class="olang" id="olang">
+              <span class="otype-lbl olang-lbl" id="olangLbl" title="Język dokumentu dla klienta (podgląd, tekst, Excel, CSV). Panel pozostaje po polsku.">Język<span class="olang-long"> oferty</span></span>
+              <div class="olang-sw" id="olangSw" role="radiogroup" aria-labelledby="olangLbl" data-lang="pl">
+                <span class="olang-thumb" aria-hidden="true"></span>
+                <button type="button" role="radio" id="olang-pl" data-olang="pl" aria-checked="true" tabindex="0" title="Oferta po polsku">PL</button>
+                <button type="button" role="radio" id="olang-en" data-olang="en" aria-checked="false" tabindex="-1" title="Oferta po angielsku">EN</button>
+              </div>
+            </div>
+          </div>
           <div class="otype-sw" id="otypeSw" role="radiogroup" aria-labelledby="otypeLbl" data-type="pg">
             <span class="otype-thumb" aria-hidden="true"></span>
             <button type="button" role="radio" id="otype-pg" data-otype="pg" aria-checked="true" tabindex="0">Oferta PG</button>
@@ -875,7 +915,7 @@ table.ptable{min-width:760px}
           <button class="btn btn-sm btn-ghost" id="exampleOk" type="button">Zostaw i edytuj</button>
         </div>
         <details class="meta" id="metaBox">
-          <summary class="section-title"><span>Dane oferty</span><span class="otype-tag" id="metaType" title="Typ oferty: Oferta PG">PG</span><span class="meta-sum" id="metaSum"></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <summary class="section-title"><span>Dane oferty</span><span class="otype-tag" id="metaType" title="Typ oferty: Oferta PG">PG</span><span class="otype-tag lang-tag" id="metaLang" title="Język oferty: angielski" hidden>EN</span><span class="meta-sum" id="metaSum"></span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
           <div class="meta-grid">
             <div class="fld full"><label for="o-client">Klient</label><input class="inp" id="o-client" data-meta="client" autocomplete="organization"></div>
             <div class="fld full"><label for="o-contact">Osoba kontaktowa</label><input class="inp" id="o-contact" data-meta="contact" autocomplete="name"></div>
@@ -929,7 +969,7 @@ table.ptable{min-width:760px}
 
 <div class="scrim" id="scrim"></div>
 <button class="fab" id="fab" type="button" aria-controls="offer" aria-expanded="false">
-  <span class="count" id="fabCount">0</span><span>Oferta</span><span class="fab-tag" id="fabTag" title="Private Label" hidden>PL</span><span class="fval" id="fabVal"></span>
+  <span class="count" id="fabCount">0</span><span>Oferta</span><span class="fab-tag" id="fabTag" title="Private Label" hidden>PL</span><span class="fab-tag lang-tag" id="fabLang" title="Język oferty: angielski" hidden>EN</span><span class="fval" id="fabVal"></span>
 </button>
 
 <dialog id="confirmDlg" aria-labelledby="cfTitle">
@@ -966,6 +1006,13 @@ table.ptable{min-width:760px}
   <div class="preview-shell">
     <div class="preview-bar glass">
       <h3 id="pvTitle">Podgląd oferty</h3>
+      <div class="pv-lang"><span class="otype-lbl" id="pvLangLbl">Język oferty</span>
+        <div class="olang-sw" id="pvLangSw" role="radiogroup" aria-labelledby="pvLangLbl" data-lang="pl">
+          <span class="olang-thumb" aria-hidden="true"></span>
+          <button type="button" role="radio" id="pvLang-pl" data-olang="pl" aria-checked="true" tabindex="0" title="Oferta po polsku">PL</button>
+          <button type="button" role="radio" id="pvLang-en" data-olang="en" aria-checked="false" tabindex="-1" title="Oferta po angielsku">EN</button>
+        </div>
+      </div>
       <div class="dlg-actions">
         <button class="btn btn-sm" id="pvCopy" type="button">Kopiuj jako tekst</button>
         <button class="btn btn-sm btn-primary" id="pvClose" type="button">Zamknij</button>
@@ -1145,18 +1192,93 @@ applyTheme();
 /* ---------- offer state ---------- */
 function newOffer(){
   const today = isoDate(new Date());
-  return {type:'pg',meta:{client:'',contact:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null};
+  return {type:'pg',lang:'pl',meta:{client:'',contact:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null};
 }
 /* offer type: 'pg' = GaliCrisp brand (default, also for older saved offers), 'pl' = Private Label (client's brand) */
 const OTYPE_LBL = {pg:'Oferta PG', pl:'Private Label'};
 const PACK_OPTS = ['Projekt klienta','Projekt do opracowania przez PG','Do ustalenia'];
 const isPL = () => offer.type==='pl';
-const docTitle = () => isPL() ? 'Oferta Private Label' : 'Oferta handlowa — GaliCrisp';
-/* Private Label details, only the filled-in ones (empty for Oferta PG) */
-function plRows(){
+/* ---------- offer document language ----------
+   The builder UI stays Polish. Everything that goes to the customer (preview, "Kopiuj jako tekst",
+   "Kopiuj do Excela", CSV) takes its labels from I18N[offer.lang] and its number/date formats from FMT[offer.lang].
+   Offers saved before this option have no lang and load as Polish. User-typed values are never translated.
+   CSV/TSV numeric cells keep the Polish-Excel format (comma decimals, EAN as ="…") in both languages. */
+const I18N = {
+  pl:{
+    docPG:'Oferta handlowa — GaliCrisp', docPL:'Oferta Private Label', plSub:'Produkcja pod marką klienta',
+    cats:{'CRISPBREAD':'PIECZYWO CHRUPKIE','CRACKERS':'KRAKERSY','SNACKS':'SNACKI PIEKARNICZE','SAVOURY BISCUITS':'PRZEKĄSKI WYTRAWNE'},
+    address:'Adres', taxId:'NIP', phone:'Telefon', phoneShort:'tel.', email:'E-mail',
+    offerType:'Typ oferty', otype:{pg:'Oferta PG', pl:'Private Label'},
+    brand:'Marka klienta', packaging:'Opakowanie', moq:'MOQ / minimalne zamówienie', leadTime:'Termin realizacji',
+    pack:{'Projekt klienta':'Projekt klienta','Projekt do opracowania przez PG':'Projekt do opracowania przez PG','Do ustalenia':'Do ustalenia'},
+    client:'Klient', contact:'Osoba kontaktowa', date:'Data oferty', valid:'Ważna do', currency:'Waluta', terms:'Incoterms / warunki', termsShort:'Warunki', curTerms:'Waluta · warunki', notes:'Uwagi',
+    dated:(d,v)=>`z dnia ${d} · ważna do ${v}`,
+    th:{no:'Lp.', prod:'Produkt · EAN', price:'Cena netto/szt.', qty:'Ilość (szt.)', upc:'Szt./ karton', cartons:'Kartony', pallets:'Palety (szac.)', disc:'Rabat', value:'Wartość netto'},
+    emptyRow:'Brak pozycji w ofercie',
+    totCartons:'Kartony razem', totPallets:'Palety (szac.)', totGross:'Suma netto', totGrossLong:'Suma netto (przed rabatem)', totDisc:'Rabat', totTotal:'Razem netto', totTotalCaps:'RAZEM NETTO',
+    discPaper:p=>` (w tym ${p}% globalnie)`, discText:p=>` (w tym globalny ${p}%)`,
+    unpricedPaper:n=>`Pozycje bez ceny (${n}) nie są wliczone do sumy.`, unpricedText:n=>`(pozycje bez ceny: ${n} — nie wliczono ich do sumy)`,
+    noPrices:'Ceny zostaną potwierdzone w osobnej wiadomości.',
+    logiTitle:'Logistyka i termin przydatności', lId:'ID', lEan:'EAN', lType:'Typ kartonu', lDims:'Wymiary kartonu', lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lShelf:'Termin przydatności',
+    days:'dni', shelfNote:{'360 days testing in progress':'360 dni — w trakcie testów'},
+    foot:'Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg katalogu produktów GaliCrisp; palety szacunkowe (kartony ÷ kartony na palecie).',
+    footText:'Ceny netto, bez VAT. EAN i dane logistyczne wg katalogu produktów GaliCrisp.',
+    items:'POZYCJE', noItems:'(brak pozycji)',
+    tQty:'Ilość', tPrice:'Cena', tDisc:'Rabat', tValue:'Wartość', tLogi:'Logistyka', tTbd:'cena do ustalenia', tPerUnit:'/szt. netto', tEst:'(szac.)', tShelf:'termin przydatności',
+    ctn:'kart.', pcs:'szt.', palAbbr:()=>'pal.', perCarton:'szt./karton',
+    head:['Lp.','ID','EAN','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Szt./karton','Kartony','Palety (szac.)','Termin przydatności (dni)','Rabat %','Wartość netto'],
+    sumCP:'Kartony razem / palety (szac.)', sumDisc:p=>`Rabat (w tym globalny ${p}%)`,
+    file:'oferta', fileSuffixPL:'_PL'
+  },
+  en:{
+    docPG:'Commercial offer — GaliCrisp', docPL:'Private Label offer', plSub:'Produced under the customer\'s brand',
+    cats:{'CRISPBREAD':'CRISPBREADS','CRACKERS':'CRACKERS','SNACKS':'BAKERY SNACKS','SAVOURY BISCUITS':'SAVOURY BISCUITS'},
+    address:'Address', taxId:'Tax ID', phone:'Phone', phoneShort:'phone', email:'E-mail',
+    offerType:'Offer type', otype:{pg:'GaliCrisp brand', pl:'Private Label'},
+    brand:'Customer\'s brand', packaging:'Packaging', moq:'MOQ / minimum order quantity', leadTime:'Lead time',
+    pack:{'Projekt klienta':'Customer\'s design','Projekt do opracowania przez PG':'Design developed by Piekarnia Galicyjska','Do ustalenia':'To be agreed'},
+    client:'Customer', contact:'Contact person', date:'Offer date', valid:'Valid until', currency:'Currency', terms:'Incoterms / terms', termsShort:'Terms', curTerms:'Currency · terms', notes:'Notes',
+    dated:(d,v)=>`dated ${d} · valid until ${v}`,
+    th:{no:'No.', prod:'Product · EAN', price:'Net price/unit', qty:'Quantity (pcs)', upc:'Units/ carton', cartons:'Cartons', pallets:'Pallets (est.)', disc:'Discount', value:'Net value'},
+    emptyRow:'No items in this offer',
+    totCartons:'Total cartons', totPallets:'Pallets (est.)', totGross:'Net subtotal', totGrossLong:'Net subtotal (before discount)', totDisc:'Discount', totTotal:'Net total', totTotalCaps:'NET TOTAL',
+    discPaper:p=>` (incl. ${p}% overall)`, discText:p=>` (incl. ${p}% overall)`,
+    unpricedPaper:n=>`Items without a price (${n}) are not included in the total.`, unpricedText:n=>`(items without a price: ${n} — not included in the total)`,
+    noPrices:'Prices will be confirmed in a separate message.',
+    logiTitle:'Logistics and shelf life', lId:'ID', lEan:'EAN', lType:'Carton type', lDims:'Carton dimensions', lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lShelf:'Shelf life',
+    days:'days', shelfNote:{'360 days testing in progress':'360 days — testing in progress'},
+    foot:'Prices are net, excluding VAT. Assortment as per the approved product list of 04/11/2026. EAN and logistics data as per the GaliCrisp product catalogue; pallet quantities are estimates (cartons ÷ cartons per pallet).',
+    footText:'Net prices, excluding VAT. EAN and logistics data as per the GaliCrisp product catalogue.',
+    items:'ITEMS', noItems:'(no items)',
+    tQty:'Quantity', tPrice:'Price', tDisc:'Discount', tValue:'Value', tLogi:'Logistics', tTbd:'price to be confirmed', tPerUnit:'/unit net', tEst:'(est.)', tShelf:'shelf life',
+    ctn:'ctn', pcs:'pcs', palAbbr:n=>palWordEn(n), perCarton:'pcs/carton',
+    head:['No.','ID','EAN','Product name','Line','Weight (g)','Net price/unit','Quantity (pcs)','Units/carton','Cartons','Pallets (est.)','Shelf life (days)','Discount %','Net value'],
+    sumCP:'Total cartons / pallets (est.)', sumDisc:p=>`Discount (incl. ${p}% overall)`,
+    file:'offer', fileSuffixPL:'_PrivateLabel'
+  }
+};
+/* number/date formats per document language; 'pl' reuses the original helpers so Polish output is unchanged */
+const palWordEn = n => (Math.round(n*100)/100===1 && !(n>0 && n<0.005)) ? 'pallet' : 'pallets';
+const enN2 = new Intl.NumberFormat('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});
+const enN0 = new Intl.NumberFormat('en-GB',{maximumFractionDigits:0});
+const enNq = new Intl.NumberFormat('en-GB',{maximumFractionDigits:2});
+const enQ = n => n==null || !isFinite(n) ? '—' : enNq.format(Math.round(n*100)/100);
+const EN_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const FMT = {
+  pl:{n2:v=>nf2.format(v), n0:v=>nf0.format(v), q:fmtQ, pal:fmtPal, palWord, pct:v=>String(v).replace('.',','), money:(n,cur)=>money(n,cur), date:plDate, dateLong:plDate, height:v=>v},
+  en:{n2:v=>enN2.format(v), n0:v=>enN0.format(v), q:enQ, pal:n=>n==null || !isFinite(n) ? '—' : (n>0 && n<0.005 ? '< 0.01' : enQ(n)), palWord:palWordEn, pct:v=>String(v),
+      money:(n,cur)=>n==null || !isFinite(n) ? '—' : enN2.format(n) + ' ' + (cur || offer.meta.currency),
+      date:iso=>{ if(!iso) return '—'; const [y,m,d] = iso.split('-'); return `${d}/${m}/${y}`; },
+      dateLong:iso=>{ if(!iso) return '—'; const [y,m,d] = iso.split('-'); return `${Number(d)} ${EN_MONTHS[Number(m)-1]||m} ${y}`; },
+      height:v=>String(v).replace(/(\d),(\d)/g,'$1.$2')}
+};
+const docLang = () => offer.lang==='en' ? 'en' : 'pl';
+const docTitle = (lg = docLang()) => isPL() ? I18N[lg].docPL : I18N[lg].docPG;
+/* Private Label details, only the filled-in ones (empty for Oferta PG); the packaging choice is translated, free text is not */
+function plRows(lg = docLang()){
   if (!isPL()) return [];
-  const m = offer.meta;
-  return [['Marka klienta',m.brand],['Opakowanie',m.packaging],['MOQ / minimalne zamówienie',m.moq],['Termin realizacji',m.leadTime]]
+  const m = offer.meta, D = I18N[lg];
+  return [[D.brand,m.brand],[D.packaging,D.pack[m.packaging]||m.packaging],[D.moq,m.moq],[D.leadTime,m.leadTime]]
     .map(([k,v])=>[k,String(v||'').trim()]).filter(r=>r[1]);
 }
 function exampleOffer(){
@@ -1186,7 +1308,7 @@ function sanitizeOffer(o){
     qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):byId[i.id]._upc, disc: Number(i.disc)||0,
     ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || byId[i.id]._cpp) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
   })) : [];
-  return {type: o.type==='pl' ? 'pl' : 'pg', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
+  return {type: o.type==='pl' ? 'pl' : 'pg', lang: o.lang==='en' ? 'en' : 'pl', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
 }
 let offer = sanitizeOffer(store.get(K_DRAFT)) || exampleOffer();
 const inOffer = id => offer.items.some(i=>i.id===id);
@@ -1433,6 +1555,7 @@ function renderMeta(){
   $('#exampleNote').hidden = !offer.isExample;
   $('#metaBox').open = offer.items.length===0;
   renderType();
+  renderLang();
   renderMetaSum();
 }
 let typeRendered = false;
@@ -1452,6 +1575,31 @@ function renderType(){
   const w = $('#plWrap'); w.classList.toggle('open', pl); w.inert = !pl;
   $('#fabTag').hidden = !pl;
   const mt = $('#metaType'); mt.textContent = pl ? 'PL' : 'PG'; mt.title = 'Typ oferty: ' + OTYPE_LBL[t]; mt.classList.toggle('pl', pl);
+}
+/* document language: the panel switch and the preview-dialog switch show the same state */
+let langRendered = false;
+function renderLang(){
+  const lg = docLang(), en = lg==='en';
+  const sws = ['olang','pvLang'];
+  if (!langRendered){
+    langRendered = true;
+    const th = document.querySelectorAll('.olang-thumb');
+    th.forEach(el=>{ el.style.transition = 'none'; });
+    requestAnimationFrame(()=>requestAnimationFrame(()=>th.forEach(el=>{ el.style.transition = ''; })));
+  }
+  $('#olangSw').dataset.lang = lg; $('#pvLangSw').dataset.lang = lg;
+  sws.forEach(pre=>['pl','en'].forEach(k=>{ const b = $('#'+pre+'-'+k); b.setAttribute('aria-checked', String(k===lg)); b.tabIndex = k===lg ? 0 : -1; }));
+  $('#metaLang').hidden = !en;
+  $('#fabLang').hidden = !en;
+}
+function setLang(lg){
+  if (!I18N[lg] || docLang()===lg) return;
+  offer.lang = lg;
+  renderLang(); persist();
+  if ($('#previewDlg').open){
+    renderPaper();
+    const g = G(); if (g) g.fromTo('#paper',{opacity:.35},{opacity:1, duration:.28, ease:'power1.out', clearProps:'opacity'});
+  }
 }
 function setType(t){
   if (!OTYPE_LBL[t] || offer.type===t) return;
@@ -1636,6 +1784,17 @@ $('#otypeSw').addEventListener('keydown', e=>{
   if (!t) return;
   e.preventDefault(); setType(t); $('#otype-'+t).focus();
 });
+['olang','pvLang'].forEach(pre=>{
+  const sw = $('#'+pre+'Sw');
+  sw.addEventListener('click', e=>{ const b = e.target.closest('[data-olang]'); if (b){ setLang(b.dataset.olang); b.focus(); } });
+  sw.addEventListener('keydown', e=>{
+    const k = e.key; let lg = null;
+    if (k==='ArrowLeft' || k==='ArrowUp' || k==='ArrowRight' || k==='ArrowDown') lg = docLang()==='en' ? 'pl' : 'en'; /* two options: arrows move to the other one (wrapping) */
+    else if (k==='Home') lg = 'pl'; else if (k==='End') lg = 'en';
+    if (!lg) return;
+    e.preventDefault(); setLang(lg); $('#'+pre+'-'+lg).focus();
+  });
+});
 $('#items').addEventListener('input', e=>{
   const li = e.target.closest('.item'); const f = e.target.dataset.f; if (!li || !f) return;
   const it = offer.items.find(i=>i.id===li.dataset.id); if (!it) return;
@@ -1817,26 +1976,27 @@ function exportRows(){
     return {lp:i+1, id:p.id, ean:p._ean, name:p.name, line:p._line, weight:p.weight, price:it.price, units:unitsOf(it), cartons:cartonsOf(it), upc:it.upc, pallets:palletsOf(it), shelf:p._log.shelfLifeDays||null, disc:it.disc||0, value:lineValue(it)};
   });
 }
-const HEAD = ['Lp.','ID','EAN','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Szt./karton','Kartony','Palety (szac.)','Termin przydatności (dni)','Rabat %','Wartość netto'];
 const num2 = n => n==null || !isFinite(n) ? '' : String(Math.round(n*100)/100).replace('.',',');
 const num3 = n => n==null || !isFinite(n) ? '' : String(Math.round(n*1000)/1000).replace('.',',');
 /* EAN as an Excel text formula so 13 digits are not shown as 5,9E+12 */
 const xlText = s => s ? `="${s}"` : '';
+/* spreadsheet table: labels follow the offer language, numeric cells stay in the Polish-Excel format */
 function tableMatrix(){
-  const cur = offer.meta.currency, t = totals(), W = HEAD.length;
-  const rows = [HEAD.map(h=>h==='Cena netto/szt.'||h==='Wartość netto'?`${h} (${cur})`:h)];
+  const D = I18N[docLang()], F = FMT[docLang()];
+  const cur = offer.meta.currency, t = totals(), W = D.head.length;
+  const rows = [D.head.map((h,i)=>i===6||i===13?`${h} (${cur})`:h)];
   exportRows().forEach(r=>rows.push([r.lp, r.id, xlText(r.ean), r.name, r.line, r.weight, dec(r.price), r.units, r.upc, num2(r.cartons), num3(r.pallets), r.shelf==null?'':r.shelf, String(r.disc).replace('.',','), dec(r.value)]));
   const sum = (label, cells) => { const a = Array(W).fill(''); a[3] = label; Object.entries(cells).forEach(([k,v])=>{ a[+k] = v; }); return a; };
   rows.push([]);
-  rows.push(sum('Kartony razem / palety (szac.)', {9:num2(t.cartons), 10:num3(t.pallets)}));
-  rows.push(sum('Suma netto (przed rabatem)', {13: t.any?dec(t.gross):''}));
-  rows.push(sum(`Rabat (w tym globalny ${String(offer.globalDiscount||0).replace('.',',')}%)`, {13: t.any?dec(-t.disc):''}));
-  rows.push(sum('Razem netto', {13: t.any?dec(t.total):''}));
+  rows.push(sum(D.sumCP, {9:num2(t.cartons), 10:num3(t.pallets)}));
+  rows.push(sum(D.totGrossLong, {13: t.any?dec(t.gross):''}));
+  rows.push(sum(D.sumDisc(F.pct(offer.globalDiscount||0)), {13: t.any?dec(-t.disc):''}));
+  rows.push(sum(D.totTotal, {13: t.any?dec(t.total):''}));
   return rows;
 }
 function metaRows(){
-  const m = offer.meta;
-  return [[docTitle(),COMPANY.name],['Adres',COMPANY.addressLines.join(', ')],['NIP',COMPANY.taxId],['Telefon',COMPANY.phone],['E-mail',COMPANY.email],[],['Typ oferty',OTYPE_LBL[offer.type]],...plRows(),['Klient',m.client],['Osoba kontaktowa',m.contact],['Data oferty',plDate(m.date)],['Ważna do',plDate(m.validUntil)],['Waluta',m.currency],['Incoterms / warunki',m.terms],['Uwagi',m.notes],[]];
+  const m = offer.meta, D = I18N[docLang()], F = FMT[docLang()];
+  return [[docTitle(),COMPANY.name],[D.address,COMPANY.addressLines.join(', ')],[D.taxId,COMPANY.taxId],[D.phone,COMPANY.phone],[D.email,COMPANY.email],[],[D.offerType,D.otype[offer.type]],...plRows(),[D.client,m.client],[D.contact,m.contact],[D.date,F.date(m.date)],[D.valid,F.date(m.validUntil)],[D.currency,m.currency],[D.terms,m.terms],[D.notes,m.notes],[]];
 }
 function toCsv(){
   const q = v => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
@@ -1844,45 +2004,48 @@ function toCsv(){
 }
 function toTsv(){
   const c = v => String(v ?? '').replace(/[\t\r\n]+/g,' ');
-  return [['Typ oferty',OTYPE_LBL[offer.type]], ...plRows(), [], ...tableMatrix()].map(r=>r.map(c).join('\t')).join('\n');
+  const D = I18N[docLang()];
+  return [[D.offerType,D.otype[offer.type]], ...plRows(), [], ...tableMatrix()].map(r=>r.map(c).join('\t')).join('\n');
 }
 function toText(){
+  const lg = docLang(), D = I18N[lg], F = FMT[lg];
   const m = offer.meta, cur = m.currency, t = totals();
   const L = [];
   L.push(docTitle());
   L.push(`${COMPANY.name} · ${COMPANY.addressLines.join(', ')}`);
-  L.push(`NIP: ${COMPANY.taxId} · tel. ${COMPANY.phone} · ${COMPANY.email}`);
+  L.push(`${D.taxId}: ${COMPANY.taxId} · ${D.phoneShort} ${COMPANY.phone} · ${COMPANY.email}`);
   L.push('');
-  L.push(`Typ oferty: ${OTYPE_LBL[offer.type]}`);
+  L.push(`${D.offerType}: ${D.otype[offer.type]}`);
   plRows().forEach(([k,v])=>L.push(`${k}: ${v}`));
-  if (m.client) L.push(`Klient: ${m.client}`);
-  if (m.contact) L.push(`Osoba kontaktowa: ${m.contact}`);
-  L.push(`Data oferty: ${plDate(m.date)}   Ważna do: ${plDate(m.validUntil)}`);
-  L.push(`Waluta: ${cur}${m.terms?`   Warunki: ${m.terms}`:''}`);
+  if (m.client) L.push(`${D.client}: ${m.client}`);
+  if (m.contact) L.push(`${D.contact}: ${m.contact}`);
+  L.push(`${D.date}: ${F.dateLong(m.date)}   ${D.valid}: ${F.dateLong(m.validUntil)}`);
+  L.push(`${D.currency}: ${cur}${m.terms?`   ${D.termsShort}: ${m.terms}`:''}`);
   L.push('');
-  L.push('POZYCJE');
-  if (!offer.items.length) L.push('(brak pozycji)');
+  L.push(D.items);
+  if (!offer.items.length) L.push(D.noItems);
   offer.items.forEach((it,i)=>{
     const p = byId[it.id], u = unitsOf(it);
     L.push(`${i+1}. ${p.name} [${p.id}]${p._ean?` · EAN ${p._ean}`:''}`);
     L.push(`   ${p._line} · ${p.weight} g`);
-    const qty = it.mode==='kart' ? `${nf0.format(it.qty)} kart. × ${it.upc} szt. = ${nf0.format(u)} szt.`
-      : it.mode==='pal' ? `${fmtQ(it.qty)} ${palWord(it.qty)} × ${p._cpp} kart. × ${it.upc} szt. = ${nf0.format(u)} szt.` : `${nf0.format(u)} szt.`;
-    const price = it.price==null ? 'cena do ustalenia' : `${nf2.format(it.price)} ${cur}/szt. netto`;
-    L.push(`   Ilość: ${qty} · Cena: ${price}${it.disc?` · Rabat: ${String(it.disc).replace('.',',')}%`:''}${lineValue(it)!=null?` · Wartość: ${money(lineValue(it),cur)}`:''}`);
+    if (lg==='en' && p._k && p._k.description) L.push(`   ${p._k.description}`);
+    const qty = it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc} ${D.pcs} = ${F.n0(u)} ${D.pcs}`
+      : it.mode==='pal' ? `${F.q(it.qty)} ${F.palWord(it.qty)} × ${p._cpp} ${D.ctn} × ${it.upc} ${D.pcs} = ${F.n0(u)} ${D.pcs}` : `${F.n0(u)} ${D.pcs}`;
+    const price = it.price==null ? D.tTbd : `${F.n2(it.price)} ${cur}${D.tPerUnit}`;
+    L.push(`   ${D.tQty}: ${qty} · ${D.tPrice}: ${price}${it.disc?` · ${D.tDisc}: ${F.pct(it.disc)}%`:''}${lineValue(it)!=null?` · ${D.tValue}: ${F.money(lineValue(it),cur)}`:''}`);
     const pl = palletsOf(it);
-    L.push(`   Logistyka: ${it.upc} szt./karton · ${fmtQ(cartonsOf(it))} kart.${pl!=null?` · ${fmtPal(pl)} ${palWord(pl)} (szac.)`:''}${p._log.shelfLifeDays?` · termin przydatności ${p._log.shelfLifeDays} dni`:''}`);
+    L.push(`   ${D.tLogi}: ${it.upc} ${D.perCarton} · ${F.q(cartonsOf(it))} ${D.ctn}${pl!=null?` · ${F.pal(pl)} ${F.palWord(pl)} ${D.tEst}`:''}${p._log.shelfLifeDays?` · ${D.tShelf} ${p._log.shelfLifeDays} ${D.days}`:''}`);
   });
   L.push('');
-  if (offer.items.length) L.push(`Kartony razem: ${fmtQ(t.cartons)} · Palety (szac.): ${fmtPal(t.pallets)}`);
+  if (offer.items.length) L.push(`${D.totCartons}: ${F.q(t.cartons)} · ${D.totPallets}: ${F.pal(t.pallets)}`);
   if (t.any){
-    L.push(`Suma netto (przed rabatem): ${money(t.gross,cur)}`);
-    if (t.disc>0) L.push(`Rabat${offer.globalDiscount?` (w tym globalny ${String(offer.globalDiscount).replace('.',',')}%)`:''}: −${money(t.disc,cur)}`);
-    L.push(`RAZEM NETTO: ${money(t.total,cur)}`);
-    if (t.unpriced) L.push(`(pozycje bez ceny: ${t.unpriced} — nie wliczono ich do sumy)`);
-  } else L.push('Ceny zostaną potwierdzone w osobnej wiadomości.');
-  if (m.notes){ L.push(''); L.push('Uwagi:'); L.push(m.notes); }
-  L.push(''); L.push('Ceny netto, bez VAT. EAN i dane logistyczne wg katalogu produktów GaliCrisp.');
+    L.push(`${D.totGrossLong}: ${F.money(t.gross,cur)}`);
+    if (t.disc>0) L.push(`${D.totDisc}${offer.globalDiscount?D.discText(F.pct(offer.globalDiscount)):''}: −${F.money(t.disc,cur)}`);
+    L.push(`${D.totTotalCaps}: ${F.money(t.total,cur)}`);
+    if (t.unpriced) L.push(D.unpricedText(t.unpriced));
+  } else L.push(D.noPrices);
+  if (m.notes){ L.push(''); L.push(`${D.notes}:`); L.push(m.notes); }
+  L.push(''); L.push(D.footText);
   return L.join('\n');
 }
 function showCopyFallback(text){
@@ -1914,7 +2077,7 @@ let downloads = null;
 $('#btnCsv').addEventListener('click', async ()=>{
   if (!downloads) return;
   if (!offer.items.length) return toast('Dodaj produkty, aby pobrać CSV', true);
-  const filename = `oferta_${offer.meta.client.trim() ? slug(offer.meta.client)+'_' : ''}${offer.meta.date || isoDate(new Date())}${isPL()?'_PL':''}.csv`;
+  const D = I18N[docLang()], filename = `${D.file}_${offer.meta.client.trim() ? slug(offer.meta.client)+'_' : ''}${offer.meta.date || isoDate(new Date())}${isPL()?D.fileSuffixPL:''}.csv`;
   try {
     await downloads.save({filename, data:new Blob(['﻿'+toCsv()],{type:'text/csv'})});
     toast(`Zapisano ${filename}`);
@@ -1927,49 +2090,53 @@ $('#btnCsv').addEventListener('click', async ()=>{
 
 /* preview */
 function renderPaper(){
+  const lg = docLang(), D = I18N[lg], F = FMT[lg], en = lg==='en';
   const m = offer.meta, cur = m.currency, t = totals();
   const rows = offer.items.map((it,i)=>{
     const p = byId[it.id], u = unitsOf(it), v = lineValue(it), pl = palletsOf(it);
-    const how = it.mode==='kart' ? `${nf0.format(it.qty)} kart. × ${it.upc}` : it.mode==='pal' ? `${fmtQ(it.qty)} pal. × ${p._cpp} × ${it.upc}` : '';
-    return `<tr><td>${i+1}</td><td class="p-prod"><b>${esc(p.name)}</b><br><span class="p-sub2">${p.id} · ${p.weight} g · ${esc(p._line)}</span>${p._ean?`<br><span class="p-sub2">EAN <span class="p-ean">${p._ean}</span></span>`:''}</td><td class="n">${it.price==null?'—':nf2.format(it.price)}</td><td class="n">${nf0.format(u)}${how?`<br><span class="p-sub2">${how}</span>`:''}</td><td class="n">${it.upc}</td><td class="n">${fmtQ(cartonsOf(it))}</td><td class="n">${pl==null?'—':fmtPal(pl)}</td><td class="n">${it.disc?String(it.disc).replace('.',',')+'%':'—'}</td><td class="n"><b>${v==null?'—':nf2.format(v)}</b></td></tr>`;
+    const how = it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc}` : it.mode==='pal' ? `${F.q(it.qty)} ${D.palAbbr(it.qty)} × ${p._cpp} × ${it.upc}` : '';
+    const desc = en && p._k && p._k.description ? `<br><span class="p-sub2 p-desc">${esc(p._k.description)}</span>` : '';
+    return `<tr><td>${i+1}</td><td class="p-prod"><b>${esc(p.name)}</b><br><span class="p-sub2">${p.id} · ${p.weight} g · ${esc(p._line)}</span>${p._ean?`<br><span class="p-sub2">EAN <span class="p-ean">${p._ean}</span></span>`:''}${desc}</td><td class="n">${it.price==null?'—':F.n2(it.price)}</td><td class="n">${F.n0(u)}${how?`<br><span class="p-sub2">${how}</span>`:''}</td><td class="n">${it.upc}</td><td class="n">${F.q(cartonsOf(it))}</td><td class="n">${pl==null?'—':F.pal(pl)}</td><td class="n">${it.disc?F.pct(it.disc)+'%':'—'}</td><td class="n"><b>${v==null?'—':F.n2(v)}</b></td></tr>`;
   }).join('');
   const logi = offer.items.map((it,i)=>{
     const p = byId[it.id], L = p._log;
-    return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?nf0.format(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight||'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' dni'+(L.shelfLifeNote?'*':''):'—'}</td></tr>`;
+    return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?F.n0(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight?F.height(L.palletHeight):'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' '+D.days+(L.shelfLifeNote?'*':''):'—'}</td></tr>`;
   }).join('');
-  const starNote = offer.items.some(it=>byId[it.id]._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(SHELF_NOTE_PL['360 days testing in progress'])}</div>` : '';
+  const starNote = offer.items.some(it=>byId[it.id]._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(D.shelfNote['360 days testing in progress'])}</div>` : '';
   const co = COMPANY;
+  const catLine = CAT_ORDER.map((c,i)=>{ const s = D.cats[c].toLowerCase(); return i ? s : s.charAt(0).toUpperCase() + s.slice(1); }).join(' · ');
+  $('#paper').lang = lg;
   $('#paper').innerHTML = `
     <div class="p-head">
-      <div><img class="p-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="p-brand">Piekarnia Galicyjska</div><div class="p-sub">Pieczywo chrupkie · krakersy · snacki piekarnicze · przekąski wytrawne</div>
-        <div class="p-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}<br>NIP: ${esc(co.taxId)} · tel. ${esc(co.phone)} · ${esc(co.email)}</div></div>
-      <div class="p-doc"><div class="t">${esc(docTitle())}</div>${isPL()?`<div class="p-pl">Produkcja pod marką klienta${m.brand.trim()?': '+esc(m.brand.trim()):''}</div>`:''}<div class="p-sub">z dnia ${plDate(m.date)} · ważna do ${plDate(m.validUntil)}</div></div>
+      <div><img class="p-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="p-brand">Piekarnia Galicyjska</div><div class="p-sub">${esc(catLine)}</div>
+        <div class="p-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}<br>${D.taxId}: ${esc(co.taxId)} · ${D.phoneShort} ${esc(co.phone)} · ${esc(co.email)}</div></div>
+      <div class="p-doc"><div class="t">${esc(docTitle())}</div>${isPL()?`<div class="p-pl">${esc(D.plSub)}${m.brand.trim()?': '+esc(m.brand.trim()):''}</div>`:''}<div class="p-sub">${D.dated(F.dateLong(m.date), F.dateLong(m.validUntil))}</div></div>
     </div>
     <div class="p-parties">
-      <div><div class="p-k">Klient</div><div class="p-v">${esc(m.client)||'—'}</div></div>
-      <div><div class="p-k">Osoba kontaktowa</div><div class="p-v">${esc(m.contact)||'—'}</div></div>
-      <div><div class="p-k">Waluta · warunki</div><div class="p-v">${esc(cur)}${m.terms?' · '+esc(m.terms):''}</div></div>
-      <div><div class="p-k">Typ oferty</div><div class="p-v">${OTYPE_LBL[offer.type]}</div></div>
+      <div><div class="p-k">${D.client}</div><div class="p-v">${esc(m.client)||'—'}</div></div>
+      <div><div class="p-k">${D.contact}</div><div class="p-v">${esc(m.contact)||'—'}</div></div>
+      <div><div class="p-k">${D.curTerms}</div><div class="p-v">${esc(cur)}${m.terms?' · '+esc(m.terms):''}</div></div>
+      <div><div class="p-k">${D.offerType}</div><div class="p-v">${D.otype[offer.type]}</div></div>
       ${plRows().map(([k,v])=>`<div><div class="p-k">${esc(k)}</div><div class="p-v">${esc(v)}</div></div>`).join('')}
     </div>
     <div class="p-tablewrap"><table>
-      <thead><tr><th>Lp.</th><th>Produkt · EAN</th><th class="n">Cena netto/szt. (${esc(cur)})</th><th class="n">Ilość (szt.)</th><th class="n">Szt./ karton</th><th class="n">Kartony</th><th class="n">Palety (szac.)</th><th class="n">Rabat</th><th class="n">Wartość netto (${esc(cur)})</th></tr></thead>
-      <tbody>${rows || '<tr><td colspan="9" style="text-align:center;color:var(--paper-ink-2);padding:24px">Brak pozycji w ofercie</td></tr>'}</tbody>
+      <thead><tr><th>${D.th.no}</th><th>${D.th.prod}</th><th class="n">${D.th.price} (${esc(cur)})</th><th class="n">${D.th.qty}</th><th class="n">${D.th.upc}</th><th class="n">${D.th.cartons}</th><th class="n">${D.th.pallets}</th><th class="n">${D.th.disc}</th><th class="n">${D.th.value} (${esc(cur)})</th></tr></thead>
+      <tbody>${rows || `<tr><td colspan="9" style="text-align:center;color:var(--paper-ink-2);padding:24px">${D.emptyRow}</td></tr>`}</tbody>
     </table></div>
     <div class="p-tot">
-      <div><span>Kartony razem</span><span>${fmtQ(t.cartons)}</span></div>
-      <div><span>Palety (szac.)</span><span>${fmtPal(t.pallets)}</span></div>
-      <div><span>Suma netto</span><span>${t.any?money(t.gross,cur):'—'}</span></div>
-      <div><span>Rabat${offer.globalDiscount?` (w tym ${String(offer.globalDiscount).replace('.',',')}% globalnie)`:''}</span><span>${t.any&&t.disc>0?'−'+money(t.disc,cur):'—'}</span></div>
-      <div class="g"><span>Razem netto</span><span>${t.any?money(t.total,cur):'—'}</span></div>
+      <div><span>${D.totCartons}</span><span>${F.q(t.cartons)}</span></div>
+      <div><span>${D.totPallets}</span><span>${F.pal(t.pallets)}</span></div>
+      <div><span>${D.totGross}</span><span>${t.any?F.money(t.gross,cur):'—'}</span></div>
+      <div><span>${D.totDisc}${offer.globalDiscount?D.discPaper(F.pct(offer.globalDiscount)):''}</span><span>${t.any&&t.disc>0?'−'+F.money(t.disc,cur):'—'}</span></div>
+      <div class="g"><span>${D.totTotal}</span><span>${t.any?F.money(t.total,cur):'—'}</span></div>
     </div>
-    ${t.unpriced&&offer.items.length?`<div class="p-foot">Pozycje bez ceny (${t.unpriced}) nie są wliczone do sumy.</div>`:''}
-    ${m.notes?`<div class="p-notes"><div class="p-k" style="margin-bottom:4px">Uwagi</div>${esc(m.notes)}</div>`:''}
-    ${logi ? `<div class="p-sec">Logistyka i termin przydatności</div><div class="p-tablewrap p-logi"><table>
-      <thead><tr><th>Lp.</th><th>ID</th><th>EAN</th><th>Typ kartonu</th><th>Wymiary kartonu</th><th class="n">Szt./karton</th><th class="n">Kart./paleta</th><th class="n">Szt./paleta</th><th class="n">Wys. palety</th><th class="n">Termin przydatności</th></tr></thead>
+    ${t.unpriced&&offer.items.length?`<div class="p-foot">${D.unpricedPaper(t.unpriced)}</div>`:''}
+    ${m.notes?`<div class="p-notes"><div class="p-k" style="margin-bottom:4px">${D.notes}</div>${esc(m.notes)}</div>`:''}
+    ${logi ? `<div class="p-sec">${D.logiTitle}</div><div class="p-tablewrap p-logi"><table>
+      <thead><tr><th>${D.th.no}</th><th>${D.lId}</th><th>${D.lEan}</th><th>${D.lType}</th><th>${D.lDims}</th><th class="n">${D.lUpc}</th><th class="n">${D.lCpp}</th><th class="n">${D.lUpp}</th><th class="n">${D.lHeight}</th><th class="n">${D.lShelf}</th></tr></thead>
       <tbody>${logi}</tbody></table></div>${starNote}` : ''}
-    <div class="p-foot">Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg katalogu produktów GaliCrisp; palety szacunkowe (kartony ÷ kartony na palecie).</div>
-    <div class="p-cofoot"><b>${esc(co.name)}</b><span>${co.addressLines.map(esc).join(', ')}</span><span>NIP: ${esc(co.taxId)}</span><span>tel. ${esc(co.phone)}</span><span>${esc(co.email)}</span></div>`;
+    <div class="p-foot">${esc(D.foot)}</div>
+    <div class="p-cofoot"><b>${esc(co.name)}</b><span>${co.addressLines.map(esc).join(', ')}</span><span>${D.taxId}: ${esc(co.taxId)}</span><span>${D.phoneShort} ${esc(co.phone)}</span><span>${esc(co.email)}</span></div>`;
 }
 $('#btnPreview').addEventListener('click', ()=>{ renderPaper(); try { $('#previewDlg').showModal(); } catch(e){} $('#pvClose').focus(); });
 $('#pvClose').addEventListener('click', ()=>$('#previewDlg').close());
@@ -1994,7 +2161,7 @@ function renderSaved(){
     const when = isNaN(d) ? '' : `${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
     const n = (s.offer && s.offer.items || []).length;
     const st = s.offer && s.offer.type==='pl' ? 'pl' : 'pg';
-    return `<li data-sid="${esc(s.sid)}"><div><div class="sname">${esc(s.name)} <span class="badge badge-type ${st}" title="Typ oferty">${OTYPE_LBL[st]}</span>${s.sid===offer.savedId?' <span class="badge badge-new">otwarta</span>':''}</div><div class="smeta">${when} · ${n} poz. · ${esc(s.offer?.meta?.currency||'')}</div></div><div class="sbtns"><button type="button" class="btn btn-sm" id="load-${esc(s.sid)}" data-load>Wczytaj</button><button type="button" class="btn btn-sm btn-ghost btn-danger" id="del-${esc(s.sid)}" data-del>Usuń</button></div></li>`;
+    return `<li data-sid="${esc(s.sid)}"><div><div class="sname">${esc(s.name)} <span class="badge badge-type ${st}" title="Typ oferty">${OTYPE_LBL[st]}</span>${s.offer && s.offer.lang==='en'?' <span class="badge badge-type badge-lang" title="Język oferty: angielski">EN</span>':''}${s.sid===offer.savedId?' <span class="badge badge-new">otwarta</span>':''}</div><div class="smeta">${when} · ${n} poz. · ${esc(s.offer?.meta?.currency||'')}</div></div><div class="sbtns"><button type="button" class="btn btn-sm" id="load-${esc(s.sid)}" data-load>Wczytaj</button><button type="button" class="btn btn-sm btn-ghost btn-danger" id="del-${esc(s.sid)}" data-del>Usuń</button></div></li>`;
   }).join('') : '<li style="justify-content:center;color:var(--ink-3)">Brak zapisanych ofert. Użyj „Zapisz szkic”.</li>';
 }
 $('#btnSaved').addEventListener('click', ()=>{ renderSaved(); try { $('#savedDlg').showModal(); } catch(e){} });
@@ -2023,8 +2190,8 @@ $('#savedList').addEventListener('click', e=>{
 $('#btnClear').addEventListener('click', async ()=>{
   const ok = await confirmBox('Wyczyścić ofertę?', 'Usunie to wszystkie pozycje i dane klienta z bieżącego szkicu. Zapisane oferty pozostaną bez zmian.', 'Wyczyść');
   if (!ok) return;
-  const cur = offer.meta.currency, typ = offer.type;
-  offer = newOffer(); offer.meta.currency = cur; offer.type = typ;
+  const cur = offer.meta.currency, typ = offer.type, lg = docLang();
+  offer = newOffer(); offer.meta.currency = cur; offer.type = typ; offer.lang = lg;
   persist(); refreshAll(); toast('Oferta wyczyszczona');
 });
 
