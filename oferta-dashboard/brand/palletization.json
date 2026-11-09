@@ -1,5 +1,5 @@
 {
- "_source": "GaliCrisp_products_table_EN-OFERTA.xlsx (Arkusz2), received 2026-11-09; authoritative palletisation data, supersedes catalogue logistics",
+ "_source": "GaliCrisp_products_table_EN-OFERTA-V2.xlsx (Arkusz2), received 2026-11-09; authoritative palletisation data, supersedes catalogue logistics (V2 corrects packaging descriptions)",
  "products": {
   "PG01": {
    "name": "CRISPBREAD 3 SEEDS 135 G",
@@ -94,7 +94,7 @@
   "PG06": {
    "name": "CRISPBREAD 3 SEEDS 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 270,
    "shelfLifePickupDays": 240,
@@ -112,7 +112,7 @@
   "PG07": {
    "name": "CRISPBREAD CHEESE & PUMPKIN 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 270,
    "shelfLifePickupDays": 240,
@@ -130,7 +130,7 @@
   "PG08": {
    "name": "CRISPBREAD 5 GRAINS 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 270,
    "shelfLifePickupDays": 240,
@@ -148,7 +148,7 @@
   "PG09": {
    "name": "CRISPBREAD SPELT & SUNFLOWER 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 270,
    "shelfLifePickupDays": 240,
@@ -166,7 +166,7 @@
   "PG10": {
    "name": "DELI CRISPBREAD CARMELIZED ONION 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 180,
    "shelfLifePickupDays": 150,
@@ -184,7 +184,7 @@
   "PG11": {
    "name": "DELI CRISPBREAD CHEESE & TOMATO 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 180,
    "shelfLifePickupDays": 150,
@@ -202,7 +202,7 @@
   "PG12": {
    "name": "DELI CRISPBREAD TRIPLE CHEESE 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 180,
    "shelfLifePickupDays": 150,
@@ -220,7 +220,7 @@
   "PG13": {
    "name": "ARTISAN CRISPBREAD SUPERSEEDS 130 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "130 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -238,7 +238,7 @@
   "PG14": {
    "name": "ARTISAN CRISPBREAD CHEESE & PUMPKIN 130 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "130 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -256,7 +256,7 @@
   "PG15": {
    "name": "WHOLEGRAIN CRISPBREAD PUMPKIN & CHEESE 200 G",
    "group": "Crispbread",
-   "packaging": "transparent foil, clip, and two labels",
+   "packaging": "transparent foil, clip and two labels",
    "netWeight": "200 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -274,7 +274,7 @@
   "PG16": {
    "name": "WHOLEGRAIN CRISPBREAD 3 SEEDS 200 G",
    "group": "Crispbread",
-   "packaging": "transparent foil, clip, and two labels",
+   "packaging": "transparent foil, clip and two labels",
    "netWeight": "200 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -292,7 +292,7 @@
   "PG17": {
    "name": "PROTEIN CRISPBREAD ONION 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 210,
    "shelfLifePickupDays": 180,
@@ -310,7 +310,7 @@
   "PG18": {
    "name": "PROTEIN CRISPBREAD 3 SEEDS 180 G",
    "group": "Crispbread",
-   "packaging": "printing cardboard and tear-off transparent foil",
+   "packaging": "printed cardboard, transparent foil with open-close label",
    "netWeight": "180 g",
    "shelfLifeDays": 210,
    "shelfLifePickupDays": 180,
@@ -526,7 +526,7 @@
   "PG30": {
    "name": "FOCACCIA OLIVE OIL & SEA SALT 120 G",
    "group": "Focaccia",
-   "packaging": "printing cardboard and transparent foil",
+   "packaging": "printed cardboard and transparent foil",
    "netWeight": "120 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -544,7 +544,7 @@
   "PG31": {
    "name": "FOCACCIA OLIVE OIL & HERBS 120 G",
    "group": "Focaccia",
-   "packaging": "printing cardboard and transparent foil",
+   "packaging": "printed cardboard and transparent foil",
    "netWeight": "120 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -562,7 +562,7 @@
   "PG32": {
    "name": "FOCACCIA TRIPLE CHEESE 120 G",
    "group": "Focaccia",
-   "packaging": "printing cardboard and transparent foil",
+   "packaging": "printed cardboard and transparent foil",
    "netWeight": "120 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -580,7 +580,7 @@
   "PG33": {
    "name": "FOCACCIA SNACKS OLIVE OIL & HERBS 100 G",
    "group": "Focaccia snacks",
-   "packaging": "craft tray, transparent foil, one label",
+   "packaging": "craft tray, transparent foil and one label",
    "netWeight": "100 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -598,7 +598,7 @@
   "PG34": {
    "name": "FOCACCIA SNACKS TRIPLE CHEESE 100 G",
    "group": "Focaccia snacks",
-   "packaging": "craft tray, transparent foil, one label",
+   "packaging": "craft tray, transparent foil and one label",
    "netWeight": "100 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
@@ -616,7 +616,7 @@
   "PG35": {
    "name": "FOCACCIA SNACKS OLIVE OIL & SEA SALT 100 G",
    "group": "Focaccia snacks",
-   "packaging": "craft tray, transparent foil, one label",
+   "packaging": "craft tray, transparent foil and one label",
    "netWeight": "100 g",
    "shelfLifeDays": 360,
    "shelfLifePickupDays": 330,
