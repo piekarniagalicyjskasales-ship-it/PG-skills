@@ -794,6 +794,137 @@ table.ptable{min-width:760px}
   .qv-src .sw-img{height:30px}
 }
 @media (max-width:760px){ .hero-tag{font-size:var(--t-sm);margin-bottom:4px} }
+
+/* ---------- added products: badges, draft hint, store note ---------- */
+.badge-add{background:#1E1A1B;color:#E8C088;box-shadow:0 2px 8px rgba(80,0,6,.25)}
+.badge-draft{background:#FFF7EE;color:#7A4508;border:1px dashed #A3540E;box-shadow:0 2px 8px rgba(80,0,6,.2)}
+.ptable .badge-add,.qv .badge-add{background:var(--pl-badge-bg);color:var(--pl-badge-ink);box-shadow:none}
+.ptable .badge-draft,.qv .badge-draft{background:var(--warn-soft);color:var(--warn);border:1px dashed color-mix(in srgb, var(--warn) 55%, transparent);box-shadow:none}
+.pmiss{font-size:11.5px;line-height:1.35;color:var(--warn);font-weight:600;overflow-wrap:anywhere}
+.pmiss::before{content:"!";display:inline-grid;place-items:center;width:13px;height:13px;margin-right:4px;border-radius:50%;background:var(--warn-soft);font-size:9.5px;font-weight:800;vertical-align:1px}
+.weight.none{color:var(--ink-3);font-weight:500}
+.cp-note{margin:-4px 0 0;padding:8px 12px;border-radius:var(--r-md);border:1px dashed var(--line-strong);font-size:var(--t-xs);color:var(--ink-2);line-height:1.4}
+.cp-note b{color:var(--ink)}
+.cp-note.warn{border-color:color-mix(in srgb, var(--warn) 45%, transparent);background:color-mix(in srgb, var(--warn-soft) 55%, transparent)}
+.item.ghost .item-name{color:var(--ink-3);font-style:italic}
+.item.ghost .thumb{cursor:default;opacity:.55;filter:grayscale(.6)}
+.qv-manage{display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+.qv-manage:empty{display:none}
+.qv-mnote{margin:0;font-size:var(--t-xs);color:var(--ink-3);line-height:1.45;overflow-wrap:anywhere}
+.qv-mnote b{color:var(--ink-2);font-weight:700}
+.qv-mnote.warn{color:var(--warn)}
+.qv-mbtns{display:flex;flex-wrap:wrap;gap:6px}
+.qv-mbtns .btn svg{width:15px;height:15px}
+
+/* ---------- new product wizard ---------- */
+.wiz{width:min(860px, calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:0;gap:0;overflow:hidden}
+.wz-head{display:flex;align-items:flex-start;gap:12px;padding:18px 18px 10px 22px}
+.wz-head .wz-tt{flex:1;min-width:0}
+.wz-head h3{overflow-wrap:anywhere}
+.wz-sub{display:block;margin-top:2px;font-size:var(--t-xs);color:var(--ink-3);overflow-wrap:anywhere}
+.wz-x{flex:none;width:36px;height:36px}
+.wz-steps{list-style:none;margin:0;padding:0 22px 12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;position:relative}
+.wz-steps li{min-width:0}
+.wz-steps button{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:6px;border:0;background:transparent;padding:0;color:var(--ink-3);font-size:var(--t-xs);font-weight:600;text-align:left;cursor:pointer}
+.wz-steps .bar{display:block;width:100%;height:4px;border-radius:4px;background:var(--line-strong);overflow:hidden;position:relative}
+.wz-steps .bar::after{content:"";position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease)}
+.wz-steps .lbl{display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.wz-steps .no{display:inline-grid;place-items:center;flex:none;width:20px;height:20px;border-radius:50%;border:1px solid var(--line-strong);font-family:var(--f-num);font-size:11px;font-weight:700;color:var(--ink-2);background:var(--field)}
+.wz-steps .done .bar::after,.wz-steps [aria-current="step"] .bar::after{transform:scaleX(1)}
+.wz-steps .done .no{background:var(--good);border-color:var(--good);color:var(--bg)}
+.wz-steps [aria-current="step"]{color:var(--ink)}
+.wz-steps [aria-current="step"] .no{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.wiz .wz-mode{margin:0 22px 10px;padding:7px 12px;border-radius:var(--r-md);font-size:var(--t-xs);line-height:1.4;color:var(--ink-2);background:var(--field);border:1px solid var(--line)}
+.wiz .wz-mode.local{border-style:dashed;border-color:color-mix(in srgb, var(--warn) 50%, transparent);background:color-mix(in srgb, var(--warn-soft) 60%, transparent);color:var(--ink)}
+.wz-body{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;padding:4px 22px 16px;border-top:1px solid var(--line)}
+.wz-pane{display:flex;flex-direction:column;gap:14px;padding-top:12px}
+.wz-pane > h4{margin:0;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.wz-pane > h4:focus{outline:none}
+.wz-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.wz-grid .c2{grid-column:span 2}.wz-grid .c3{grid-column:span 3}.wz-grid .c4{grid-column:span 4}.wz-grid .c6{grid-column:1 / -1}
+.wz-grid .fld > label .req{color:var(--accent-text);margin-left:2px}
+.wiz .inp[aria-invalid="true"]{border-color:var(--crit);box-shadow:0 0 0 3px var(--crit-soft)}
+.wiz .fhint.err{color:var(--crit);font-weight:600}
+.wiz .fhint .btn{min-height:24px;padding:0 9px;font-size:11px;margin-left:6px;vertical-align:middle}
+.wiz select.inp{padding-right:28px}
+.wz-flags{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;min-height:36px}
+.wz-dims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.wz-dims .inp{text-align:right}
+.wz-calc{font-size:11.5px;color:var(--ink-3)}
+.wz-copy{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:var(--r-md);background:var(--field);border:1px dashed var(--line-strong)}
+.wz-copy label{font-size:var(--t-xs);font-weight:600;color:var(--ink-2)}
+.wz-copy select{flex:1 1 220px;min-width:0;height:34px}
+/* step 1: photo */
+.wz-photo{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:start}
+.wz-stage{position:relative;aspect-ratio:4 / 3;border-radius:var(--r-md);overflow:hidden;background:var(--stage-floor), var(--stage);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.wz-stage img{position:absolute;inset:7% 5% 6%;width:90%;height:87%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 10px 8px rgba(40,0,4,.46)) drop-shadow(0 2px 1.5px rgba(40,0,4,.4))}
+.wz-drop{position:absolute;inset:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;border-radius:12px;border:2px dashed rgba(255,247,238,.55);color:#FFF7EE;padding:14px;transition:background .2s,border-color .2s}
+.wz-drop svg{width:40px;height:40px;opacity:.9}
+.wz-drop b{font-family:var(--f-display);font-weight:500;letter-spacing:.08em;text-transform:uppercase;font-size:var(--t-md)}
+.wz-drop small{font-size:var(--t-xs);color:rgba(255,247,238,.82)}
+.wz-drop .btn{background:#FFF7EE;border-color:#FFF7EE;color:#8D0408}
+.wz-drop .btn:hover{background:#fff;color:#8D0408;border-color:#fff}
+.wz-stage.over .wz-drop{background:rgba(255,247,238,.14);border-color:#FFF7EE}
+.wz-stage.has .wz-drop{display:none}
+.wz-stage.has.over .wz-drop{display:flex;background:rgba(60,0,4,.55)}
+.wz-stage .wz-busy{position:absolute;inset:auto 10px 10px auto;padding:4px 10px;border-radius:999px;background:rgba(19,15,16,.72);color:#fff;font-size:11px;font-weight:600}
+.wz-tag{position:absolute;left:10px;top:10px;padding:3px 9px;border-radius:999px;background:rgba(19,15,16,.66);color:#FFF7EE;font-size:11px;font-weight:600;letter-spacing:.02em}
+.wz-pside{display:flex;flex-direction:column;gap:12px;min-width:0}
+.wiz .wz-info{margin:0;font-size:var(--t-sm);color:var(--ink-2);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.wiz .wz-info b{color:var(--ink)}
+.wz-ba{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wz-ba figure{margin:0;display:flex;flex-direction:column;gap:4px}
+.wz-ba figcaption{font-size:11px;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-family:var(--f-display)}
+.wz-ba .mini{position:relative;aspect-ratio:4 / 3;border-radius:10px;overflow:hidden;background:var(--stage)}
+.wz-ba .mini.chk{background:repeating-conic-gradient(#d9d2cb 0% 25%, #f3eee9 0% 50%) 50% / 14px 14px}
+.wz-ba canvas{position:absolute;inset:6%;width:88%;height:88%;object-fit:contain}
+.wz-pbtns{display:flex;flex-wrap:wrap;gap:6px}
+.wiz .wz-note{margin:0;padding:8px 12px;border-radius:var(--r-md);border:1px dashed var(--line-strong);font-size:var(--t-xs);color:var(--ink-2);line-height:1.45}
+.wiz .wz-tip{margin:0;font-size:var(--t-xs);color:var(--ink-3);line-height:1.45}
+/* claims */
+.wz-claims{display:flex;flex-wrap:wrap;gap:6px}
+.wz-claims .chip{min-height:30px}
+.wz-claim-add{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.wz-claim-add .inp{flex:1 1 180px;height:34px}
+/* step 4: summary */
+.wz-sum{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:20px;align-items:start}
+.wz-preview{display:flex;min-width:0}
+.wz-preview .card{width:100%}
+.wz-preview .card-in:hover{translate:none}
+.wz-check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.wz-check li{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;font-size:var(--t-sm);color:var(--ink-2)}
+.wz-check li .st{display:inline-grid;place-items:center;flex:none;width:18px;height:18px;border-radius:50%;font-size:11px;font-weight:800}
+.wz-check li.ok .st{background:var(--good-soft);color:var(--good)}
+.wz-check li.ok .st svg{width:12px;height:12px}
+.wz-check li.miss{color:var(--ink)}
+.wz-check li.miss .st{background:var(--warn-soft);color:var(--warn)}
+.wz-check li.opt.miss .st{background:var(--line);color:var(--ink-3)}
+.wz-check li.opt.miss{color:var(--ink-3)}
+.wz-check li .go{margin-left:auto;min-height:24px;padding:0 9px;font-size:11px}
+.wiz .wz-check-h{margin:0 0 4px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.wiz .wz-verdict{margin:8px 0 0;padding:8px 12px;border-radius:var(--r-md);font-size:var(--t-sm);font-weight:600}
+.wiz .wz-verdict.ok{background:var(--good-soft);color:var(--good)}
+.wiz .wz-verdict.draft{background:var(--warn-soft);color:var(--warn)}
+.wz-foot{display:flex;align-items:center;gap:8px;padding:12px 22px 16px;border-top:1px solid var(--line);flex-wrap:wrap}
+.wz-foot .sp{flex:1}
+.wz-foot .wz-pos{font-size:var(--t-xs);color:var(--ink-3);font-variant-numeric:tabular-nums}
+@media (max-width:700px){
+  .wz-photo,.wz-sum{grid-template-columns:minmax(0,1fr)}
+  .wz-sum .wz-preview{max-width:300px}
+  .wz-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wz-grid .c2,.wz-grid .c3{grid-column:span 1}
+  .wz-grid .c4,.wz-grid .c6,.wz-grid .cw{grid-column:1 / -1}
+  .wz-steps .lbl .t{display:none}
+  .wz-head{padding:14px 12px 8px 16px}
+  .wz-steps{padding:0 16px 10px}
+  .wiz .wz-mode{margin:0 16px 8px}
+  .wz-body{padding:4px 16px 14px}
+  .wz-foot{padding:10px 16px 14px}
+  .wz-foot .wz-pos{display:none}
+}
+@media (max-width:420px){
+  .wz-foot .btn{padding:0 12px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
   .card-in,.card-in:hover{transform:none;translate:none}
@@ -887,6 +1018,14 @@ table.ptable{min-width:760px}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
             Dodaj wszystkie widoczne
           </button>
+          <button class="btn btn-sm" id="addProd" type="button" aria-haspopup="dialog" title="Kreator: zdjęcie, dane podstawowe, logistyka, opis">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h6.5"/><path d="M8 16l3.2-3.6 2.3 2.4L15.5 13 18 16"/><path d="M18 3v6M15 6h6"/></svg>
+            Dodaj produkt
+          </button>
+          <button class="btn btn-sm btn-ghost" id="expNew" type="button" hidden title="Pobierz dodane i uzupełnione produkty (JSON + CSV)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+            Eksport nowych produktów
+          </button>
         </div>
         <div class="left">
           <label for="sortSel" class="f-label">Sortuj</label>
@@ -903,6 +1042,7 @@ table.ptable{min-width:760px}
         </div>
       </div>
 
+      <p class="cp-note" id="cpNote" role="status" hidden></p>
       <section id="products" aria-label="Produkty"></section>
     </main>
 
@@ -1108,6 +1248,7 @@ table.ptable{min-width:760px}
         <dt>Kategoria (EN)</dt><dd id="qvCatEn"></dd>
       </dl>
       <div class="qv-cat" id="qvCatalogue"></div>
+      <div class="qv-manage" id="qvManage"></div>
       <div class="qv-actions">
         <span id="qvAction"></span>
         <span class="qv-hint">← → poprzedni / następny · Esc zamyka</span>
@@ -1116,6 +1257,104 @@ table.ptable{min-width:760px}
     <button class="icon-btn qv-close" id="qvClose" type="button" aria-label="Zamknij podgląd">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
+  </div>
+</dialog>
+
+<dialog id="wizDlg" aria-labelledby="wzTitle" aria-describedby="wzSub">
+  <div class="dlg glass wiz">
+    <div class="wz-head">
+      <div class="wz-tt"><h3 id="wzTitle">Nowy produkt</h3><span class="wz-sub" id="wzSub">Uzupełnij zdjęcie i dane — szkic możesz zapisać na każdym kroku.</span></div>
+      <button class="icon-btn wz-x" id="wzX" type="button" aria-label="Zamknij kreator"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <ol class="wz-steps" id="wzSteps" aria-label="Kroki kreatora">
+      <li><button type="button" data-step="0"><span class="bar"></span><span class="lbl"><span class="no">1</span><span class="t">Zdjęcie</span></span></button></li>
+      <li><button type="button" data-step="1"><span class="bar"></span><span class="lbl"><span class="no">2</span><span class="t">Dane podstawowe</span></span></button></li>
+      <li><button type="button" data-step="2"><span class="bar"></span><span class="lbl"><span class="no">3</span><span class="t">Logistyka</span></span></button></li>
+      <li><button type="button" data-step="3"><span class="bar"></span><span class="lbl"><span class="no">4</span><span class="t">Opis i podsumowanie</span></span></button></li>
+    </ol>
+    <p class="wz-mode" id="wzMode" hidden></p>
+    <div class="wz-body" id="wzBody">
+      <section class="wz-pane" data-pane="0" aria-labelledby="wzH0">
+        <h4 id="wzH0" tabindex="-1">Krok 1 · Zdjęcie produktu</h4>
+        <div class="wz-photo">
+          <div class="wz-stage" id="wzStage">
+            <img id="wzImg" alt="Podgląd zdjęcia produktu" hidden>
+            <span class="wz-tag" id="wzTag" hidden></span>
+            <div class="wz-drop" id="wzDrop">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16.5V19a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2.5"/><path d="M12 15V4m0 0L7.5 8.5M12 4l4.5 4.5"/></svg>
+              <b>Przeciągnij zdjęcie tutaj</b>
+              <small>lub wklej (Ctrl+V) · JPG, PNG, WebP</small>
+              <button class="btn btn-sm" id="wzChoose" type="button">Wybierz plik</button>
+            </div>
+            <span class="wz-busy" id="wzBusy" hidden>Przetwarzanie…</span>
+          </div>
+          <div class="wz-pside">
+            <input type="file" id="wzFile" accept="image/*" hidden>
+            <p class="wz-note" id="wzAssetNote" hidden>Wgrywanie zdjęć jest dostępne tylko dla edytorów tego artefaktu. Możesz uzupełnić dane i zapisać produkt jako szkic — zdjęcie doda edytor.</p>
+            <p class="wz-info" id="wzInfo">Brak zdjęcia. Najlepiej packshot na białym lub przezroczystym tle.</p>
+            <label class="toggle" for="wzBg"><input type="checkbox" id="wzBg">Usuń białe tło</label>
+            <div class="wz-ba" id="wzBA" hidden>
+              <figure><div class="mini chk" id="wzBefore"></div><figcaption>Przed</figcaption></figure>
+              <figure><div class="mini chk" id="wzAfter"></div><figcaption>Po</figcaption></figure>
+            </div>
+            <div class="wz-pbtns">
+              <button class="btn btn-sm" id="wzReplace" type="button" hidden>Zmień zdjęcie</button>
+              <button class="btn btn-sm btn-ghost btn-danger" id="wzRemove" type="button" hidden>Usuń zdjęcie</button>
+            </div>
+            <p class="fhint err" id="wzPhotoErr" role="alert" hidden></p>
+            <p class="wz-tip">Zdjęcie zmniejszamy do 900 px (dłuższy bok) i zapisujemy jako WebP. Bez zdjęcia produkt pokaże ikonę kategorii.</p>
+          </div>
+        </div>
+      </section>
+      <section class="wz-pane" data-pane="1" aria-labelledby="wzH1" hidden>
+        <h4 id="wzH1" tabindex="-1">Krok 2 · Dane podstawowe</h4>
+        <div class="wz-grid">
+          <div class="fld c6"><label for="wzName">Nazwa oficjalna<span class="req" aria-hidden="true">*</span></label><input class="inp" id="wzName" maxlength="120" autocomplete="off" spellcheck="false" placeholder="np. CRISPBREAD 3 SEEDS 135 G" aria-describedby="wzNameH"><span class="fhint" id="wzNameH">Wielkimi literami, z gramaturą na końcu — tak jak w zestawieniu asortymentu.</span></div>
+          <div class="fld c2 cw"><label for="wzCat">Kategoria<span class="req" aria-hidden="true">*</span></label><select class="inp" id="wzCat" aria-describedby="wzCatH"></select><span class="fhint" id="wzCatH" hidden></span></div>
+          <div class="fld c2 cw"><label for="wzLine">Linia produktowa<span class="req" aria-hidden="true">*</span></label><input class="inp" id="wzLine" list="wzLines" maxlength="80" autocomplete="off" placeholder="wybierz lub wpisz nową" aria-describedby="wzLineH"><datalist id="wzLines"></datalist><span class="fhint" id="wzLineH">Istniejąca linia albo nowa nazwa.</span></div>
+          <div class="fld c2 cw"><label for="wzSeg">Segment <span class="fopt">(opcjonalnie)</span></label><input class="inp" id="wzSeg" list="wzSegs" maxlength="80" autocomplete="off"><datalist id="wzSegs"></datalist></div>
+          <div class="fld c4"><label for="wzFlav">Smak / opis roboczy</label><input class="inp" id="wzFlav" maxlength="160" autocomplete="off" placeholder="np. pełnoziarniste, dynia i ser"></div>
+          <div class="fld c2 cw"><label for="wzW">Gramatura (g)<span class="req" aria-hidden="true">*</span></label><input class="inp r" id="wzW" type="number" min="1" max="10000" step="1" inputmode="numeric" aria-describedby="wzWH"><span class="fhint" id="wzWH" hidden></span></div>
+          <div class="fld c4"><label for="wzEan">EAN-13</label><input class="inp" id="wzEan" inputmode="numeric" maxlength="13" autocomplete="off" spellcheck="false" placeholder="590…" aria-describedby="wzEanH"><span class="fhint" id="wzEanH" aria-live="polite">13 cyfr — sprawdzamy cyfrę kontrolną i duplikaty.</span></div>
+          <div class="fld c2 cw"><span id="wzFlagsL">Oznaczenia</span><div class="wz-flags" role="group" aria-labelledby="wzFlagsL"><label class="toggle" for="wzNew"><input type="checkbox" id="wzNew">Nowość</label><label class="toggle" for="wzWU"><input type="checkbox" id="wzWU">Nowa gramatura</label></div></div>
+        </div>
+      </section>
+      <section class="wz-pane" data-pane="2" aria-labelledby="wzH2" hidden>
+        <h4 id="wzH2" tabindex="-1">Krok 3 · Logistyka i paletyzacja</h4>
+        <div class="wz-copy"><label for="wzCopy">Kopiuj z produktu…</label><select class="inp" id="wzCopy"></select></div>
+        <div class="wz-grid">
+          <div class="fld c4"><label for="wzPack">Opakowanie</label><input class="inp" id="wzPack" list="wzPacks" maxlength="160" autocomplete="off" lang="en" placeholder="np. transparent foil and two labels"><datalist id="wzPacks"></datalist></div>
+          <div class="fld c2 cw"><label for="wzCt">Typ kartonu</label><select class="inp" id="wzCt"><option value="">—</option><option>1 - face</option><option>2 - face</option></select></div>
+          <div class="fld c4"><span id="wzDimsL">Wymiary kartonu dł. × szer. × wys. (mm)</span><div class="wz-dims" role="group" aria-labelledby="wzDimsL" aria-describedby="wzDimsH"><input class="inp" id="wzDL" type="number" min="1" max="5000" step="1" inputmode="numeric" aria-label="Długość kartonu (mm)" placeholder="dł."><input class="inp" id="wzDW" type="number" min="1" max="5000" step="1" inputmode="numeric" aria-label="Szerokość kartonu (mm)" placeholder="szer."><input class="inp" id="wzDH" type="number" min="1" max="5000" step="1" inputmode="numeric" aria-label="Wysokość kartonu (mm)" placeholder="wys."></div><span class="fhint" id="wzDimsH" hidden></span></div>
+          <div class="fld c2 cw"><label for="wzPh">Wysokość palety (m)</label><input class="inp r" id="wzPh" inputmode="decimal" autocomplete="off" placeholder="1,80" aria-describedby="wzPhH"><span class="fhint" id="wzPhH" hidden></span></div>
+          <div class="fld c2"><label for="wzUpc">Szt./karton<span class="req" aria-hidden="true">*</span></label><input class="inp r" id="wzUpc" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzUpcH"><span class="fhint" id="wzUpcH" hidden></span></div>
+          <div class="fld c2"><label for="wzCpl">Kartony/warstwa</label><input class="inp r" id="wzCpl" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzCplH"><span class="fhint" id="wzCplH" hidden></span></div>
+          <div class="fld c2"><label for="wzLpp">Warstwy/paleta</label><input class="inp r" id="wzLpp" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzLppH"><span class="fhint" id="wzLppH" hidden></span></div>
+          <div class="fld c3"><label for="wzCpp">Kartony/paleta<span class="req" aria-hidden="true">*</span></label><input class="inp r" id="wzCpp" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzCppH"><span class="fhint" id="wzCppH">Kartony/warstwa × warstwy/paleta</span></div>
+          <div class="fld c3"><label for="wzUpp">Szt./paleta</label><input class="inp r" id="wzUpp" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzUppH"><span class="fhint" id="wzUppH">Kartony/paleta × szt./karton</span></div>
+          <div class="fld c3"><label for="wzShelf">Termin przydatności (dni)</label><input class="inp r" id="wzShelf" type="number" min="1" max="3650" step="1" inputmode="numeric" aria-describedby="wzShelfH"><span class="fhint" id="wzShelfH" hidden></span></div>
+          <div class="fld c3"><label for="wzPick">Termin przy odbiorze (dni)</label><input class="inp r" id="wzPick" type="number" min="1" max="3650" step="1" inputmode="numeric" aria-describedby="wzPickH"><span class="fhint" id="wzPickH" hidden></span></div>
+        </div>
+      </section>
+      <section class="wz-pane" data-pane="3" aria-labelledby="wzH3" hidden>
+        <h4 id="wzH3" tabindex="-1">Krok 4 · Opis i podsumowanie</h4>
+        <div class="fld"><label for="wzDesc">Opis do ofert (EN)</label><textarea class="inp" id="wzDesc" rows="3" maxlength="1200" lang="en" placeholder="e.g. Six generous slices, loaded with seeds and baked for an even, clean crunch."></textarea><span class="fhint">Pojawia się w ofertach po angielsku (podgląd, tekst).</span></div>
+        <div class="fld"><span id="wzClaimsL">Oświadczenia (claims)</span><div class="wz-claims" id="wzClaims" role="group" aria-labelledby="wzClaimsL"></div>
+          <div class="wz-claim-add"><label for="wzClaimNew" class="sr-only">Własne oświadczenie</label><input class="inp" id="wzClaimNew" maxlength="80" lang="en" autocomplete="off" placeholder="Własne, np. No palm oil"><button class="btn btn-sm" id="wzClaimAdd" type="button">Dodaj</button></div></div>
+        <div class="wz-sum">
+          <div><p class="wz-check-h">Tak będzie wyglądać karta</p><div class="wz-preview" id="wzPreview"></div></div>
+          <div><p class="wz-check-h">Kompletność danych</p><ul class="wz-check" id="wzCheck"></ul><p class="wz-verdict" id="wzVerdict"></p></div>
+        </div>
+      </section>
+    </div>
+    <div class="wz-foot">
+      <button class="btn" id="wzBack" type="button">Wstecz</button>
+      <span class="sp"></span>
+      <span class="wz-pos" id="wzPos" aria-hidden="true"></span>
+      <button class="btn btn-ghost" id="wzDraft" type="button">Zapisz szkic</button>
+      <button class="btn btn-primary" id="wzNext" type="button">Dalej</button>
+      <button class="btn btn-primary" id="wzSave" type="button" hidden>Zapisz produkt</button>
+    </div>
   </div>
 </dialog>
 
@@ -1162,19 +1401,33 @@ const WEIGHTS = [90,100,120,130,135,180,200];
 const titleCase = s => String(s||'').toLowerCase().replace(/(^|[\s\-&\/])([a-ząćęłńóśźż])/g,(m,a,b)=>a+b.toUpperCase()).replace(/\bDip\b/g,'Dip');
 const lineName = l => LINE_NAMES[l] || titleCase(l);
 const segName = s => s ? titleCase(s).replace(/\bDip\b/,'Dip') : '';
-const byId = Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
-PRODUCTS.forEach(p=>{
+const byId = {};
+/* derived fields, shared by embedded products, completed ("override") ones and products added in the wizard */
+function decorate(p, k, pack, web){
   p._line = lineName(p.line);
-  p._cat = CAT[p.category] || {pl:p.category,en:p.category,key:'crisp'};
-  p._k = CATALOGUE[p.id] || null;
+  p._cat = CAT[p.category] || {pl:p.category || 'BEZ KATEGORII', en:p.category || 'Uncategorised', key:'crisp'};
+  p._k = k || null;
   p._ean = (p._k && p._k.ean) || '';
   p._log = (p._k && p._k.logistics) || {};
-  p._pack = p._k && p._k.packshot ? 'img/' + p._k.packshot : null;
-  p._web = IMG[p.id] || null;
+  p._pack = pack || null;
+  p._web = web || null;
   p._upc = p._log.unitsPerCarton || 12;
   p._cpp = p._log.cartonsPerPallet || null;
-  p._hay = [p.id,p.name,p.line,p._line,p.flavour,p.segment||'',p._cat.pl,p._cat.en,p._ean,p._k?p._k.catalogueLine:'',p._k?p._k.catalogueFlavour:''].join(' ').toLowerCase();
-});
+  p._hay = [p.id,p.name,p.line,p._line,p.flavour,p.segment||'',p._cat.pl,p._cat.en,p._ean,p._k?p._k.catalogueLine||'':'',p._k?p._k.catalogueFlavour||'':''].map(v=>v==null?'':v).join(' ').toLowerCase();
+  return p;
+}
+PRODUCTS.forEach(p=>{ byId[p.id] = p; const k = CATALOGUE[p.id] || null; decorate(p, k, k && k.packshot ? 'img/' + k.packshot : null, IMG[p.id]); });
+/* the embedded assortment as shipped; added/completed products are merged over it (see "added products") */
+const BASE_PRODUCTS = PRODUCTS.slice();
+/* a line in a saved offer whose product no longer exists (deleted, or not loaded yet) */
+const ghosts = new Map();
+function prodOf(id){
+  if (byId[id]) return byId[id];
+  let g = ghosts.get(id);
+  if (!g){ g = decorate({id, name:'Produkt niedostępny', category:'', slide:'', segment:null, line:'', flavour:'', weight:null, weightUpdated:false, isNew:false, _ghost:true}, null, null, null); g._line = ''; ghosts.set(id, g); }
+  return g;
+}
+const wTxt = p => typeof p.weight==='number' && p.weight>0 ? `${p.weight} g` : '—';
 
 const ICONS = {
   crisp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><g transform="rotate(-14 12 12)"><rect x="2.5" y="7" width="19" height="10" rx="1.6"/><path d="M5 10.3h14M5 13.7h14" opacity=".55"/></g><g fill="currentColor" stroke="none" transform="rotate(-14 12 12)"><circle cx="7" cy="12" r=".9"/><circle cx="11" cy="12" r=".9"/><circle cx="15" cy="12" r=".9"/><circle cx="18.6" cy="12" r=".9"/></g></svg>',
@@ -1648,7 +1901,7 @@ const I18N = {
     ctn:'kart.', pcs:'szt.', palAbbr:()=>'pal.', perCarton:'szt./karton',
     head:['Lp.','ID','EAN','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Szt./karton','Kartony','Palety (szac.)','Termin przydatności (dni)','Rabat %','Wartość netto'],
     sumCP:'Kartony razem / palety (szac.)', sumDisc:p=>`Rabat (w tym globalny ${p}%)`,
-    file:'oferta', fileSuffixPL:'_PL'
+    file:'oferta', fileSuffixPL:'_PL', unavail:'Produkt niedostępny'
   },
   en:{
     docPG:'Commercial offer — GaliCrisp', docPL:'Private Label offer', plSub:'Produced under the customer\'s brand',
@@ -1676,7 +1929,7 @@ const I18N = {
     ctn:'ctn', pcs:'pcs', palAbbr:n=>palWordEn(n), perCarton:'pcs/carton',
     head:['No.','ID','EAN','Product name','Line','Weight (g)','Net price/unit','Quantity (pcs)','Units/carton','Cartons','Pallets (est.)','Shelf life (days)','Discount %','Net value'],
     sumCP:'Total cartons / pallets (est.)', sumDisc:p=>`Discount (incl. ${p}% overall)`,
-    file:'offer', fileSuffixPL:'_PrivateLabel'
+    file:'offer', fileSuffixPL:'_PrivateLabel', unavail:'Product unavailable'
   }
 };
 /* number/date formats per document language; 'pl' reuses the original helpers so Polish output is unchanged */
@@ -1732,10 +1985,14 @@ function sanitizeOffer(o){
   if (o.meta && typeof o.meta==='object') Object.keys(meta).forEach(k=>{ const v = o.meta[k]; if (v!=null && v!=='') meta[k] = String(v); });
   if (!['PLN','EUR'].includes(meta.currency)) meta.currency = 'PLN';
   if (!PACK_OPTS.includes(meta.packaging)) meta.packaging = '';
-  const items = Array.isArray(o.items) ? o.items.filter(i=>i && byId[i.id]).map(i=>({
-    id:i.id, price: typeof i.price==='number'?i.price:null, mode: (i.mode==='szt' || (i.mode==='pal' && byId[i.id]._cpp)) ? i.mode : 'kart',
-    qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):byId[i.id]._upc, disc: Number(i.disc)||0,
-    ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || byId[i.id]._cpp) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
+  /* a line whose product is unknown here (deleted, or an added product that has not loaded yet) is kept and shown as unavailable */
+  const okId = id => typeof id==='string' && /^[A-Za-z0-9_-]{1,24}$/.test(id);
+  const palOk = id => !byId[id] || !!byId[id]._cpp;
+  const seen = new Set();
+  const items = Array.isArray(o.items) ? o.items.filter(i=>i && okId(i.id) && !seen.has(i.id) && seen.add(i.id)).map(i=>({
+    id:i.id, price: typeof i.price==='number'?i.price:null, mode: (i.mode==='szt' || (i.mode==='pal' && palOk(i.id))) ? i.mode : 'kart',
+    qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):prodOf(i.id)._upc, disc: Number(i.disc)||0,
+    ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || palOk(i.id)) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
   })) : [];
   return {type: o.type==='pl' ? 'pl' : 'pg', lang: o.lang==='en' ? 'en' : 'pl', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
 }
@@ -1783,10 +2040,10 @@ function matches(p, ignoreCat){
 }
 function sorted(list){
   const a = list.slice();
-  const ci = p => CAT_ORDER.indexOf(p.category);
+  const ci = p => { const i = CAT_ORDER.indexOf(p.category); return i<0 ? 99 : i; };
   if (ui.sort==='name') a.sort((x,y)=>x.name.localeCompare(y.name,'en'));
-  else if (ui.sort==='weight') a.sort((x,y)=>x.weight-y.weight || x.name.localeCompare(y.name,'en'));
-  else a.sort((x,y)=>ci(x)-ci(y) || x.id.localeCompare(y.id));
+  else if (ui.sort==='weight') a.sort((x,y)=>(x.weight||0)-(y.weight||0) || x.name.localeCompare(y.name,'en'));
+  else a.sort((x,y)=>ci(x)-ci(y) || x.id.localeCompare(y.id,'en',{numeric:true}));
   return a;
 }
 const visible = () => sorted(PRODUCTS.filter(p=>matches(p)));
@@ -1817,21 +2074,23 @@ function mediaHtml(p, eager, which){
   const src = web || p._pack || p._web;
   if (!src || brokenImg.has(src)) return phHtml(p);
   const isPack = !web && src===p._pack;
-  return `<img class="${isPack?'pack':'web'}" data-pid="${p.id}" src="${src}" alt="${esc(p.name)}" width="${isPack?170:320}" height="${isPack?290:320}" ${eager?'':'loading="lazy" '}decoding="async">`;
+  return `<img class="${isPack?'pack':'web'}" data-pid="${p.id}" src="${esc(src)}" alt=""${esc(p.name)}" width="${isPack?170:320}" height="${isPack?290:320}" ${eager?'':'loading="lazy" '}decoding="async">`;
 }
 document.addEventListener('error', e=>{
   const im = e.target;
   if (!im || im.tagName!=='IMG' || !im.dataset || !im.dataset.pid) return;
   brokenImg.add(im.getAttribute('src'));
-  const p = byId[im.dataset.pid];
+  const p = byId[im.dataset.pid] || ghosts.get(im.dataset.pid);
   if (p && im.isConnected) im.outerHTML = phHtml(p);
 }, true);
 const thumbHtml = p => `<button type="button" class="thumb" data-qv="${p.id}" aria-label="Podgląd: ${esc(p.name)}">${mediaHtml(p)}</button>`;
 
 /* ---------- products ---------- */
 function badges(p){
-  return (p.isNew?'<span class="badge badge-new">Nowość</span>':'') + (p.weightUpdated?'<span class="badge badge-wu">Nowa gramatura</span>':'');
+  return (p.isNew?'<span class="badge badge-new">Nowość</span>':'') + (p.weightUpdated?'<span class="badge badge-wu">Nowa gramatura</span>':'')
+    + (p._custom==='new'?'<span class="badge badge-add" title="Produkt dodany w kreatorze">Dodany</span>':'') + (p._draft?'<span class="badge badge-draft" title="Szkic — dane niekompletne">Szkic</span>':'');
 }
+const missHtml = p => p._draft ? `<div class="pmiss">${p._missing && p._missing.length ? 'Brakuje: ' + esc(p._missing.join(', ')) : 'Szkic — do zatwierdzenia'}</div>` : '';
 function addControl(p, compact){
   if (inOffer(p.id)) return `<span class="in-state"><span class="in-label">${SVG_CHECK}W ofercie</span><button type="button" class="btn btn-ghost btn-sm btn-danger" data-remove="${p.id}" aria-label="Usuń ${esc(p.name)} z oferty">Usuń</button></span>`;
   return `<button type="button" class="btn ${compact?'btn-sm':'btn-sm btn-dark'}" data-add="${p.id}" aria-label="Dodaj ${esc(p.name)} do oferty">${SVG_PLUS}Dodaj${compact?'':' do oferty'}</button>`;
@@ -1849,9 +2108,9 @@ function buildCard(p){
       <div class="card-meta"><span class="pid">${p.id}</span><span class="cat-name" title="${esc(p.category)}">${esc(p._cat.pl)}</span></div>
       <h3 class="pname">${esc(p.name)}</h3>
       <div class="pline">${esc(p._line)}${p.segment?` <span class="seg-name">· ${esc(segName(p.segment))}</span>`:''}</div>
-      <div class="pnote"><i>opis roboczy</i>${esc(p.flavour)}</div>
+      ${p.flavour || !p._custom ? `<div class="pnote"><i>opis roboczy</i>${esc(p.flavour)}</div>` : ''}${missHtml(p)}
       <div class="pcat">${p._ean?`<span class="ean" title="Kod EAN (katalog)"><i>EAN</i>${p._ean}</span>`:''}${logLine(p)?`<span class="plog" title="Wg katalogu: szt. w kartonie · kartony na palecie · termin przydatności">${logLine(p)}</span>`:''}</div>
-      <div class="card-foot"><span class="weight">${p.weight}<small> g</small></span><span class="ctl"></span></div>
+      <div class="card-foot">${p.weight?`<span class="weight">${p.weight}<small> g</small></span>`:'<span class="weight none">— g</span>'}<span class="ctl"></span></div>
     </div>
   </div>`;
   el._in = null;
@@ -1887,7 +2146,7 @@ function renderProducts(opts){
     el.innerHTML = `<div class="empty glass"><h3>Nic tu nie chrupie</h3><p>Brak produktów dla tych filtrów. Zmień wyszukiwanie lub <button type="button" class="btn btn-sm" data-act="resetF">wyczyść filtry</button></p></div>${parking}`;
   } else if (ui.view==='table'){
     el.innerHTML = `<div class="table-wrap glass"><table class="ptable"><thead><tr><th><span class="sr-only">Zdjęcie</span></th><th>ID · EAN</th><th>Nazwa · opis roboczy</th><th>Linia · kategoria</th><th class="num" title="Gramatura">Gram.</th><th class="num" title="Sztuk w kartonie (katalog)">Szt./<br>karton</th><th class="num" title="Kartonów na palecie (katalog)">Kart./<br>paleta</th><th class="num" title="Termin przydatności (katalog)">Termin</th><th><span class="sr-only">Oferta</span></th></tr></thead><tbody>${
-      list.map(p=>`<tr class="cat-${p._cat.key}${inOffer(p.id)?' in':''}" data-id="${p.id}"><td class="tthumb">${thumbHtml(p)}</td><td class="pid">${p.id}<span class="ean">${p._ean||'—'}</span></td><td class="tname"><span class="tn">${esc(p.name)}</span>${p.isNew||p.weightUpdated?`<span class="badges">${badges(p)}</span>`:''}<span class="pnote">${esc(p.flavour)}</span></td><td class="tline">${esc(p._line)}<span class="catdot">${esc(p._cat.pl)}</span></td><td class="num">${p.weight} g</td><td class="num">${p._log.unitsPerCarton||'—'}</td><td class="num">${p._log.cartonsPerPallet||'—'}</td><td class="num">${p._log.shelfLifeDays?p._log.shelfLifeDays+' dni':'—'}</td><td class="tact">${addControl(p,true)}</td></tr>`).join('')
+      list.map(p=>`<tr class="cat-${p._cat.key}${inOffer(p.id)?' in':''}" data-id="${p.id}"><td class="tthumb">${thumbHtml(p)}</td><td class="pid">${p.id}<span class="ean">${p._ean||'—'}</span></td><td class="tname"><span class="tn">${esc(p.name)}</span>${p.isNew||p.weightUpdated||p._custom==='new'||p._draft?`<span class="badges">${badges(p)}</span>`:''}<span class="pnote">${esc(p.flavour)}</span>${missHtml(p)}</td><td class="tline">${esc(p._line)}<span class="catdot">${esc(p._cat.pl)}</span></td><td class="num">${wTxt(p)}</td><td class="num">${p._log.unitsPerCarton||'—'}</td><td class="num">${p._log.cartonsPerPallet||'—'}</td><td class="num">${p._log.shelfLifeDays?p._log.shelfLifeDays+' dni':'—'}</td><td class="tact">${addControl(p,true)}</td></tr>`).join('')
     }</tbody></table></div>${parking}`;
   } else if (ui.view==='lines'){
     const groups = [];
@@ -1947,13 +2206,14 @@ function renderProducts(opts){
 
 /* ---------- offer panel ---------- */
 function itemHtml(it, i, n){
-  const p = byId[it.id];
+  const p = prodOf(it.id), gh = !!p._ghost;
   const kart = it.mode==='kart', pal = it.mode==='pal';
-  return `<li class="item cat-${p._cat.key}" data-id="${p.id}">
+  const gName = gh && cpLoading() ? 'Wczytywanie produktu…' : p.name, sub = gh ? `${p.id} · ${cpLoading() ? 'dodany produkt — czekam na dane' : 'usunięty lub niedostępny'}` : `${p.id} · ${p._line}`;
+  return `<li class="item cat-${p._cat.key}${gh?' ghost':''}" data-id="${p.id}">
     <div class="item-head">
       <span class="item-no">${i+1}</span>
-      ${thumbHtml(p)}
-      <div class="item-title"><div class="item-name">${esc(p.name)}</div><div class="item-sub" title="${p.id} · ${esc(p._line)}">${p.id} · ${esc(p._line)}</div></div>
+      ${gh ? `<span class="thumb" aria-hidden="true">${phHtml(p)}</span>` : thumbHtml(p)}
+      <div class="item-title"><div class="item-name">${esc(gName)}</div><div class="item-sub" title="${esc(sub)}">${esc(sub)}</div></div>
       <div class="item-tools">
         <button type="button" class="icon-btn" data-move="-1" aria-label="Przesuń wyżej"${i===0?' disabled':''}>${SVG_UP}</button>
         <button type="button" class="icon-btn" data-move="1" aria-label="Przesuń niżej"${i===n-1?' disabled':''}>${SVG_DOWN}</button>
@@ -1964,7 +2224,7 @@ function itemHtml(it, i, n){
       <div class="fld"><label for="p-${p.id}" title="Cena netto za sztukę">Cena/szt.</label><input class="inp r" id="p-${p.id}" data-f="price" inputmode="decimal" placeholder="—" value="${it.price==null?'':esc(String(it.price).replace('.',','))}"></div>
       <div class="fld"><label for="q-${p.id}">Ilość (${kart?'kart.':pal?'pal.':'szt.'})</label><input class="inp r" id="q-${p.id}" data-f="qty" inputmode="${pal?'decimal':'numeric'}" autocomplete="off" placeholder="0" value="${it.qty?String(it.qty).replace('.',','):''}"></div>
       <div class="fld"><label for="d-${p.id}">Rabat %</label><input class="inp r" id="d-${p.id}" data-f="disc" inputmode="decimal" autocomplete="off" value="${it.disc?String(it.disc).replace('.',','):''}" placeholder="0"></div>
-      <div class="fld"><label for="u-${p.id}" title="Sztuk w kartonie">Szt./karton</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"><button type="button" class="cat-fix" id="uf-${p.id}" data-upcfix title="Zastosuj wartość z katalogu: ${p._upc} szt. w kartonie"${it.upc===p._upc?' hidden':''}>katalog: ${p._upc}</button></div>
+      <div class="fld"><label for="u-${p.id}" title="Sztuk w kartonie">Szt./karton</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"><button type="button" class="cat-fix" id="uf-${p.id}" data-upcfix title="Zastosuj wartość z katalogu: ${p._upc} szt. w kartonie"${it.upc===p._upc||gh?' hidden':''}>katalog: ${p._upc}</button></div>
       <div class="f-mode"><span id="ml-${p.id}" class="sr-only">Ilość podana w</span><div class="seg" role="group" aria-labelledby="ml-${p.id}"><button type="button" id="m-${p.id}-kart" data-mode="kart" aria-pressed="${kart}">kartony</button><button type="button" id="m-${p.id}-szt" data-mode="szt" aria-pressed="${it.mode==='szt'}">sztuki</button><button type="button" id="m-${p.id}-pal" data-mode="pal" aria-pressed="${pal}"${p._cpp?'':' disabled'}>palety</button></div></div>
       <div class="item-calc units" id="un-${p.id}" aria-live="off"></div>
       <div class="lv-cell"><span class="lv-k">Wartość netto</span><span class="lv" id="lv-${p.id}">—</span></div>
@@ -2048,8 +2308,8 @@ function updateComputed(){
     const v = lineValue(it);
     lv.textContent = money(v,cur); lv.classList.toggle('dash', v==null);
     const u = unitsOf(it), c = cartonsOf(it), pl = palletsOf(it), cIs = Math.abs(c-Math.round(c))<1e-9;
-    un.innerHTML = `<span>${cIs?'':'≈ '}<b>${fmtQ(c)}</b> kart.</span><span><b>${nf0.format(u)}</b> szt.</span>${pl==null?'':`<span title="${byId[it.id]._cpp} kart. na palecie (katalog)"><b>${fmtPal(pl)}</b> ${palWord(pl)}</span>`}`;
-    const fx = document.getElementById('uf-'+it.id); if (fx) fx.hidden = it.upc===byId[it.id]._upc;
+    un.innerHTML = `<span>${cIs?'':'≈ '}<b>${fmtQ(c)}</b> kart.</span><span><b>${nf0.format(u)}</b> szt.</span>${pl==null?'':`<span title="${prodOf(it.id)._cpp} kart. na palecie (katalog)"><b>${fmtPal(pl)}</b> ${palWord(pl)}</span>`}`;
+    const fx = document.getElementById('uf-'+it.id); if (fx) fx.hidden = it.upc===prodOf(it.id)._upc || !!prodOf(it.id)._ghost;
   });
   const t = totals();
   const fm = v => money(v,cur);
@@ -2239,7 +2499,7 @@ $('#items').addEventListener('click', e=>{
   const li = e.target.closest('.item'); if (!li) return;
   const id = li.dataset.id, idx = offer.items.findIndex(i=>i.id===id);
   const qv = e.target.closest('[data-qv]');
-  if (qv){ openQv(id, offer.items.map(i=>i.id)); return; }
+  if (qv){ if (byId[id]) openQv(id, offer.items.map(i=>i.id)); return; }
   const mv = e.target.closest('[data-move]');
   if (mv){
     const to = idx + Number(mv.dataset.move); if (to<0 || to>=offer.items.length) return;
@@ -2253,7 +2513,7 @@ $('#items').addEventListener('click', e=>{
   }
   if (e.target.closest('[data-rm]')){ removeProduct(id); toast(`Usunięto ${id} z oferty`); return; }
   if (e.target.closest('[data-upcfix]')){
-    const it = offer.items[idx], p = byId[id]; if (!it) return;
+    const it = offer.items[idx], p = byId[id]; if (!it || !p) return;
     it.upc = p._upc;
     const u = document.getElementById('u-'+id); if (u) u.value = it.upc;
     updateComputed(); persist(); pulse(u, 1.04); u?.focus();
@@ -2397,13 +2657,13 @@ function qvCatalogueHtml(p){
   const k = p._k;
   if (!k) return '<p class="qv-desc">Brak danych w katalogu produktów.</p>';
   const L = p._log, row = (a,b) => b==null || b==='' ? '' : `<tr><th scope="row">${a}</th><td>${b}</td></tr>`;
-  const facts = [`<dt>Linia katalogowa</dt><dd>${esc(k.catalogueLine)} · ${esc(k.catalogueFlavour)}</dd>`];
+  const facts = k.catalogueLine ? [`<dt>Linia katalogowa</dt><dd>${esc(k.catalogueLine)} · ${esc(k.catalogueFlavour)}</dd>`] : [];
   if (k.slices) facts.push(`<dt>Kromki</dt><dd class="tnum">${k.slices} w opakowaniu</dd>`);
   if (k.packFormat) facts.push(`<dt>Format opak.</dt><dd lang="en">${esc(k.packFormat)}</dd>`);
   const note = L.shelfLifeNote ? `<small>* ${esc(SHELF_NOTE_PL[L.shelfLifeNote] || L.shelfLifeNote)}</small>` : '';
   const notes = [k.eanNote ? `EAN: ${k.eanNote}` : '', k.mismatch || ''].filter(Boolean);
-  return `<dl class="qv-dl">${facts.join('')}</dl>
-    <div><div class="qv-k">Opis z katalogu</div><p class="qv-desc" lang="en">${esc(k.description)}</p></div>
+  return `${facts.length?`<dl class="qv-dl">${facts.join('')}</dl>`:''}
+    ${k.description ? `<div><div class="qv-k">${p._custom==='new'?'Opis do ofert (EN)':'Opis z katalogu'}</div><p class="qv-desc" lang="en">${esc(k.description)}</p></div>` : ''}
     ${k.claims && k.claims.length ? `<div class="claims" lang="en">${k.claims.map(c=>`<span class="claim">${esc(c)}</span>`).join('')}</div>` : ''}
     ${p._ean ? `<div class="ean-row"><span class="qv-k">EAN</span><span class="ean-big" id="qvEan">${p._ean}</span><button type="button" class="btn btn-sm" id="qvEanCopy" data-copyean="${p._ean}" aria-label="Kopiuj EAN ${p._ean}">Kopiuj</button></div>` : ''}
     <div><div class="qv-k" id="qvLogT">Logistyka i paletyzacja</div>
@@ -2440,11 +2700,12 @@ function renderQv(dir){
   $('#qvName').textContent = p.name;
   $('#qvLine').textContent = p._line;
   $('#qvSeg').textContent = p.segment ? segName(p.segment) : '—';
-  $('#qvWeight').textContent = `${p.weight} g${p.weightUpdated?' · nowa gramatura':''}`;
+  $('#qvWeight').textContent = `${wTxt(p)}${p.weightUpdated?' · nowa gramatura':''}`;
   $('#qvNote').textContent = p.flavour;
   $('#qvCatEn').textContent = `${p._cat.en}${p.isNew?' · nowość':''}`;
   $('#qvCatalogue').innerHTML = qvCatalogueHtml(p);
   $('#qvAction').innerHTML = qvActionHtml(p);
+  renderQvManage(p);
   /* re-rendered controls lose focus: put it back where it was */
   if (keep!==null && !d0.contains(document.activeElement)) (document.getElementById(keep) || $('#qvToggle'))?.focus({preventScroll:true});
   const g = G();
@@ -2454,6 +2715,8 @@ function renderQv(dir){
   }
 }
 function openQv(id, ids){
+  if (!byId[id]) return;
+  ids = ids && ids.filter(x=>byId[x]);
   qvIds = ids && ids.includes(id) ? ids : [id];
   qvIdx = Math.max(0, qvIds.indexOf(id));
   qvSrc = 'pack';
@@ -2502,8 +2765,8 @@ $('#qvClose').addEventListener('click', ()=>$('#qvDlg').close());
 /* ---------- exports ---------- */
 function exportRows(){
   return offer.items.map((it,i)=>{
-    const p = byId[it.id];
-    return {lp:i+1, id:p.id, ean:p._ean, name:p.name, line:p._line, weight:p.weight, price:it.price, units:unitsOf(it), cartons:cartonsOf(it), upc:it.upc, pallets:palletsOf(it), shelf:p._log.shelfLifeDays||null, disc:it.disc||0, value:lineValue(it)};
+    const p = prodOf(it.id);
+    return {lp:i+1, id:p.id, ean:p._ean, name:p._ghost ? I18N[docLang()].unavail : p.name, line:p._line, weight:p.weight==null?'':p.weight, price:it.price, units:unitsOf(it), cartons:cartonsOf(it), upc:it.upc, pallets:palletsOf(it), shelf:p._log.shelfLifeDays||null, disc:it.disc||0, value:lineValue(it)};
   });
 }
 const num2 = n => n==null || !isFinite(n) ? '' : String(Math.round(n*100)/100).replace('.',',');
@@ -2559,9 +2822,9 @@ function toText(){
   L.push(D.items);
   if (!offer.items.length) L.push(D.noItems);
   offer.items.forEach((it,i)=>{
-    const p = byId[it.id], u = unitsOf(it);
-    L.push(`${i+1}. ${p.name} [${p.id}]${p._ean?` · EAN ${p._ean}`:''}`);
-    L.push(`   ${p._line} · ${p.weight} g`);
+    const p = prodOf(it.id), u = unitsOf(it);
+    L.push(`${i+1}. ${p._ghost ? D.unavail : p.name} [${p.id}]${p._ean?` · EAN ${p._ean}`:''}`);
+    if (!p._ghost) L.push(`   ${[p._line, p.weight ? `${p.weight} g` : ''].filter(Boolean).join(' · ')}`);
     if (lg==='en' && p._k && p._k.description) L.push(`   ${p._k.description}`);
     const qty = it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc} ${D.pcs} = ${F.n0(u)} ${D.pcs}`
       : it.mode==='pal' ? `${F.q(it.qty)} ${F.palWord(it.qty)} × ${p._cpp} ${D.ctn} × ${it.upc} ${D.pcs} = ${F.n0(u)} ${D.pcs}` : `${F.n0(u)} ${D.pcs}`;
@@ -2605,7 +2868,7 @@ let downloads = null;
     const use = window.claude?.use;
     if (typeof use !== 'function') return;
     const dl = await Promise.race([ window.claude.use('downloads'), new Promise(r=>setTimeout(()=>r(null), 10000)) ]);
-    if (dl && typeof dl.save === 'function'){ downloads = dl; $('#btnCsv').hidden = false; $('#btnSave').classList.remove('wide'); }
+    if (dl && typeof dl.save === 'function'){ downloads = dl; $('#btnCsv').hidden = false; $('#btnSave').classList.remove('wide'); try { syncExportBtn(); } catch(e){} }
   } catch(e){ /* capability unavailable: keep the button hidden */ }
 })();
 $('#btnCsv').addEventListener('click', async ()=>{
@@ -2627,16 +2890,16 @@ function renderPaper(){
   const lg = docLang(), D = I18N[lg], F = FMT[lg], en = lg==='en';
   const m = offer.meta, cur = m.currency, t = totals();
   const rows = offer.items.map((it,i)=>{
-    const p = byId[it.id], u = unitsOf(it), v = lineValue(it), pl = palletsOf(it);
+    const p = prodOf(it.id), u = unitsOf(it), v = lineValue(it), pl = palletsOf(it);
     const how = it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc}` : it.mode==='pal' ? `${F.q(it.qty)} ${D.palAbbr(it.qty)} × ${p._cpp} × ${it.upc}` : '';
     const desc = en && p._k && p._k.description ? `<br><span class="p-sub2 p-desc">${esc(p._k.description)}</span>` : '';
-    return `<tr><td>${i+1}</td><td class="p-prod"><b>${esc(p.name)}</b><br><span class="p-sub2">${p.id} · ${p.weight} g · ${esc(p._line)}</span>${p._ean?`<br><span class="p-sub2">EAN <span class="p-ean">${p._ean}</span></span>`:''}${desc}</td><td class="n">${it.price==null?'—':F.n2(it.price)}</td><td class="n">${F.n0(u)}${how?`<br><span class="p-sub2">${how}</span>`:''}</td><td class="n">${it.upc}</td><td class="n">${F.q(cartonsOf(it))}</td><td class="n">${pl==null?'—':F.pal(pl)}</td><td class="n">${it.disc?F.pct(it.disc)+'%':'—'}</td><td class="n"><b>${v==null?'—':F.n2(v)}</b></td></tr>`;
+    return `<tr><td>${i+1}</td><td class="p-prod"><b>${esc(p._ghost ? D.unavail : p.name)}</b><br><span class="p-sub2">${esc([p.id, p.weight ? `${p.weight} g` : '', p._line].filter(Boolean).join(' · '))}</span>${p._ean?`<br><span class="p-sub2">EAN <span class="p-ean">${p._ean}</span></span>`:''}${desc}</td><td class="n">${it.price==null?'—':F.n2(it.price)}</td><td class="n">${F.n0(u)}${how?`<br><span class="p-sub2">${how}</span>`:''}</td><td class="n">${it.upc}</td><td class="n">${F.q(cartonsOf(it))}</td><td class="n">${pl==null?'—':F.pal(pl)}</td><td class="n">${it.disc?F.pct(it.disc)+'%':'—'}</td><td class="n"><b>${v==null?'—':F.n2(v)}</b></td></tr>`;
   }).join('');
   const logi = offer.items.map((it,i)=>{
-    const p = byId[it.id], L = p._log;
+    const p = prodOf(it.id), L = p._log;
     return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?F.n0(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight?F.height(L.palletHeight):'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' '+D.days+(L.shelfLifeNote?'*':''):'—'}</td><td class="n">${L.shelfLifePickupDays?L.shelfLifePickupDays+' '+D.days:'—'}</td></tr>`;
   }).join('');
-  const starNote = offer.items.some(it=>byId[it.id]._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(D.shelfNote['360 days testing in progress'])}</div>` : '';
+  const starNote = offer.items.some(it=>prodOf(it.id)._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(D.shelfNote['360 days testing in progress'])}</div>` : '';
   const co = COMPANY;
   const clientLines = [...custAddrLines().map(esc), ...[['nip',D.cTaxId],['krs',D.cKrs],['email',D.email],['phone',D.phone]].filter(([k])=>cv(k)).map(([k,l])=>`<span class="p-ck">${esc(l)}</span> ${esc(cv(k))}`)];
   const catLine = CAT_ORDER.map((c,i)=>{ const s = D.cats[c].toLowerCase(); return i ? s : s.charAt(0).toUpperCase() + s.slice(1); }).join(' · ');
@@ -2789,11 +3052,1072 @@ document.addEventListener('keydown', e=>{
 function measureHdr(){ const h = document.querySelector('.hdr').getBoundingClientRect().height; document.documentElement.style.setProperty('--hdr-h', Math.round(h)+'px'); }
 try { new ResizeObserver(measureHdr).observe(document.querySelector('.hdr')); } catch(e){ addEventListener('resize', measureHdr); }
 
+/* ==addedProducts== */
+/* ---------- added products: wizard + shared store ----------
+   Products added in the wizard (kind "new") or completed ("override" of an embedded product, storing only the fields
+   that differ from the table) live in the artifact's `db` collection "products", photos in `assets` (the doc keeps the
+   asset id). Without db (signed out, not granted, a saved copy) they stay in this browser only: localStorage
+   K_CUSTOM, photo as a small data URL. Everything read back is untrusted: validated here, escaped when rendered. */
+const K_CUSTOM = 'gc_custom_products_v1';
+const BASE_BY_ID = Object.fromEntries(BASE_PRODUCTS.map(p=>[p.id,p]));
+const CP = {col:null, assets:null, user:null, me:null, canWrite:null, state:'off', slow:false, confirmed:false,
+  dbDocs:new Map(), localDocs:new Map(), assetUrls:new Map(), mine:new Set(), timer:null, unsub:null, localOk:true};
+const cpLoading = () => CP.state==='loading';
+const dbWritable = () => !!CP.col && CP.canWrite!==false && CP.state!=='error';
+const cpMode = () => dbWritable() ? 'db' : 'local';
+const canEditDoc = d => !d || d.src==='local' || dbWritable();
+const cpDocs = () => [...CP.dbDocs.values(), ...CP.localDocs.values()];
+/* display URL for a stored asset: the one upload returned in this view, else the root-relative blob path */
+const assetUrl = id => CP.assetUrls.get(id) || '/_blob/' + id;
+const plN = (n, one, few, many) => n===1 ? one : (n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? few : many;
+
+/* ---- EAN-13 ---- */
+const eanCheck = s12 => { let s = 0; for (let i=0;i<12;i++) s += Number(s12[i]) * (i%2 ? 3 : 1); return (10 - s%10) % 10; };
+const eanValid = s => /^\d{13}$/.test(s||'') && eanCheck(s.slice(0,12))===Number(s[12]);
+
+/* ---- validation of stored documents ---- */
+const CP_TXT = {name:120, line:80, segment:80, flavour:160, description:1200};
+const LOG_INT = ['unitsPerCarton','cartonsPerLayer','layersPerPallet','cartonsPerPallet','unitsPerPallet','shelfLifeDays','shelfLifePickupDays'];
+const LOG_TXT = {cartonType:40, cartonDims:60, packaging:160, palletHeight:20};
+const cleanTxt = (v, n) => typeof v==='string' ? v.replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,n) : null;
+const cleanInt = (v, lo, hi) => typeof v==='number' && isFinite(v) && Math.round(v)===v && v>=lo && v<=hi ? v : null;
+const ASSET_RE = /^[A-Za-z0-9_-]{8,64}$/;
+const DATAURL_RE = /^data:image\/(?:webp|png|jpeg);base64,[A-Za-z0-9+\/]+=*$/;
+function sanitizeDoc(raw, key, src){
+  if (!raw || typeof raw!=='object' || Array.isArray(raw) || typeof key!=='string' || !key) return null;
+  const kind = raw.kind==='override' ? 'override' : raw.kind==='new' ? 'new' : null;
+  if (!kind) return null;
+  const d = {key, src, kind, f:{}, log:{}, baseId:null, id:null, dispId:null, photoAssetId:null, photoData:null, createdBy:null, createdAt:'', updatedAt:'', status: raw.status==='complete' ? 'complete' : 'draft'};
+  if (kind==='override'){ if (typeof raw.baseId!=='string' || !BASE_BY_ID[raw.baseId]) return null; d.baseId = raw.baseId; }
+  else d.id = typeof raw.id==='string' && /^PG\d{2,5}$/.test(raw.id) ? raw.id : null;
+  for (const [k,n] of Object.entries(CP_TXT)) if (k in raw){ const v = raw[k]==null ? '' : cleanTxt(raw[k], n); if (v!=null) d.f[k] = v; }
+  if ('segment' in d.f && !d.f.segment) d.f.segment = null;
+  if ('category' in raw){ if (CAT[raw.category]) d.f.category = raw.category; else if (raw.category==='' || raw.category==null) d.f.category = ''; }
+  if ('weight' in raw){ const w = raw.weight==null ? null : cleanInt(raw.weight, 1, 100000); if (w!=null || raw.weight==null) d.f.weight = w; }
+  ['isNew','weightUpdated'].forEach(k=>{ if (typeof raw[k]==='boolean') d.f[k] = raw[k]; });
+  if ('ean' in raw){ const e = raw.ean==null ? '' : (typeof raw.ean==='string' && /^\d{0,14}$/.test(raw.ean) ? raw.ean : null); if (e!=null) d.f.ean = e; }
+  if (Array.isArray(raw.claims)) d.f.claims = [...new Set(raw.claims.map(c=>cleanTxt(c, 80)).filter(Boolean))].slice(0,12);
+  const L = raw.logistics && typeof raw.logistics==='object' && !Array.isArray(raw.logistics) ? raw.logistics : {};
+  LOG_INT.forEach(k=>{ if (k in L){ const v = L[k]==null ? null : cleanInt(L[k], 0, 10000000); if (v!=null || L[k]==null) d.log[k] = v; } });
+  Object.entries(LOG_TXT).forEach(([k,n])=>{ if (k in L) d.log[k] = cleanTxt(L[k], n) || null; });
+  if (typeof raw.photoAssetId==='string' && ASSET_RE.test(raw.photoAssetId)) d.photoAssetId = raw.photoAssetId;
+  if (src==='local' && typeof raw.photoData==='string' && raw.photoData.length < 400000 && DATAURL_RE.test(raw.photoData)) d.photoData = raw.photoData;
+  if (typeof raw.createdBy==='string' && raw.createdBy.length<=128) d.createdBy = raw.createdBy;
+  ['createdAt','updatedAt'].forEach(k=>{ if (typeof raw[k]==='string' && raw[k].length<=40 && !isNaN(Date.parse(raw[k]))) d[k] = raw[k]; });
+  return d;
+}
+/* the plain JSON written to db / localStorage */
+function docBody(d){
+  const b = {kind:d.kind};
+  if (d.kind==='override') b.baseId = d.baseId; else b.id = d.id;
+  Object.assign(b, JSON.parse(JSON.stringify(d.f)));
+  b.logistics = Object.assign({}, d.log);
+  if (d.photoAssetId) b.photoAssetId = d.photoAssetId;
+  if (d.src==='local' && d.photoData) b.photoData = d.photoData;
+  b.createdBy = d.createdBy || null;
+  b.createdAt = d.createdAt; b.updatedAt = d.updatedAt; b.status = d.status==='complete' ? 'complete' : 'draft';
+  return b;
+}
+
+/* ---- merging over the embedded assortment ---- */
+const RAW_KEYS = ['name','category','segment','line','flavour','weight','weightUpdated','isNew'];
+function productFromDoc(d, base, dispId){
+  const p = {id: base ? base.id : dispId};
+  if (base) RAW_KEYS.forEach(k=>{ p[k] = base[k]; });
+  else Object.assign(p, {name:'', category:'', segment:null, line:'', flavour:'', weight:null, weightUpdated:false, isNew:false});
+  RAW_KEYS.forEach(k=>{ if (k in d.f) p[k] = d.f[k]; });
+  p._noname = !p.name;
+  if (!p.name) p.name = 'BEZ NAZWY (SZKIC)';
+  if (p.flavour==null) p.flavour = '';
+  p.slide = base ? base.slide : p.category;
+  const k = base && base._k ? JSON.parse(JSON.stringify(base._k))
+    : {ean:'', eanNote:null, catalogueLine:'', catalogueFlavour:'', slices:null, packFormat:null, description:'', claims:[], logistics:{}, mismatch:null, packshot:null};
+  if ('ean' in d.f) k.ean = d.f.ean;
+  if ('description' in d.f) k.description = d.f.description;
+  if ('claims' in d.f) k.claims = d.f.claims.slice();
+  k.logistics = Object.assign({}, k.logistics || {}, d.log);
+  const photo = d.photoAssetId ? assetUrl(d.photoAssetId) : d.photoData;
+  decorate(p, k, photo || (base ? base._pack : null), base ? base._web : null);
+  p._custom = base ? 'override' : 'new'; p._doc = d; p._ownPhoto = !!photo;
+  return p;
+}
+function missingOf(p, cnt){
+  const m = [];
+  if (!p._pack) m.push('zdjęcie');
+  if (p._noname) m.push('nazwa');
+  if (!CAT[p.category]) m.push('kategoria');
+  if (!p.line) m.push('linia');
+  if (!p.weight) m.push('gramatura');
+  if (!eanValid(p._ean) || (cnt && cnt[p._ean]>1)) m.push('EAN');
+  if (!p._log.unitsPerCarton) m.push('szt./karton');
+  if (!p._log.cartonsPerPallet) m.push('kartony/paleta');
+  return m;
+}
+let cpSig = new Map(BASE_PRODUCTS.map(p=>[p.id,'base']));
+function rebuildProducts(){
+  const ov = new Map(), news = [];
+  cpDocs().forEach(d=>{ if (d.kind==='override') ov.set(d.baseId, d); else news.push(d); });   /* local after db: a local completion wins */
+  news.sort((a,b)=>(a.createdAt||'').localeCompare(b.createdAt||'') || a.key.localeCompare(b.key));
+  const used = new Set(BASE_PRODUCTS.map(p=>p.id)), list = [];
+  BASE_PRODUCTS.forEach(b=>{ const d = ov.get(b.id); list.push(d ? productFromDoc(d, b) : b); });
+  news.forEach(d=>{
+    let id = d.id;
+    if (!id || used.has(id)){ const stem = id || 'PGN'; let n = 2; while (used.has(`${stem}-${n}`)) n++; id = `${stem}-${n}`; }
+    used.add(id); d.dispId = id;
+    list.push(productFromDoc(d, null, id));
+  });
+  const cnt = {};
+  list.forEach(p=>{ if (p._ean) cnt[p._ean] = (cnt[p._ean]||0) + 1; });
+  list.forEach(p=>{ if (!p._custom) return; p._missing = missingOf(p, cnt); p._draft = p._custom==='new' ? (p._doc.status==='draft' || p._missing.length>0) : p._doc.status==='draft'; });
+  const changed = new Set(), next = new Map();
+  list.forEach(p=>{
+    const sig = p._custom ? JSON.stringify([p.name,p.category,p.line,p.segment,p.flavour,p.weight,p.isNew,p.weightUpdated,p._k,p._pack,p._draft,p._missing,p._custom]) : 'base';
+    next.set(p.id, sig); if (cpSig.get(p.id)!==sig) changed.add(p.id);
+  });
+  cpSig.forEach((v,id)=>{ if (!next.has(id)) changed.add(id); });
+  cpSig = next;
+  changed.forEach(id=>cardNodes.delete(id));
+  PRODUCTS.length = 0; PRODUCTS.push(...list);
+  Object.keys(byId).forEach(k=>{ delete byId[k]; });
+  list.forEach(p=>{ byId[p.id] = p; });
+  const ws = [...new Set(list.map(p=>p.weight).filter(w=>typeof w==='number' && w>0))].sort((a,b)=>a-b);
+  WEIGHTS.length = 0; WEIGHTS.push(...ws);
+  ui.weights = ui.weights.filter(w=>WEIGHTS.includes(w));
+  return changed;
+}
+function renderTiles(){
+  $('#tSku').textContent = PRODUCTS.length;
+  $('#tCat').textContent = new Set(PRODUCTS.map(p=>p.category).filter(c=>CAT[c])).size;
+  $('#tLine').textContent = new Set(PRODUCTS.map(p=>p.line).filter(Boolean)).size;
+  $('#tNew').textContent = PRODUCTS.filter(p=>p.isNew).length;
+}
+function renderItemsKeepFocus(){
+  const a = document.activeElement, id = a && a.id && $('#items').contains(a) ? a.id : null;
+  let sel = null; try { if (id && a.selectionStart!=null) sel = [a.selectionStart, a.selectionEnd]; } catch(e){}
+  renderItems();
+  if (!id) return;
+  const n = document.getElementById(id);
+  if (n){ n.focus({preventScroll:true}); try { if (sel) n.setSelectionRange(sel[0], sel[1]); } catch(e){} }
+}
+/* after any change to the added products: board, filters, tiles, offer lines that refer to them, open dialogs */
+function cpRefresh(changed){
+  renderCatChips(); renderLineSelect(); renderWeightChips(); renderProducts(); renderTiles(); syncExportBtn(); renderCpNote();
+  if (offer.items.some(it=>!byId[it.id] || !changed || changed.has(it.id))) renderItemsKeepFocus();
+  const q = $('#qvDlg');
+  if (q.open){
+    const cur = qvIds[qvIdx];
+    qvIds = qvIds.filter(id=>byId[id]);
+    if (!qvIds.length) q.close();
+    else { qvIdx = Math.max(0, qvIds.indexOf(cur)); if (qvIds.indexOf(cur)<0) qvIdx = 0; renderQv(0); }
+  }
+  if (WZ.open) wzHints();
+}
+
+/* ---- this browser's copy (fallback when db is unavailable) ---- */
+function loadLocal(){
+  CP.localDocs = new Map();
+  const raw = store.get(K_CUSTOM);
+  const docs = raw && typeof raw==='object' && raw.docs && typeof raw.docs==='object' && !Array.isArray(raw.docs) ? raw.docs : {};
+  Object.entries(docs).slice(0,500).forEach(([k,v])=>{ if (/^l[a-z0-9]{4,40}$/.test(k)){ const d = sanitizeDoc(v, k, 'local'); if (d) CP.localDocs.set(k, d); } });
+}
+function persistLocal(){
+  const docs = {};
+  CP.localDocs.forEach((d,k)=>{ docs[k] = docBody(d); });
+  CP.localOk = CP.localDocs.size ? store.set(K_CUSTOM, {v:1, docs}) : (store.del(K_CUSTOM), true);
+  return CP.localOk;
+}
+
+/* ---- shared store (db + assets + user); the page never waits for it ---- */
+async function cpConnect(){
+  let use = null;
+  try { use = window.claude && window.claude.use; } catch(e){}
+  if (typeof use!=='function'){ renderCpNote(); return; }
+  const get = n => { try { return Promise.resolve(window.claude.use(n)).catch(()=>null); } catch(e){ return Promise.resolve(null); } };
+  const [db, assets, user] = await Promise.all([get('db'), get('assets'), get('user')]);
+  CP.assets = assets && typeof assets.upload==='function' ? assets : null;
+  CP.user = user && typeof user.id==='function' ? user : null;
+  if (CP.user){
+    try { CP.me = await CP.user.id(); } catch(e){ CP.me = null; }
+    try { CP.canWrite = await CP.user.canEdit(); } catch(e){ CP.canWrite = null; }
+  }
+  try { if (db && typeof db.collection==='function') CP.col = db.collection('products'); } catch(e){ CP.col = null; }
+  if (!CP.col){ renderCpNote(); wzSyncMode(); return; }
+  CP.state = 'loading'; CP.slow = false;
+  CP.timer = setTimeout(()=>{ CP.slow = true; renderCpNote(); }, 10000);
+  if (offer.items.some(it=>!byId[it.id])) renderItemsKeepFocus();
+  try { CP.unsub = CP.col.onSnapshot(cpSnap, cpSnapErr); } catch(e){ cpSnapErr({code:'unavailable'}); }
+  renderCpNote(); wzSyncMode();
+  if ($('#qvDlg').open && byId[qvIds[qvIdx]]) renderQvManage(byId[qvIds[qvIdx]]);
+}
+function cpSnap(snap){
+  const next = new Map();
+  try { snap.docs.forEach(ds=>{ if (!ds || !ds.exists) return; const d = sanitizeDoc(ds.data(), String(ds.id), 'db'); if (d) next.set(d.key, d); }); }
+  catch(e){ return; }
+  const announce = [];
+  if (CP.confirmed){
+    try { snap.docChanges().forEach(ch=>{ if (ch.type!=='added') return; const d = next.get(String(ch.doc.id)); if (d && d.kind==='new' && !CP.mine.has(d.key) && (!CP.me || d.createdBy!==CP.me)) announce.push(d); }); } catch(e){}
+  }
+  CP.dbDocs = next;
+  const wasLoading = CP.state==='loading';
+  if (!snap.metadata || !snap.metadata.fromCache){ clearTimeout(CP.timer); CP.slow = false; CP.state = 'ready'; CP.confirmed = true; }
+  const changed = rebuildProducts();
+  if (wasLoading && CP.state==='ready') offer.items.forEach(it=>changed.add(it.id));
+  cpRefresh(changed);
+  announce.forEach(d=>{ const p = PRODUCTS.find(x=>x._doc===d); toast(`Nowy produkt: ${p ? p.name : 'bez nazwy'}`); });
+}
+function cpSnapErr(e){
+  clearTimeout(CP.timer); CP.slow = false;
+  CP.state = 'error';
+  renderCpNote(); wzSyncMode();
+  if (offer.items.some(it=>!byId[it.id])) renderItemsKeepFocus();
+}
+function renderCpNote(){
+  const n = $('#cpNote'), nl = CP.localDocs.size;
+  let html = '', warn = false;
+  if (CP.state==='error'){ html = '<b>Produkty zespołu są teraz niedostępne.</b> Widać ostatnio wczytane dane; nowe produkty zapiszemy w tej przeglądarce.'; warn = true; }
+  else if (CP.state==='loading' && CP.slow){ html = '<b>Nie udało się jeszcze wczytać produktów zespołu.</b> Próbujemy dalej — lista może być niepełna.'; warn = true; }
+  else if (nl){ html = `<b>Dodane produkty (${nl}) są zapisane tylko w tej przeglądarce.</b> ${CP.col ? 'Widzisz je tylko Ty.' : 'Zaloguj się w claude.ai, aby udostępniać je zespołowi.'}`; }
+  n.innerHTML = html; n.hidden = !html; n.classList.toggle('warn', warn);
+}
+function syncExportBtn(){
+  let dl = null; try { dl = downloads; } catch(e){}
+  $('#expNew').hidden = !(dl && cpDocs().length);
+}
+const dbErrMsg = (err, act) => {
+  const c = err && err.code;
+  if (c==='quota_exceeded') return 'Baza produktów jest pełna — usuń niepotrzebne produkty i spróbuj ponownie.';
+  if (c==='resource_exhausted' || c==='rate_limited') return 'Za dużo operacji naraz — spróbuj ponownie za chwilę.';
+  if (c==='invalid_argument') return 'Brak uprawnień do zapisu w bazie zespołu (tylko edytorzy artefaktu).';
+  if (c==='revoked' || c==='not_granted' || c==='capability_disabled' || c==='capability_removed') return 'Dostęp do bazy zespołu został wyłączony w tym widoku.';
+  return `Nie udało się ${act || 'zapisać'} — sprawdź połączenie i spróbuj ponownie.`;
+};
+/* one write at a time per document (callers await); a transient failure is retried once */
+async function dbWrite(fn){
+  try { return await fn(); }
+  catch(err){
+    if (err && err.code==='unavailable'){ await new Promise(r=>setTimeout(r, 300 + Math.random()*500)); return await fn(); }
+    throw err;
+  }
+}
+async function cpDelete(d){
+  try {
+    if (d.src==='db'){
+      await dbWrite(()=>CP.col.doc(d.key).delete());
+      CP.dbDocs.delete(d.key);
+      if (d.photoAssetId && CP.assets) CP.assets.delete(d.photoAssetId).catch(()=>{});
+    } else { CP.localDocs.delete(d.key); persistLocal(); }
+  } catch(err){
+    if (err && err.code==='invalid_argument') CP.canWrite = false;
+    if (err && err.code==='revoked'){ CP.state = 'error'; renderCpNote(); }
+    toast(dbErrMsg(err, 'usunąć'), true); return false;
+  }
+  cpRefresh(rebuildProducts());
+  return true;
+}
+
+/* ---- quick view: manage an added / completed product ---- */
+const FIELD_LBL = {name:'nazwa', category:'kategoria', line:'linia', segment:'segment', flavour:'opis roboczy', weight:'gramatura', isNew:'nowość', weightUpdated:'nowa gramatura', ean:'EAN', description:'opis', claims:'oświadczenia'};
+const SVG_EDIT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg>';
+const SVG_UNDO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg>';
+const SVG_TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>';
+function renderQvManage(p){
+  const el = $('#qvManage'); if (!el) return;
+  const d = p._doc || null, can = canEditDoc(d);
+  const when = d && (d.updatedAt || d.createdAt) ? plDate(String(d.updatedAt || d.createdAt).slice(0,10)) : '';
+  const notes = [], btns = [];
+  if (p._custom==='new'){
+    if (p._draft) notes.push(`<p class="qv-mnote warn"><b>Szkic.</b> ${p._missing.length ? 'Brakuje: ' + esc(p._missing.join(', ')) + '.' : 'Zapisany jako szkic — zatwierdź w kreatorze.'}</p>`);
+    notes.push(`<p class="qv-mnote">Produkt dodany w kreatorze${when ? ' · ' + when : ''}<span id="qvBy" data-uid="${esc(d.createdBy||'')}"></span>${d.src==='local' ? ' · <b>zapisany tylko w tej przeglądarce</b>' : ''}</p>`);
+    if (can){
+      btns.push(`<button type="button" class="btn btn-sm" id="qmEdit" data-qm="edit">${SVG_EDIT}Edytuj</button>`);
+      btns.push(`<button type="button" class="btn btn-sm btn-ghost btn-danger" id="qmDel" data-qm="del">${SVG_TRASH}Usuń produkt</button>`);
+    }
+  } else if (p._custom==='override'){
+    const ch = [...Object.keys(d.f).map(k=>FIELD_LBL[k]||k), ...(Object.keys(d.log).length ? ['logistyka'] : []), ...(p._ownPhoto ? ['zdjęcie'] : [])];
+    notes.push(`<p class="qv-mnote"><b>Dane uzupełnione</b>${ch.length ? ' — zmienione: ' + esc([...new Set(ch)].join(', ')) : ''}${when ? ' · ' + when : ''}<span id="qvBy" data-uid="${esc(d.createdBy||'')}"></span>${d.src==='local' ? ' · <b>tylko w tej przeglądarce</b>' : ''}</p>`);
+    if (p._draft) notes.push('<p class="qv-mnote warn"><b>Szkic</b> uzupełnienia — zatwierdź w kreatorze.</p>');
+    if (can){
+      btns.push(`<button type="button" class="btn btn-sm" id="qmOvr" data-qm="ovr">${SVG_EDIT}Uzupełnij dane</button>`);
+      btns.push(`<button type="button" class="btn btn-sm btn-ghost" id="qmRestore" data-qm="restore">${SVG_UNDO}Przywróć dane z tabeli</button>`);
+    }
+  } else {
+    btns.push(`<button type="button" class="btn btn-sm btn-ghost" id="qmOvr" data-qm="ovr">${SVG_EDIT}Uzupełnij dane</button>`);
+  }
+  if (d && !can) notes.push('<p class="qv-mnote">Zmieniać ten produkt mogą edytorzy artefaktu.</p>');
+  el.innerHTML = notes.join('') + (btns.length ? `<div class="qv-mbtns">${btns.join('')}</div>` : '');
+  if (d && d.createdBy && CP.user && typeof CP.user.profiles==='function'){
+    const uid = d.createdBy;
+    Promise.resolve(CP.user.profiles([uid])).then(ps=>{
+      const pr = ps && ps[uid], nm = pr && typeof pr.name==='string' ? pr.name : '';
+      const s = document.getElementById('qvBy');
+      if (nm && s && s.dataset.uid===uid) s.textContent = ` · ${p._custom==='new' ? 'dodał(a)' : 'uzupełnił(a)'}: ${nm}`;
+    }).catch(()=>{});
+  }
+}
+$('#qvManage').addEventListener('click', async e=>{
+  const b = e.target.closest('[data-qm]'); if (!b) return;
+  const p = byId[qvIds[qvIdx]]; if (!p) return;
+  const d = p._doc, act = b.dataset.qm;
+  if (act==='edit') wzOpen({doc:d});
+  else if (act==='ovr') wzOpen({baseId:p.id});
+  else if (act==='del'){
+    const inOff = inOffer(p.id);
+    const ok = await confirmBox('Usunąć produkt?', `${p.name} (${p.id}) zniknie z tablicy${d.src==='db' ? ' u całego zespołu' : ''} razem ze zdjęciem.${inOff ? ' W ofercie pozycja pokaże się jako „Produkt niedostępny”.' : ''}`, 'Usuń produkt');
+    if (ok && await cpDelete(d)){ toast(`Usunięto produkt ${p.id}`); if ($('#qvDlg').open) $('#qvDlg').close(); }
+  } else if (act==='restore'){
+    const ok = await confirmBox('Przywrócić dane z tabeli?', `Uzupełnienia produktu ${p.id} zostaną usunięte${p._ownPhoto ? ' (także dodane zdjęcie)' : ''}, a karta wróci do danych z tabeli produktów.`, 'Przywróć');
+    if (ok && await cpDelete(d)){ toast(`Przywrócono dane z tabeli: ${p.id}`); $('#qvManage [data-qm]')?.focus(); }
+  }
+});
+
+/* ---- export of added / completed products (downloads capability) ---- */
+const CSV_HEAD = ['ID','Product name','Product group','Packaging','Net weight','Shelf life (days)','Shelf life at pick-up (days)','EAN','Case L (mm)','Case H (mm)','Case W (mm)','Units/case','Cases/layer','Layers/pallet','Cases/pallet','Units/pallet','Pallet height (m)','Type','Status'];
+const dimsOf = s => { const m = /^(\d+)\s*x\s*(\d+)\s*x\s*(\d+)/i.exec(String(s||'')); return m ? {L:+m[1], W:+m[2], H:+m[3]} : null; };
+const prodOfDoc = d => PRODUCTS.find(p=>p._doc===d) || null;
+function exportNewJson(){
+  const abs = id => { try { return new URL(assetUrl(id), location.href).href; } catch(e){ return assetUrl(id); } };
+  return JSON.stringify({exportedAt:new Date().toISOString(), source:'GaliCrisp — kreator oferty (dodane i uzupełnione produkty)', count:cpDocs().length,
+    products: cpDocs().map(d=>{
+      const b = docBody(d), p = prodOfDoc(d);
+      delete b.photoData;
+      return Object.assign({docId:d.key, storage:d.src==='db' ? 'team' : 'this-browser', displayId: p ? p.id : (d.baseId || d.id)}, b,
+        {photoUrl: d.photoAssetId ? abs(d.photoAssetId) : null}, d.photoData ? {photoNote:'stored in this browser only, not exported'} : {}, p ? {missing:p._missing || []} : {});
+    })}, null, 2);
+}
+function exportNewCsv(){
+  const q = v => { const s = String(v ?? ''); return /[;"\n\r]/.test(s) ? '"'+s.replace(/"/g,'""')+'"' : s; };
+  const rows = [CSV_HEAD];
+  cpDocs().forEach(d=>{
+    const p = prodOfDoc(d); if (!p) return;
+    const L = p._log, dm = dimsOf(L.cartonDims), h = parseNum(String(L.palletHeight||'').replace(/\s*m$/,''));
+    rows.push([p.id, p.name, p._line, L.packaging||'', p.weight ? `${p.weight} g` : '', L.shelfLifeDays??'', L.shelfLifePickupDays??'', xlText(p._ean), dm?dm.L:'', dm?dm.H:'', dm?dm.W:'',
+      L.unitsPerCarton??'', L.cartonsPerLayer??'', L.layersPerPallet??'', L.cartonsPerPallet??'', L.unitsPerPallet??'', h==null?'':String(h).replace('.',','),
+      p._custom==='new' ? 'nowy' : 'uzupełniony', p._draft ? 'szkic' : 'kompletny']);
+  });
+  return rows.map(r=>r.map(q).join(';')).join('\r\n');
+}
+$('#expNew').addEventListener('click', async ()=>{
+  let dl = null; try { dl = downloads; } catch(e){}
+  if (!dl) return;
+  if (!cpDocs().length) return toast('Brak dodanych lub uzupełnionych produktów', true);
+  const date = isoDate(new Date());
+  for (const [ext, data, type] of [['json', exportNewJson(), 'application/json'], ['csv', '﻿' + exportNewCsv(), 'text/csv']]){
+    const filename = `galicrisp_nowe_produkty_${date}.${ext}`;
+    try { await dl.save({filename, data:new Blob([data],{type})}); toast(`Zapisano ${filename}`); }
+    catch(err){
+      const c = err && err.code;
+      if (c==='declined'){ toast(`Pominięto ${filename}`); continue; }
+      if (['unavailable','not_granted','capability_disabled','capability_removed'].includes(c)){ $('#expNew').hidden = true; toast('Pobieranie plików jest niedostępne w tym widoku', true); return; }
+      toast(c==='rate_limited' ? 'Zaczekaj chwilę i spróbuj ponownie' : 'Nie udało się zapisać pliku: ' + (err && err.message || 'nieznany błąd'), true);
+      return;
+    }
+  }
+});
+
+/* ---------- wizard ---------- */
+const CLAIMS_PRESET = ['Low in sugars','Source of fibre','Suitable for vegetarians','High protein'];
+const WZ = {open:false, step:0, kind:'new', doc:null, base:null, src:'local', photo:{state:'none'}, touched:{cpp:false, upp:false}, claims:[], err:{}, dirty:false, saving:false, busy:false};
+const wzEl = id => document.getElementById(id);
+const V = id => wzEl(id).value.trim();
+const intOf = id => { const s = V(id); if (s==='') return null; const n = Number(s.replace(',','.')); return Number.isInteger(n) ? n : NaN; };
+const fmtBytes = n => n < 1024 ? `${n} B` : n < 1048576 ? `${Math.round(n/1024)} KB` : `${(n/1048576).toFixed(1).replace('.',',')} MB`;
+const wzUploadsAllowed = () => WZ.src==='local' || !!CP.assets;
+const wzSelfId = () => WZ.base ? WZ.base.id : (WZ.doc && WZ.doc.dispId) || null;
+function lineIndex(){
+  const m = new Map();
+  PRODUCTS.forEach(p=>{ if (!p.line) return; const e = m.get(p.line) || {n:0, cat:p.category}; e.n++; m.set(p.line, e); });
+  return m;
+}
+function wzLineKey(v){
+  v = String(v||'').trim().replace(/\s+/g,' '); if (!v) return '';
+  const low = v.toLowerCase();
+  for (const k of lineIndex().keys()) if (k.toLowerCase()===low || lineName(k).toLowerCase()===low) return k;
+  return v;
+}
+function dimsVal(){
+  const a = ['wzDL','wzDW','wzDH'].map(intOf);
+  if (a.every(x=>x==null)) return null;
+  return a.every(x=>Number.isInteger(x) && x>0) ? `${a[0]} x ${a[1]} x ${a[2]} mm` : NaN;
+}
+function heightVal(){ const s = V('wzPh').replace(/\s*m$/i,''); if (!s) return null; const n = parseNum(s); return n==null || !(n>=0.3 && n<=3) ? NaN : `${n.toFixed(2).replace('.',',')} m`; }
+function wzRead(){
+  return {
+    f:{name:V('wzName').replace(/\s+/g,' '), category:$('#wzCat').value, line:wzLineKey(V('wzLine')), segment:V('wzSeg').replace(/\s+/g,' ') || null, flavour:V('wzFlav').replace(/\s+/g,' '),
+       weight:intOf('wzW'), isNew:$('#wzNew').checked, weightUpdated:$('#wzWU').checked, ean:V('wzEan').replace(/[\s-]/g,''),
+       description:$('#wzDesc').value.replace(/\s+/g,' ').trim(), claims:WZ.claims.slice()},
+    log:{packaging:V('wzPack').replace(/\s+/g,' ') || null, cartonType:$('#wzCt').value || null, cartonDims:dimsVal(), unitsPerCarton:intOf('wzUpc'), cartonsPerLayer:intOf('wzCpl'),
+         layersPerPallet:intOf('wzLpp'), cartonsPerPallet:intOf('wzCpp'), unitsPerPallet:intOf('wzUpp'), palletHeight:heightVal(), shelfLifeDays:intOf('wzShelf'), shelfLifePickupDays:intOf('wzPick')}
+  };
+}
+function eanOwner(v){ const self = wzSelfId(); return PRODUCTS.find(p=>p._ean===v && p.id!==self) || null; }
+function eanState(v){
+  if (!v) return {level:'', text:'13 cyfr — sprawdzamy cyfrę kontrolną i duplikaty.'};
+  if (!/^\d+$/.test(v)) return {level:'err', text:'EAN może zawierać tylko cyfry.'};
+  if (v.length===12) return {level:'err', text:`Brakuje cyfry kontrolnej (powinna być ${eanCheck(v)}).`, gen:true};
+  if (v.length!==13) return {level:'err', text:`EAN-13 ma 13 cyfr (wpisano ${v.length}).`};
+  const c = eanCheck(v.slice(0,12));
+  if (c!==Number(v[12])) return {level:'err', text:`Błędna cyfra kontrolna — powinna być ${c}.`};
+  const o = eanOwner(v);
+  if (o) return {level:'err', text:`Ten EAN ma już ${o.id} — ${o.name}.`, dup:true};
+  return {level:'ok', text:'Poprawny EAN-13 · unikalny.'};
+}
+const nameWeight = n => { const m = String(n||'').match(/(\d{2,5})\s*G\s*$/i) || String(n||'').match(/(\d{2,5})\s*G\b/i); return m ? Number(m[1]) : null; };
+/* errors for one step; strict = required fields too (Next / "Zapisz produkt"), otherwise only malformed values */
+function wzErrors(step, strict){
+  const e = [], r = wzRead();
+  if (step===1){
+    if (strict && !r.f.name) e.push(['wzName','Podaj nazwę produktu.']);
+    if (strict && !CAT[r.f.category]) e.push(['wzCat','Wybierz kategorię.']);
+    if (strict && !r.f.line) e.push(['wzLine','Wybierz istniejącą linię albo wpisz nową.']);
+    if (r.f.weight==null){ if (strict) e.push(['wzW','Podaj gramaturę w gramach.']); }
+    else if (!(r.f.weight>=1 && r.f.weight<=10000)) e.push(['wzW','Gramatura: liczba całkowita od 1 do 10 000 g.']);
+    if (r.f.ean){ const s = eanState(r.f.ean); if (s.level==='err' && (strict || !/^\d+$/.test(r.f.ean) || r.f.ean.length>13)) e.push(['wzEan', s.text]); }
+  }
+  if (step===2){
+    [['wzUpc','Szt./karton'],['wzCpl','Kartony/warstwa'],['wzLpp','Warstwy/paleta'],['wzCpp','Kartony/paleta'],['wzUpp','Szt./paleta'],['wzShelf','Termin przydatności'],['wzPick','Termin przy odbiorze']].forEach(([id,l])=>{
+      const v = intOf(id); if (v!=null && !(Number.isInteger(v) && v>=1 && v<=10000000)) e.push([id, `${l}: liczba całkowita większa od zera.`]);
+    });
+    if (Number.isNaN(r.log.cartonDims)) e.push(['wzDL','Podaj wszystkie trzy wymiary kartonu w mm (liczby całkowite).']);
+    if (Number.isNaN(r.log.palletHeight)) e.push(['wzPh','Wysokość palety w metrach, np. 1,80 (0,30–3,00).']);
+    const s = intOf('wzShelf'), k = intOf('wzPick');
+    if (Number.isInteger(s) && Number.isInteger(k) && k>s) e.push(['wzPick','Termin przy odbiorze nie może być dłuższy niż termin przydatności.']);
+  }
+  return e;
+}
+const HINT_OF = {wzDL:'wzDimsH', wzDW:'wzDimsH', wzDH:'wzDimsH'};
+const STEP_FIELDS = {1:['wzName','wzCat','wzLine','wzW','wzEan'], 2:['wzUpc','wzCpl','wzLpp','wzCpp','wzUpp','wzShelf','wzPick','wzDL','wzPh']};
+/* re-validating a step replaces its earlier errors */
+const wzClearStep = s => (STEP_FIELDS[s] || []).forEach(id=>{ delete WZ.err[id]; });
+const hintId = id => HINT_OF[id] || id + 'H';
+function setFH(id, text, cls, extra){
+  const h = wzEl(id); if (!h) return;
+  if (h.dataset.def==null) h.dataset.def = h.textContent;
+  h.className = 'fhint' + (cls ? ' ' + cls : '');
+  h.innerHTML = esc(text) + (extra || '');
+  h.hidden = !text;
+}
+/* live hints; an error stays until the field is edited */
+function wzHints(){
+  const r = wzRead(), E = WZ.err;
+  const def = id => wzEl(id).dataset.def ?? wzEl(id).textContent;
+  const show = (hid, fid, fn) => { if (E[fid]) setFH(hid, E[fid], 'err'); else fn(); };
+  show('wzNameH', 'wzName', ()=>{
+    const n = V('wzName');
+    if (n && /\p{Ll}/u.test(n)) setFH('wzNameH', 'Zalecany zapis wielkimi literami.', 'warn', ' <button type="button" class="btn btn-sm" data-fix="upper">Zamień na WIELKIE</button>');
+    else setFH('wzNameH', def('wzNameH'));
+  });
+  show('wzCatH', 'wzCat', ()=>setFH('wzCatH', ''));
+  show('wzLineH', 'wzLine', ()=>{
+    const k = r.f.line, ix = lineIndex(), e = ix.get(k);
+    if (!k) setFH('wzLineH', def('wzLineH'));
+    else if (e) setFH('wzLineH', `Istniejąca linia: ${lineName(k)} · ${e.n} SKU`, 'ok');
+    else setFH('wzLineH', `Nowa linia „${lineName(k)}” — pojawi się w filtrach.`);
+  });
+  show('wzWH', 'wzW', ()=>{
+    const nw = nameWeight(r.f.name);
+    if (nw && r.f.weight!==nw) setFH('wzWH', `W nazwie: ${nw} g.`, 'warn', ` <button type="button" class="btn btn-sm" data-fix="w">Użyj ${nw} g</button>`);
+    else setFH('wzWH', '');
+  });
+  show('wzEanH', 'wzEan', ()=>{
+    const s = eanState(r.f.ean);
+    setFH('wzEanH', s.text, s.level==='ok' ? 'ok' : s.level==='err' ? 'warn' : '', s.gen ? ' <button type="button" class="btn btn-sm" data-fix="ean">Generuj cyfrę kontrolną</button>' : '');
+  });
+  ['wzDimsH','wzPhH','wzUpcH','wzCplH','wzLppH','wzShelfH'].forEach(h=>{ const f = h==='wzDimsH' ? 'wzDL' : h.slice(0,-1); show(h, f, ()=>setFH(h, '')); });
+  show('wzPickH', 'wzPick', ()=>{
+    const s = intOf('wzShelf'), k = intOf('wzPick');
+    setFH('wzPickH', Number.isInteger(s) && Number.isInteger(k) && k>s ? 'Dłuższy niż termin przydatności.' : '', 'warn');
+  });
+  const cpl = intOf('wzCpl'), lpp = intOf('wzLpp'), upc = intOf('wzUpc'), cpp = intOf('wzCpp'), upp = intOf('wzUpp');
+  const cCalc = Number.isInteger(cpl) && Number.isInteger(lpp) ? cpl*lpp : null;
+  show('wzCppH', 'wzCpp', ()=>{
+    if (cCalc==null) setFH('wzCppH', def('wzCppH'));
+    else if (Number.isInteger(cpp) && cpp!==cCalc) setFH('wzCppH', `Niezgodne z wyliczeniem: ${cpl} × ${lpp} = ${cCalc}.`, 'warn', ' <button type="button" class="btn btn-sm" data-fix="cpp">Użyj wyliczenia</button>');
+    else setFH('wzCppH', `Wyliczono: ${cpl} × ${lpp}`, 'ok');
+  });
+  const uCalc = Number.isInteger(cpp) && Number.isInteger(upc) ? cpp*upc : null;
+  show('wzUppH', 'wzUpp', ()=>{
+    if (uCalc==null) setFH('wzUppH', def('wzUppH'));
+    else if (Number.isInteger(upp) && upp!==uCalc) setFH('wzUppH', `Niezgodne z wyliczeniem: ${cpp} × ${upc} = ${nf0.format(uCalc)}.`, 'warn', ' <button type="button" class="btn btn-sm" data-fix="upp">Użyj wyliczenia</button>');
+    else setFH('wzUppH', `Wyliczono: ${cpp} × ${upc}`, 'ok');
+  });
+  document.querySelectorAll('#wizDlg .inp').forEach(el=>{ if (E[el.id] || (HINT_OF[el.id] && E.wzDL)) el.setAttribute('aria-invalid','true'); else el.removeAttribute('aria-invalid'); });
+}
+/* computed pallet values follow their inputs until the user types their own */
+function wzAutoCalc(){
+  const cpl = intOf('wzCpl'), lpp = intOf('wzLpp'), upc = intOf('wzUpc');
+  if (!WZ.touched.cpp && Number.isInteger(cpl) && Number.isInteger(lpp)) wzEl('wzCpp').value = cpl*lpp;
+  const cpp = intOf('wzCpp');
+  if (!WZ.touched.upp && Number.isInteger(cpp) && Number.isInteger(upc)) wzEl('wzUpp').value = cpp*upc;
+}
+function wzMarkErrors(errs, focus){
+  errs.forEach(([id,msg])=>{ WZ.err[id] = msg; });
+  wzHints();
+  if (focus && errs.length){
+    const el = wzEl(errs[0][0]);
+    const go = () => { el.focus({preventScroll:false}); const g = G(); if (g) g.fromTo(el,{x:-6},{x:0, duration:.4, ease:'elastic.out(1,.35)', clearProps:'transform'}); };
+    if (el.closest('.wz-pane').hidden || G()) setTimeout(go, G() ? 330 : 0); else go();
+  }
+}
+
+/* ---- options for selects / datalists ---- */
+function wzOptions(){
+  $('#wzCat').innerHTML = '<option value="">— wybierz —</option>' + CAT_ORDER.map(c=>`<option value="${esc(c)}">${esc(CAT[c].pl)} · ${esc(CAT[c].en)}</option>`).join('');
+  const ix = lineIndex();
+  $('#wzLines').innerHTML = [...ix.entries()].map(([k,e])=>`<option value="${esc(lineName(k))}">${esc((CAT[e.cat]||{pl:''}).pl)} · ${e.n} SKU</option>`).join('');
+  const segs = [...new Set(PRODUCTS.map(p=>p.segment).filter(Boolean))];
+  $('#wzSegs').innerHTML = segs.map(s=>`<option value="${esc(s)}"></option>`).join('');
+  const packs = [...new Set(PRODUCTS.map(p=>p._log.packaging).filter(Boolean))].sort();
+  $('#wzPacks').innerHTML = packs.map(s=>`<option value="${esc(s)}"></option>`).join('');
+}
+function wzCopyOptions(){
+  const line = wzLineKey(V('wzLine')), self = wzSelfId();
+  const all = PRODUCTS.filter(p=>p.id!==self && p._log && (p._log.unitsPerCarton || p._log.cartonsPerPallet));
+  const opt = p => `<option value="${esc(p.id)}">${esc(p.id)} · ${esc(p.name)}</option>`;
+  const same = all.filter(p=>line && p.line===line), rest = all.filter(p=>!line || p.line!==line);
+  $('#wzCopy').innerHTML = '<option value="">— wybierz produkt —</option>'
+    + (same.length ? `<optgroup label="Ta sama linia: ${esc(lineName(line))}">${same.map(opt).join('')}</optgroup>` : '')
+    + `<optgroup label="${same.length ? 'Pozostałe produkty' : 'Wszystkie produkty'}">${rest.map(opt).join('')}</optgroup>`;
+}
+function wzSetLog(L){
+  const set = (id, v) => { wzEl(id).value = v==null ? '' : String(v); };
+  set('wzPack', L.packaging); $('#wzCt').value = ['1 - face','2 - face'].includes(L.cartonType) ? L.cartonType : '';
+  const dm = dimsOf(L.cartonDims); set('wzDL', dm && dm.L); set('wzDW', dm && dm.W); set('wzDH', dm && dm.H);
+  set('wzUpc', L.unitsPerCarton); set('wzCpl', L.cartonsPerLayer); set('wzLpp', L.layersPerPallet); set('wzCpp', L.cartonsPerPallet); set('wzUpp', L.unitsPerPallet);
+  set('wzPh', L.palletHeight ? String(L.palletHeight).replace(/\s*m$/i,'') : '');
+  set('wzShelf', L.shelfLifeDays); set('wzPick', L.shelfLifePickupDays);
+  const cpl = L.cartonsPerLayer, lpp = L.layersPerPallet;
+  WZ.touched.cpp = L.cartonsPerPallet!=null && !(cpl && lpp && cpl*lpp===L.cartonsPerPallet);
+  WZ.touched.upp = L.unitsPerPallet!=null && !(L.cartonsPerPallet && L.unitsPerCarton && L.cartonsPerPallet*L.unitsPerCarton===L.unitsPerPallet);
+}
+function renderClaims(){
+  const all = [...new Set([...CLAIMS_PRESET, ...PRODUCTS.flatMap(p=>p._k && p._k.claims || []), ...WZ.claims])];
+  $('#wzClaims').innerHTML = all.map((c,i)=>{
+    const on = WZ.claims.includes(c);
+    return `<button type="button" class="chip" id="wzc-${i}" data-claim="${esc(c)}" aria-pressed="${on}" lang="en">${on ? SVG_CHECK.replace('<svg ','<svg width="13" height="13" aria-hidden="true" ') : ''}${esc(c)}</button>`;
+  }).join('');
+}
+
+/* ---- photo ---- */
+const toBlobP = (c, type, q) => new Promise(res=>{ try { c.toBlob(b=>res(b||null), type, q); } catch(e){ res(null); } });
+async function canvasBlob(c, q){
+  let b = await toBlobP(c, 'image/webp', q || .86);
+  if (!b || b.type!=='image/webp') b = await toBlobP(c, 'image/png');
+  if (!b) throw new Error('encode');
+  return b;
+}
+const blobToDataUrl = b => new Promise((res, rej)=>{ const r = new FileReader(); r.onload = ()=>res(String(r.result)); r.onerror = ()=>rej(r.error); r.readAsDataURL(b); });
+function scaleCanvas(src, k){
+  const c = document.createElement('canvas');
+  c.width = Math.max(1, Math.round(src.width*k)); c.height = Math.max(1, Math.round(src.height*k));
+  const x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(src, 0, 0, c.width, c.height);
+  return c;
+}
+/* decode (File or URL) → canvas whose long side is at most max px; halving steps keep the downscale sharp */
+async function decodeToCanvas(src, max){
+  let im = null, w = 0, h = 0;
+  if (src instanceof Blob && typeof createImageBitmap==='function'){
+    try { im = await createImageBitmap(src); w = im.width; h = im.height; } catch(e){ im = null; }
+  }
+  if (!im){
+    const url = src instanceof Blob ? await blobToDataUrl(src) : src;
+    im = await new Promise((res, rej)=>{ const i = new Image(); i.onload = ()=>res(i); i.onerror = ()=>rej(new Error('decode')); i.src = url; });
+    w = im.naturalWidth; h = im.naturalHeight;
+  }
+  if (!w || !h) throw new Error('decode');
+  let c = document.createElement('canvas'); c.width = w; c.height = h;
+  c.getContext('2d').drawImage(im, 0, 0);
+  if (im.close) try { im.close(); } catch(e){}
+  while (Math.max(c.width, c.height) > max*2) c = scaleCanvas(c, .5);
+  const k = max / Math.max(c.width, c.height);
+  return k < 1 ? scaleCanvas(c, k) : c;
+}
+/* near-white pixels connected to the image edge become transparent; a soft rim keeps edges clean */
+function removeWhiteBg(src){
+  const w = src.width, h = src.height, c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const x = c.getContext('2d'); x.drawImage(src, 0, 0);
+  const im = x.getImageData(0, 0, w, h), d = im.data, n = w*h;
+  const seen = new Uint8Array(n), q = new Int32Array(n);
+  let qh = 0, qt = 0;
+  const white = i => { const o = i*4, r = d[o], g = d[o+1], b = d[o+2]; if (d[o+3] < 24) return true; const mn = Math.min(r,g,b), mx = Math.max(r,g,b); return mn >= 228 && mx - mn <= 26; };
+  const push = i => { if (!seen[i] && white(i)){ seen[i] = 1; q[qt++] = i; } };
+  for (let X=0; X<w; X++){ push(X); push((h-1)*w + X); }
+  for (let Y=0; Y<h; Y++){ push(Y*w); push(Y*w + w - 1); }
+  while (qh < qt){
+    const i = q[qh++], X = i % w;
+    if (X > 0) push(i-1); if (X < w-1) push(i+1); if (i >= w) push(i-w); if (i < n-w) push(i+w);
+  }
+  for (let i=0;i<n;i++) if (seen[i]) d[i*4+3] = 0;
+  for (let i=0;i<n;i++){
+    if (seen[i]) continue;
+    const X = i % w;
+    if (!((X>0 && seen[i-1]) || (X<w-1 && seen[i+1]) || (i>=w && seen[i-w]) || (i<n-w && seen[i+w]))) continue;
+    const o = i*4, mn = Math.min(d[o], d[o+1], d[o+2]);
+    if (mn > 200) d[o+3] = Math.min(d[o+3], Math.round(255 * (255 - mn) / 55));
+  }
+  x.putImageData(im, 0, 0);
+  return c;
+}
+async function encodeSmall(c, max){
+  let cur = c;
+  for (let i=0;i<7;i++){
+    for (const q of [.86,.74,.62,.5]){
+      const b = await canvasBlob(cur, q), du = await blobToDataUrl(b);
+      if (du.length <= max) return {blob:b, dataUrl:du, w:cur.width, h:cur.height};
+      if (b.type!=='image/webp') break;
+    }
+    cur = scaleCanvas(cur, .8);
+  }
+  throw new Error('too big');
+}
+async function wzEncode(){
+  const ph = WZ.photo, c = ph.bgOn && ph.bgCanvas ? ph.bgCanvas : ph.srcCanvas;
+  if (WZ.src==='local'){ const r = await encodeSmall(c, 150*1024); ph.blob = r.blob; ph.dataUrl = r.dataUrl; ph.w = r.w; ph.h = r.h; }
+  else { ph.blob = await canvasBlob(c); ph.dataUrl = await blobToDataUrl(ph.blob); ph.w = c.width; ph.h = c.height; }
+  ph.size = ph.blob.size; ph.type = ph.blob.type;
+}
+function wzPhotoErr(msg){ const e = $('#wzPhotoErr'); e.textContent = msg || ''; e.hidden = !msg; }
+function wzBusy(on){ WZ.busy = on; $('#wzBusy').hidden = !on; ['wzChoose','wzReplace','wzRemove','wzBg'].forEach(id=>{ wzEl(id).disabled = on; }); }
+async function wzTakeFile(file){
+  if (!file || WZ.busy) return;
+  if (!wzUploadsAllowed()) return;
+  wzPhotoErr('');
+  const nm = String(file.name||''), tp = String(file.type||'');
+  if (!/^image\//.test(tp) && !/\.(jpe?g|png|webp|gif|bmp|avif|heic|heif)$/i.test(nm)) return wzPhotoErr('To nie jest plik graficzny. Wybierz zdjęcie JPG, PNG lub WebP.');
+  if (file.size > 40*1024*1024) return wzPhotoErr('Plik jest za duży (maks. 40 MB).');
+  wzBusy(true);
+  try {
+    const src = await decodeToCanvas(file, 900);
+    const bgOn = $('#wzBg').checked;
+    WZ.photo = {state:'new', srcCanvas:src, bgCanvas: bgOn ? removeWhiteBg(src) : null, bgOn, origSize:file.size, origName:nm};
+    await wzEncode();
+    WZ.dirty = true;
+  } catch(e){
+    wzPhotoErr(/hei[cf]/i.test(tp + ' ' + nm) ? 'Nie można odczytać zdjęcia HEIC/HEIF w tej przeglądarce. Zapisz je jako JPG lub PNG i spróbuj ponownie.' : 'Nie udało się odczytać tego zdjęcia. Spróbuj z plikiem JPG, PNG lub WebP.');
+  } finally { wzBusy(false); }
+  wzRenderPhoto();
+  const g = G(); if (g && WZ.photo.state==='new') g.fromTo('#wzImg',{opacity:0, y:12, scale:.96},{opacity:1, y:0, scale:1, duration:.4, ease:'power2.out', clearProps:'opacity,transform,scale'});
+}
+/* background removal also works on a photo that is already stored: it is re-read and saved as a new one */
+async function wzToggleBg(on){
+  const ph = WZ.photo;
+  if (WZ.busy) return;
+  if (ph.state==='none' || ph.state==='removed'){ ph.bgOn = on; return; }
+  wzPhotoErr(''); wzBusy(true);
+  try {
+    if (!ph.srcCanvas){
+      const url = ph.url;
+      const src = await decodeToCanvas(url, 900);
+      src.getContext('2d').getImageData(0, 0, 1, 1);   /* throws if the image cannot be read back */
+      WZ.photo = Object.assign({}, ph, {state:'new', srcCanvas:src, origSize:null});
+    }
+    const p2 = WZ.photo;
+    p2.bgOn = on;
+    if (on && !p2.bgCanvas) p2.bgCanvas = removeWhiteBg(p2.srcCanvas);
+    await wzEncode();
+    WZ.dirty = true;
+  } catch(e){ $('#wzBg').checked = !on; wzPhotoErr('Nie udało się przetworzyć tego zdjęcia.'); }
+  finally { wzBusy(false); }
+  wzRenderPhoto();
+}
+/* all four corners near-white → the photo probably has a white background */
+function whiteCorners(c){
+  try {
+    const x = c.getContext('2d'), w = c.width, h = c.height;
+    return [[1,1],[w-2,1],[1,h-2],[w-2,h-2]].every(([X,Y])=>{ const d = x.getImageData(X, Y, 1, 1).data; return d[3] > 200 && Math.min(d[0],d[1],d[2]) >= 228; });
+  } catch(e){ return false; }
+}
+function miniCanvas(src){
+  const k = Math.min(1, 240 / Math.max(src.width, src.height));
+  const c = scaleCanvas(src, k); c.setAttribute('aria-hidden','true');
+  return c;
+}
+function wzPhotoUrl(){
+  const ph = WZ.photo;
+  if (ph.state==='new') return ph.dataUrl;
+  if (ph.state==='keep' || ph.state==='base') return ph.url;
+  if (ph.state==='removed' && WZ.base && WZ.base._pack) return WZ.base._pack;
+  return null;
+}
+function wzRenderPhoto(){
+  const ph = WZ.photo, url = wzPhotoUrl(), up = wzUploadsAllowed();
+  const st = $('#wzStage'), img = $('#wzImg');
+  st.classList.toggle('has', !!url);
+  if (url){ if (img.getAttribute('src')!==url) img.src = url; img.hidden = false; } else { img.removeAttribute('src'); img.hidden = true; }
+  const tag = $('#wzTag');
+  const baseShown = ph.state==='base' || (ph.state==='removed' && url);
+  tag.textContent = ph.state==='new' ? (ph.bgOn ? 'Nowe zdjęcie · bez tła' : 'Nowe zdjęcie') : ph.state==='keep' ? 'Zapisane zdjęcie' : baseShown ? 'Zdjęcie z katalogu' : '';
+  tag.hidden = !tag.textContent;
+  $('#wzDrop').hidden = !up;
+  $('#wzAssetNote').hidden = up;
+  const info = $('#wzInfo');
+  if (ph.state==='new') info.innerHTML = `<b>${ph.type==='image/webp' ? 'WebP' : 'PNG'}</b> · ${ph.w}×${ph.h} px · <b>${fmtBytes(ph.size)}</b>${ph.origSize ? ` (oryginał ${fmtBytes(ph.origSize)})` : ''}${WZ.src==='local' ? ' · zapis w tej przeglądarce' : ''}${!ph.bgOn && whiteCorners(ph.srcCanvas) ? '<br>Wykryto białe tło — włącz „Usuń białe tło”, aby produkt stał na czerwonej scenie jak packshoty.' : ''}`;
+  else if (ph.state==='keep') info.textContent = 'Zapisane zdjęcie — bez zmian.';
+  else if (baseShown) info.textContent = 'Zdjęcie z katalogu produktów. Możesz dodać własne.';
+  else info.textContent = up ? 'Brak zdjęcia. Najlepiej packshot na białym lub przezroczystym tle.' : 'Brak zdjęcia.';
+  const has = !!url;
+  $('#wzReplace').hidden = !(has && up);
+  const canRemove = ph.state==='new' || ph.state==='keep';
+  $('#wzRemove').hidden = !canRemove;
+  $('#wzRemove').textContent = WZ.base && WZ.base._pack ? 'Przywróć zdjęcie z katalogu' : 'Usuń zdjęcie';
+  const bg = $('#wzBg'); bg.checked = !!ph.bgOn; bg.disabled = WZ.busy || !up || ph.state==='removed';
+  bg.closest('.toggle').hidden = !up;
+  const ba = $('#wzBA');
+  const showBA = ph.state==='new' && ph.bgOn && ph.bgCanvas && ph.srcCanvas;
+  ba.hidden = !showBA;
+  if (showBA && ba._for!==ph.bgCanvas){
+    ba._for = ph.bgCanvas;
+    $('#wzBefore').replaceChildren(miniCanvas(ph.srcCanvas)); $('#wzAfter').replaceChildren(miniCanvas(ph.bgCanvas));
+  }
+}
+
+/* ---- steps ---- */
+const panes = () => [...document.querySelectorAll('#wizDlg .wz-pane')];
+function wzRenderSteps(){
+  document.querySelectorAll('#wzSteps button').forEach(b=>{
+    const s = Number(b.dataset.step);
+    b.classList.toggle('done', s < WZ.step);
+    if (s===WZ.step) b.setAttribute('aria-current','step'); else b.removeAttribute('aria-current');
+  });
+  $('#wzBack').disabled = WZ.step===0;
+  const last = WZ.step===3;
+  $('#wzNext').hidden = last; $('#wzSave').hidden = !last;
+  $('#wzPos').textContent = `Krok ${WZ.step+1} z 4`;
+}
+function wzShow(n, noFocus){
+  const ps = panes(), from = ps[WZ.step], to = ps[n], dir = n > WZ.step ? 1 : -1;
+  if (n===2) wzCopyOptions();
+  if (n===3){ renderClaims(); wzSummary(); }
+  WZ.step = n; wzRenderSteps();
+  const settle = () => {
+    ps.forEach((p,i)=>{ p.hidden = i!==WZ.step; });
+    const h = wzEl('wzH' + WZ.step);
+    if (!noFocus && h && $('#wizDlg').contains(document.activeElement) && !ps[WZ.step].contains(document.activeElement)) h.focus({preventScroll:true});
+  };
+  const g = G();
+  if (!g || from===to){ settle(); }
+  else {
+    g.killTweensOf(ps);
+    g.to(from,{opacity:0, x:-22*dir, duration:.14, ease:'power1.in', onComplete(){
+      g.set(from,{clearProps:'opacity,transform'});
+      settle();
+      if (to===ps[WZ.step]) g.fromTo(to,{opacity:0, x:22*dir},{opacity:1, x:0, duration:.26, ease:'power2.out', clearProps:'opacity,transform'});
+    }});
+  }
+  $('#wzBody').scrollTop = 0;
+}
+function wzGo(n){
+  if (n===WZ.step || WZ.busy) return;
+  if (n > WZ.step){
+    for (let s=WZ.step; s<n; s++){
+      const errs = wzErrors(s, true);
+      wzClearStep(s);
+      if (errs.length){ if (s!==WZ.step) wzShow(s); wzMarkErrors(errs, true); return; }
+    }
+  }
+  wzShow(n);
+}
+
+/* ---- summary: the card as the board will show it + completeness ---- */
+function wzDocFromForm(){
+  const r = wzRead(), prev = WZ.doc, ph = WZ.photo;
+  const d = {key: prev ? prev.key : null, src: WZ.src, kind: WZ.kind, baseId: WZ.base ? WZ.base.id : null, id: WZ.kind==='new' ? (prev && prev.id) || nextId() : null,
+    f:{}, log:{}, photoAssetId: prev ? prev.photoAssetId : null, photoData: prev ? prev.photoData : null, createdBy: prev ? prev.createdBy : (CP.me || null),
+    createdAt: prev && prev.createdAt || '', updatedAt: '', status:'draft'};
+  const clean = o => { Object.keys(o).forEach(k=>{ if (typeof o[k]==='number' && Number.isNaN(o[k])) o[k] = null; }); return o; };
+  r.f = clean(r.f); r.log = clean(r.log);
+  if (Number.isNaN(r.log.cartonDims)) r.log.cartonDims = null;
+  if (Number.isNaN(r.log.palletHeight)) r.log.palletHeight = null;
+  if (WZ.kind==='new'){ d.f = r.f; d.log = r.log; }
+  else {
+    /* only what differs from the table */
+    const b = WZ.base, bk = b._k || {}, bl = bk.logistics || {};
+    const same = (a, c) => JSON.stringify(a==='' ? null : a ?? null)===JSON.stringify(c==='' ? null : c ?? null);
+    const baseF = {name:b.name, category:b.category, line:b.line, segment:b.segment||null, flavour:b.flavour, weight:b.weight, isNew:!!b.isNew, weightUpdated:!!b.weightUpdated, ean:bk.ean||'', description:bk.description||'', claims:bk.claims||[]};
+    Object.keys(r.f).forEach(k=>{ if (!same(r.f[k], baseF[k])) d.f[k] = r.f[k]; });
+    Object.keys(r.log).forEach(k=>{ if (!same(r.log[k], bl[k])) d.log[k] = r.log[k]; });
+  }
+  if (ph.state==='removed'){ d.photoAssetId = null; d.photoData = null; }
+  return d;
+}
+function wzPreviewProduct(d){
+  const tmp = Object.assign({}, d, {photoAssetId:null, photoData:null});
+  const url = wzPhotoUrl();
+  const p = productFromDoc(tmp, WZ.base, d.id || 'PG??');
+  if (url && url!==(WZ.base && WZ.base._pack)){ p._pack = url; p._ownPhoto = true; }
+  else if (!url) p._pack = null;
+  const cnt = {}; PRODUCTS.forEach(x=>{ if (x._ean && x.id!==p.id) cnt[x._ean] = (cnt[x._ean]||0) + 1; });
+  if (p._ean) cnt[p._ean] = (cnt[p._ean]||0) + 1;
+  p._missing = missingOf(p, cnt);
+  p._draft = p._missing.length > 0;
+  return p;
+}
+const CHECKS = [
+  ['zdjęcie','Zdjęcie',0,null], ['nazwa','Nazwa oficjalna',1,'wzName'], ['kategoria','Kategoria',1,'wzCat'], ['linia','Linia produktowa',1,'wzLine'],
+  ['gramatura','Gramatura',1,'wzW'], ['EAN','EAN-13 (poprawny i unikalny)',1,'wzEan'], ['szt./karton','Szt./karton',2,'wzUpc'], ['kartony/paleta','Kartony/paleta',2,'wzCpp']];
+function wzSummary(){
+  const d = wzDocFromForm(), p = wzPreviewProduct(d);
+  const card = buildCard(p);
+  card.querySelector('.ctl').innerHTML = `<span class="btn btn-sm btn-dark" aria-hidden="true">${SVG_PLUS}Dodaj do oferty</span>`;
+  card.querySelectorAll('button').forEach(b=>{ b.tabIndex = -1; });
+  const pv = $('#wzPreview'); pv.replaceChildren(card); pv.inert = true;
+  const L = p._log;
+  const opt = [['opis (EN)', !!(p._k && p._k.description), 3, 'wzDesc'], ['opakowanie', !!L.packaging, 2, 'wzPack'], ['wymiary kartonu', !!L.cartonDims, 2, 'wzDL'],
+    ['termin przydatności', !!L.shelfLifeDays, 2, 'wzShelf'], ['wysokość palety', !!L.palletHeight, 2, 'wzPh']];
+  const li = (ok, label, step, field, isOpt) => `<li class="${ok?'ok':'miss'}${isOpt?' opt':''}"><span class="st">${ok ? SVG_CHECK : isOpt ? '–' : '!'}</span><span>${esc(label)}${isOpt ? '<span class="fopt"> · opcjonalnie</span>' : ''}</span>${ok ? '' : `<button type="button" class="btn btn-sm btn-ghost go" data-goto="${step}" data-field="${field||''}">Uzupełnij</button>`}</li>`;
+  $('#wzCheck').innerHTML = CHECKS.map(([k,l,s,f])=>li(!p._missing.includes(k), l, s, f)).join('') + opt.map(([l,ok,s,f])=>li(ok, l, s, f, true)).join('');
+  const v = $('#wzVerdict');
+  if (WZ.kind==='override'){
+    const n = Object.keys(d.f).length + Object.keys(d.log).length + (WZ.photo.state==='new' ? 1 : 0) + (WZ.photo.state==='removed' ? 1 : 0);
+    v.className = 'wz-verdict ' + (n ? 'ok' : 'draft');
+    v.textContent = n ? `Zapiszemy tylko zmienione pola (${n}). Dane z tabeli zostają nienaruszone.` : 'Brak zmian względem danych z tabeli.';
+  } else if (!p._missing.length){ v.className = 'wz-verdict ok'; v.textContent = 'Komplet danych — produkt zostanie zapisany jako kompletny.'; }
+  else { v.className = 'wz-verdict draft'; v.textContent = `Brakuje: ${p._missing.join(', ')} — zapiszemy produkt jako szkic.`; }
+  const g = G(); if (g) g.fromTo('#wzCheck li',{opacity:0, x:8},{opacity:1, x:0, duration:.22, stagger:.025, ease:'power2.out', clearProps:'opacity,transform'});
+}
+function nextId(){
+  let max = 0;
+  const scan = id => { const m = /^PG(\d+)$/.exec(id||''); if (m) max = Math.max(max, Number(m[1])); };
+  BASE_PRODUCTS.forEach(p=>scan(p.id)); cpDocs().forEach(d=>scan(d.id));
+  return 'PG' + String(max+1).padStart(2,'0');
+}
+
+/* ---- open / close ---- */
+function wzSyncMode(){
+  if (!WZ.open) return;
+  if (!WZ.doc) WZ.src = cpMode();
+  const m = $('#wzMode'), local = WZ.src==='local';
+  let t = '';
+  if (local){
+    if (WZ.doc && WZ.doc.src==='local' && CP.col) t = 'Ten produkt jest zapisany tylko w tej przeglądarce.';
+    else if (!CP.col) t = 'Zapisano tylko w tej przeglądarce — zaloguj się w claude.ai, aby udostępnić produkt zespołowi.';
+    else if (CP.state==='error') t = 'Baza zespołu jest teraz niedostępna — zapiszemy produkt tylko w tej przeglądarce.';
+    else t = 'Nie masz uprawnień edycji tego artefaktu — zapiszemy produkt tylko w tej przeglądarce.';
+  } else t = WZ.kind==='override' ? 'Uzupełnienie zobaczy cały zespół.' : 'Produkt zobaczy cały zespół.';
+  m.textContent = t; m.hidden = !t; m.classList.toggle('local', local);
+  wzRenderPhoto();
+}
+function wzOpen(opts){
+  opts = opts || {};
+  const q = $('#qvDlg'); if (q.open) q.close();
+  let doc = opts.doc || null, base = null;
+  if (opts.baseId && BASE_BY_ID[opts.baseId]){ base = BASE_BY_ID[opts.baseId]; doc = cpDocs().filter(d=>d.kind==='override' && d.baseId===opts.baseId).pop() || null; }
+  else if (doc && doc.kind==='override') base = BASE_BY_ID[doc.baseId] || null;
+  if (doc && !canEditDoc(doc)) return toast('Ten produkt mogą zmieniać tylko edytorzy artefaktu', true);
+  Object.assign(WZ, {open:true, step:0, kind: base ? 'override' : 'new', doc, base, src: doc ? doc.src : cpMode(), touched:{cpp:false, upp:false}, err:{}, dirty:false, saving:false, busy:false});
+  const p = doc ? prodOfDoc(doc) : base;
+  wzOptions();
+  $('#wzTitle').textContent = base ? `Uzupełnij dane · ${base.id}` : doc ? `Edycja produktu · ${p ? p.id : ''}` : 'Nowy produkt';
+  $('#wzSub').textContent = base ? `${(p||base).name} — zapiszemy tylko pola, które różnią się od tabeli produktów.` : 'Zdjęcie, dane, logistyka i opis — szkic możesz zapisać na każdym kroku.';
+  const val = (id, v) => { wzEl(id).value = v==null ? '' : String(v); };
+  val('wzName', p && !p._noname ? p.name : ''); $('#wzCat').value = p && CAT[p.category] ? p.category : '';
+  val('wzLine', p && p.line ? lineName(p.line) : ''); val('wzSeg', p ? p.segment || '' : ''); val('wzFlav', p ? p.flavour : '');
+  val('wzW', p && p.weight ? p.weight : ''); val('wzEan', p ? p._ean : '');
+  $('#wzNew').checked = p ? !!p.isNew : true; $('#wzWU').checked = p ? !!p.weightUpdated : false;
+  wzSetLog(p ? p._log : {});
+  $('#wzDesc').value = p && p._k ? p._k.description || '' : '';
+  WZ.claims = p && p._k && Array.isArray(p._k.claims) ? p._k.claims.slice() : [];
+  $('#wzClaimNew').value = '';
+  if (doc && doc.photoAssetId) WZ.photo = {state:'keep', url:assetUrl(doc.photoAssetId), bgOn:false};
+  else if (doc && doc.photoData) WZ.photo = {state:'keep', url:doc.photoData, bgOn:false};
+  else if (base && base._pack) WZ.photo = {state:'base', url:base._pack, bgOn:false};
+  else WZ.photo = {state:'none', bgOn:false};
+  wzPhotoErr('');
+  document.querySelectorAll('#wizDlg .fhint[data-def]').forEach(h=>{ h.textContent = h.dataset.def; h.className = 'fhint'; h.hidden = !h.dataset.def; });
+  panes().forEach((pn,i)=>{ pn.hidden = i!==0; });
+  wzRenderSteps(); wzSyncMode(); wzHints();
+  const d = $('#wizDlg');
+  try { if (!d.open) d.showModal(); } catch(e){}
+  $('#wzBody').scrollTop = 0;
+  (wzUploadsAllowed() ? $('#wzChoose') : $('#wzNext')).focus();
+}
+async function wzClose(){
+  if (WZ.saving) return;
+  if (WZ.dirty){
+    const ok = await confirmBox('Zamknąć kreator?', 'Niezapisane zmiany zostaną utracone. Możesz też zapisać szkic.', 'Zamknij bez zapisu');
+    if (!ok) return;
+  }
+  $('#wizDlg').close();
+}
+
+/* ---- save ---- */
+function wzLock(on, label){
+  WZ.saving = on;
+  ['wzDraft','wzSave','wzNext','wzBack','wzX'].forEach(id=>{ wzEl(id).disabled = on || (id==='wzBack' && WZ.step===0); });
+  if (label) wzEl(label).textContent = on ? 'Zapisywanie…' : label==='wzDraft' ? 'Zapisz szkic' : 'Zapisz produkt';
+}
+async function wzSave(asDraft){
+  if (WZ.saving || WZ.busy) return;
+  for (const s of [1,2]){
+    const errs = wzErrors(s, !asDraft && s===1);
+    wzClearStep(s);
+    if (errs.length){ if (WZ.step!==s) wzShow(s); wzMarkErrors(errs, true); toast('Popraw zaznaczone pola', true); return; }
+  }
+  const d = wzDocFromForm(), prev = WZ.doc, ph = WZ.photo;
+  if (WZ.kind==='override' && !Object.keys(d.f).length && !Object.keys(d.log).length && !(ph.state==='new' || (ph.state==='keep' && prev && (prev.photoAssetId || prev.photoData)))){
+    if (prev){ wzLock(true, asDraft ? 'wzDraft' : 'wzSave'); const ok = await cpDelete(prev); wzLock(false, asDraft ? 'wzDraft' : 'wzSave'); if (!ok) return; toast(`Brak zmian — ${WZ.base.id} pokazuje dane z tabeli`); }
+    else toast('Brak zmian względem danych z tabeli');
+    WZ.dirty = false; $('#wizDlg').close(); return;
+  }
+  const pv = wzPreviewProduct(d);
+  const now = new Date().toISOString();
+  d.updatedAt = now; d.createdAt = d.createdAt || now;
+  d.status = !asDraft && (WZ.kind==='override' || !pv._missing.length) ? 'complete' : 'draft';
+  const btn = asDraft ? 'wzDraft' : 'wzSave';
+  wzLock(true, btn);
+  let newAsset = null;
+  try {
+    if (d.src==='db'){
+      if (ph.state==='new'){
+        let up;
+        try { up = await CP.assets.upload(ph.blob, {type: ph.blob.type}); }
+        catch(err){ if (err && err.code==='store_unavailable'){ await new Promise(r=>setTimeout(r, 600)); up = await CP.assets.upload(ph.blob, {type: ph.blob.type}); } else throw Object.assign({}, err, {upload:true}); }
+        if (!up || !ASSET_RE.test(String(up.id||''))) throw {upload:true, code:'upstream_error'};
+        newAsset = up.id; CP.assetUrls.set(up.id, String(up.url || '/_blob/' + up.id));
+        d.photoAssetId = up.id; d.photoData = null;
+      }
+      const ref = d.key ? CP.col.doc(d.key) : CP.col.doc();
+      d.key = String(ref.id); CP.mine.add(d.key);
+      const body = docBody(d);
+      await dbWrite(()=>ref.set(body));
+      const old = prev && prev.photoAssetId;
+      if (old && old!==d.photoAssetId && CP.assets) CP.assets.delete(old).catch(()=>{});   /* replaced or removed by this save */
+      const sd = sanitizeDoc(body, d.key, 'db'); if (sd) CP.dbDocs.set(d.key, sd);
+    } else {
+      if (ph.state==='new'){ d.photoData = ph.dataUrl; d.photoAssetId = null; }
+      if (!d.key || !(prev && prev.src==='local')) d.key = 'l' + Date.now().toString(36) + Math.random().toString(36).slice(2,7);
+      const sd = sanitizeDoc(docBody(d), d.key, 'local'); if (sd) CP.localDocs.set(d.key, sd);
+      if (!persistLocal()) toast('Pamięć przeglądarki jest niedostępna — produkt zniknie po odświeżeniu strony.', true);
+    }
+  } catch(err){
+    wzLock(false, btn);
+    if (newAsset && CP.assets) CP.assets.delete(newAsset).catch(()=>{});   /* nothing points at it */
+    if (err && err.upload){
+      const c = err.code;
+      if (['not_granted','capability_disabled','capability_removed'].includes(c)){ CP.assets = null; wzRenderPhoto(); }
+      toast(c==='too_large' ? 'Zdjęcie jest za duże.' : c==='unsupported_type' ? 'Ten format zdjęcia nie jest obsługiwany.' : c==='quota_or_state' ? 'Brak miejsca na zdjęcia w tym artefakcie.' : c==='rate_limited' ? 'Za dużo wgrań naraz — spróbuj za chwilę.' : 'Nie udało się wgrać zdjęcia — spróbuj ponownie.', true);
+      return;
+    }
+    if (err && err.code==='invalid_argument'){
+      CP.canWrite = false; WZ.src = 'local'; if (WZ.photo.state==='new') { try { await wzEncode(); } catch(e){} }
+      wzSyncMode(); renderCpNote();
+      toast('Brak uprawnień do zapisu w bazie zespołu. Kliknij „Zapisz” ponownie, aby zapisać produkt w tej przeglądarce.', true);
+      return;
+    }
+    if (err && err.code==='revoked'){ CP.state = 'error'; renderCpNote(); wzSyncMode(); }
+    toast(dbErrMsg(err), true);
+    return;
+  }
+  wzLock(false, btn);
+  WZ.dirty = false;
+  const changed = rebuildProducts();
+  cpRefresh(changed);
+  $('#wizDlg').close();
+  const p = prodOfDoc(CP.dbDocs.get(d.key) || CP.localDocs.get(d.key));
+  const id = p ? p.id : (d.baseId || d.id);
+  const where = d.src==='db' ? '' : ' · tylko w tej przeglądarce';
+  toast(d.status==='complete' ? `Zapisano ${id}${d.src==='db' ? ' — widoczny dla zespołu' : where}` : `Zapisano szkic ${id}${p && p._missing && p._missing.length ? ' · brakuje: ' + p._missing.join(', ') : ''}${where}`);
+  const card = cardNodes.get(id);
+  if (card && card.isConnected && !card.classList.contains('off')){
+    try { card.scrollIntoView({block:'nearest', behavior: mqRM.matches ? 'auto' : 'smooth'}); } catch(e){}
+    const g = G(); if (g) g.fromTo(card.querySelector('.card-in'),{boxShadow:'0 0 0 3px rgba(225,19,57,.7)'},{boxShadow:'0 0 0 0 rgba(225,19,57,0)', duration:1.4, ease:'power2.out', delay:.3, clearProps:'boxShadow'});
+  }
+}
+
+/* ---- events ---- */
+$('#addProd').addEventListener('click', ()=>wzOpen({}));
+$('#wzX').addEventListener('click', ()=>wzClose());
+$('#wizDlg').addEventListener('cancel', e=>{ e.preventDefault(); wzClose(); });
+$('#wizDlg').addEventListener('close', ()=>{ WZ.open = false; });
+$('#wzBack').addEventListener('click', ()=>wzGo(WZ.step-1));
+$('#wzNext').addEventListener('click', ()=>wzGo(WZ.step+1));
+$('#wzSave').addEventListener('click', ()=>wzSave(false));
+$('#wzDraft').addEventListener('click', ()=>wzSave(true));
+$('#wzSteps').addEventListener('click', e=>{ const b = e.target.closest('[data-step]'); if (b) wzGo(Number(b.dataset.step)); });
+$('#wzChoose').addEventListener('click', ()=>$('#wzFile').click());
+$('#wzReplace').addEventListener('click', ()=>$('#wzFile').click());
+$('#wzFile').addEventListener('change', e=>{ const f = e.target.files && e.target.files[0]; e.target.value = ''; wzTakeFile(f); });
+$('#wzRemove').addEventListener('click', ()=>{
+  const prevStored = WZ.doc && (WZ.doc.photoAssetId || WZ.doc.photoData);
+  WZ.photo = {state: prevStored ? 'removed' : (WZ.base && WZ.base._pack ? 'base' : 'none'), url: WZ.base && WZ.base._pack || null, bgOn:false};
+  WZ.dirty = true; wzPhotoErr(''); wzRenderPhoto();
+  toast(WZ.base && WZ.base._pack ? 'Przywrócono zdjęcie z katalogu (po zapisaniu)' : 'Zdjęcie usunięte (po zapisaniu)');
+});
+$('#wzBg').addEventListener('change', e=>wzToggleBg(e.target.checked));
+(function(){
+  const st = $('#wzStage'), dlg = $('#wizDlg');
+  ['dragenter','dragover'].forEach(t=>st.addEventListener(t, e=>{ if (!wzUploadsAllowed()) return; e.preventDefault(); st.classList.add('over'); }));
+  ['dragleave','dragend'].forEach(t=>st.addEventListener(t, e=>{ if (!st.contains(e.relatedTarget)) st.classList.remove('over'); }));
+  st.addEventListener('drop', e=>{ e.preventDefault(); st.classList.remove('over'); const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f) wzTakeFile(f); });
+  /* a file dropped elsewhere in the dialog must not navigate away */
+  dlg.addEventListener('dragover', e=>e.preventDefault());
+  dlg.addEventListener('drop', e=>e.preventDefault());
+  dlg.addEventListener('paste', e=>{
+    if (WZ.step!==0 || !wzUploadsAllowed()) return;
+    const items = e.clipboardData && e.clipboardData.files;
+    const f = items && [...items].find(x=>/^image\//.test(x.type));
+    if (f){ e.preventDefault(); wzTakeFile(f); }
+  });
+})();
+$('#wizDlg').addEventListener('input', e=>{
+  const id = e.target.id; if (!id || id==='wzFile' || id==='wzBg' || id==='wzCopy' || id==='wzClaimNew') return;
+  WZ.dirty = true;
+  delete WZ.err[id]; if (HINT_OF[id]) delete WZ.err.wzDL;
+  if (id==='wzCpp') WZ.touched.cpp = V('wzCpp')!=='';
+  if (id==='wzUpp') WZ.touched.upp = V('wzUpp')!=='';
+  if (id==='wzEan'){ const t = e.target, v = t.value.replace(/[^\d]/g,''); if (v!==t.value && !/[^\d\s-]/.test(t.value)) t.value = v; }
+  if (id==='wzName' && !V('wzW')){ const nw = nameWeight(V('wzName')); if (nw && nw<=10000){ wzEl('wzW').value = nw; delete WZ.err.wzW; } }
+  if (['wzCpl','wzLpp','wzUpc','wzCpp'].includes(id)){ wzAutoCalc(); delete WZ.err.wzCpp; delete WZ.err.wzUpp; }
+  wzHints();
+});
+$('#wzLine').addEventListener('change', ()=>{
+  const k = wzLineKey(V('wzLine')), e = lineIndex().get(k);
+  if (e && !$('#wzCat').value && CAT[e.cat]){ $('#wzCat').value = e.cat; delete WZ.err.wzCat; }
+  wzHints();
+});
+$('#wizDlg').addEventListener('change', e=>{ if (['wzNew','wzWU','wzCat','wzCt'].includes(e.target.id)){ WZ.dirty = true; delete WZ.err[e.target.id]; wzHints(); } });
+$('#wizDlg').addEventListener('click', e=>{
+  const fx = e.target.closest('[data-fix]');
+  if (fx){
+    const k = fx.dataset.fix;
+    if (k==='upper'){ wzEl('wzName').value = V('wzName').toLocaleUpperCase('pl'); delete WZ.err.wzName; wzEl('wzName').focus(); }
+    else if (k==='w'){ const nw = nameWeight(V('wzName')); if (nw) wzEl('wzW').value = nw; delete WZ.err.wzW; wzEl('wzW').focus(); }
+    else if (k==='ean'){ const v = V('wzEan'); if (/^\d{12}$/.test(v)){ wzEl('wzEan').value = v + eanCheck(v); delete WZ.err.wzEan; } wzEl('wzEan').focus(); }
+    else if (k==='cpp'){ WZ.touched.cpp = false; delete WZ.err.wzCpp; wzAutoCalc(); wzEl('wzCpp').focus(); }
+    else if (k==='upp'){ WZ.touched.upp = false; delete WZ.err.wzUpp; wzAutoCalc(); wzEl('wzUpp').focus(); }
+    WZ.dirty = true; wzHints(); return;
+  }
+  const go = e.target.closest('[data-goto]');
+  if (go){ const s = Number(go.dataset.goto), f = go.dataset.field; wzShow(s, !!f); if (f) setTimeout(()=>wzEl(f)?.focus(), G() ? 330 : 0); return; }
+  const cl = e.target.closest('[data-claim]');
+  if (cl){
+    const c = cl.dataset.claim;
+    WZ.claims = WZ.claims.includes(c) ? WZ.claims.filter(x=>x!==c) : [...WZ.claims, c];
+    WZ.dirty = true; renderClaims(); wzSummary(); document.getElementById(cl.id)?.focus(); return;
+  }
+});
+function wzAddClaim(){
+  const v = cleanTxt($('#wzClaimNew').value, 80);
+  if (!v) return;
+  if (!WZ.claims.includes(v)) WZ.claims.push(v);
+  $('#wzClaimNew').value = ''; WZ.dirty = true; renderClaims(); wzSummary(); $('#wzClaimNew').focus();
+}
+$('#wzClaimAdd').addEventListener('click', wzAddClaim);
+$('#wzClaimNew').addEventListener('keydown', e=>{ if (e.key==='Enter'){ e.preventDefault(); wzAddClaim(); } });
+$('#wzDesc').addEventListener('change', ()=>{ if (WZ.step===3) wzSummary(); });
+$('#wzCopy').addEventListener('change', e=>{
+  const p = byId[e.target.value]; e.target.value = '';
+  if (!p) return;
+  wzSetLog(p._log); WZ.dirty = true;
+  ['wzPack','wzDL','wzUpc','wzCpl','wzLpp','wzCpp','wzUpp','wzPh','wzShelf','wzPick'].forEach(id=>{ delete WZ.err[id]; });
+  wzHints(); toast(`Skopiowano logistykę z ${p.id}`);
+  const g = G(); if (g) g.fromTo('#wizDlg [data-pane="2"] .wz-grid .inp',{backgroundColor:'rgba(45,122,76,.18)'},{backgroundColor:'rgba(45,122,76,0)', duration:.9, ease:'power1.out', clearProps:'backgroundColor'});
+});
+/* ==/addedProducts== */
+
 /* ---------- init ---------- */
-$('#tLine').textContent = new Set(PRODUCTS.map(p=>p.line)).size;
-$('#tNew').textContent = PRODUCTS.filter(p=>p.isNew).length;
-$('#tSku').textContent = PRODUCTS.length;
-$('#tCat').textContent = new Set(PRODUCTS.map(p=>p.category)).size;
+/* products added in this browser render with the first paint; the shared ones arrive later (cpConnect) */
+loadLocal(); rebuildProducts(); renderTiles();
 $('#sortSel').value = ui.sort;
 document.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed', x.dataset.view===ui.view));
 renderWeightChips();
@@ -2802,6 +4126,8 @@ updateSavedCount();
 syncSheetMode();
 measureHdr();
 if (!store.get(K_DRAFT)) persist();
+renderCpNote();
+cpConnect();
 
 /* intro: short staggered fade-up from the visible resting state (skipped without GSAP or with reduced motion) */
 (function intro(){
