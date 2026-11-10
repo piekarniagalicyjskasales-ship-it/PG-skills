@@ -1228,6 +1228,9 @@ table.ptable{min-width:760px}
 .pc-mfr{font-family:var(--d-disp);font-size:15px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-align:right;line-height:1.75;color:#fff;text-shadow:0 1px 8px rgba(60,0,4,.55)}
 .pc-mfr b{font-family:var(--d-serif);font-weight:600;font-size:24px;letter-spacing:0;color:#F2C98A;margin-right:9px;vertical-align:-1px}
 .pc-main{position:absolute;left:56px;right:56px;top:590px}
+.pc-main.with-logo{top:496px}
+.pc-logo.pc-logo-main{display:block;width:max-content;margin-bottom:24px}
+.pc-logo.pc-logo-main img{height:46px}
 .pc-kick{font-family:var(--d-disp);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--d-gold)}
 .pc-h{font-family:var(--d-serif);font-weight:500;font-size:64px;line-height:1.04;margin:12px 0 26px;color:#fff}
 .pc-h em{font-style:italic;color:var(--d-gold)}
@@ -3722,8 +3725,8 @@ const DOC_TPL = {
       const head = c.pl ? esc(T.heroPL).replace(/\.\s+(.+)$/, '.<br><em>$1</em>') : esc(T.heroPG).replace(/(\S+)$/, '<em>$1</em>');
       const mark = `<img src="img/logo.png" alt="GaliCrisp" width="420" height="204">`;
       out.push({page:`<section class="page tpl-premium p-cover"><div class="pc-photo" style="background-image:url('img/cover.webp')"></div><div class="pc-shade"></div>
-        <div class="pc-top"><div class="pc-logo">${mark}</div><div class="pc-mfr">${T.stats.map(([a,b])=>`<b>${esc(a)}</b>${esc(b)}`).join('<br>')}</div></div>
-        <div class="pc-main"><div class="pc-kick">${esc(docTitle(c.lg))}</div><h1 class="pc-h">${head}</h1><div class="pc-rule"></div><div class="pc-for">${esc(T.preparedFor)}</div><div class="pc-client">${esc(client) || '—'}</div>${c.pl && cv('brand') ? `<div class="pc-brand">${esc(D.plSub)}: ${esc(cv('brand'))}</div>` : ''}</div>
+        <div class="pc-top">${c.pl ? '<div></div>' : `<div class="pc-logo">${mark}</div>`}<div class="pc-mfr">${T.stats.map(([a,b])=>`<b>${esc(a)}</b>${esc(b)}`).join('<br>')}</div></div>
+        <div class="pc-main${c.pl ? ' with-logo' : ''}">${c.pl ? `<div class="pc-logo pc-logo-main">${mark}</div>` : ''}<div class="pc-kick">${esc(docTitle(c.lg))}</div><h1 class="pc-h">${head}</h1><div class="pc-rule"></div><div class="pc-for">${esc(T.preparedFor)}</div><div class="pc-client">${esc(client) || '—'}</div>${c.pl && cv('brand') ? `<div class="pc-brand">${esc(D.plSub)}: ${esc(cv('brand'))}</div>` : ''}</div>
         <div class="pc-meta"><div><i>${esc(D.offerType)}</i><b>${esc(D.otype[offer.type])}</b></div><div><i>${esc(T.no)}</i><b>${esc(c.no)}</b></div><div><i>${esc(D.date)}</i><b>${esc(F.dateLong(m.date))}</b></div><div><i>${esc(D.valid)}</i><b>${esc(F.dateLong(m.validUntil))}</b></div></div>
         <span class="pg-num" hidden></span></section>`});
       const letter = (c.pl ? T.letterPL : T.letterPG)(client, cv('brand'));
