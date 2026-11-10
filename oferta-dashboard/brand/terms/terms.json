@@ -1,0 +1,444 @@
+{
+  "pg": {
+    "title": "BRAND GALICIA: COMMERCIAL TERMS AND CONDITIONS",
+    "source": "Galicia_Commercial_Terms_and_Conditions.docx",
+    "sections": [
+      {
+        "heading": "1. Costs and Responsibilities",
+        "kind": "costs",
+        "columns": [
+          "Kind of cost",
+          "Paid by: NAME",
+          "Paid by: Piekarnia Galicyjska"
+        ],
+        "rows": [
+          [
+            "Cost of labels/cardboard box/printed foil design",
+            "No",
+            "Yes"
+          ],
+          [
+            "Cost of carton box design (SRP)",
+            "No",
+            "Yes"
+          ],
+          [
+            "Cost of ready-made labels/cardboard boxes/printed foil/carton boxes purchased from the printing house",
+            "No",
+            "Yes"
+          ],
+          [
+            "Cost of transparent foil for production use",
+            "No",
+            "Yes"
+          ],
+          [
+            "Cost of audits requested by NAME",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of audits of NAME's customers",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of inspections requested by NAME",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of checking the nutritional values of products",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of additional certificates required by NAME",
+            "Yes",
+            "No"
+          ],
+          [
+            "Other analytical costs",
+            "Yes",
+            "No"
+          ]
+        ],
+        "notes": [
+          "Any additional certification costs required by NAME that have not been included in the original offer shall be re-invoiced to NAME after the total costs to be incurred by Piekarnia Galicyjska have been specified and communicated to NAME."
+        ]
+      },
+      {
+        "heading": "2. Product Specification",
+        "kind": "paras",
+        "paras": [
+          "Products shall be manufactured in accordance with the product specifications agreed upon and approved in writing by both parties.",
+          "NAME is responsible for reviewing and approving the final product specifications before the start of production, including product composition, ingredients, allergens, nutritional values and other product-related information.",
+          "Any changes to the approved product specification requested by NAME shall be subject to the Manufacturer's technical assessment and written approval. Such changes may require a revised price offer and/or an updated production schedule.",
+          "The Manufacturer shall not be responsible for any consequences resulting from incorrect or incomplete information provided or approved by NAME, subject to the responsibilities imposed on the Manufacturer by applicable law."
+        ]
+      },
+      {
+        "heading": "3. General Commercial Conditions",
+        "kind": "table",
+        "columns": [
+          "Parameter",
+          "Conditions"
+        ],
+        "rows": [
+          [
+            "Currency",
+            "EUR"
+          ],
+          [
+            "Price validity",
+            "The price is guaranteed for 6 months from the date of the offer. The price guarantee is confirmed by signing the Order Confirmation within the validity period of the offer."
+          ],
+          [
+            "Price adjustments",
+            "In the event of sudden and significant changes in market prices, the Manufacturer reserves the right to renegotiate prices with NAME or terminate the concluded supply agreement with 3 months' notice."
+          ],
+          [
+            "Incoterms",
+            "EXW, 37-430 JEŻOWE 560e, POLAND"
+          ],
+          [
+            "Payment",
+            "Prepayment"
+          ],
+          [
+            "Marketing costs requested by NAME",
+            "Not included in the offer"
+          ],
+          [
+            "Minimum order quantities (MOQ)",
+            "4 pallets per product index (per flavour). The date of the first order shall be agreed upon with the Manufacturer."
+          ],
+          [
+            "Order quantities in the final contract",
+            "To be agreed upon separately and confirmed in writing by both parties."
+          ],
+          [
+            "Order conditions",
+            "Products manufactured in accordance with the approved specifications and confirmed Order Confirmation are non-returnable."
+          ],
+          [
+            "Pallet costs",
+            "Two options are available: (1) pallet exchange provided by NAME; or (2) pallet reimbursement at EUR 16 per pallet."
+          ],
+          [
+            "Offer confirmation method",
+            "By e-mail and Order Confirmation (a document specifying the detailed arrangements)."
+          ]
+        ]
+      },
+      {
+        "heading": "4. Additional Notes",
+        "kind": "paras",
+        "paras": [
+          "The prices quoted in this offer apply exclusively to the product configuration, packaging specifications and conditions described in this offer. Any changes resulting in additional or reduced costs will require a revised price offer.",
+          "The price offer applies to standard products with standard packaging. Any changes to the product or packaging specifications, including changes to product weight, packaging dimensions, packaging materials, packaging format or the number of units per outer carton, may require a revised price offer.",
+          "Any changes to the agreed product or packaging configuration must be confirmed in writing by both parties before implementation."
+        ]
+      }
+    ]
+  },
+  "pl": {
+    "title": "ADDITIONAL COMMERCIAL TERMS AND CONDITIONS – PRIVATE LABEL",
+    "source": "Private_Label_Commercial_Terms_Piekarnia_Galicyjska.docx",
+    "sections": [
+      {
+        "heading": "1. Packaging Costs and Responsibilities",
+        "kind": "costs",
+        "columns": [
+          "Kind of cost",
+          "Paid by: NAME",
+          "Paid by: Piekarnia Galicyjska"
+        ],
+        "rows": [
+          [
+            "Cost of label design",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of foil design",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of cardboard box design",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of carton design (SRP)",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of lid carton design",
+            "No – standard grey lid is used",
+            "No – standard grey lid is used"
+          ],
+          [
+            "Printing plate colours for labels",
+            "Yes",
+            "No"
+          ],
+          [
+            "Printing plate colours for foils",
+            "Yes",
+            "No"
+          ],
+          [
+            "Printing plate colours for cardboard boxes",
+            "Yes",
+            "No"
+          ],
+          [
+            "Printing plate colours for cartons",
+            "Yes, or no if the Piekarnia Galicyjska standard carton box is used",
+            "No"
+          ],
+          [
+            "Cost of punching dies (labels/cardboard boxes/cartons – SRP)",
+            "No, if the existing Piekarnia Galicyjska punching dies are used",
+            "No"
+          ],
+          [
+            "Cost of ready-made labels/cardboard boxes/cartons purchased from the printing house",
+            "No",
+            "Yes"
+          ],
+          [
+            "Cost of transparent/printed foil used for production",
+            "No",
+            "Yes"
+          ],
+          [
+            "Cost of audits requested by NAME",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of audits of NAME's customers",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of inspections requested by NAME",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of checking the nutritional values of products",
+            "Yes",
+            "No"
+          ],
+          [
+            "Other analytical costs",
+            "Yes",
+            "No"
+          ],
+          [
+            "Cost of pallets",
+            "Yes",
+            "No"
+          ]
+        ],
+        "notes": []
+      },
+      {
+        "heading": "2. Packaging Materials – Ordering and Stock Management",
+        "kind": "packaging",
+        "items": [
+          {
+            "n": 1,
+            "text": "Each purchase of Private Label packaging materials must be agreed upon between the Manufacturer and NAME."
+          },
+          {
+            "n": 2,
+            "text": "When placing orders, NAME is obliged to take into account the stock levels of packaging materials held by the Manufacturer."
+          }
+        ],
+        "intro": "The minimum and maximum quantities of packaging materials ordered from the printing house are as follows:",
+        "columns": [
+          "Type of packaging",
+          "Minimum order quantity from the printing house (to be confirmed with NAME)",
+          "Maximum order quantity"
+        ],
+        "rows": [
+          [
+            "Labels",
+            "25,000 pcs – per one flavour",
+            "Maximum quantity corresponding to three months of estimated production, but not less than 25,000 pcs"
+          ],
+          [
+            "Carton box",
+            "12,000 pcs (12,000 trays and 12,000 lids)",
+            "Maximum quantity corresponding to three months of estimated production, but not less than 12,000 pcs"
+          ],
+          [
+            "Cardboard box",
+            "25,000 pcs – per one flavour",
+            "Maximum quantity corresponding to three months of estimated production, but not less than 25,000 pcs"
+          ],
+          [
+            "Printed foil",
+            "300 kg – per one flavour",
+            "Maximum quantity corresponding to three months of estimated production, but not less than 300 kg"
+          ]
+        ],
+        "itemsAfter": [
+          {
+            "n": 3,
+            "text": "NAME is obliged to use the above-mentioned labels, foils and cartons within 12 months from the date of their purchase by the Manufacturer."
+          },
+          {
+            "n": 4,
+            "text": "If NAME fails to use the packaging materials within 12 months, Piekarnia Galicyjska reserves the right to invoice NAME for all remaining unused packaging materials at their original purchase price, including applicable transportation costs, as well as the costs of disposal and transportation of unused packaging materials, where applicable. The payment term shall be 14 days from the invoice date."
+          },
+          {
+            "n": 5,
+            "text": "Any subsequent orders of labels, foils and cartons shall be subject to the same conditions, meaning that the materials must be used within 12 months from their purchase by the Manufacturer."
+          },
+          {
+            "n": 6,
+            "text": "In the event that no order is placed for a particular product within 4 months from the date of the last order, NAME shall be obliged to purchase all remaining packaging materials dedicated to that product at their original purchase price. This includes any applicable transportation costs, as well as the costs of disposal and transportation of unused packaging materials, where applicable. The Manufacturer shall issue an invoice for the above-mentioned costs, with a payment term of 14 days."
+          },
+          {
+            "n": 7,
+            "text": "In the event of immediate termination of cooperation as a result of the termination of the Agreement by either the Manufacturer or NAME, NAME shall be obliged to purchase all remaining packaging materials dedicated to its products at their original purchase price. This obligation also applies to packaging materials already ordered from the printing house but not yet delivered to the Manufacturer, provided that such orders were previously approved by NAME. All applicable transportation costs, as well as the costs of disposal and transportation of unused packaging materials, where applicable, shall also be borne by NAME. The payment term shall be 14 days from the invoice date."
+          }
+        ]
+      },
+      {
+        "heading": "3. Product Specification",
+        "kind": "list",
+        "items": [
+          {
+            "n": 1,
+            "text": "Products shall be manufactured in accordance with the product specifications agreed upon and approved in writing by both parties."
+          },
+          {
+            "n": 2,
+            "text": "NAME is responsible for reviewing and approving the final product specifications before the start of production, including product composition, ingredients, allergens, nutritional values and other product-related information."
+          },
+          {
+            "n": 3,
+            "text": "Any changes to the approved product specification requested by NAME shall be subject to the Manufacturer's technical assessment and written approval. Such changes may require a revised price offer and/or an updated production schedule."
+          },
+          {
+            "n": 4,
+            "text": "The Manufacturer shall not be responsible for any consequences resulting from incorrect or incomplete information provided or approved by NAME."
+          }
+        ]
+      },
+      {
+        "heading": "4. Packaging Artwork Approval",
+        "kind": "list",
+        "items": [
+          {
+            "n": 1,
+            "text": "NAME is responsible for providing and approving all packaging artwork, including product descriptions, texts, translations, nutritional information, ingredient lists, allergen declarations, barcodes and other legally required information appearing on the packaging."
+          },
+          {
+            "n": 2,
+            "text": "The Manufacturer shall review and approve the packaging artwork from a technical and production perspective before printing and production."
+          },
+          {
+            "n": 3,
+            "text": "Printing of packaging materials and production of products shall not commence until the final artwork has been approved in writing by both parties."
+          },
+          {
+            "n": 4,
+            "text": "Any changes to the approved artwork requested by NAME after its approval may result in additional costs and changes to the agreed production schedule. All additional costs related to such changes shall be borne by NAME."
+          },
+          {
+            "n": 5,
+            "text": "NAME shall be responsible for ensuring that all information and claims provided for the packaging artwork comply with the applicable legislation in the destination market."
+          }
+        ]
+      },
+      {
+        "heading": "5. Product Availability and Commercial Rights",
+        "kind": "paras",
+        "paras": [
+          "The above-mentioned products constitute the generally available commercial offer of Piekarnia Galicyjska and may be offered to other customers under their own brands, both in the country designated by NAME and in other countries. Any arrangements concerning exclusivity or restrictions on the sale of products to other customers must be agreed upon separately and confirmed in writing by both parties."
+        ]
+      },
+      {
+        "heading": "6. General Commercial Conditions",
+        "kind": "table",
+        "columns": [
+          "Parameter",
+          "Conditions"
+        ],
+        "rows": [
+          [
+            "Price",
+            "EXW – EUR"
+          ],
+          [
+            "Incoterms",
+            "EXW, 37-430 JEŻOWE 560e, POLAND"
+          ],
+          [
+            "Payment",
+            "Prepayment"
+          ],
+          [
+            "Price validity",
+            "The price is guaranteed for 6 months from the date of the offer. The price guarantee is confirmed by signing the Order Confirmation within the validity period of the offer."
+          ],
+          [
+            "Price adjustments",
+            "In the event of sudden and significant changes in market prices, the Manufacturer reserves the right to renegotiate prices with NAME or terminate the concluded supply agreement with 3 months' notice."
+          ],
+          [
+            "Marketing costs requested by NAME",
+            "Not included in the offer"
+          ],
+          [
+            "Minimum order quantities (MOQ)",
+            "4 pallets per product index (per flavour). The date of the first order shall be agreed upon with the Manufacturer."
+          ],
+          [
+            "Order quantities in the final contract",
+            "To be agreed upon separately and confirmed in writing by both parties."
+          ],
+          [
+            "Order conditions",
+            "Products manufactured in accordance with the approved specifications and confirmed Order Confirmation are non-returnable."
+          ],
+          [
+            "Pallet costs",
+            "Two options are available: (1) pallet exchange provided by NAME; or (2) pallet reimbursement at EUR 16 per pallet."
+          ],
+          [
+            "Offer confirmation method",
+            "By e-mail and Order Confirmation (a document specifying the detailed arrangements)."
+          ]
+        ]
+      },
+      {
+        "heading": "7. Additional Notes",
+        "kind": "list",
+        "items": [
+          {
+            "n": 1,
+            "text": "The prices quoted in this offer apply exclusively to the product configuration, packaging specifications and conditions described in this offer. Any changes resulting in additional or reduced costs will require a revised price offer."
+          },
+          {
+            "n": 2,
+            "text": "The price offer applies to standard products with standard packaging. Any changes to the product or packaging specifications, including changes to the product weight, packaging dimensions, packaging material, packaging format or the number of units per outer carton, may require a revised price offer."
+          },
+          {
+            "n": 3,
+            "text": "Any changes to the agreed product or packaging configuration must be confirmed in writing by both parties before implementation."
+          }
+        ]
+      }
+    ]
+  }
+}

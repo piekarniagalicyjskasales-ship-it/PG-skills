@@ -499,7 +499,7 @@ textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-h
 .otype-tag[hidden]{display:none}
 .otype-tag.lang-tag,.saved-list .badge-lang{background:transparent;color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line-strong)}
 .fab .fab-tag.lang-tag{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75)}
-.paper .p-pl{margin-top:4px;font-size:var(--t-sm);font-weight:600;color:#6B4E25}
+.paper:not(.docs) .p-pl{margin-top:4px;font-size:var(--t-sm);font-weight:600;color:#6B4E25}
 @media (max-width:1099.98px){
   .otype{order:3;flex-basis:100%;flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
   .otype-sw button{min-height:30px;padding:0 14px;font-size:var(--t-sm)}
@@ -640,30 +640,30 @@ dialog[open]::backdrop{opacity:1}
 .preview-bar{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px 10px 16px;border-radius:999px}
 .preview-bar h3{margin:0;font-family:var(--f-display);font-size:var(--t-md);font-weight:500;letter-spacing:.1em;text-transform:uppercase}
 .paper{background:var(--paper);color:var(--paper-ink);border-radius:6px;padding:clamp(20px,5vw,48px);box-shadow:var(--shadow);overflow:auto;max-height:calc(100dvh - 120px)}
-.paper .p-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:18px;border-bottom:3px solid #E11339}
-.paper .p-logo{height:46px;width:auto;display:block;margin-bottom:6px}
-.paper .p-brand{font-family:var(--f-display);font-size:1rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
-.paper .p-sub{color:var(--paper-ink-2);font-size:var(--t-sm)}
-.paper .p-doc{text-align:right}
-@media (max-width:560px){.paper .p-doc{text-align:left}}
-.paper .p-doc .t{font-family:var(--f-serif);font-style:italic;font-size:1.6rem;font-weight:500;line-height:1.1}
-.paper .p-parties{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:18px 0}
-.paper .p-k{font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--paper-ink-2);font-weight:400}
-.paper .p-v{font-weight:600;overflow-wrap:anywhere}
-.paper .p-cl{margin-top:4px;font-size:12.5px;line-height:1.5;overflow-wrap:anywhere}
-.paper .p-cc{margin-top:6px}
-.paper .p-ck{font-family:var(--f-display);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-ink-2);margin-right:3px}
-.paper .p-tablewrap{overflow-x:auto}
-.paper table{width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:600px}
-.paper th{text-align:left;font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--paper-ink-2);font-weight:400;padding:8px 6px;border-bottom:1px solid var(--paper-ink)}
-.paper td{padding:8px 6px;border-bottom:1px solid var(--paper-line);vertical-align:top;font-variant-numeric:tabular-nums}
-.paper td.n,.paper th.n{text-align:right;white-space:nowrap}
-.paper .p-tot{margin-left:auto;width:min(320px,100%);margin-top:16px;display:flex;flex-direction:column;gap:4px;font-variant-numeric:tabular-nums}
-.paper .p-tot div{display:flex;justify-content:space-between;gap:12px}
-.paper .p-tot .g{font-weight:800;font-size:1.1rem;border-top:2px solid var(--paper-ink);padding-top:6px;margin-top:4px}
-.paper .p-notes{margin-top:22px;padding-top:12px;border-top:1px solid var(--paper-line);font-size:var(--t-sm);white-space:pre-wrap}
-.paper .p-foot{margin-top:24px;font-size:11px;color:var(--paper-ink-2)}
-.paper .p-desc{display:inline-block;max-width:46ch;margin-top:2px;line-height:1.35;font-style:italic}
+.paper:not(.docs) .p-head{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:18px;border-bottom:3px solid #E11339}
+.paper:not(.docs) .p-logo{height:46px;width:auto;display:block;margin-bottom:6px}
+.paper:not(.docs) .p-brand{font-family:var(--f-display);font-size:1rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.paper:not(.docs) .p-sub{color:var(--paper-ink-2);font-size:var(--t-sm)}
+.paper:not(.docs) .p-doc{text-align:right}
+@media (max-width:560px){.paper:not(.docs) .p-doc{text-align:left}}
+.paper:not(.docs) .p-doc .t{font-family:var(--f-serif);font-style:italic;font-size:1.6rem;font-weight:500;line-height:1.1}
+.paper:not(.docs) .p-parties{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:18px 0}
+.paper:not(.docs) .p-k{font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--paper-ink-2);font-weight:400}
+.paper:not(.docs) .p-v{font-weight:600;overflow-wrap:anywhere}
+.paper:not(.docs) .p-cl{margin-top:4px;font-size:12.5px;line-height:1.5;overflow-wrap:anywhere}
+.paper:not(.docs) .p-cc{margin-top:6px}
+.paper:not(.docs) .p-ck{font-family:var(--f-display);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-ink-2);margin-right:3px}
+.paper:not(.docs) .p-tablewrap{overflow-x:auto}
+.paper:not(.docs) table{width:100%;border-collapse:collapse;font-size:var(--t-sm);min-width:600px}
+.paper:not(.docs) th{text-align:left;font-family:var(--f-display);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--paper-ink-2);font-weight:400;padding:8px 6px;border-bottom:1px solid var(--paper-ink)}
+.paper:not(.docs) td{padding:8px 6px;border-bottom:1px solid var(--paper-line);vertical-align:top;font-variant-numeric:tabular-nums}
+.paper:not(.docs) td.n,.paper:not(.docs) th.n{text-align:right;white-space:nowrap}
+.paper:not(.docs) .p-tot{margin-left:auto;width:min(320px,100%);margin-top:16px;display:flex;flex-direction:column;gap:4px;font-variant-numeric:tabular-nums}
+.paper:not(.docs) .p-tot div{display:flex;justify-content:space-between;gap:12px}
+.paper:not(.docs) .p-tot .g{font-weight:800;font-size:1.1rem;border-top:2px solid var(--paper-ink);padding-top:6px;margin-top:4px}
+.paper:not(.docs) .p-notes{margin-top:22px;padding-top:12px;border-top:1px solid var(--paper-line);font-size:var(--t-sm);white-space:pre-wrap}
+.paper:not(.docs) .p-foot{margin-top:24px;font-size:11px;color:var(--paper-ink-2)}
+.paper:not(.docs) .p-desc{display:inline-block;max-width:46ch;margin-top:2px;line-height:1.35;font-style:italic}
 
 /* fly-to-offer clone */
 .fly{position:fixed;z-index:95;pointer-events:none;margin:0;border-radius:14px;overflow:hidden;background:var(--pack-bg);box-shadow:0 18px 36px -12px rgba(70,0,6,.6);will-change:transform,opacity;object-fit:contain;-webkit-mask-image:none;mask-image:none;transform-origin:0 0}
@@ -775,17 +775,17 @@ table.ptable{min-width:760px}
 .tot-log > span{display:inline-flex;align-items:baseline;gap:6px}
 .tot-log .tot-hint{margin-left:auto}
 /* preview document: company block + logistics sub-table */
-.paper table{min-width:620px}
-.paper th,.paper td{padding-left:5px;padding-right:5px}
-.paper thead th,.paper thead th.n{white-space:normal;vertical-align:bottom;line-height:1.3}
-.paper td.p-prod{min-width:160px}
-.paper .p-co{margin-top:8px;font-size:12px;line-height:1.5;color:var(--paper-ink-2);-webkit-user-select:text;user-select:text}
-.paper .p-co b{color:var(--paper-ink);font-weight:600}
-.paper .p-ean{font-family:var(--f-mono);font-size:11.5px;white-space:nowrap}
-.paper .p-sub2{color:var(--paper-ink-2);font-size:12px}
-.paper .p-sec{margin:24px 0 6px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-ink-2)}
-.paper .p-logi table{font-size:12px;min-width:640px}
-.paper .p-cofoot{margin-top:20px;padding-top:10px;border-top:1px solid var(--paper-line);display:flex;flex-wrap:wrap;gap:2px 14px;font-size:11px;color:var(--paper-ink-2)}
+.paper:not(.docs) table{min-width:620px}
+.paper:not(.docs) th,.paper:not(.docs) td{padding-left:5px;padding-right:5px}
+.paper:not(.docs) thead th,.paper:not(.docs) thead th.n{white-space:normal;vertical-align:bottom;line-height:1.3}
+.paper:not(.docs) td.p-prod{min-width:160px}
+.paper:not(.docs) .p-co{margin-top:8px;font-size:12px;line-height:1.5;color:var(--paper-ink-2);-webkit-user-select:text;user-select:text}
+.paper:not(.docs) .p-co b{color:var(--paper-ink);font-weight:600}
+.paper:not(.docs) .p-ean{font-family:var(--f-mono);font-size:11.5px;white-space:nowrap}
+.paper:not(.docs) .p-sub2{color:var(--paper-ink-2);font-size:12px}
+.paper:not(.docs) .p-sec{margin:24px 0 6px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper-ink-2)}
+.paper:not(.docs) .p-logi table{font-size:12px;min-width:640px}
+.paper:not(.docs) .p-cofoot{margin-top:20px;padding-top:10px;border-top:1px solid var(--paper-line);display:flex;flex-wrap:wrap;gap:2px 14px;font-size:11px;color:var(--paper-ink-2)}
 /* hero tagline */
 .hero-tag{display:block;margin:0 0 6px;font-family:var(--f-serif);font-style:italic;font-weight:500;font-size:var(--t-md);line-height:1.1;color:var(--gold);letter-spacing:.01em;opacity:.95}
 @media (max-width:700px){
@@ -930,10 +930,366 @@ table.ptable{min-width:760px}
   .card-in,.card-in:hover{transform:none;translate:none}
   .card-in:hover .pimg img{scale:1}
 }
+
+/* ---------- offer documents: real A4 pages (794 x 1123 px), always light; rendered offscreen, then scaled into the preview ---------- */
+.paper.docs{padding:16px;background:#D9D0C5;border-radius:10px;overflow:auto;overscroll-behavior:contain;max-height:calc(100dvh - 150px);display:flex;flex-direction:column;align-items:center;gap:16px;scrollbar-gutter:stable;color:#130F10;--k:1}
+:root[data-theme="dark"] .paper.docs{background:#2A2524}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .paper.docs{background:#2A2524} }
+.pg-slot{position:relative;flex:none;width:calc(794px * var(--k));height:calc(1123px * var(--k));background:#FFFDF9;box-shadow:0 14px 34px -14px rgba(0,0,0,.55), 0 1px 3px rgba(0,0,0,.18);overflow:hidden}
+.pg-slot > .page{position:absolute;left:0;top:0;transform:scale(var(--k));transform-origin:0 0}
+.doc-stage{position:fixed;left:-12000px;top:0;width:794px;pointer-events:none;z-index:-1;contain:layout style}
+.preview-shell{width:min(900px, calc(100vw - 32px))}
+.pv-tpl{display:flex;align-items:center;gap:4px}
+.tpl-opt{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:3px 10px 3px 4px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--ink-2);font-family:var(--f-ui);font-size:var(--t-xs);font-weight:600;cursor:pointer}
+.tpl-opt:hover{background:var(--accent-soft);color:var(--ink)}
+.tpl-opt[aria-checked="true"]{border-color:var(--ink);color:var(--ink);background:var(--field)}
+.tpl-opt:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.tpl-mini{position:relative;flex:none;width:22px;height:30px;border-radius:3px;background:#FFFDF9;box-shadow:0 0 0 1px rgba(19,15,16,.18), 0 2px 4px -2px rgba(0,0,0,.4);overflow:hidden}
+.tpl-mini i{position:absolute;display:block}
+.mini-classic{border-top:3px solid #E11339}
+.mini-classic i{left:3px;right:3px;height:2px;background:#C9BFB4}
+.mini-classic i:nth-child(1){top:4px;right:9px;height:3px;background:#130F10}
+.mini-classic i:nth-child(2){top:11px}
+.mini-classic i:nth-child(3){top:16px}
+.mini-classic i:nth-child(4){top:21px;left:12px}
+.mini-katalog{background:#FFFDF9}
+.mini-katalog i:nth-child(1){left:0;right:0;top:0;height:4px;background:#130F10}
+.mini-katalog i:nth-child(2),.mini-katalog i:nth-child(3){top:7px;width:8px;height:10px;border-radius:1px;background:radial-gradient(circle at 50% 35%, #E8213F, #8D0408)}
+.mini-katalog i:nth-child(2){left:2px}
+.mini-katalog i:nth-child(3){right:2px}
+.mini-katalog i:nth-child(4){left:2px;right:2px;top:20px;height:6px;background:repeating-linear-gradient(90deg, #E8DDD0 0 8px, transparent 8px 10px)}
+.mini-premium{background:#130F10}
+.mini-premium i:nth-child(1){left:0;right:0;top:0;height:15px;background:radial-gradient(circle at 60% 30%, #E8213F, #8D0408)}
+.mini-premium i:nth-child(2){left:3px;top:19px;width:12px;height:3px;background:#FFFDF9}
+.mini-premium i:nth-child(3){left:3px;top:24px;width:8px;height:2px;background:#E8C088}
+@media (max-width:759.98px){
+  .preview-bar{border-radius:var(--r-lg)}
+  .pv-tpl{order:4;flex-basis:100%;justify-content:space-between;padding-top:8px;border-top:1px solid var(--line)}
+  .paper.docs{padding:10px;gap:10px;max-height:calc(100dvh - 220px)}
+}
+@media (max-width:420px){ .tpl-opt{padding-right:7px;gap:5px} }
+.doc-row{grid-column:1 / -1;display:flex;align-items:center;gap:8px}
+.doc-row label{font-size:var(--t-xs);font-weight:600;color:var(--ink-2);white-space:nowrap}
+.doc-row .inp{flex:1;height:36px;min-width:0}
+.doc-row .btn{width:auto!important;flex:none}
+.terms-opt{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.terms-opt .terms-doc{font-size:var(--t-xs);color:var(--ink-3);margin-left:42px;margin-top:-4px}
+.terms-opt .terms-cur{margin:0;font-size:var(--t-xs);font-weight:600;color:var(--warn)}
+.terms-opt .std-done{margin:0;padding:7px 10px;border-radius:var(--r-sm);background:var(--good-soft);color:var(--good);font-size:var(--t-xs);font-weight:600}
+.std-row{grid-template-columns:auto minmax(0,9.5em) minmax(0,1fr)}
+.std-row .std-v{font-size:var(--t-sm);overflow-wrap:anywhere}
+.std-row .std-v s{color:var(--ink-3)}
+.std-row .std-v b{color:var(--ink)}
+.std-row.conflict .std-v b{color:var(--warn)}
+@media (max-width:560px){ .std-row .std-v{grid-column:1 / -1} }
+.pdf-btn[aria-busy="true"]{opacity:1!important;cursor:progress}
+
+/* the page itself: self-contained (no inherited app styles), html2canvas-safe (no object-fit, filters, masks or color-mix) */
+.page{--d-red:#E11339;--d-deep:#8D0408;--d-ink:#130F10;--d-ink2:#5E5552;--d-ink3:#8A7F79;--d-cream:#F2EBE3;--d-cream2:#F6EAD8;--d-tint:#FBF6EF;--d-caramel:#8B653E;--d-gold:#E8C088;--d-line:#E8DDD0;--d-rule:#D9C7AE;
+  --d-disp:"Oswald","Arial Narrow",sans-serif;--d-num:"Barlow Semi Condensed","Barlow",sans-serif;--d-serif:"Playfair Display",Georgia,serif;
+  --d-stage:linear-gradient(0deg, rgba(48,0,4,.42) 0%, rgba(48,0,4,.14) 13%, rgba(48,0,4,0) 26%), radial-gradient(125% 105% at 50% 32%, #E8213F 0%, #CF1530 34%, #A20A15 70%, #640206 100%);
+  position:relative;width:794px;height:1123px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:#FFFDF9;color:var(--d-ink);
+  font-family:"Barlow","Segoe UI",system-ui,sans-serif;font-size:11px;line-height:1.42;font-weight:400;font-style:normal;letter-spacing:normal;word-spacing:normal;text-align:left;text-transform:none;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:manual;text-indent:0;text-shadow:none;font-kerning:normal;font-feature-settings:normal;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;-webkit-user-select:text;user-select:text}
+.page *,.page *::before,.page *::after{box-sizing:border-box}
+:where(.page) :where(h1,h2,h3,p,dl,dd,figure){margin:0}
+.page img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+.page table{width:100%;border-collapse:collapse;table-layout:fixed}
+.page b{font-weight:700}
+.pg-hd,.pg-ft{flex:none;position:relative}
+.pg-bd{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;display:flow-root}
+.pg-num{font-family:var(--d-num);font-weight:600;white-space:nowrap}
+.page .d-k{font-family:var(--d-disp);font-size:8.5px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--d-ink2)}
+.page .d-ph{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.page .d-ph svg{width:46%;height:auto;max-height:70%}
+.page .d-pic{display:flex;align-items:flex-end;justify-content:center}
+.page .d-pic img{position:relative}
+.page .d-floor{position:absolute;background:radial-gradient(closest-side, rgba(40,0,4,.62), rgba(40,0,4,0))}
+.page .d-wm{display:flex;flex-direction:column;line-height:1.2}
+.page .d-wm b{font-family:var(--d-disp);font-weight:600;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--d-red)}
+.page .d-wm span{font-family:var(--d-disp);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--d-ink2)}
+.page .hd-logo{height:34px;width:auto;max-width:none;max-height:none}
+.page .hd-co{font-family:var(--d-disp);font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;line-height:1.35}
+.page .hd-co span{display:block;font-family:"Barlow",sans-serif;font-weight:400;letter-spacing:.01em;text-transform:none;font-size:9px;color:var(--d-ink2)}
+.page .hd-meta{margin-left:auto;text-align:right;font-size:9px;line-height:1.45;color:var(--d-ink2)}
+.page .hd-meta b{display:block;font-family:var(--d-disp);font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--d-ink)}
+.page .ft-co{font-size:8px;line-height:1.4;color:var(--d-ink2)}
+.page .ft-co b{color:var(--d-ink);font-weight:600}
+.page .d-sec{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;font-family:var(--d-disp);font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--d-ink)}
+.page .d-sec::after{content:"";flex:1;height:1px;background:var(--d-line);position:relative;top:-3px}
+.page .d-sec small{font-family:"Barlow",sans-serif;font-size:9.5px;font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--d-ink2)}
+.page .d-party{padding:12px 14px;border:1px solid var(--d-line);border-radius:6px;background:#fff}
+.page .d-pn{font-weight:700;font-size:12.5px;line-height:1.25;margin:3px 0 3px;overflow-wrap:anywhere}
+.page .d-pa{font-size:10px;line-height:1.45;overflow-wrap:anywhere}
+.page .d-pd{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1px 8px;margin-top:6px;font-size:9.5px;line-height:1.4}
+.page .d-pd dt{color:var(--d-ink2)}
+.page .d-pd dd{font-weight:500;overflow-wrap:anywhere}
+.page .d-claims{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}
+.page .d-claim{font-size:7.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--d-cream2);color:var(--d-caramel);line-height:1.4}
+.page .d-desc{font-size:9.5px;font-style:italic;color:#3F3633;line-height:1.38;margin-top:4px}
+.page .d-tot{width:280px;margin-left:auto;flex:none;border:1px solid var(--d-line);border-radius:6px;overflow:hidden;font-size:10px;background:#fff}
+.page .d-tot > div{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:5px 12px}
+.page .d-tot > div + div{border-top:1px solid var(--d-tint)}
+.page .d-tot b{font-family:var(--d-num);font-size:11.5px;font-weight:600;white-space:nowrap}
+.page .d-tot .g{background:var(--d-ink);color:#fff;padding:10px 12px;font-family:var(--d-disp);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;align-items:center}
+.page .d-tot .g b{font-size:17px;font-weight:700;letter-spacing:0;color:#fff}
+.page .d-sum{display:flex;gap:18px;align-items:flex-start;margin-top:14px}
+.page .d-notes{flex:1;min-width:0;padding:10px 12px;border-left:3px solid var(--d-gold);background:var(--d-tint);font-size:10px;line-height:1.5}
+.page .d-nt{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:3px}
+.page .d-foot{margin-top:12px;font-size:8px;line-height:1.5;color:var(--d-ink2)}
+.page .d-empty{padding:30px;text-align:center;border:1px dashed var(--d-rule);border-radius:6px;color:var(--d-ink2);font-size:12px}
+.page .d-pltag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#FBE4E8;color:var(--d-deep);font-weight:600;font-size:10px}
+/* summary table (katalog, premium) */
+.page .s-tbl{font-size:9.5px}
+.page .s-tbl th{font-family:var(--d-disp);font-weight:400;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--d-ink2);text-align:left;vertical-align:bottom;line-height:1.25;padding:6px 5px;border-bottom:1.5px solid var(--d-ink)}
+.page .s-tbl td{padding:6px 5px;border-bottom:1px solid var(--d-line);vertical-align:top}
+.page .s-tbl .n{text-align:right}
+.page .s-tbl td b{font-weight:600}
+.page .s-tbl td span{display:block;font-size:8.5px;color:var(--d-ink2);margin-top:1px}
+.page .s-tbl .s-no{font-family:var(--d-num);font-weight:600;color:var(--d-ink2)}
+.page .s-tbl td.n b{font-family:var(--d-num);font-size:10.5px}
+.page .s-tbl.cont thead th{border-top:0}
+/* terms appendix */
+.page .t-head{padding:4px 0 12px;margin-bottom:6px;border-bottom:2px solid var(--d-red)}
+.page .t-kick{font-family:var(--d-disp);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--d-red)}
+.page .t-title{font-family:var(--d-serif);font-size:19px;font-weight:500;line-height:1.2;margin-top:4px}
+.page .t-party{font-size:9.5px;color:var(--d-ink2);margin-top:6px}
+.page .t-party b{color:var(--d-ink)}
+.page .t-h{font-family:var(--d-disp);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 0 5px;color:var(--d-ink)}
+.page .t-p{font-size:9.2px;line-height:1.45;padding:0 0 5px;color:#2A2321}
+.page .t-li{display:flex;gap:6px;font-size:9.2px;line-height:1.45;padding:0 0 4px;color:#2A2321}
+.page .t-li .t-n{flex:none;width:14px;font-weight:700;color:var(--d-red)}
+.page .t-li p{flex:1;min-width:0}
+.page .t-tbl{font-size:9px;line-height:1.4}
+.page .t-tbl th{background:var(--d-ink);color:#fff;font-family:var(--d-disp);font-weight:400;font-size:7.8px;letter-spacing:.1em;text-transform:uppercase;text-align:left;vertical-align:bottom;padding:5px 7px;line-height:1.3}
+.page .t-tbl td{padding:3.5px 7px;border-bottom:1px solid var(--d-line);vertical-align:top;color:#2A2321}
+.page .t-tbl tbody:nth-of-type(even) td{background:var(--d-tint)}
+.page .t-tbl .yn{text-align:center}
+.page .t-tbl .yn.yes{font-weight:700;color:var(--d-ink)}
+.page .t-tbl .yn.no{color:var(--d-ink2)}
+.page .t-tbl.t-params td:first-child{font-weight:600;color:var(--d-ink)}
+.page .t-gap{height:4px}
+
+/* --- Klasyczny --- */
+.tpl-classic .pg-hd{height:86px;padding:16px 56px 0;border-top:6px solid var(--d-red)}
+.tpl-classic .hd-in{display:flex;align-items:center;gap:14px;height:56px;border-bottom:1px solid var(--d-line)}
+.tpl-classic .pg-bd{padding:20px 56px 0}
+.tpl-classic .pg-ft{height:44px;margin:0 56px;border-top:1px solid var(--d-line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tpl-classic .pg-num{font-size:9.5px;color:var(--d-ink)}
+.c-title{padding:0 0 16px}
+.c-kick{font-family:var(--d-disp);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--d-red)}
+.c-title h1{font-family:var(--d-serif);font-weight:500;font-size:29px;line-height:1.12;margin:4px 0 6px}
+.c-sub{font-size:11px;color:var(--d-ink2)}
+.c-parties{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
+.c-parties .buyer{border-left:3px solid var(--d-red)}
+.c-cond{border:1px solid var(--d-line);border-radius:6px;overflow:hidden;background:var(--d-tint);margin-bottom:20px}
+.c-cond-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0 -1px -1px 0}
+.c-cond-in > div{padding:7px 12px;border-right:1px solid var(--d-line);border-bottom:1px solid var(--d-line);min-width:0}
+.c-cond-in .v{font-weight:600;font-size:10.5px;margin-top:1px;overflow-wrap:anywhere;line-height:1.3}
+.c-tbl{font-size:10px}
+.c-tbl th{font-family:var(--d-disp);font-weight:400;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--d-ink);padding:7px 6px;text-align:left;vertical-align:bottom;line-height:1.25}
+.c-tbl th.n,.c-tbl td.n{text-align:right}
+.c-tbl td{vertical-align:top}
+.c-main td{padding:10px 6px 6px;border-top:1px solid var(--d-line)}
+.c-tbl tbody:first-of-type .c-main td{border-top:0}
+.c-no{font-family:var(--d-num);font-weight:600;font-size:11px;color:var(--d-ink2)}
+.c-thumb{width:64px;height:64px;border-radius:6px;background:radial-gradient(circle at 50% 38%, #FFFFFF 0%, #F6EAD8 78%);border:1px solid var(--d-line);padding:4px 5px 3px;overflow:hidden}
+.c-thumb.d-pic img{max-height:56px}
+.c-name{font-family:var(--d-disp);font-weight:500;font-size:11.5px;letter-spacing:.03em;line-height:1.25}
+.c-ids{font-size:9px;color:var(--d-ink2);margin-top:2px}
+.c-ean{font-family:var(--d-num);font-weight:500;font-size:10px;margin-top:1px}
+.c-ean i{font-style:normal;font-family:var(--d-disp);font-size:7.5px;letter-spacing:.12em;color:var(--d-ink2);margin-right:3px}
+.c-price{font-family:var(--d-num);font-weight:600;font-size:11px}
+.c-price span,.c-qty span{display:block;font-family:"Barlow",sans-serif;font-weight:400;font-size:8.5px;color:var(--d-ink2);line-height:1.35}
+.c-qty b{font-family:var(--d-num);font-weight:600;font-size:11px}
+.c-val{font-family:var(--d-num);font-weight:700;font-size:12px}
+.c-logi td{padding:0 6px 12px}
+.c-lg{border:1px solid var(--d-line);border-radius:5px;background:var(--d-tint);overflow:hidden}
+.c-lg-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0 -1px -1px 0}
+.c-lg-in > div{padding:3px 8px 4px;border-right:1px solid var(--d-line);border-bottom:1px solid var(--d-line);min-width:0}
+.c-lg-in .w2{grid-column:span 2}
+.c-lg-in i{display:block;font-style:normal;font-family:var(--d-disp);font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:var(--d-ink2);line-height:1.5}
+.c-lg-in b{font-weight:600;font-size:9px;line-height:1.3}
+
+/* --- Katalog --- */
+.tpl-katalog .pg-hd{height:58px;padding:0 40px;background:var(--d-ink);color:#fff;display:flex;align-items:center;gap:14px}
+.tpl-katalog .hd-logo{height:30px}
+.tpl-katalog .hd-co{color:#fff}
+.tpl-katalog .hd-co span,.tpl-katalog .hd-meta{color:#CDBFB3}
+.tpl-katalog .hd-meta b{color:#fff}
+.tpl-katalog .d-wm b{color:#fff}
+.tpl-katalog .d-wm span{color:var(--d-gold)}
+.tpl-katalog .pg-bd{padding:18px 40px 0}
+.tpl-katalog .pg-ft{height:40px;margin:0 40px;border-top:2px solid var(--d-red);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tpl-katalog .pg-num{font-size:9.5px;color:var(--d-red)}
+.k-hero{position:relative;height:286px;margin:-18px -40px 16px;background:linear-gradient(0deg, rgba(48,0,4,.42) 0%, rgba(48,0,4,0) 24%), radial-gradient(120% 120% at 74% 30%, #E8213F 0%, #CF1530 34%, #A20A15 68%, #640206 100%);color:#fff;overflow:hidden}
+.k-hero-txt{position:absolute;left:40px;top:34px;width:350px}
+.k-hero.solo .k-hero-txt{width:620px}
+.k-kick{font-family:var(--d-disp);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--d-gold)}
+.k-hero h1{font-family:var(--d-serif);font-weight:500;font-style:italic;font-size:40px;line-height:1.06;margin:10px 0 18px;color:#fff}
+.k-for{font-family:var(--d-disp);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#F4C9D0}
+.k-client{font-size:19px;font-weight:700;line-height:1.18;margin-top:3px;overflow-wrap:anywhere}
+.k-meta{margin-top:12px;font-size:9.5px;color:#F4C9D0;line-height:1.5}
+.k-meta b{color:#fff;font-weight:600}
+.k-hero-packs{position:absolute;right:26px;bottom:20px;width:350px;height:236px}
+.k-hp{position:absolute;bottom:14px;width:128px;height:190px}
+.k-hp .d-pic{position:absolute;left:0;right:0;bottom:0;top:0}
+.k-hp .d-floor{left:6px;right:6px;bottom:-9px;height:20px}
+.k-hp.n0{left:4px;height:176px}
+.k-hp.n1{left:111px;height:214px;bottom:8px}
+.k-hp.n2{left:218px;height:176px}
+.k-hp.n1 .d-floor{bottom:-10px}
+.k-parties{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:12px;margin-bottom:18px}
+.k-parties .d-party{padding:10px 12px}
+.k-parties .buyer{border-top:3px solid var(--d-red)}
+.k-cond dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 8px;font-size:9.5px;line-height:1.35;margin-top:5px}
+.k-cond dt{color:var(--d-ink2)}
+.k-cond dd{font-weight:600;overflow-wrap:anywhere}
+.k-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;padding-bottom:16px}
+.k-card{display:flex;flex-direction:column;border-radius:10px;overflow:hidden;background:#fff;border:1px solid #EADFD3;box-shadow:0 8px 18px -12px rgba(60,20,10,.45)}
+.k-stage{position:relative;height:212px;background:var(--d-stage);overflow:hidden}
+.k-pic{position:absolute;left:70px;right:70px;bottom:22px;top:24px}
+.k-stage .d-floor{left:50%;bottom:12px;width:180px;margin-left:-90px;height:24px}
+.k-stage .d-ph{position:absolute;left:0;right:0;top:0;bottom:0}
+.k-tag{position:absolute;right:12px;top:12px;min-width:92px;padding:7px 11px 7px 20px;border-radius:7px;background:#fff;color:var(--d-red);text-align:right;box-shadow:0 6px 14px -6px rgba(40,0,4,.6)}
+.k-tag::before{content:"";position:absolute;left:7px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#B8102A}
+.k-tag b{display:block;font-family:var(--d-disp);font-weight:600;font-size:22px;line-height:1;letter-spacing:.01em}
+.k-tag span{display:block;margin-top:3px;font-family:var(--d-disp);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--d-ink2)}
+.k-tag.tbd b{font-size:12px;line-height:1.2;color:var(--d-ink)}
+.k-disc{position:absolute;right:12px;top:70px;padding:3px 9px;border-radius:999px;background:var(--d-gold);color:var(--d-ink);font-family:var(--d-disp);font-weight:600;font-size:10px;letter-spacing:.04em}
+.k-idx{position:absolute;left:12px;top:12px;font-family:var(--d-disp);font-size:9px;letter-spacing:.16em;color:#fff}
+.k-idx b{font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:20px;letter-spacing:0;margin-right:4px}
+.k-claims{position:absolute;left:10px;bottom:10px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;max-width:120px}
+.k-claims span{padding:3px 8px;border-radius:999px;background:var(--d-cream2);color:var(--d-deep);font-size:7px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3}
+.k-body{flex:1;display:flex;flex-direction:column;padding:12px 14px 12px}
+.k-line{font-family:var(--d-disp);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--d-caramel)}
+.k-name{font-family:var(--d-disp);font-weight:500;font-size:14px;line-height:1.2;letter-spacing:.02em;margin:2px 0 2px}
+.k-ean{font-family:var(--d-num);font-size:9.5px;color:var(--d-ink2)}
+.k-ean b{color:var(--d-ink);font-weight:600}
+.k-card .d-desc{margin:5px 0 0}
+.k-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.k-chips span{padding:2px 6px;border-radius:4px;border:1px solid #EADFD3;background:var(--d-tint);font-family:var(--d-num);font-size:9.5px;font-weight:600;white-space:nowrap;line-height:1.4}
+.k-chips i{font-family:"Barlow",sans-serif;font-style:normal;font-weight:400;font-size:8px;color:var(--d-ink2);margin-right:3px}
+.k-pack{font-size:8.5px;color:var(--d-ink2);margin-top:6px;line-height:1.35}
+.k-pack i{font-style:normal;font-family:var(--d-disp);font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;margin-right:3px}
+.k-order{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;padding-top:9px;border-top:1px dashed #E3D5C6}
+.k-order-sp{height:10px;flex:none}
+.k-order i{display:block;font-style:normal;font-family:var(--d-disp);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--d-ink2)}
+.k-order .q{font-size:9.5px;color:var(--d-ink2);line-height:1.35}
+.k-order .q b{font-family:var(--d-num);font-size:12px;color:var(--d-ink);font-weight:700}
+.k-order .v{text-align:right}
+.k-order .v b{font-family:var(--d-num);font-size:14px;font-weight:700;color:var(--d-red);white-space:nowrap}
+.tpl-katalog .d-tot .g{background:var(--d-red)}
+.tpl-katalog .t-tbl th{background:var(--d-deep)}
+
+/* --- Premium --- */
+.tpl-premium .pg-hd{height:66px;margin:0 60px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--d-rule)}
+.tpl-premium .hd-logo{height:26px}
+.tpl-premium .hd-co{font-size:9px}
+.tpl-premium .pg-bd{padding:26px 60px 0}
+.tpl-premium .pg-ft{height:48px;margin:0 60px;border-top:1px solid var(--d-rule);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tpl-premium .pg-num{font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:11px;color:var(--d-caramel)}
+.tpl-premium .ft-co{color:var(--d-caramel)}
+.tpl-premium .d-sec{font-size:11px;letter-spacing:.2em;color:var(--d-caramel)}
+.tpl-premium .d-sec::after{background:var(--d-rule)}
+.tpl-premium .d-tot .g{background:var(--d-ink)}
+.tpl-premium .d-tot .g b{color:var(--d-gold)}
+.tpl-premium .t-tbl th{background:#2A2321}
+.tpl-premium .t-head{border-bottom-color:var(--d-gold)}
+.tpl-premium .t-kick{color:var(--d-caramel)}
+.p-cover{background:#130F10;color:#fff}
+.pc-photo{position:absolute;left:0;top:0;width:794px;height:700px;background-color:#B3101F;background-size:cover;background-position:50% 50%;background-repeat:no-repeat}
+.pc-shade{position:absolute;left:0;top:470px;width:794px;height:232px;background:linear-gradient(180deg, rgba(19,15,16,0) 0%, rgba(19,15,16,.72) 55%, #130F10 100%)}
+.pc-top{position:absolute;left:56px;right:56px;top:44px;display:flex;align-items:center;justify-content:space-between}
+.pc-logo{padding:9px 20px;border-radius:999px;background:#FFFDF9;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.pc-logo img{height:38px;width:auto;max-height:none;max-width:none}
+.pc-logo .d-wm b{font-size:16px}
+.pc-mfr{font-family:var(--d-disp);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;text-align:right;line-height:1.8;color:#fff}
+.pc-mfr b{font-family:var(--d-serif);font-weight:500;font-size:15px;letter-spacing:0;color:var(--d-gold);margin-right:6px}
+.pc-main{position:absolute;left:56px;right:56px;top:590px}
+.pc-kick{font-family:var(--d-disp);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--d-gold)}
+.pc-h{font-family:var(--d-serif);font-weight:500;font-size:64px;line-height:1.04;margin:12px 0 26px;color:#fff}
+.pc-h em{font-style:italic;color:var(--d-gold)}
+.pc-rule{width:64px;height:3px;background:var(--d-red);margin-bottom:20px}
+.pc-for{font-family:var(--d-disp);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:#B9AA9B}
+.pc-client{font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:30px;line-height:1.15;color:#fff;margin-top:6px;overflow-wrap:anywhere}
+.pc-brand{font-size:12px;color:var(--d-gold);margin-top:8px}
+.pc-meta{position:absolute;left:56px;right:56px;bottom:50px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-top:14px;border-top:1px solid rgba(232,192,136,.4)}
+.pc-meta i{display:block;font-style:normal;font-family:var(--d-disp);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#A89A8C}
+.pc-meta b{display:block;margin-top:3px;font-size:12px;font-weight:600;color:#fff;overflow-wrap:anywhere}
+.pi-grid{display:grid;grid-template-columns:minmax(0,1fr) 224px;gap:34px}
+.pi-kick{font-family:var(--d-disp);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--d-caramel)}
+.pi-h{font-family:var(--d-serif);font-weight:500;font-size:28px;line-height:1.15;margin:8px 0 18px}
+.pi-letter p{font-size:11.5px;line-height:1.68;color:#2B2422;padding-bottom:11px}
+.pi-letter p:first-of-type::first-letter{font-family:var(--d-serif);font-size:15px;font-weight:500}
+.pi-sign{margin-top:8px;font-size:11px;color:var(--d-ink2)}
+.pi-sign b{display:block;font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:17px;color:var(--d-ink);margin-top:4px}
+.pi-side{display:flex;flex-direction:column;gap:12px}
+.pi-box{background:var(--d-cream2);border-radius:4px;padding:14px 15px}
+.pi-box .d-pn{font-size:13px}
+.pi-box dl{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin-top:4px;font-size:9.5px}
+.pi-box dt{color:var(--d-ink2);font-size:8.5px;margin-top:5px}
+.pi-box dd{font-weight:600;overflow-wrap:anywhere}
+.pi-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:26px;border-top:1px solid var(--d-rule);border-bottom:1px solid var(--d-rule)}
+.pi-stats div{padding:22px 10px 20px;text-align:center}
+.pi-stats div + div{border-left:1px solid var(--d-rule)}
+.pi-stats b{display:block;font-family:var(--d-serif);font-weight:500;font-size:46px;line-height:1;color:var(--d-red)}
+.pi-stats span{display:block;margin-top:8px;font-family:var(--d-disp);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--d-ink2)}
+.pi-note{margin-top:16px;font-size:9px;line-height:1.5;color:var(--d-ink2);padding:9px 12px;border-left:3px solid var(--d-red);background:var(--d-tint)}
+.pr-spread{display:flex;height:466px;margin-bottom:22px;border:1px solid #EADFD3;border-radius:4px;overflow:hidden;background:#fff}
+.pr-stage{position:relative;flex:none;width:282px;background:var(--d-stage);overflow:hidden}
+.pr-pic{position:absolute;left:34px;right:34px;top:58px;bottom:64px}
+.pr-stage .d-floor{left:50%;bottom:50px;width:220px;margin-left:-110px;height:30px}
+.pr-stage .d-ph{position:absolute;left:0;right:0;top:0;bottom:0}
+.pr-no{position:absolute;left:18px;top:14px;font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:30px;line-height:1;color:#fff}
+.pr-no span{font-family:var(--d-disp);font-style:normal;font-size:9px;letter-spacing:.18em;margin-left:4px;color:#F4C9D0}
+.pr-claims{position:absolute;left:14px;right:14px;bottom:14px;display:flex;flex-wrap:wrap;gap:4px}
+.pr-claims span{padding:3px 8px;border-radius:999px;background:var(--d-cream2);color:var(--d-deep);font-size:7px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.3}
+.pr-data{flex:1;min-width:0;display:flex;flex-direction:column;padding:22px 24px 18px}
+.pr-line{font-family:var(--d-disp);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--d-caramel)}
+.pr-name{font-family:var(--d-disp);font-weight:500;font-size:19px;line-height:1.16;letter-spacing:.02em;margin:4px 0 4px}
+.pr-ids{font-family:var(--d-num);font-size:10px;color:var(--d-ink2)}
+.pr-ids b{color:var(--d-ink);font-weight:600}
+.pr-desc{font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:11.5px;line-height:1.5;color:#3A302D;margin-top:10px}
+.pr-facts{margin-top:12px;font-size:9.5px}
+.pr-facts th{text-align:left;font-family:var(--d-disp);font-weight:400;font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--d-ink2);padding:4px 6px 4px 0;vertical-align:top;line-height:1.5}
+.pr-facts td{padding:4px 10px 4px 0;font-weight:600;vertical-align:top;line-height:1.35;overflow-wrap:anywhere}
+.pr-facts tr + tr th,.pr-facts tr + tr td{border-top:1px dotted var(--d-rule)}
+.pr-price{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:12px;border-top:2px solid var(--d-ink)}
+.pp-k{font-family:var(--d-disp);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--d-ink2)}
+.pp-v{font-family:var(--d-disp);font-weight:500;font-size:32px;line-height:1;color:var(--d-red);margin-top:3px;white-space:nowrap}
+.pp-v small{font-size:12px;color:var(--d-ink);margin-left:3px;letter-spacing:.06em}
+.pp-v.tbd{font-size:15px;color:var(--d-ink)}
+.pp-q{font-size:9.5px;color:var(--d-ink2);margin-top:5px}
+.pp-t{text-align:right}
+.pp-t b{display:block;font-family:var(--d-num);font-size:16px;font-weight:700;margin-top:3px;white-space:nowrap}
+.p-back{background:var(--d-stage);color:#fff}
+.pb-in{position:absolute;left:80px;right:80px;top:210px;text-align:center}
+.pb-logo{display:inline-block;padding:12px 26px;border-radius:999px;background:#FFFDF9;box-shadow:0 14px 30px -12px rgba(40,0,4,.7)}
+.pb-logo img{height:46px;width:auto;max-height:none;max-width:none}
+.pb-h{font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:56px;line-height:1.05;margin:40px 0 16px;color:#fff}
+.pb-txt{font-size:13px;line-height:1.6;color:#FBE0E4;margin:0 auto;max-width:470px}
+.pb-co{margin:40px auto 0;max-width:420px;padding-top:26px;border-top:1px solid rgba(255,255,255,.35);font-size:12px;line-height:1.75;color:#fff}
+.pb-co b{font-family:var(--d-disp);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.pb-foot{position:absolute;left:0;right:0;bottom:46px;text-align:center;font-family:var(--d-disp);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#F6D0D6}
+.pi-glance{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:22px;background:var(--d-ink);color:#fff;border-radius:4px;overflow:hidden}
+.pi-glance > div{padding:16px 16px 15px}
+.pi-glance > div + div{border-left:1px solid rgba(232,192,136,.22)}
+.pi-glance i{display:block;font-style:normal;font-family:var(--d-disp);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#B9AA9B}
+.pi-glance b{display:block;margin-top:5px;font-family:var(--d-num);font-weight:700;font-size:19px;line-height:1.1;color:var(--d-gold);white-space:nowrap}
+.pi-glance .k-h{grid-column:1 / -1;padding:10px 16px 0;font-family:var(--d-disp);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--d-gold)}
+.pi-photo{margin-top:22px;border-radius:4px;background-color:#B3101F;background-size:cover;background-position:50% 50%;background-repeat:no-repeat}
+.pb-stats{display:flex;justify-content:center;gap:0;margin:34px auto 0;max-width:520px}
+.pb-stats div{flex:1;padding:0 10px}
+.pb-stats div + div{border-left:1px solid rgba(255,255,255,.3)}
+.pb-stats b{display:block;font-family:var(--d-serif);font-weight:500;font-size:34px;line-height:1;color:#fff}
+.pb-stats span{display:block;margin-top:6px;font-family:var(--d-disp);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#F6D0D6}
 </style>
 <!-- GSAP loads before any content is parsed, so the first paint is the fully rendered page (no shift while the CDN responds) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+<!-- PDF export (loaded deferred; the "Pobierz PDF" action checks that both are present) -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <div class="backdrop" aria-hidden="true"></div>
 <div class="shell" id="app">
@@ -1111,13 +1467,21 @@ table.ptable{min-width:760px}
             <div class="fld"><label for="o-c-email">E-mail</label><input class="inp" type="email" id="o-c-email" data-meta="email" autocomplete="email" spellcheck="false" aria-describedby="o-c-email-hint"><span class="fhint" id="o-c-email-hint" aria-live="polite" hidden></span></div>
             <div class="fld"><label for="o-c-phone">Telefon</label><input class="inp" type="tel" id="o-c-phone" data-meta="phone" autocomplete="tel"></div>
           </div>
-          <div class="meta-sub terms"><h4 id="termsHead">Warunki oferty</h4></div>
+          <div class="meta-sub terms"><h4 id="termsHead">Warunki oferty</h4>
+            <button class="btn btn-sm btn-ghost" id="btnStdTerms" type="button" aria-haspopup="dialog" title="Waluta EUR, ważność 6 miesięcy, EXW Jeżowe, przedpłata (i MOQ dla Private Label) — wg warunków handlowych"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>Zastosuj warunki standardowe</button>
+          </div>
           <div class="meta-grid" role="group" aria-labelledby="termsHead">
             <div class="fld"><label for="o-date">Data oferty</label><input class="inp" type="date" id="o-date" data-meta="date"></div>
             <div class="fld"><label for="o-valid">Ważna do</label><input class="inp" type="date" id="o-valid" data-meta="validUntil"></div>
             <div class="fld"><label for="o-cur">Waluta</label><select class="inp" id="o-cur" data-meta="currency"><option>PLN</option><option>EUR</option></select></div>
             <div class="fld"><label for="o-terms">Incoterms / warunki</label><input class="inp" id="o-terms" data-meta="terms" placeholder="np. FCA, 30 dni"></div>
             <div class="fld full"><label for="o-notes">Uwagi</label><textarea class="inp" id="o-notes" data-meta="notes" rows="2" placeholder="Logistyka, terminy, minimum logistyczne…"></textarea></div>
+          </div>
+          <div class="terms-opt">
+            <label class="toggle" for="o-withTerms"><input type="checkbox" id="o-withTerms" checked aria-describedby="termsDoc">Dołącz warunki handlowe</label>
+            <span class="terms-doc" id="termsDoc"></span>
+            <p class="terms-cur" id="termsCur" hidden></p>
+            <p class="std-done" id="stdDone" role="status" aria-live="polite" hidden></p>
           </div>
         </details>
         <section>
@@ -1132,6 +1496,11 @@ table.ptable{min-width:760px}
         <div class="tot-row grand"><span>Razem netto</span><b id="sTotal">—</b></div>
       </div>
       <div class="actions">
+        <div class="doc-row">
+          <label for="o-tpl">Szablon</label>
+          <select class="inp" id="o-tpl"><option value="classic">Klasyczny — dla działu zakupów</option><option value="katalog">Katalog — produkty na pierwszym planie</option><option value="premium">Premium — prezentacja dla nowego klienta</option></select>
+          <button class="btn pdf-btn" id="btnPdf" type="button" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M12 11v6m0 0-2.5-2.5M12 17l2.5-2.5"/></svg><span class="lbl">Pobierz PDF</span></button>
+        </div>
         <button class="btn btn-primary wide" id="btnPreview" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M8 13h8M8 17h5"/></svg>
           Podgląd oferty
@@ -1214,6 +1583,18 @@ table.ptable{min-width:760px}
   </div>
 </dialog>
 
+<dialog id="stdDlg" aria-labelledby="stTitle" aria-describedby="stText">
+  <div class="dlg glass cust-dlg">
+    <h3 id="stTitle">Warunki standardowe</h3>
+    <p id="stText">Wg warunków handlowych Piekarni Galicyjskiej. Zaznaczone pola zostaną zmienione; wpisane już wartości są zastępowane tylko po zaznaczeniu.</p>
+    <div class="cu-rows" id="stRows"></div>
+    <div class="dlg-actions">
+      <button class="btn" id="stCancel" type="button">Anuluj</button>
+      <button class="btn btn-primary" id="stApply" type="button">Zastosuj</button>
+    </div>
+  </div>
+</dialog>
+
 <dialog id="previewDlg" aria-labelledby="pvTitle">
   <div class="preview-shell">
     <div class="preview-bar glass">
@@ -1225,12 +1606,18 @@ table.ptable{min-width:760px}
           <button type="button" role="radio" id="pvLang-en" data-olang="en" aria-checked="false" tabindex="-1" title="Oferta po angielsku">EN</button>
         </div>
       </div>
+      <div class="pv-tpl" id="pvTplSw" role="radiogroup" aria-label="Szablon dokumentu">
+        <button type="button" role="radio" class="tpl-opt" id="pvTpl-classic" data-tpl="classic" aria-checked="true" tabindex="0" title="Klasyczny — przejrzysty dokument dla działu zakupów"><span class="tpl-mini mini-classic" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Klasyczny</button>
+        <button type="button" role="radio" class="tpl-opt" id="pvTpl-katalog" data-tpl="katalog" aria-checked="false" tabindex="-1" title="Katalog — karty produktów ze zdjęciami i ceną"><span class="tpl-mini mini-katalog" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Katalog</button>
+        <button type="button" role="radio" class="tpl-opt" id="pvTpl-premium" data-tpl="premium" aria-checked="false" tabindex="-1" title="Premium — okładka, list przewodni i prezentacja produktów"><span class="tpl-mini mini-premium" aria-hidden="true"><i></i><i></i><i></i></span>Premium</button>
+      </div>
       <div class="dlg-actions">
         <button class="btn btn-sm" id="pvCopy" type="button">Kopiuj jako tekst</button>
+        <button class="btn btn-sm pdf-btn" id="pvPdf" type="button" hidden><span class="lbl">Pobierz PDF</span></button>
         <button class="btn btn-sm btn-primary" id="pvClose" type="button">Zamknij</button>
       </div>
     </div>
-    <article class="paper" id="paper"></article>
+    <article class="paper docs" id="paper" aria-label="Podgląd dokumentu oferty (strony A4)"></article>
   </div>
 </dialog>
 
@@ -1367,6 +1754,8 @@ const PRODUCTS = [{"id":"PG01","name":"CRISPBREAD 3 SEEDS 135 G","category":"CRI
 /* product catalogue (brand/catalogue.json): EAN, logistics, catalogue packshots (img/packs). Names stay as in the assortment sheet. */
 const CATALOGUE = {"PG01":{"ean":"5906684920885","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"3 SEEDS","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG01.webp"},"PG02":{"ean":"5906684921363","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG02.webp"},"PG03":{"ean":"5906684921356","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG03.webp"},"PG04":{"ean":"5906684920908","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & TOMATO","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":"products.json flavour note says 'tomato & basil – na bazie twins receptury'; catalogue and pack say CHEESE & TOMATO (name matches)","packshot":"packs/PG04.webp"},"PG05":{"ean":"5906684920892","eanNote":null,"catalogueLine":"Crispbreads 135 g","catalogueFlavour":"CHEESE & ONION","slices":6,"packFormat":null,"description":"Six generous slices, loaded with seeds, grains or real cheese and baked for an even, clean crunch.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"transparent foil and two labels"},"mismatch":null,"packshot":"packs/PG05.webp"},"PG06":{"ean":"5906684921226","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG06.webp"},"PG07":{"ean":"5906684920915","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG07.webp"},"PG08":{"ean":"5906684921332","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"5 GRAINS","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG08.webp"},"PG09":{"ean":"5906684921325","eanNote":null,"catalogueLine":"Crispbreads 180 g","catalogueFlavour":"SPELT & SUNFLOWER","slices":8,"packFormat":"shelf standing pack","description":"Our everyday crispbread in a larger, shelf standing pack. Eight slices for households that eat crispbread daily.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG09.webp"},"PG10":{"ean":"5906684920946","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CARAMELIZED ONION","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":"spelling: products.json 'CARMELIZED' vs catalogue 'CARAMELIZED'","packshot":"packs/PG10.webp"},"PG11":{"ean":"5906684920953","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG11.webp"},"PG12":{"ean":"5906684920939","eanNote":null,"catalogueLine":"Deli Crispbreads 180 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Bold savoury toppings like caramelised onion and three cheeses. Made for the cheese board as much as for breakfast.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG12.webp"},"PG13":{"ean":"5906684920922","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"SUPERSEEDS","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":"catalogue confirms 130 g (galicrisp.pl image file names say 120 g)","packshot":"packs/PG13.webp"},"PG14":{"ean":"5906684921295","eanNote":null,"catalogueLine":"Artisan Crispbreads 130 g","catalogueFlavour":"PUMPKIN & CHEESE","slices":7,"packFormat":null,"description":"Thinner, more rustic slices with a generous seed and cheese topping. Our premium crispbread for the deli shelf.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"290 x 170 x 160 mm","unitsPerCarton":10,"cartonsPerLayer":19,"layersPerPallet":10,"cartonsPerPallet":190,"unitsPerPallet":1900,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":"word order: products.json 'CHEESE & PUMPKIN' vs catalogue/pack 'PUMPKIN & CHEESE'; catalogue confirms 130 g (website file names say 120 g)","packshot":"packs/PG14.webp"},"PG15":{"ean":"5906684921219","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"CHEESE & PUMPKIN","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"transparent foil, clip and two labels"},"mismatch":"word order: products.json 'PUMPKIN & CHEESE' vs catalogue/pack 'CHEESE & PUMPKIN'","packshot":"packs/PG15.webp"},"PG16":{"ean":"5906684921202","eanNote":null,"catalogueLine":"Wholegrain Crispbreads 200 g","catalogueFlavour":"3 SEEDS","slices":null,"packFormat":"clear bag","description":"A hearty, grain packed slice in a clear bag that lets the product sell itself.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":8,"cartonsPerPallet":128,"unitsPerPallet":1024,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"transparent foil, clip and two labels"},"mismatch":null,"packshot":"packs/PG16.webp"},"PG17":{"ean":"5906684921028","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"ONION","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null,"shelfLifePickupDays":180,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG17.webp"},"PG18":{"ean":"5906684921035","eanNote":null,"catalogueLine":"Protein Crispbreads 180 g","catalogueFlavour":"3 SEEDS","slices":8,"packFormat":"open box with open-close label","description":"Up to 27 g of protein per 100 g, with the same crunch as our classic crispbread. Made for the fast growing high protein shelf.","claims":["Up to 27 g of protein per 100 g"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 167 mm","unitsPerCarton":8,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1280,"palletHeight":"1,85 m","shelfLifeDays":210,"shelfLifeNote":null,"shelfLifePickupDays":180,"packaging":"printed cardboard, transparent foil with open-close label"},"mismatch":null,"packshot":"packs/PG18.webp"},"PG19":{"ean":"5906684921011","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"3 SEEDS & SEA SALT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG19.webp"},"PG20":{"ean":"5906684920960","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG20.webp"},"PG21":{"ean":"5906684920977","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG21.webp"},"PG22":{"ean":"5906684920991","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & TOMATO","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG22.webp"},"PG23":{"ean":"5906684920984","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"CHEESE & ONION","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG23.webp"},"PG24":{"ean":"5906684921004","eanNote":null,"catalogueLine":"Flatbread 130 g","catalogueFlavour":"SESAME & BEETROOT","slices":null,"packFormat":null,"description":"Long, thin and crunchy. Six flavours in one consistent range for retail, export and private label.","claims":[],"logistics":{"cartonType":"1 - face","cartonDims":"398 x 85 x 190 mm","unitsPerCarton":11,"cartonsPerLayer":27,"layersPerPallet":8,"cartonsPerPallet":216,"unitsPerPallet":2376,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG24.webp"},"PG25":{"ean":"5906684921318","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"TOMATO & BASIL","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 138 x 148 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":12,"cartonsPerPallet":240,"unitsPerPallet":1920,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":"Arkusz AKCEPT 04.11.2026: 'CRACKERS CHEESE & TOMATO 130 G' (opis: 'Tomato & sesame and basil – zmiana smaku!'); tabela produktów 11.2026 i katalog: TOMATO & BASIL","packshot":"packs/PG25.webp"},"PG26":{"ean":"5906684921233","eanNote":null,"catalogueLine":"Crackers 130 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"A larger pack of our wheat sourdough crackers, sized for cheese boards and family sharing.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"282 x 138 x 148 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":12,"cartonsPerPallet":240,"unitsPerPallet":1920,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG26.webp"},"PG27":{"ean":"5906684921349","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SEEDED","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 150 x 158 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":11,"cartonsPerPallet":220,"unitsPerPallet":1760,"palletHeight":"1,80 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG27.webp"},"PG28":{"ean":"5906684921301","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"SOURDOUGH","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 150 x 158 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":11,"cartonsPerPallet":220,"unitsPerPallet":1760,"palletHeight":"1,80 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":"products.json 'CLASSIC CRACKERS 100 G', line 'DELI SEEDED CRACKERS', flavour 'Plain cracker' vs catalogue/pack 'SOURDOUGH' (wheat sourdough)","packshot":"packs/PG28.webp"},"PG29":{"ean":"5906684921288","eanNote":null,"catalogueLine":"Crackers 100 g","catalogueFlavour":"ROSEMARY & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crisp crackers baked with wheat or rye sourdough for a deeper, rounder flavour. Source of fibre, low in sugars.","claims":["Source of fibre","Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"288 x 150 x 158 mm","unitsPerCarton":8,"cartonsPerLayer":20,"layersPerPallet":11,"cartonsPerPallet":220,"unitsPerPallet":1760,"palletHeight":"1,80 m","shelfLifeDays":180,"shelfLifeNote":null,"shelfLifePickupDays":150,"packaging":"craft tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG29.webp"},"PG30":{"ean":"5906684921059","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printed cardboard and transparent foil"},"mismatch":null,"packshot":"packs/PG30.webp"},"PG31":{"ean":"5906684921066","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printed cardboard and transparent foil"},"mismatch":null,"packshot":"packs/PG31.webp"},"PG32":{"ean":"5906684921073","eanNote":null,"catalogueLine":"Focaccia 120 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":null,"description":"Thin, crunchy sticks inspired by Italian focaccia. Built for dipping, sharing and the antipasti board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"298 x 158 x 158 mm","unitsPerCarton":10,"cartonsPerLayer":20,"layersPerPallet":10,"cartonsPerPallet":200,"unitsPerPallet":2000,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"printed cardboard and transparent foil"},"mismatch":null,"packshot":"packs/PG32.webp"},"PG33":{"ean":"5906684921097","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & HERBS","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG33.webp"},"PG34":{"ean":"5906684921103","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"TRIPLE CHEESE","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG34.webp"},"PG35":{"ean":"5906684921080","eanNote":null,"catalogueLine":"Focaccia 100 g","catalogueFlavour":"OLIVE OIL & SEA SALT","slices":null,"packFormat":"tray","description":"Bite size focaccia squares in a tray, ready for the snack bowl or the cheese board. Low in sugars.","claims":["Low in sugars"],"logistics":{"cartonType":"2 - face","cartonDims":"292 x 196 x 204 mm","unitsPerCarton":10,"cartonsPerLayer":16,"layersPerPallet":10,"cartonsPerPallet":160,"unitsPerPallet":1600,"palletHeight":"1,80 m","shelfLifeDays":360,"shelfLifeNote":null,"shelfLifePickupDays":330,"packaging":"craft tray, transparent foil and one label"},"mismatch":null,"packshot":"packs/PG35.webp"},"PG36":{"ean":"5906684921240","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE & ONION","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG36.webp"},"PG37":{"ean":"5906684921042","eanNote":null,"catalogueLine":"Crispies 90 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":null,"description":"Flaky laminated pastry made with real butter and matured Gouda. A premium snack for wine, beer and the cheese board.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG37.webp"},"PG38":{"ean":"5906684921271","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG38.webp"},"PG39":{"ean":"5906684921264","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"SEEDS & GOUDA CHEESE","slices":null,"packFormat":"classic format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":null,"packshot":"packs/PG39.webp"},"PG40":{"ean":"5906684921257","eanNote":null,"catalogueLine":"Straws 100 g","catalogueFlavour":"GOUDA CHEESE","slices":null,"packFormat":"mini format","description":"Crisp butter pastry straws baked with matured Gouda, in classic and mini formats.","claims":[],"logistics":{"cartonType":"2 - face","cartonDims":"264 x 221 x 201 mm","unitsPerCarton":10,"cartonsPerLayer":15,"layersPerPallet":8,"cartonsPerPallet":120,"unitsPerPallet":1200,"palletHeight":"1,80 m","shelfLifeDays":270,"shelfLifeNote":null,"shelfLifePickupDays":240,"packaging":"plastic tray, transparent foil and printed cardboard box"},"mismatch":"catalogue lists this as a second 'GOUDA CHEESE' without the word 'mini'; mapped to MINI STRAWS by elimination + pack shows short bite-size pieces (line text: 'classic and mini formats')","packshot":"packs/PG40.webp"}};
 const COMPANY = {"name":"Piekarnia Galicyjska Sp. z o.o.","addressLines":["Jeżowe 560E","37-430 Jeżowe"],"taxId":"865 240 01 78","phone":"+48 15 300 03 50","email":"info@galicrisp.pl"};
+/* commercial terms (verbatim, English) from brand/terms/*.docx — also in brand/terms/terms.json; "NAME" = the customer */
+const TERMS = {"pg":{"title":"BRAND GALICIA: COMMERCIAL TERMS AND CONDITIONS","source":"Galicia_Commercial_Terms_and_Conditions.docx","sections":[{"heading":"1. Costs and Responsibilities","kind":"costs","columns":["Kind of cost","Paid by: NAME","Paid by: Piekarnia Galicyjska"],"rows":[["Cost of labels/cardboard box/printed foil design","No","Yes"],["Cost of carton box design (SRP)","No","Yes"],["Cost of ready-made labels/cardboard boxes/printed foil/carton boxes purchased from the printing house","No","Yes"],["Cost of transparent foil for production use","No","Yes"],["Cost of audits requested by NAME","Yes","No"],["Cost of audits of NAME's customers","Yes","No"],["Cost of inspections requested by NAME","Yes","No"],["Cost of checking the nutritional values of products","Yes","No"],["Cost of additional certificates required by NAME","Yes","No"],["Other analytical costs","Yes","No"]],"notes":["Any additional certification costs required by NAME that have not been included in the original offer shall be re-invoiced to NAME after the total costs to be incurred by Piekarnia Galicyjska have been specified and communicated to NAME."]},{"heading":"2. Product Specification","kind":"paras","paras":["Products shall be manufactured in accordance with the product specifications agreed upon and approved in writing by both parties.","NAME is responsible for reviewing and approving the final product specifications before the start of production, including product composition, ingredients, allergens, nutritional values and other product-related information.","Any changes to the approved product specification requested by NAME shall be subject to the Manufacturer's technical assessment and written approval. Such changes may require a revised price offer and/or an updated production schedule.","The Manufacturer shall not be responsible for any consequences resulting from incorrect or incomplete information provided or approved by NAME, subject to the responsibilities imposed on the Manufacturer by applicable law."]},{"heading":"3. General Commercial Conditions","kind":"table","columns":["Parameter","Conditions"],"rows":[["Currency","EUR"],["Price validity","The price is guaranteed for 6 months from the date of the offer. The price guarantee is confirmed by signing the Order Confirmation within the validity period of the offer."],["Price adjustments","In the event of sudden and significant changes in market prices, the Manufacturer reserves the right to renegotiate prices with NAME or terminate the concluded supply agreement with 3 months' notice."],["Incoterms","EXW, 37-430 JEŻOWE 560e, POLAND"],["Payment","Prepayment"],["Marketing costs requested by NAME","Not included in the offer"],["Minimum order quantities (MOQ)","4 pallets per product index (per flavour). The date of the first order shall be agreed upon with the Manufacturer."],["Order quantities in the final contract","To be agreed upon separately and confirmed in writing by both parties."],["Order conditions","Products manufactured in accordance with the approved specifications and confirmed Order Confirmation are non-returnable."],["Pallet costs","Two options are available: (1) pallet exchange provided by NAME; or (2) pallet reimbursement at EUR 16 per pallet."],["Offer confirmation method","By e-mail and Order Confirmation (a document specifying the detailed arrangements)."]]},{"heading":"4. Additional Notes","kind":"paras","paras":["The prices quoted in this offer apply exclusively to the product configuration, packaging specifications and conditions described in this offer. Any changes resulting in additional or reduced costs will require a revised price offer.","The price offer applies to standard products with standard packaging. Any changes to the product or packaging specifications, including changes to product weight, packaging dimensions, packaging materials, packaging format or the number of units per outer carton, may require a revised price offer.","Any changes to the agreed product or packaging configuration must be confirmed in writing by both parties before implementation."]}]},"pl":{"title":"ADDITIONAL COMMERCIAL TERMS AND CONDITIONS – PRIVATE LABEL","source":"Private_Label_Commercial_Terms_Piekarnia_Galicyjska.docx","sections":[{"heading":"1. Packaging Costs and Responsibilities","kind":"costs","columns":["Kind of cost","Paid by: NAME","Paid by: Piekarnia Galicyjska"],"rows":[["Cost of label design","Yes","No"],["Cost of foil design","Yes","No"],["Cost of cardboard box design","Yes","No"],["Cost of carton design (SRP)","Yes","No"],["Cost of lid carton design","No – standard grey lid is used","No – standard grey lid is used"],["Printing plate colours for labels","Yes","No"],["Printing plate colours for foils","Yes","No"],["Printing plate colours for cardboard boxes","Yes","No"],["Printing plate colours for cartons","Yes, or no if the Piekarnia Galicyjska standard carton box is used","No"],["Cost of punching dies (labels/cardboard boxes/cartons – SRP)","No, if the existing Piekarnia Galicyjska punching dies are used","No"],["Cost of ready-made labels/cardboard boxes/cartons purchased from the printing house","No","Yes"],["Cost of transparent/printed foil used for production","No","Yes"],["Cost of audits requested by NAME","Yes","No"],["Cost of audits of NAME's customers","Yes","No"],["Cost of inspections requested by NAME","Yes","No"],["Cost of checking the nutritional values of products","Yes","No"],["Other analytical costs","Yes","No"],["Cost of pallets","Yes","No"]],"notes":[]},{"heading":"2. Packaging Materials – Ordering and Stock Management","kind":"packaging","items":[{"n":1,"text":"Each purchase of Private Label packaging materials must be agreed upon between the Manufacturer and NAME."},{"n":2,"text":"When placing orders, NAME is obliged to take into account the stock levels of packaging materials held by the Manufacturer."}],"intro":"The minimum and maximum quantities of packaging materials ordered from the printing house are as follows:","columns":["Type of packaging","Minimum order quantity from the printing house (to be confirmed with NAME)","Maximum order quantity"],"rows":[["Labels","25,000 pcs – per one flavour","Maximum quantity corresponding to three months of estimated production, but not less than 25,000 pcs"],["Carton box","12,000 pcs (12,000 trays and 12,000 lids)","Maximum quantity corresponding to three months of estimated production, but not less than 12,000 pcs"],["Cardboard box","25,000 pcs – per one flavour","Maximum quantity corresponding to three months of estimated production, but not less than 25,000 pcs"],["Printed foil","300 kg – per one flavour","Maximum quantity corresponding to three months of estimated production, but not less than 300 kg"]],"itemsAfter":[{"n":3,"text":"NAME is obliged to use the above-mentioned labels, foils and cartons within 12 months from the date of their purchase by the Manufacturer."},{"n":4,"text":"If NAME fails to use the packaging materials within 12 months, Piekarnia Galicyjska reserves the right to invoice NAME for all remaining unused packaging materials at their original purchase price, including applicable transportation costs, as well as the costs of disposal and transportation of unused packaging materials, where applicable. The payment term shall be 14 days from the invoice date."},{"n":5,"text":"Any subsequent orders of labels, foils and cartons shall be subject to the same conditions, meaning that the materials must be used within 12 months from their purchase by the Manufacturer."},{"n":6,"text":"In the event that no order is placed for a particular product within 4 months from the date of the last order, NAME shall be obliged to purchase all remaining packaging materials dedicated to that product at their original purchase price. This includes any applicable transportation costs, as well as the costs of disposal and transportation of unused packaging materials, where applicable. The Manufacturer shall issue an invoice for the above-mentioned costs, with a payment term of 14 days."},{"n":7,"text":"In the event of immediate termination of cooperation as a result of the termination of the Agreement by either the Manufacturer or NAME, NAME shall be obliged to purchase all remaining packaging materials dedicated to its products at their original purchase price. This obligation also applies to packaging materials already ordered from the printing house but not yet delivered to the Manufacturer, provided that such orders were previously approved by NAME. All applicable transportation costs, as well as the costs of disposal and transportation of unused packaging materials, where applicable, shall also be borne by NAME. The payment term shall be 14 days from the invoice date."}]},{"heading":"3. Product Specification","kind":"list","items":[{"n":1,"text":"Products shall be manufactured in accordance with the product specifications agreed upon and approved in writing by both parties."},{"n":2,"text":"NAME is responsible for reviewing and approving the final product specifications before the start of production, including product composition, ingredients, allergens, nutritional values and other product-related information."},{"n":3,"text":"Any changes to the approved product specification requested by NAME shall be subject to the Manufacturer's technical assessment and written approval. Such changes may require a revised price offer and/or an updated production schedule."},{"n":4,"text":"The Manufacturer shall not be responsible for any consequences resulting from incorrect or incomplete information provided or approved by NAME."}]},{"heading":"4. Packaging Artwork Approval","kind":"list","items":[{"n":1,"text":"NAME is responsible for providing and approving all packaging artwork, including product descriptions, texts, translations, nutritional information, ingredient lists, allergen declarations, barcodes and other legally required information appearing on the packaging."},{"n":2,"text":"The Manufacturer shall review and approve the packaging artwork from a technical and production perspective before printing and production."},{"n":3,"text":"Printing of packaging materials and production of products shall not commence until the final artwork has been approved in writing by both parties."},{"n":4,"text":"Any changes to the approved artwork requested by NAME after its approval may result in additional costs and changes to the agreed production schedule. All additional costs related to such changes shall be borne by NAME."},{"n":5,"text":"NAME shall be responsible for ensuring that all information and claims provided for the packaging artwork comply with the applicable legislation in the destination market."}]},{"heading":"5. Product Availability and Commercial Rights","kind":"paras","paras":["The above-mentioned products constitute the generally available commercial offer of Piekarnia Galicyjska and may be offered to other customers under their own brands, both in the country designated by NAME and in other countries. Any arrangements concerning exclusivity or restrictions on the sale of products to other customers must be agreed upon separately and confirmed in writing by both parties."]},{"heading":"6. General Commercial Conditions","kind":"table","columns":["Parameter","Conditions"],"rows":[["Price","EXW – EUR"],["Incoterms","EXW, 37-430 JEŻOWE 560e, POLAND"],["Payment","Prepayment"],["Price validity","The price is guaranteed for 6 months from the date of the offer. The price guarantee is confirmed by signing the Order Confirmation within the validity period of the offer."],["Price adjustments","In the event of sudden and significant changes in market prices, the Manufacturer reserves the right to renegotiate prices with NAME or terminate the concluded supply agreement with 3 months' notice."],["Marketing costs requested by NAME","Not included in the offer"],["Minimum order quantities (MOQ)","4 pallets per product index (per flavour). The date of the first order shall be agreed upon with the Manufacturer."],["Order quantities in the final contract","To be agreed upon separately and confirmed in writing by both parties."],["Order conditions","Products manufactured in accordance with the approved specifications and confirmed Order Confirmation are non-returnable."],["Pallet costs","Two options are available: (1) pallet exchange provided by NAME; or (2) pallet reimbursement at EUR 16 per pallet."],["Offer confirmation method","By e-mail and Order Confirmation (a document specifying the detailed arrangements)."]]},{"heading":"7. Additional Notes","kind":"list","items":[{"n":1,"text":"The prices quoted in this offer apply exclusively to the product configuration, packaging specifications and conditions described in this offer. Any changes resulting in additional or reduced costs will require a revised price offer."},{"n":2,"text":"The price offer applies to standard products with standard packaging. Any changes to the product or packaging specifications, including changes to the product weight, packaging dimensions, packaging material, packaging format or the number of units per outer carton, may require a revised price offer."},{"n":3,"text":"Any changes to the agreed product or packaging configuration must be confirmed in writing by both parties before implementation."}]}]}};
 
 /* website photos (galicrisp.pl): secondary image in quick view */
 const IMG = {"PG01":"img/PG01.webp","PG03":"img/PG03.webp","PG04":"img/PG04.webp","PG05":"img/PG05.webp","PG06":"img/PG06.webp","PG07":"img/PG07.webp","PG10":"img/PG10.webp","PG11":"img/PG11.webp","PG13":"img/PG13.webp","PG14":"img/PG14.webp","PG15":"img/PG15.webp","PG16":"img/PG16.webp","PG17":"img/PG17.webp","PG18":"img/PG18.webp","PG19":"img/PG19.webp","PG20":"img/PG20.webp","PG21":"img/PG21.webp","PG22":"img/PG22.webp","PG23":"img/PG23.webp","PG24":"img/PG24.webp","PG26":"img/PG26.webp","PG28":"img/PG28.webp","PG29":"img/PG29.webp","PG30":"img/PG30.webp","PG31":"img/PG31.webp","PG32":"img/PG32.webp","PG33":"img/PG33.webp","PG34":"img/PG34.webp","PG35":"img/PG35.webp","PG36":"img/PG36.webp","PG37":"img/PG37.webp","PG38":"img/PG38.webp","PG39":"img/PG39.webp","PG40":"img/PG40.webp"};
@@ -1863,7 +2252,7 @@ function parseCustomer(text){
 /* ---------- offer state ---------- */
 function newOffer(){
   const today = isoDate(new Date());
-  return {type:'pg',lang:'pl',meta:{client:'',contact:'',street:'',postal:'',city:'',country:'',nip:'',krs:'',email:'',phone:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null};
+  return {type:'pg',lang:'pl',meta:{client:'',contact:'',street:'',postal:'',city:'',country:'',nip:'',krs:'',email:'',phone:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null,tpl:'classic',withTerms:true};
 }
 /* offer type: 'pg' = GaliCrisp brand (default, also for older saved offers), 'pl' = Private Label (client's brand) */
 const OTYPE_LBL = {pg:'Oferta PG', pl:'Private Label'};
@@ -1947,6 +2336,78 @@ const FMT = {
       dateLong:iso=>{ if(!iso) return '—'; const [y,m,d] = iso.split('-'); return `${Number(d)} ${EN_MONTHS[Number(m)-1]||m} ${y}`; },
       height:v=>String(v).replace(/(\d),(\d)/g,'$1.$2')}
 };
+/* document templates (Klasyczny / Katalog / Premium): customer-facing strings per offer language */
+I18N.pl.tp = {
+  tplFile:{classic:'klasyczny', katalog:'katalog', premium:'premium'},
+  no:'Nr oferty', pageOf:(i,n)=>`Strona ${i} / ${n}`, country:'Polska',
+  seller:'Sprzedawca', buyer:'Klient', cond:'Warunki oferty', mfrPL:'Produkcja Private Label',
+  kickPG:'Oferta handlowa · GaliCrisp', kickPL:'Oferta Private Label · produkcja pod marką klienta',
+  products:'Produkty w ofercie', positions:n=>`${n} ${n===1?'pozycja':(n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20))?'pozycje':'pozycji'}`,
+  summary:'Podsumowanie oferty', product:'Produkt', qty:'Ilość', pricePer:'Cena netto za szt.', weight:'Gramatura',
+  lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lDims:'Wymiary kartonu', lShelf:'Termin przydatności', lPick:'Termin przy odbiorze', lPack:'Opakowanie',
+  atPick:v=>`${v} przy odbiorze`,
+  chipUpc:'szt./karton', chipCpp:'kart./paleta', chipUpp:'szt./paleta', chipShelf:'termin', chipDims:'karton', chipH:'wys. palety',
+  claims:{'Low in sugars':'Niska zawartość cukrów','Source of fibre':'Źródło błonnika','Suitable for vegetarians':'Odpowiedni dla wegetarian','High protein':'Wysoka zawartość białka','Up to 27 g of protein per 100 g':'Do 27 g białka w 100 g'},
+  pack:{
+    'printed cardboard, transparent foil with open-close label':'kartonik z nadrukiem, folia transparentna z etykietą otwórz-zamknij',
+    'craft tray, transparent foil and one label':'tacka kraft, folia transparentna i jedna etykieta',
+    'transparent foil and two labels':'folia transparentna i dwie etykiety',
+    'craft tray, transparent foil and printed cardboard box':'tacka kraft, folia transparentna i kartonik z nadrukiem',
+    'plastic tray, transparent foil and printed cardboard box':'tacka plastikowa, folia transparentna i kartonik z nadrukiem',
+    'printed cardboard and transparent foil':'kartonik z nadrukiem i folia transparentna',
+    'transparent foil, clip and two labels':'folia transparentna, klips i dwie etykiety'
+  },
+  plPhoto:'Zdjęcia przedstawiają produkty referencyjne w opakowaniach GaliCrisp. W ofercie Private Label produkt jest wytwarzany pod marką klienta i pakowany w opakowanie według zaakceptowanego projektu klienta.',
+  termsHead:'Warunki handlowe (wersja angielska)', termsParty:n=>`W treści warunków „NAME” oznacza: ${n}`, termsPartyNone:'W treści warunków „NAME” oznacza Kupującego (the Buyer).',
+  heroPG:'Feel the Crunch', heroPL:'Twój Produkt. Nasza Ekspertyza.', preparedFor:'Przygotowano dla',
+  introKick:'Słowo wstępu', greeting:()=>'Szanowni Państwo,', closing:'Z wyrazami szacunku,', signTeam:'Zespół sprzedaży',
+  letterPG:(client)=>[
+    `dziękujemy za zainteresowanie marką GaliCrisp. Z przyjemnością przedstawiamy ofertę przygotowaną dla ${client || 'Państwa firmy'}: pieczywo chrupkie, krakersy i przekąski piekarnicze z Piekarni Galicyjskiej w Jeżowem.`,
+    'Od ponad 30 lat łączymy piekarnicze rzemiosło z nowoczesną produkcją. Linie Sourdough wypiekamy na naturalnym zakwasie, w procesie długiej fermentacji — stąd wyrazisty smak i równa, czysta chrupkość.',
+    'Nasze produkty trafiają na ponad 20 rynków eksportowych, a jakość produkcji potwierdza certyfikat BRCGS z oceną A+. Na kolejnych stronach znajdą Państwo komplet danych każdego produktu — od EAN, przez logistykę i paletyzację, po termin przydatności — oraz warunki handlowe.',
+    'Chętnie odpowiemy na pytania, przygotujemy próbki i dopasujemy ofertę do potrzeb Państwa rynku.'
+  ],
+  letterPL:(client, brand)=>[
+    `dziękujemy za zainteresowanie produkcją Private Label. Przedstawiamy ofertę przygotowaną dla ${client || 'Państwa firmy'}: produkty, które wyprodukujemy pod Państwa marką${brand ? ` „${brand}”` : ''} — według uzgodnionej specyfikacji i w opakowaniu z Państwa projektem.`,
+    'Od ponad 30 lat rozwijamy receptury i technologię wypieku pieczywa chrupkiego, krakersów i przekąsek piekarniczych. Pracujemy na naturalnym zakwasie i w procesie długiej fermentacji, a nasz zespół wspiera Państwa produkt na każdym etapie — od specyfikacji po akceptację projektu opakowania.',
+    'Produkujemy dla ponad 20 rynków eksportowych, a jakość potwierdza certyfikat BRCGS z oceną A+. Na kolejnych stronach przedstawiamy produkty referencyjne z pełnymi danymi logistycznymi oraz dodatkowe warunki handlowe Private Label.',
+    'Chętnie przygotujemy próbki i omówimy szczegóły współpracy.'
+  ],
+  stats:[['30+','lat doświadczenia'],['20+','rynków eksportowych'],['A+','BRCGS']],
+  glance:'Oferta w skrócie', glProducts:'Produkty',
+  backH:'Porozmawiajmy', backTxt:no=>`Chętnie przygotujemy próbki i odpowiemy na wszystkie pytania dotyczące oferty ${no}.`, plFoot:'Produkcja pod marką klienta'
+};
+I18N.en.tp = {
+  tplFile:{classic:'classic', katalog:'showcase', premium:'premium'},
+  no:'Offer no.', pageOf:(i,n)=>`Page ${i} / ${n}`, country:'Poland',
+  seller:'Supplier', buyer:'Customer', cond:'Offer conditions', mfrPL:'Private Label manufacturing',
+  kickPG:'Commercial offer · GaliCrisp', kickPL:'Private Label offer · produced under the customer\'s brand',
+  products:'Products in this offer', positions:n=>`${n} ${n===1?'item':'items'}`,
+  summary:'Offer summary', product:'Product', qty:'Quantity', pricePer:'Net price per unit', weight:'Net weight',
+  lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lDims:'Carton dimensions', lShelf:'Shelf life', lPick:'Shelf life at pick-up', lPack:'Packaging',
+  atPick:v=>`${v} at pick-up`,
+  chipUpc:'units/carton', chipCpp:'cartons/pallet', chipUpp:'units/pallet', chipShelf:'shelf life', chipDims:'carton', chipH:'pallet height',
+  claims:{}, pack:{},
+  plPhoto:'Photos show our reference products in GaliCrisp packaging. Private Label products are manufactured under the customer\'s brand and packed to the customer\'s approved packaging design.',
+  termsHead:'Commercial terms and conditions', termsParty:n=>n, termsPartyNone:'',
+  heroPG:'Feel the Crunch', heroPL:'Your Product. Our Expertise.', preparedFor:'Prepared for',
+  introKick:'Introduction', greeting:contact=>contact ? `Dear ${contact},` : 'Dear Sir or Madam,', closing:'Kind regards,', signTeam:'Sales team',
+  letterPG:(client)=>[
+    `Thank you for your interest in GaliCrisp. We are pleased to present an offer prepared for ${client || 'your company'}: crispbreads, crackers and bakery snacks baked by Piekarnia Galicyjska in Jeżowe, Poland.`,
+    'For more than 30 years we have combined bakery craft with modern production. Our Sourdough lines are baked with natural sourdough and long fermentation, which gives them their distinctive taste and an even, clean crunch.',
+    'Our products reach more than 20 export markets, and our production quality is confirmed by a BRCGS A+ rating. On the following pages you will find complete data for every product, from EAN to logistics, palletisation and shelf life, together with our commercial terms.',
+    'We will be glad to answer your questions, send samples and tailor the offer to your market.'
+  ],
+  letterPL:(client, brand)=>[
+    `Thank you for your interest in Private Label production. We are pleased to present an offer prepared for ${client || 'your company'}: products we will manufacture under your brand${brand ? ` "${brand}"` : ''}, to the agreed specification and in packaging made to your design.`,
+    'For more than 30 years we have developed recipes and baking technology for crispbreads, crackers and bakery snacks. We work with natural sourdough and long fermentation, and our team supports your product at every stage, from specification to packaging artwork approval.',
+    'We produce for more than 20 export markets, and our quality is confirmed by a BRCGS A+ rating. The following pages present our reference products with full logistics data, together with the additional Private Label commercial terms.',
+    'We will be glad to send samples and discuss the details of our cooperation.'
+  ],
+  stats:[['30+','years of experience'],['20+','export markets'],['A+','BRCGS rating']],
+  glance:'Your offer at a glance', glProducts:'Products',
+  backH:'Let\'s talk', backTxt:no=>`We will be glad to send samples and answer any questions about offer ${no}.`, plFoot:'Produced under the customer\'s brand'
+};
 const docLang = () => offer.lang==='en' ? 'en' : 'pl';
 const docTitle = (lg = docLang()) => isPL() ? I18N[lg].docPL : I18N[lg].docPG;
 /* Private Label details, only the filled-in ones (empty for Oferta PG); the packaging choice is translated, free text is not */
@@ -1994,7 +2455,7 @@ function sanitizeOffer(o){
     qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):prodOf(i.id)._upc, disc: Number(i.disc)||0,
     ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || palOk(i.id)) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
   })) : [];
-  return {type: o.type==='pl' ? 'pl' : 'pg', lang: o.lang==='en' ? 'en' : 'pl', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null};
+  return {type: o.type==='pl' ? 'pl' : 'pg', lang: o.lang==='en' ? 'en' : 'pl', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null, tpl:['classic','katalog','premium'].includes(o.tpl) ? o.tpl : 'classic', withTerms:o.withTerms!==false};
 }
 let offer = sanitizeOffer(store.get(K_DRAFT)) || exampleOffer();
 const inOffer = id => offer.items.some(i=>i.id===id);
@@ -2247,6 +2708,8 @@ function renderMeta(){
   renderType();
   renderLang();
   renderMetaSum();
+  renderTermsOpt();
+  renderTplPicker();
 }
 let typeRendered = false;
 function renderType(){
@@ -2294,7 +2757,8 @@ function setLang(lg){
 function setType(t){
   if (!OTYPE_LBL[t] || offer.type===t) return;
   offer.type = t;
-  renderType(); persist();
+  renderType(); renderTermsOpt(); persist();
+  if ($('#previewDlg').open) renderPaper();
 }
 function renderMetaSum(){
   const m = offer.meta;
@@ -2461,7 +2925,7 @@ $('#products').addEventListener('click', e=>{
 /* ---------- events: offer ---------- */
 function clearExampleFlag(){ if (offer.isExample){ offer.isExample=false; $('#exampleNote').hidden=true; } }
 document.querySelectorAll('[data-meta]').forEach(el=>{
-  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency') updateComputed(); if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
+  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency'){ updateComputed(); renderTermsOpt(); } if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
 });
 $('#o-date').addEventListener('change', e=>{ if (e.target.value){ offer.meta.validUntil = addDays(e.target.value,30); $('#o-valid').value = offer.meta.validUntil; persist(); } });
 $('#g-disc').addEventListener('input', e=>{ offer.globalDiscount = Math.min(100, Math.max(0, parseNum(e.target.value)||0)); updateComputed(); persist(); });
@@ -2868,7 +3332,7 @@ let downloads = null;
     const use = window.claude?.use;
     if (typeof use !== 'function') return;
     const dl = await Promise.race([ window.claude.use('downloads'), new Promise(r=>setTimeout(()=>r(null), 10000)) ]);
-    if (dl && typeof dl.save === 'function'){ downloads = dl; $('#btnCsv').hidden = false; $('#btnSave').classList.remove('wide'); try { syncExportBtn(); } catch(e){} }
+    if (dl && typeof dl.save === 'function'){ downloads = dl; $('#btnCsv').hidden = false; $('#btnPdf').hidden = false; $('#pvPdf').hidden = false; $('#btnSave').classList.remove('wide'); try { syncExportBtn(); } catch(e){} }
   } catch(e){ /* capability unavailable: keep the button hidden */ }
 })();
 $('#btnCsv').addEventListener('click', async ()=>{
@@ -2885,58 +3349,472 @@ $('#btnCsv').addEventListener('click', async ()=>{
   }
 });
 
-/* preview */
-function renderPaper(){
-  const lg = docLang(), D = I18N[lg], F = FMT[lg], en = lg==='en';
-  const m = offer.meta, cur = m.currency, t = totals();
-  const rows = offer.items.map((it,i)=>{
-    const p = prodOf(it.id), u = unitsOf(it), v = lineValue(it), pl = palletsOf(it);
-    const how = it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc}` : it.mode==='pal' ? `${F.q(it.qty)} ${D.palAbbr(it.qty)} × ${p._cpp} × ${it.upc}` : '';
-    const desc = en && p._k && p._k.description ? `<br><span class="p-sub2 p-desc">${esc(p._k.description)}</span>` : '';
-    return `<tr><td>${i+1}</td><td class="p-prod"><b>${esc(p._ghost ? D.unavail : p.name)}</b><br><span class="p-sub2">${esc([p.id, p.weight ? `${p.weight} g` : '', p._line].filter(Boolean).join(' · '))}</span>${p._ean?`<br><span class="p-sub2">EAN <span class="p-ean">${p._ean}</span></span>`:''}${desc}</td><td class="n">${it.price==null?'—':F.n2(it.price)}</td><td class="n">${F.n0(u)}${how?`<br><span class="p-sub2">${how}</span>`:''}</td><td class="n">${it.upc}</td><td class="n">${F.q(cartonsOf(it))}</td><td class="n">${pl==null?'—':F.pal(pl)}</td><td class="n">${it.disc?F.pct(it.disc)+'%':'—'}</td><td class="n"><b>${v==null?'—':F.n2(v)}</b></td></tr>`;
-  }).join('');
-  const logi = offer.items.map((it,i)=>{
-    const p = prodOf(it.id), L = p._log;
-    return `<tr><td>${i+1}</td><td>${p.id}</td><td><span class="p-ean">${p._ean||'—'}</span></td><td>${esc(L.cartonType||'—')}</td><td style="white-space:nowrap">${esc(L.cartonDims||'—')}</td><td class="n">${L.unitsPerCarton??'—'}</td><td class="n">${L.cartonsPerPallet??'—'}</td><td class="n">${L.unitsPerPallet!=null?F.n0(L.unitsPerPallet):'—'}</td><td class="n">${esc(L.palletHeight?F.height(L.palletHeight):'—')}</td><td class="n">${L.shelfLifeDays?L.shelfLifeDays+' '+D.days+(L.shelfLifeNote?'*':''):'—'}</td><td class="n">${L.shelfLifePickupDays?L.shelfLifePickupDays+' '+D.days:'—'}</td></tr>`;
-  }).join('');
-  const starNote = offer.items.some(it=>prodOf(it.id)._log.shelfLifeNote) ? `<div class="p-foot" style="margin-top:6px">* ${esc(D.shelfNote['360 days testing in progress'])}</div>` : '';
-  const co = COMPANY;
-  const clientLines = [...custAddrLines().map(esc), ...[['nip',D.cTaxId],['krs',D.cKrs],['email',D.email],['phone',D.phone]].filter(([k])=>cv(k)).map(([k,l])=>`<span class="p-ck">${esc(l)}</span> ${esc(cv(k))}`)];
-  const catLine = CAT_ORDER.map((c,i)=>{ const s = D.cats[c].toLowerCase(); return i ? s : s.charAt(0).toUpperCase() + s.slice(1); }).join(' · ');
-  $('#paper').lang = lg;
-  $('#paper').innerHTML = `
-    <div class="p-head">
-      <div><img class="p-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="p-brand">Piekarnia Galicyjska</div><div class="p-sub">${esc(catLine)}</div>
-        <div class="p-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}<br>${D.taxId}: ${esc(co.taxId)} · ${D.phoneShort} ${esc(co.phone)} · ${esc(co.email)}</div></div>
-      <div class="p-doc"><div class="t">${esc(docTitle())}</div>${isPL()?`<div class="p-pl">${esc(D.plSub)}${m.brand.trim()?': '+esc(m.brand.trim()):''}</div>`:''}<div class="p-sub">${D.dated(F.dateLong(m.date), F.dateLong(m.validUntil))}</div></div>
-    </div>
-    <div class="p-parties">
-      <div class="p-client"><div class="p-k">${D.client}</div><div class="p-v">${esc(m.client)||'—'}</div>${clientLines.length?`<div class="p-cl">${clientLines.join('<br>')}</div>`:''}${cv('contact')?`<div class="p-cl p-cc"><span class="p-ck">${D.contact}</span> ${esc(cv('contact'))}</div>`:''}</div>
-      <div><div class="p-k">${D.curTerms}</div><div class="p-v">${esc(cur)}${m.terms?' · '+esc(m.terms):''}</div></div>
-      <div><div class="p-k">${D.offerType}</div><div class="p-v">${D.otype[offer.type]}</div></div>
-      ${plRows().map(([k,v])=>`<div><div class="p-k">${esc(k)}</div><div class="p-v">${esc(v)}</div></div>`).join('')}
-    </div>
-    <div class="p-tablewrap"><table>
-      <thead><tr><th>${D.th.no}</th><th>${D.th.prod}</th><th class="n">${D.th.price} (${esc(cur)})</th><th class="n">${D.th.qty}</th><th class="n">${D.th.upc}</th><th class="n">${D.th.cartons}</th><th class="n">${D.th.pallets}</th><th class="n">${D.th.disc}</th><th class="n">${D.th.value} (${esc(cur)})</th></tr></thead>
-      <tbody>${rows || `<tr><td colspan="9" style="text-align:center;color:var(--paper-ink-2);padding:24px">${D.emptyRow}</td></tr>`}</tbody>
-    </table></div>
-    <div class="p-tot">
-      <div><span>${D.totCartons}</span><span>${F.q(t.cartons)}</span></div>
-      <div><span>${D.totPallets}</span><span>${F.pal(t.pallets)}</span></div>
-      <div><span>${D.totGross}</span><span>${t.any?F.money(t.gross,cur):'—'}</span></div>
-      <div><span>${D.totDisc}${offer.globalDiscount?D.discPaper(F.pct(offer.globalDiscount)):''}</span><span>${t.any&&t.disc>0?'−'+F.money(t.disc,cur):'—'}</span></div>
-      <div class="g"><span>${D.totTotal}</span><span>${t.any?F.money(t.total,cur):'—'}</span></div>
-    </div>
-    ${t.unpriced&&offer.items.length?`<div class="p-foot">${D.unpricedPaper(t.unpriced)}</div>`:''}
-    ${m.notes?`<div class="p-notes"><div class="p-k" style="margin-bottom:4px">${D.notes}</div>${esc(m.notes)}</div>`:''}
-    ${logi ? `<div class="p-sec">${D.logiTitle}</div><div class="p-tablewrap p-logi"><table>
-      <thead><tr><th>${D.th.no}</th><th>${D.lId}</th><th>${D.lEan}</th><th>${D.lType}</th><th>${D.lDims}</th><th class="n">${D.lUpc}</th><th class="n">${D.lCpp}</th><th class="n">${D.lUpp}</th><th class="n">${D.lHeight}</th><th class="n">${D.lShelf}</th><th class="n">${D.lShelfPick}</th></tr></thead>
-      <tbody>${logi}</tbody></table></div>${starNote}` : ''}
-    <div class="p-foot">${esc(D.foot)}</div>
-    <div class="p-cofoot"><b>${esc(co.name)}</b><span>${co.addressLines.map(esc).join(', ')}</span><span>${D.taxId}: ${esc(co.taxId)}</span><span>${D.phoneShort} ${esc(co.phone)}</span><span>${esc(co.email)}</span></div>`;
+/* ---------- offer documents: 3 A4 templates (Klasyczny / Katalog / Premium), commercial-terms appendix, PDF ----------
+   Every template is a flow of blocks laid onto real 794 x 1123 px pages (A4 at 96 dpi) by measuring in an offscreen stage:
+   a block (one product, one card row, one terms paragraph…) is never split; table rows repeat the table header on the next page.
+   The preview shows the same page nodes scaled to the dialog width; the PDF rasterises them with html2canvas into jsPDF.
+   Customer-facing strings come from I18N[lang].tp; the commercial terms stay English (TERMS, verbatim from the source documents). */
+const TPLS = ['classic','katalog','premium'];
+const TPL_LBL = {classic:'Klasyczny', katalog:'Katalog', premium:'Premium'};
+const tplOf = () => TPLS.includes(offer.tpl) ? offer.tpl : 'classic';
+const addMonths = (iso, n) => { const [y,m,d] = String(iso).split('-').map(Number); const t = new Date(y, m-1+n, 1, 12); const last = new Date(t.getFullYear(), t.getMonth()+1, 0).getDate(); t.setDate(Math.min(d, last)); return isoDate(t); };
+const offerNo = () => { const m = offer.meta, d = String(m.date || isoDate(new Date())).replace(/-/g,'').slice(2); const c = cv('client') ? slug(cv('client')).replace(/[^A-Za-z0-9]/g,'').slice(0,4).toUpperCase() : ''; return `${isPL()?'PL':'PG'}-${d}${c?'-'+c:''}`; };
+const dimsTxt = s => String(s||'').replace(/(\d)\s*[x×]\s*(?=\d)/gi, '$1 × ');
+const termsDoc = () => TERMS[isPL() ? 'pl' : 'pg'];
+
+function docCtx(){
+  const lg = docLang(), D = I18N[lg], F = FMT[lg];
+  const lines = offer.items.map((it,i)=>{ const p = prodOf(it.id); return {i, it, p, L:p._log || {}, u:unitsOf(it), c:cartonsOf(it), pal:palletsOf(it), v:lineValue(it)}; });
+  return {lg, en:lg==='en', D, F, T:D.tp, m:offer.meta, cur:offer.meta.currency, t:totals(), pl:isPL(), tpl:tplOf(), lines, no:offerNo()};
 }
-$('#btnPreview').addEventListener('click', ()=>{ renderPaper(); try { $('#previewDlg').showModal(); } catch(e){} $('#pvClose').focus(); });
+/* product photo for documents: packshot (or the uploaded photo of an added product), else a category icon; plain <img> sized by max-width/max-height (html2canvas has no object-fit) */
+const docSrc = p => { const s = p._pack || p._web; return s && !brokenImg.has(s) ? s : null; };
+function docPh(p, onRed){ const col = onRed ? '#F6EAD8' : '#B08A60'; return `<span class="d-ph" role="img" aria-label="${esc(p.name)}">${(ICONS[p._cat && p._cat.key] || ICONS.crisp).replace(/currentColor/g, col)}</span>`; }
+function docImg(p, onRed){ const s = docSrc(p); return s ? `<img data-dpid="${esc(p.id)}"${onRed?' data-dred="1"':''} src="${esc(s)}" alt="${esc(p._ghost ? '' : p.name)}" decoding="async">` : docPh(p, onRed); }
+document.addEventListener('error', e=>{
+  const im = e.target;
+  if (!im || im.tagName!=='IMG' || !im.dataset || !im.dataset.dpid) return;
+  brokenImg.add(im.getAttribute('src'));
+  if (im.isConnected) im.outerHTML = docPh(prodOf(im.dataset.dpid), !!im.dataset.dred);
+}, true);
+
+function docInfo(c, x){
+  const {D, F, T} = c, p = x.p, it = x.it, L = x.L, dash = '—';
+  const n0 = v => v==null || v==='' ? dash : F.n0(v);
+  const claims = (p._k && Array.isArray(p._k.claims) ? p._k.claims : []).filter(Boolean).map(s => c.lg==='pl' ? (T.claims[s] || s) : s);
+  return {
+    name: p._ghost ? D.unavail : p.name,
+    id: p.id, ean: p._ean || '', weight: typeof p.weight==='number' && p.weight>0 ? `${p.weight} g` : dash,
+    line: p._line || '', cat: p._cat ? (c.lg==='pl' ? D.cats[p.category] || p._cat.pl : p._cat.en) : '',
+    desc: p._k && p._k.description ? p._k.description : '', claims,
+    price: it.price==null ? null : F.n2(it.price),
+    disc: it.disc ? F.pct(it.disc) + '%' : '',
+    units: `${F.n0(x.u)} ${D.pcs}`, cartons: `${F.q(x.c)} ${D.ctn}`,
+    pallets: x.pal==null ? dash : `${F.pal(x.pal)} ${c.lg==='pl' ? 'pal.' : D.palAbbr(x.pal)}`,
+    how: it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc} ${D.pcs}` : it.mode==='pal' && p._cpp ? `${F.q(it.qty)} ${D.palAbbr(it.qty)} × ${p._cpp} × ${it.upc}` : '',
+    value: x.v==null ? dash : F.n2(x.v),
+    upc: n0(L.unitsPerCarton), cpp: n0(L.cartonsPerPallet), upp: n0(L.unitsPerPallet),
+    dims: L.cartonDims ? dimsTxt(L.cartonDims) : dash, height: L.palletHeight ? F.height(L.palletHeight) : dash,
+    shelf: L.shelfLifeDays ? `${L.shelfLifeDays} ${D.days}` : dash, pick: L.shelfLifePickupDays ? `${L.shelfLifePickupDays} ${D.days}` : dash,
+    pack: L.packaging ? (c.lg==='pl' ? T.pack[L.packaging] || L.packaging : L.packaging) : dash
+  };
+}
+const claimsHtml = (q, cls) => q.claims.length ? `<div class="${cls||'d-claims'}">${q.claims.map(s=>`<span class="d-claim">${esc(s)}</span>`).join('')}</div>` : '';
+const descHtml = (q, cls) => q.desc ? `<p class="${cls||'d-desc'}" lang="en">${esc(q.desc)}</p>` : '';
+function hdBrand(c){
+  if (c.pl) return `<div class="d-wm"><b>Piekarnia Galicyjska</b><span>${esc(c.T.mfrPL)}</span></div>`;
+  const cats = CAT_ORDER.map((k,i)=>{ const s = c.D.cats[k].toLowerCase(); return i ? s : s.charAt(0).toUpperCase() + s.slice(1); }).join(' · ');
+  return `<img class="hd-logo" src="img/logo.png" alt="GaliCrisp" width="420" height="204"><div class="hd-co">Piekarnia Galicyjska<span>${esc(cats)}</span></div>`;
+}
+const hdMeta = c => `<div class="hd-meta"><b>${esc(docTitle(c.lg))}</b>${esc(c.T.no)} ${esc(c.no)} · ${esc(c.F.date(c.m.date))}</div>`;
+const ftCo = c => { const co = COMPANY; return `<span class="ft-co"><b>${esc(co.name)}</b> · ${co.addressLines.map(esc).join(', ')}, ${esc(c.T.country)} · ${esc(c.D.taxId)} ${esc(co.taxId)} · ${esc(c.D.phoneShort)} ${esc(co.phone)} · ${esc(co.email)}</span>`; };
+function sellerHtml(c, cls){
+  const co = COMPANY, D = c.D;
+  return `<div class="d-party ${cls||''}"><div class="d-k">${esc(c.T.seller)}</div><div class="d-pn">${esc(co.name)}</div><div class="d-pa">${co.addressLines.map(esc).join('<br>')}<br>${esc(c.T.country)}</div>
+    <dl class="d-pd"><dt>${esc(D.taxId)}</dt><dd>${esc(co.taxId)}</dd><dt>${esc(D.phone)}</dt><dd>${esc(co.phone)}</dd><dt>${esc(D.email)}</dt><dd>${esc(co.email)}</dd></dl></div>`;
+}
+/* the customer block: every filled-in #o-c-* field (plus company name and contact person) */
+function buyerHtml(c, cls){
+  const D = c.D, addr = custAddrLines();
+  const rows = [['contact',D.contact],['nip',D.cTaxId],['krs',D.cKrs],['email',D.email],['phone',D.phone]].filter(([k])=>cv(k));
+  return `<div class="d-party buyer ${cls||''}"><div class="d-k">${esc(c.T.buyer)}</div><div class="d-pn">${esc(cv('client')) || '—'}</div>${addr.length?`<div class="d-pa">${addr.map(esc).join('<br>')}</div>`:''}${rows.length?`<dl class="d-pd">${rows.map(([k,l])=>`<dt>${esc(l)}</dt><dd>${esc(cv(k))}</dd>`).join('')}</dl>`:''}</div>`;
+}
+/* offer conditions incl. the Private Label fields */
+function condRows(c){
+  const {D, F, T, m} = c;
+  return [[D.offerType, D.otype[offer.type]], [T.no, c.no], [D.date, F.dateLong(m.date)], [D.valid, F.dateLong(m.validUntil)], [D.currency, m.currency],
+    ...(cv('terms') ? [[D.terms, cv('terms')]] : []), ...plRows(c.lg)];
+}
+function totHtml(c){
+  const {D, F, t, cur} = c;
+  return `<div class="d-tot">
+    <div><span>${esc(D.totCartons)}</span><b>${F.q(t.cartons)}</b></div>
+    <div><span>${esc(D.totPallets)}</span><b>${F.pal(t.pallets)}</b></div>
+    <div><span>${esc(D.totGross)}</span><b>${t.any?F.money(t.gross,cur):'—'}</b></div>
+    <div><span>${esc(D.totDisc)}${offer.globalDiscount?esc(D.discPaper(F.pct(offer.globalDiscount))):''}</span><b>${t.any&&t.disc>0?'−'+F.money(t.disc,cur):'—'}</b></div>
+    <div class="g"><span>${esc(D.totTotal)}</span><b>${t.any?F.money(t.total,cur):'—'}</b></div></div>`;
+}
+const notesHtml = c => cv('notes') ? `<div class="d-notes"><div class="d-k">${esc(c.D.notes)}</div><div class="d-nt">${esc(c.m.notes.trim())}</div></div>` : '<div style="flex:1"></div>';
+function footHtml(c){
+  const n = c.lines.length, f = [];
+  if (n && c.t.unpriced) f.push(c.D.unpricedPaper(c.t.unpriced));
+  if (n && !c.t.any) f.push(c.D.noPrices);
+  if (c.pl) f.push(c.T.plPhoto);
+  f.push(c.D.foot);
+  return `<div class="d-foot">${f.map(esc).join('<br>')}</div>`;
+}
+const secHtml = (title, sub) => `<h2 class="d-sec">${esc(title)}${sub?` <small>${esc(sub)}</small>`:''}</h2>`;
+/* compact summary table (Katalog, Premium) */
+function sumFlow(c, key){
+  const {D, T, cur} = c;
+  const head = `<table class="s-tbl"><colgroup><col style="width:26px"><col><col style="width:76px"><col style="width:66px"><col style="width:56px"><col style="width:52px"><col style="width:44px"><col style="width:84px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(D.th.qty)}</th><th class="n">${esc(D.th.cartons)}</th><th class="n">${esc(D.th.pallets)}</th><th class="n">${esc(D.th.disc)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
+  return c.lines.map(x=>{ const q = docInfo(c, x);
+    return {row:key, head, html:`<tbody><tr><td class="s-no">${x.i+1}</td><td><b>${esc(q.name)}</b><span>${esc([q.id, q.ean ? 'EAN ' + q.ean : '', q.weight].filter(v=>v && v!=='—').join(' · '))}</span></td><td class="n">${q.price==null?'—':q.price}</td><td class="n">${c.F.n0(x.u)}</td><td class="n">${c.F.q(x.c)}</td><td class="n">${x.pal==null?'—':c.F.pal(x.pal)}</td><td class="n">${q.disc||'—'}</td><td class="n"><b>${q.value}</b></td></tr></tbody>`};
+  });
+}
+/* commercial terms appendix: always starts on a new page; English text, NAME = the customer */
+function termsFlow(c){
+  if (offer.withTerms===false) return [];
+  const doc = termsDoc(), T = c.T, client = cv('client'), who = client || 'the Buyer';
+  const nm = s => esc(s).replace(/\bNAME\b(\.?)/g, (x, dot) => `<span class="t-name">${esc(who)}</span>${dot && !/\.$/.test(who) ? '.' : ''}`);
+  const yn = s => /^yes/i.test(s) ? 'yes' : /^no/i.test(s) ? 'no' : '';
+  const party = c.lg==='pl' ? `<div class="t-party">${client ? T.termsParty(`<b>${esc(client)}</b>`) : esc(T.termsPartyNone)}</div>` : '';
+  const out = [{brk:true, keep:true, html:`<div class="t-head" lang="en"><div class="t-kick" lang="${c.lg}">${esc(T.termsHead)}</div><h2 class="t-title">${esc(doc.title)}</h2>${party}</div>`}];
+  const li = x => ({html:`<div class="t-li" lang="en"><span class="t-n">${x.n}.</span><p>${nm(x.text)}</p></div>`});
+  const para = s => ({html:`<p class="t-p" lang="en">${nm(s)}</p>`});
+  const tblRows = (key, cols, rows, cls, colgroup, cellCls) => {
+    const head = `<table class="t-tbl ${cls}" lang="en">${colgroup}<thead><tr>${cols.map(h=>`<th>${nm(h)}</th>`).join('')}</tr></thead></table>`;
+    return rows.map(r=>({row:key, head, html:`<tbody><tr>${r.map((v,i)=>`<td${cellCls ? cellCls(v,i) : ''}>${nm(v)}</td>`).join('')}</tr></tbody>`}));
+  };
+  doc.sections.forEach((s, si)=>{
+    out.push({keep:true, html:`<h3 class="t-h" lang="en">${esc(s.heading)}</h3>`});
+    if (s.kind==='costs'){
+      out.push(...tblRows('tc'+si, s.columns, s.rows, 't-costs', '<colgroup><col><col style="width:150px"><col style="width:150px"></colgroup>', (v,i)=>i ? ` class="yn ${yn(v)}"` : ''));
+      (s.notes||[]).forEach(p=>{ out.push({html:'<div class="t-gap"></div>'}); out.push(para(p)); });
+    } else if (s.kind==='table'){
+      out.push(...tblRows('tt'+si, s.columns, s.rows, 't-params', '<colgroup><col style="width:180px"><col></colgroup>'));
+    } else if (s.kind==='list') s.items.forEach(x=>out.push(li(x)));
+    else if (s.kind==='packaging'){
+      (s.items||[]).forEach(x=>out.push(li(x)));
+      if (s.intro) out.push({keep:true, html:`<p class="t-p" lang="en">${nm(s.intro)}</p>`});
+      out.push(...tblRows('tp'+si, s.columns, s.rows, 't-pack', '<colgroup><col style="width:110px"><col><col></colgroup>'));
+      out.push({html:'<div class="t-gap"></div>'});
+      (s.itemsAfter||[]).forEach(x=>out.push(li(x)));
+    } else (s.paras||[]).forEach(p=>out.push(para(p)));
+  });
+  return out;
+}
+
+/* ---- the three templates: chrome (header/footer of a page) + flow of blocks ---- */
+const DOC_TPL = {
+  classic: {
+    chrome: c => `<section class="page tpl-classic"><header class="pg-hd"><div class="hd-in">${hdBrand(c)}${hdMeta(c)}</div></header><div class="pg-bd"></div><footer class="pg-ft">${ftCo(c)}<span class="pg-num"></span></footer></section>`,
+    flow(c){
+      const {D, F, T, m, cur} = c, out = [];
+      out.push({keep:true, html:`<div class="c-title"><div class="c-kick">${esc(c.pl ? T.kickPL : T.kickPG)}</div><h1>${esc(docTitle(c.lg))}</h1><div class="c-sub">${esc(T.no)} ${esc(c.no)} · ${esc(D.dated(F.dateLong(m.date), F.dateLong(m.validUntil)))}</div>${c.pl?`<div class="d-pltag">${esc(D.plSub)}${cv('brand')?': '+esc(cv('brand')):''}</div>`:''}</div>`});
+      out.push({html:`<div class="c-parties">${sellerHtml(c)}${buyerHtml(c)}</div>`});
+      out.push({html:`<div class="c-cond"><div class="c-cond-in">${condRows(c).map(([k,v])=>`<div><div class="d-k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>`});
+      out.push({keep:true, html:secHtml(T.products, T.positions(c.lines.length))});
+      if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
+      const head = `<table class="c-tbl"><colgroup><col style="width:26px"><col style="width:76px"><col><col style="width:84px"><col style="width:100px"><col style="width:48px"><col style="width:88px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th></th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(T.qty)}</th><th class="n">${esc(D.th.disc)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
+      c.lines.forEach(x=>{
+        const q = docInfo(c, x);
+        out.push({row:'cp', head, html:`<tbody class="c-row"><tr class="c-main"><td class="c-no">${x.i+1}</td><td><div class="c-thumb d-pic">${docImg(x.p)}</div></td>
+          <td><div class="c-name">${esc(q.name)}</div><div class="c-ids">${esc([q.id, q.weight!=='—'?q.weight:'', q.line].filter(Boolean).join(' · '))}</div>${q.ean?`<div class="c-ean"><i>EAN</i>${esc(q.ean)}</div>`:''}${descHtml(q)}${claimsHtml(q)}</td>
+          <td class="n c-price">${q.price==null?`<span>${esc(D.tTbd)}</span>`:q.price}</td>
+          <td class="n c-qty"><b>${esc(q.units)}</b><span>${esc(q.cartons)}${q.pallets!=='—'?' · '+esc(q.pallets):''}</span>${q.how?`<span>${esc(q.how)}</span>`:''}</td>
+          <td class="n">${q.disc||'—'}</td><td class="n c-val">${q.value}</td></tr>
+          <tr class="c-logi"><td colspan="2"></td><td colspan="5"><div class="c-lg"><div class="c-lg-in">
+            <div><i>${esc(T.lUpc)}</i><b>${q.upc}</b></div><div><i>${esc(T.lCpp)}</i><b>${q.cpp}</b></div><div><i>${esc(T.lUpp)}</i><b>${q.upp}</b></div><div><i>${esc(T.lHeight)}</i><b>${esc(q.height)}</b></div>
+            <div><i>${esc(T.lDims)}</i><b>${esc(q.dims)}</b></div><div><i>${esc(T.lShelf)}</i><b>${esc(q.shelf)}${q.pick!=='—'?' · '+esc(T.atPick(q.pick)):''}</b></div><div class="w2"><i>${esc(T.lPack)}</i><b>${esc(q.pack)}</b></div>
+          </div></div></td></tr></tbody>`});
+      });
+      out.push({html:`<div class="d-sum">${notesHtml(c)}${totHtml(c)}</div>`});
+      out.push({html:footHtml(c)});
+      return out;
+    }
+  },
+  katalog: {
+    chrome: c => `<section class="page tpl-katalog"><header class="pg-hd">${hdBrand(c)}${hdMeta(c)}</header><div class="pg-bd"></div><footer class="pg-ft">${ftCo(c)}<span class="pg-num"></span></footer></section>`,
+    flow(c){
+      const {D, F, T, m, cur} = c, out = [];
+      const heroP = []; c.lines.forEach(x=>{ if (heroP.length<3 && docSrc(x.p) && !heroP.includes(x.p)) heroP.push(x.p); });
+      const order = heroP.length===3 ? [heroP[1], heroP[0], heroP[2]] : heroP.length===2 ? [heroP[0], null, heroP[1]] : heroP.length===1 ? [null, heroP[0], null] : [];
+      const packs = order.map((p,i)=>p ? `<div class="k-hp n${i}"><div class="d-floor"></div><div class="d-pic">${docImg(p, true)}</div></div>` : '').join('');
+      out.push({html:`<div class="k-hero${packs?'':' solo'}"><div class="k-hero-txt"><div class="k-kick">${esc(docTitle(c.lg))}</div><h1>${esc(c.pl ? T.heroPL : T.heroPG)}</h1><div class="k-for">${esc(T.preparedFor)}</div><div class="k-client">${esc(cv('client')) || '—'}</div>
+        <div class="k-meta">${esc(T.no)} <b>${esc(c.no)}</b> · ${esc(F.dateLong(m.date))}<br>${esc(D.valid)}: <b>${esc(F.dateLong(m.validUntil))}</b>${c.pl && cv('brand') ? `<br>${esc(D.brand)}: <b>${esc(cv('brand'))}</b>` : ''}</div></div>${packs?`<div class="k-hero-packs">${packs}</div>`:''}</div>`});
+      out.push({html:`<div class="k-parties">${sellerHtml(c)}${buyerHtml(c)}<div class="d-party k-cond"><div class="d-k">${esc(T.cond)}</div><dl>${condRows(c).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl></div></div>`});
+      out.push({keep:true, html:secHtml(T.products, T.positions(c.lines.length))});
+      if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
+      const card = x => { const q = docInfo(c, x), n = String(x.i+1).padStart(2,'0');
+        return `<article class="k-card"><div class="k-stage"><div class="d-floor"></div><div class="k-pic d-pic">${docImg(x.p, true)}</div>
+          <div class="k-idx"><b>${n}</b>${esc(q.id)}</div>
+          <div class="k-tag${q.price==null?' tbd':''}"><b>${q.price==null?esc(D.tTbd):q.price}</b>${q.price==null?'':`<span>${esc(cur)} ${esc(D.tPerUnit)}</span>`}</div>
+          ${q.disc?`<div class="k-disc">−${esc(q.disc)}</div>`:''}
+          ${q.claims.length?`<div class="k-claims">${q.claims.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`:''}</div>
+          <div class="k-body"><div class="k-line">${esc([q.line, q.cat].filter(Boolean).join(' · '))}</div><h3 class="k-name">${esc(q.name)}</h3>
+          <div class="k-ean">EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q)}
+          <div class="k-chips"><span><i>${esc(T.weight)}</i>${esc(q.weight)}</span><span><i>${esc(T.chipUpc)}</i>${q.upc}</span><span><i>${esc(T.chipCpp)}</i>${q.cpp}</span><span><i>${esc(T.chipUpp)}</i>${q.upp}</span><span><i>${esc(T.chipShelf)}</i>${esc(q.shelf)}${q.pick!=='—'?' / '+esc(q.pick):''}</span><span><i>${esc(T.chipDims)}</i>${esc(q.dims)}</span><span><i>${esc(T.chipH)}</i>${esc(q.height)}</span></div>
+          <div class="k-pack"><i>${esc(T.lPack)}</i>${esc(q.pack)}</div><div class="k-order-sp"></div>
+          <div class="k-order"><div class="q"><i>${esc(T.qty)}</i><b>${esc(q.units)}</b> · ${esc(q.cartons)} · ${esc(q.pallets)}</div><div class="v"><i>${esc(D.th.value)}</i><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`; };
+      for (let i=0; i<c.lines.length; i+=2) out.push({html:`<div class="k-row">${card(c.lines[i])}${c.lines[i+1]?card(c.lines[i+1]):'<div></div>'}</div>`});
+      if (c.lines.length){
+        out.push({keep:true, html:secHtml(T.summary)});
+        out.push(...sumFlow(c, 'ks'));
+      }
+      out.push({html:`<div class="d-sum">${notesHtml(c)}${totHtml(c)}</div>`});
+      out.push({html:footHtml(c)});
+      return out;
+    }
+  },
+  premium: {
+    chrome: c => `<section class="page tpl-premium"><header class="pg-hd">${hdBrand(c)}${hdMeta(c)}</header><div class="pg-bd"></div><footer class="pg-ft">${ftCo(c)}<span class="pg-num"></span></footer></section>`,
+    flow(c){
+      const {D, F, T, m, cur} = c, out = [], client = cv('client');
+      const head = c.pl ? esc(T.heroPL).replace(/\.\s+(.+)$/, '.<br><em>$1</em>') : esc(T.heroPG).replace(/(\S+)$/, '<em>$1</em>');
+      const mark = c.pl ? `<div class="d-wm"><b>Piekarnia Galicyjska</b><span>${esc(T.mfrPL)}</span></div>` : `<img src="img/logo.png" alt="GaliCrisp" width="420" height="204">`;
+      out.push({page:`<section class="page tpl-premium p-cover"><div class="pc-photo" style="background-image:url('img/cover.webp')"></div><div class="pc-shade"></div>
+        <div class="pc-top"><div class="pc-logo">${mark}</div><div class="pc-mfr">${T.stats.map(([a,b])=>`<b>${esc(a)}</b>${esc(b)}`).join('<br>')}</div></div>
+        <div class="pc-main"><div class="pc-kick">${esc(docTitle(c.lg))}</div><h1 class="pc-h">${head}</h1><div class="pc-rule"></div><div class="pc-for">${esc(T.preparedFor)}</div><div class="pc-client">${esc(client) || '—'}</div>${c.pl && cv('brand') ? `<div class="pc-brand">${esc(D.plSub)}: ${esc(cv('brand'))}</div>` : ''}</div>
+        <div class="pc-meta"><div><i>${esc(D.offerType)}</i><b>${esc(D.otype[offer.type])}</b></div><div><i>${esc(T.no)}</i><b>${esc(c.no)}</b></div><div><i>${esc(D.date)}</i><b>${esc(F.dateLong(m.date))}</b></div><div><i>${esc(D.valid)}</i><b>${esc(F.dateLong(m.validUntil))}</b></div></div>
+        <span class="pg-num" hidden></span></section>`});
+      const letter = (c.pl ? T.letterPL : T.letterPG)(client, cv('brand'));
+      const side = `<div class="pi-side"><div class="pi-box">${buyerHtml(c).replace('d-party buyer','d-party-x')}</div><div class="pi-box"><div class="d-k">${esc(T.cond)}</div><dl>${condRows(c).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl></div></div>`;
+      out.push({brk:true, html:`<div class="pi-grid"><div class="pi-letter"><div class="pi-kick">${esc(T.introKick)}</div><h2 class="pi-h">${esc(T.greeting(cv('contact')))}</h2>${letter.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="pi-sign">${esc(T.closing)}<b>${esc(T.signTeam)}</b>${esc(COMPANY.name)}</div></div>${side}</div>`});
+      out.push({html:`<div class="pi-stats">${T.stats.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>`});
+      const gl = [[T.glProducts, String(c.lines.length)], [D.totCartons, F.q(c.t.cartons)], [D.totPallets, F.pal(c.t.pallets)], [D.totTotal, c.t.any ? F.money(c.t.total, cur) : '—']];
+      out.push({html:`<div class="pi-glance"><div class="k-h">${esc(T.glance)}</div>${gl.map(([a,b])=>`<div><i>${esc(a)}</i><b>${esc(b)}</b></div>`).join('')}</div>`});
+      if (c.pl) out.push({html:`<div class="pi-note">${esc(T.plPhoto)}</div>`});
+      out.push({fill:true, min:80, max:250, html:`<div class="pi-photo" role="img" aria-label="GaliCrisp" style="background-image:url('${c.pl ? 'img/cover.webp' : 'img/hero.webp'}');background-position:${c.pl ? '50% 82%' : '50% 50%'}"></div>`});
+      c.lines.forEach((x, j)=>{
+        const q = docInfo(c, x), n = String(x.i+1).padStart(2,'0');
+        const facts = [[T.weight, q.weight, T.lUpc, q.upc], [T.lCpp, q.cpp, T.lUpp, q.upp], [T.lDims, q.dims, T.lHeight, q.height], [T.lShelf, q.shelf, T.lPick, q.pick]];
+        out.push({brk: j===0, html:`<article class="pr-spread"><div class="pr-stage"><div class="pr-no">${n}<span>/ ${String(c.lines.length).padStart(2,'0')}</span></div><div class="d-floor"></div><div class="pr-pic d-pic">${docImg(x.p, true)}</div>${q.claims.length?`<div class="pr-claims">${q.claims.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`:''}</div>
+          <div class="pr-data"><div class="pr-line">${esc([q.cat, q.line].filter(Boolean).join(' · '))}</div><h3 class="pr-name">${esc(q.name)}</h3><div class="pr-ids">ID <b>${esc(q.id)}</b> · EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q, 'pr-desc')}
+          <table class="pr-facts"><colgroup><col style="width:24%"><col style="width:26%"><col style="width:24%"><col style="width:26%"></colgroup>${facts.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td><th>${esc(r[2])}</th><td>${esc(r[3])}</td></tr>`).join('')}<tr><th>${esc(T.lPack)}</th><td colspan="3">${esc(q.pack)}</td></tr></table>
+          <div class="pr-price"><div><div class="pp-k">${esc(T.pricePer)}</div>${q.price==null?`<div class="pp-v tbd">${esc(D.tTbd)}</div>`:`<div class="pp-v">${q.price}<small>${esc(cur)}</small></div>`}<div class="pp-q">${esc(q.units)} · ${esc(q.cartons)} · ${esc(q.pallets)}${q.disc?` · ${esc(D.th.disc)} ${esc(q.disc)}`:''}</div></div>
+          <div class="pp-t"><div class="pp-k">${esc(D.th.value)}</div><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`});
+      });
+      out.push({keep:true, html:secHtml(T.summary, T.positions(c.lines.length))});
+      if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
+      out.push(...sumFlow(c, 'ps'));
+      out.push({html:`<div class="d-sum">${notesHtml(c)}${totHtml(c)}</div>`});
+      out.push({html:footHtml(c)});
+      return out;
+    },
+    tail(c){
+      const {T} = c, co = COMPANY;
+      const mark = c.pl ? `<div class="d-wm"><b>Piekarnia Galicyjska</b><span>${esc(T.mfrPL)}</span></div>` : `<img src="img/logo.png" alt="GaliCrisp" width="420" height="204">`;
+      return [{page:`<section class="page tpl-premium p-back"><div class="pb-in"><div class="pb-logo">${mark}</div><h2 class="pb-h">${esc(T.backH)}</h2><p class="pb-txt">${esc(T.backTxt(c.no))}</p><div class="pb-stats">${T.stats.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
+        <div class="pb-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}, ${esc(T.country)}<br>${esc(c.D.taxId)} ${esc(co.taxId)}<br>${esc(c.D.phoneShort)} ${esc(co.phone)} · ${esc(co.email)}</div></div>
+        <div class="pb-foot">${esc(c.pl ? T.plFoot : T.heroPG)}</div><span class="pg-num" hidden></span></section>`}];
+    }
+  }
+};
+
+/* lay a flow of blocks onto pages; returns the page elements (attached to `stage`, which must be laid out) */
+function docEl(html){ const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; }
+function docRowEl(html){ const t = document.createElement('template'); t.innerHTML = '<table>' + html.trim() + '</table>'; return t.content.firstElementChild.tBodies[0]; }
+function paginate(stage, flow, chrome){
+  const pages = []; let bd = null;
+  const open = () => { const pg = docEl(chrome()); stage.appendChild(pg); pages.push(pg); bd = pg.querySelector('.pg-bd'); };
+  const over = () => { const l = bd.lastElementChild; return !!l && l.offsetTop + l.offsetHeight > bd.clientHeight + .5; };
+  /* headings marked "keep" follow the block that did not fit (no orphaned heading at a page bottom) */
+  const carry = old => { const ks = []; let l = old.lastElementChild; while (l && l.dataset.keep){ ks.unshift(l); l = l.previousElementSibling; } if (l) ks.forEach(k=>bd.appendChild(k)); };
+  const newTable = (it, cont) => { const tb = docEl(it.head); tb.dataset.tb = it.row; if (cont) tb.classList.add('cont'); bd.appendChild(tb); return tb; };
+  for (let fi = 0; fi < flow.length; fi++){
+    const it = flow[fi];
+    if (it.fill){
+      if (!bd) continue;
+      const el = docEl(it.html); el.style.height = '0px'; bd.appendChild(el);
+      const room = bd.clientHeight - el.offsetTop - 2;
+      if (room < it.min) el.remove(); else el.style.height = Math.min(it.max, room) + 'px';
+      continue;
+    }
+    if (it.page){ const pg = docEl(it.page); stage.appendChild(pg); pages.push(pg); bd = null; continue; }
+    if (!bd || it.brk) open();
+    if (it.row){
+      let tb = bd.lastElementChild; if (!tb || tb.dataset.tb!==it.row) tb = newTable(it, false);
+      const row = docRowEl(it.html); tb.appendChild(row);
+      if (over() && !(tb===bd.firstElementChild && tb.tBodies.length===1)){
+        row.remove(); const cont = tb.tBodies.length>0; if (!cont) tb.remove();
+        const old = bd; open(); if (!cont) carry(old);
+        newTable(it, cont).appendChild(row);
+      } else if (tb.tBodies.length===1 && tb!==bd.firstElementChild && flow[fi+1] && flow[fi+1].row===it.row && bd.clientHeight - (tb.offsetTop + tb.offsetHeight) < row.offsetHeight * 1.1){
+        /* never leave a table header with a single row at the bottom of a page */
+        tb.remove(); const old = bd; open(); carry(old); newTable(it, false).appendChild(row);
+      }
+    } else {
+      const el = docEl(it.html); if (it.keep) el.dataset.keep = '1';
+      bd.appendChild(el);
+      if (over() && el!==bd.firstElementChild){ el.remove(); const old = bd; open(); carry(old); bd.appendChild(el); }
+    }
+  }
+  return pages;
+}
+function docStage(id){
+  let s = document.getElementById(id);
+  if (!s){ s = document.createElement('div'); s.id = id; s.className = 'doc-stage'; s.setAttribute('aria-hidden','true'); document.body.appendChild(s); }
+  s.lang = docLang(); s.textContent = '';
+  return s;
+}
+function buildDoc(stage){
+  const c = docCtx(), impl = DOC_TPL[c.tpl];
+  const flow = impl.flow(c).concat(termsFlow(c), impl.tail ? impl.tail(c) : []);
+  const pages = paginate(stage, flow, () => impl.chrome(c));
+  pages.forEach((pg, i)=>{ pg.dataset.page = String(i+1); pg.setAttribute('aria-label', c.T.pageOf(i+1, pages.length)); const n = pg.querySelector('.pg-num'); if (n) n.textContent = c.T.pageOf(i+1, pages.length); });
+  return pages;
+}
+
+/* preview: render offscreen, move the pages into the dialog, scale them to its width */
+let paperFontsWait = false;
+function renderPaper(){
+  const host = $('#paper'), lg = docLang();
+  const st = host.scrollHeight > host.clientHeight ? host.scrollTop / host.scrollHeight : 0;
+  host.lang = lg;
+  host.classList.add('docs');
+  host.dataset.tpl = tplOf();
+  const pages = buildDoc(docStage('docStage'));
+  const frag = document.createDocumentFragment();
+  pages.forEach(pg=>{ const slot = document.createElement('div'); slot.className = 'pg-slot'; slot.appendChild(pg); frag.appendChild(slot); });
+  host.replaceChildren(frag);
+  fitPages();
+  if (st) host.scrollTop = st * host.scrollHeight;
+  renderTplPicker();
+  /* web fonts change text metrics: lay the pages out again once they are ready */
+  if (document.fonts && document.fonts.status!=='loaded' && !paperFontsWait){
+    paperFontsWait = true;
+    document.fonts.ready.then(()=>{ paperFontsWait = false; if ($('#previewDlg').open) renderPaper(); }).catch(()=>{ paperFontsWait = false; });
+  }
+}
+function fitPages(){
+  const host = $('#paper'); if (!host.classList.contains('docs')) return;
+  const cs = getComputedStyle(host), w = host.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+  const k = w > 0 ? Math.max(.2, Math.min(1, w / 794)) : Math.min(1, (Math.min(900, innerWidth - 32) - 50) / 794);
+  host.style.setProperty('--k', k.toFixed(4));
+}
+try { new ResizeObserver(()=>fitPages()).observe($('#paper')); } catch(e){ addEventListener('resize', fitPages); }
+
+function renderTplPicker(){
+  const t = tplOf();
+  TPLS.forEach(k=>{ const b = document.getElementById('pvTpl-'+k); if (b){ b.setAttribute('aria-checked', String(k===t)); b.tabIndex = k===t ? 0 : -1; } });
+  const sel = $('#o-tpl'); if (sel && sel.value!==t) sel.value = t;
+}
+function setTpl(t){
+  if (!TPLS.includes(t)) return;
+  const changed = tplOf()!==t;
+  offer.tpl = t; renderTplPicker();
+  if (!changed) return;
+  persist();
+  if ($('#previewDlg').open){
+    renderPaper(); $('#paper').scrollTop = 0;
+    const g = G(); if (g) g.fromTo('#paper .pg-slot',{opacity:0, y:10},{opacity:1, y:0, duration:.3, stagger:.04, ease:'power2.out', clearProps:'opacity,transform'});
+  }
+}
+$('#pvTplSw').addEventListener('click', e=>{ const b = e.target.closest('[data-tpl]'); if (b) setTpl(b.dataset.tpl); });
+$('#pvTplSw').addEventListener('keydown', e=>{
+  const i = TPLS.indexOf(tplOf()); let n = null;
+  if (e.key==='ArrowRight' || e.key==='ArrowDown') n = TPLS[(i+1)%TPLS.length];
+  else if (e.key==='ArrowLeft' || e.key==='ArrowUp') n = TPLS[(i+TPLS.length-1)%TPLS.length];
+  else if (e.key==='Home') n = TPLS[0]; else if (e.key==='End') n = TPLS[TPLS.length-1];
+  if (!n) return; e.preventDefault(); setTpl(n); document.getElementById('pvTpl-'+n).focus();
+});
+$('#o-tpl').addEventListener('change', e=>setTpl(e.target.value));
+
+$('#btnPreview').addEventListener('click', ()=>{ renderPaper(); try { $('#previewDlg').showModal(); } catch(e){} fitPages(); $('#paper').scrollTop = 0; $('#pvClose').focus(); });
 $('#pvClose').addEventListener('click', ()=>$('#previewDlg').close());
+
+/* ---- commercial terms in the builder: include toggle, standard conditions, currency check ---- */
+function renderTermsOpt(){
+  const on = offer.withTerms!==false;
+  $('#o-withTerms').checked = on;
+  $('#termsDoc').textContent = 'Dokument: ' + (isPL() ? 'Private Label — Additional Commercial Terms' : 'Brand GaliCrisp — Commercial Terms') + ' (EN)';
+  const mis = on && offer.meta.currency!=='EUR';
+  const n = $('#termsCur'); n.hidden = !mis;
+  if (mis) n.textContent = `Waluta oferty (${offer.meta.currency}) różni się od waluty w warunkach handlowych (EUR) — dokument pokaże warunki bez zmian.`;
+}
+$('#o-withTerms').addEventListener('change', e=>{ offer.withTerms = e.target.checked; renderTermsOpt(); persist(); });
+const STD_LBL = {currency:'Waluta', validUntil:'Ważna do', terms:'Incoterms / warunki', moq:'MOQ / minimalne zamówienie'};
+const STD_EL = {currency:'o-cur', validUntil:'o-valid', terms:'o-terms', moq:'o-moq'};
+function stdTargets(){
+  const en = docLang()==='en', date = offer.meta.date || isoDate(new Date());
+  const t = [['currency','EUR'], ['validUntil', addMonths(date, 6)], ['terms', en ? 'EXW, 37-430 Jeżowe 560e, Poland · prepayment' : 'EXW, 37-430 Jeżowe 560e, Poland · przedpłata']];
+  if (isPL()) t.push(['moq', en ? '4 pallets per product index (per flavour)' : '4 palety na indeks (smak)']);
+  return t.map(([k,v])=>({k, v, cur:String(offer.meta[k] ?? '').trim()})).filter(x=>x.cur!==x.v);
+}
+const stdShow = (k, v) => k==='validUntil' ? plDate(v) : v;
+/* pre-checked: empty fields and values the builder set itself (currency select, default 30-day validity); typed-in text is only replaced when ticked */
+const stdPre = x => !x.cur || x.k==='currency' || (x.k==='validUntil' && x.cur===addDays(offer.meta.date || isoDate(new Date()), 30));
+function stdApply(list){
+  if (offer.meta.date==='' ) offer.meta.date = isoDate(new Date());
+  list.forEach(x=>{ offer.meta[x.k] = x.v; const el = document.getElementById(STD_EL[x.k]); if (el){ el.value = x.v; el.classList.add('just-filled'); setTimeout(()=>el.classList.remove('just-filled'), 1800); } });
+  clearExampleFlag();
+  updateComputed(); renderMetaSum(); renderTermsOpt(); persist();
+  if ($('#previewDlg').open) renderPaper();
+  const d = $('#stdDone');
+  d.textContent = list.length ? 'Zmieniono: ' + list.map(x=>`${STD_LBL[x.k]} → ${stdShow(x.k, x.v)}`).join('; ') : 'Bez zmian.';
+  d.hidden = false;
+  clearTimeout(stdApply.t); stdApply.t = setTimeout(()=>{ d.hidden = true; }, 12000);
+  toast(list.length ? `Zastosowano warunki standardowe (${list.length} ${plPola(list.length)})` : 'Warunki bez zmian');
+}
+let stdList = [];
+$('#btnStdTerms').addEventListener('click', ()=>{
+  stdList = stdTargets();
+  $('#metaBox').open = true;
+  if (!stdList.length){ const d = $('#stdDone'); d.textContent = 'Warunki standardowe są już zastosowane.'; d.hidden = false; toast('Warunki standardowe są już zastosowane'); return; }
+  if (stdList.every(x=>!x.cur)){ stdApply(stdList); return; }
+  $('#stRows').innerHTML = stdList.map(x=>{
+    const pre = stdPre(x), conflict = !!x.cur && !pre;
+    return `<div class="cu-row std-row${conflict?' conflict':''}${pre?'':' off'}" data-k="${x.k}"><input type="checkbox" id="st-on-${x.k}"${pre?' checked':''} aria-describedby="st-v-${x.k}"><label for="st-on-${x.k}">${STD_LBL[x.k]}</label>
+      <div class="std-v" id="st-v-${x.k}">${x.cur ? `<s>${esc(stdShow(x.k, x.cur))}</s> → ` : ''}<b>${esc(stdShow(x.k, x.v))}</b>${conflict?' · zaznacz, aby zastąpić':''}</div></div>`;
+  }).join('');
+  try { $('#stdDlg').showModal(); } catch(e){}
+  $('#stApply').focus();
+});
+$('#stRows').addEventListener('change', e=>{ const cb = e.target.closest('input[type=checkbox]'); if (cb) cb.closest('.cu-row').classList.toggle('off', !cb.checked); });
+$('#stApply').addEventListener('click', ()=>{
+  const on = new Set([...$('#stRows').querySelectorAll('.cu-row')].filter(r=>r.querySelector('input').checked).map(r=>r.dataset.k));
+  $('#stdDlg').close();
+  stdApply(stdList.filter(x=>on.has(x.k)));
+});
+$('#stCancel').addEventListener('click', ()=>$('#stdDlg').close());
+
+/* ---- PDF: html2canvas per page (scale 2, JPEG .88) into jsPDF A4; saved through the downloads capability ---- */
+let pdfBusy = false;
+function pdfLabel(txt){
+  ['pvPdf','btnPdf'].forEach(id=>{ const b = document.getElementById(id); if (!b) return; b.querySelector('.lbl').textContent = txt; b.disabled = pdfBusy; b.setAttribute('aria-busy', String(pdfBusy)); });
+}
+function pdfFilename(){
+  const lg = docLang(), D = I18N[lg], m = offer.meta;
+  return `${D.file}_${cv('client') ? slug(cv('client'))+'_' : ''}${m.date || isoDate(new Date())}_${D.tp.tplFile[tplOf()]}${isPL()?D.fileSuffixPL:''}.pdf`;
+}
+async function settleImages(root){
+  const imgs = [...root.querySelectorAll('img')];
+  await Promise.all(imgs.map(im => (im.complete ? Promise.resolve() : new Promise(r=>{ im.addEventListener('load', r, {once:true}); im.addEventListener('error', r, {once:true}); setTimeout(r, 10000); }))
+    .then(()=> im.isConnected && im.naturalWidth && im.decode ? im.decode().catch(()=>{}) : null)));
+  [...root.querySelectorAll('img[data-dpid]')].forEach(im=>{ if (im.isConnected && im.complete && !im.naturalWidth){ brokenImg.add(im.getAttribute('src')); im.outerHTML = docPh(prodOf(im.dataset.dpid), !!im.dataset.dred); } });
+  const bgs = [...root.querySelectorAll('.pc-photo')].map(el=>{ const u = (el.style.backgroundImage.match(/url\(["']?([^"')]+)/) || [])[1]; return u ? new Promise(r=>{ const i = new Image(); i.onload = i.onerror = r; i.src = u; setTimeout(r, 10000); }) : null; });
+  await Promise.all(bgs);
+}
+async function makePdf(){
+  if (pdfBusy || !downloads) return;
+  if (!offer.items.length) return toast('Dodaj produkty, aby pobrać PDF', true);
+  const JsPDF = window.jspdf && window.jspdf.jsPDF, h2c = window.html2canvas;
+  if (typeof JsPDF!=='function' || typeof h2c!=='function') return toast('Moduł PDF nie został wczytany — sprawdź połączenie i odśwież stronę', true);
+  pdfBusy = true; pdfLabel('Przygotowuję PDF…');
+  const filename = pdfFilename();
+  let stage = null;
+  try {
+    try { if (document.fonts) await document.fonts.ready; } catch(e){}
+    stage = docStage('docStagePdf');
+    const pages = buildDoc(stage);
+    await settleImages(stage);
+    const pdf = new JsPDF({orientation:'portrait', unit:'mm', format:'a4', compress:true});
+    const skip = el => el.id==='app' || el.tagName==='DIALOG' || el.tagName==='SCRIPT' || el.id==='docStage' || (el.classList && (el.classList.contains('backdrop') || el.classList.contains('fab') || el.classList.contains('scrim') || el.classList.contains('toasts')));
+    for (let i=0; i<pages.length; i++){
+      pdfLabel(`Generuję PDF… ${i+1}/${pages.length}`);
+      const canvas = await h2c(pages[i], {scale:2, backgroundColor:'#FFFDF9', useCORS:true, logging:false, scrollX:0, scrollY:0, ignoreElements:skip});
+      const data = canvas.toDataURL('image/jpeg', .88);
+      if (i) pdf.addPage('a4', 'portrait');
+      pdf.addImage(data, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+      canvas.width = canvas.height = 0;
+      await new Promise(r=>setTimeout(r, 0));
+    }
+    pdf.setProperties({title:`${docTitle()}${cv('client') ? ' — ' + cv('client') : ''} (${offerNo()})`, subject:offerNo(), author:COMPANY.name, creator:'GaliCrisp — kreator oferty'});
+    pdfLabel('Zapisywanie…');
+    await downloads.save({filename, data:pdf.output('blob')});
+    toast(`Zapisano ${filename}`);
+  } catch(err){
+    if (err && err.code==='declined'){ /* the viewer cancelled the save */ }
+    else if (err && ['unavailable','not_granted','capability_disabled','capability_removed'].includes(err.code)){ $('#btnPdf').hidden = true; $('#pvPdf').hidden = true; toast('Pobieranie plików jest niedostępne w tym widoku', true); }
+    else toast('Nie udało się utworzyć PDF: ' + (err && err.message || 'nieznany błąd'), true);
+  } finally {
+    if (stage) stage.remove();
+    pdfBusy = false; pdfLabel('Pobierz PDF');
+  }
+}
+$('#pvPdf').addEventListener('click', makePdf);
+$('#btnPdf').addEventListener('click', makePdf);
 
 /* save / saved list / clear */
 function savedList(){ const s = store.get(K_SAVED); return Array.isArray(s) ? s : []; }
@@ -2988,7 +3866,8 @@ $('#btnClear').addEventListener('click', async ()=>{
   const ok = await confirmBox('Wyczyścić ofertę?', 'Usunie to wszystkie pozycje i dane klienta z bieżącego szkicu. Zapisane oferty pozostaną bez zmian.', 'Wyczyść');
   if (!ok) return;
   const cur = offer.meta.currency, typ = offer.type, lg = docLang();
-  offer = newOffer(); offer.meta.currency = cur; offer.type = typ; offer.lang = lg;
+  const tpl = offer.tpl, wt = offer.withTerms;
+  offer = newOffer(); offer.meta.currency = cur; offer.type = typ; offer.lang = lg; offer.tpl = tpl || 'classic'; offer.withTerms = wt!==false;
   persist(); refreshAll(); toast('Oferta wyczyszczona');
 });
 
