@@ -1,0 +1,65 @@
+{
+ "_source": "Certificates issued 16.03.2026 by Global Quality Sp. z o.o. (BRCGS Food Issue 9 grade A+, IFS Food v8 Higher Level 97.29%)",
+ "certificates": [
+  {
+   "id": "brc",
+   "name": "BRCGS Global Standard Food Safety",
+   "edition": {
+    "pl": "Wydanie 9 (sierpień 2022)",
+    "en": "Issue 9 (August 2022)"
+   },
+   "result": {
+    "pl": "A+",
+    "en": "A+"
+   },
+   "resultLabel": {
+    "pl": "Ocena",
+    "en": "Grade"
+   },
+   "rows": [
+    [
+     "certNo",
+     "BRC2403"
+    ],
+    [
+     "siteCode",
+     "2061919"
+    ],
+    [
+     "valid",
+     "2027-04-17"
+    ]
+   ]
+  },
+  {
+   "id": "ifs",
+   "name": "IFS Food",
+   "edition": {
+    "pl": "Wersja 8 (kwiecień 2023)",
+    "en": "Version 8 (April 2023)"
+   },
+   "result": {
+    "pl": "Poziom wyższy",
+    "en": "Higher Level"
+   },
+   "resultLabel": {
+    "pl": "Wynik 97,29%",
+    "en": "Score 97.29%"
+   },
+   "rows": [
+    [
+     "certNo",
+     "IFS2241"
+    ],
+    [
+     "coid",
+     "61186"
+    ],
+    [
+     "valid",
+     "2027-03-27"
+    ]
+   ]
+  }
+ ]
+}
