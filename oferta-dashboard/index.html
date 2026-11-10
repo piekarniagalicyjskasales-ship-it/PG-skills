@@ -1271,7 +1271,7 @@ table.ptable{min-width:760px}
 .pb-co{margin:40px auto 0;max-width:420px;padding-top:26px;border-top:1px solid rgba(255,255,255,.35);font-size:12px;line-height:1.75;color:#fff}
 .pb-co b{font-family:var(--d-disp);font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
 .pb-foot{position:absolute;left:0;right:0;bottom:46px;text-align:center;font-family:var(--d-disp);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:#F6D0D6}
-.pi-glance{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:22px;background:var(--d-ink);color:#fff;border-radius:4px;overflow:hidden}
+.pi-glance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:22px;background:var(--d-ink);color:#fff;border-radius:4px;overflow:hidden}
 .pi-glance > div{padding:16px 16px 15px}
 .pi-glance > div + div{border-left:1px solid rgba(232,192,136,.22)}
 .pi-glance i{display:block;font-style:normal;font-family:var(--d-disp);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#B9AA9B}
@@ -2388,7 +2388,7 @@ const I18N = {
     noPrices:'Ceny zostaną potwierdzone w osobnej wiadomości.',
     logiTitle:'Logistyka i termin przydatności', lId:'ID', lEan:'EAN', lType:'Typ kartonu', lDims:'Wymiary kartonu (dł.×szer.×wys.)', lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lShelf:'Termin przydatności', lShelfPick:'Termin przy odbiorze',
     days:'dni', shelfNote:{'360 days testing in progress':'360 dni — w trakcie testów'},
-    foot:'Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026, V2); palety szacunkowe (kartony ÷ kartony na palecie).',
+    foot:'Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026, V2).',
     footText:'Ceny netto, bez VAT. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026, V2).',
     items:'POZYCJE', noItems:'(brak pozycji)',
     tQty:'Ilość', tPrice:'Cena', tDisc:'Rabat', tValue:'Wartość', tLogi:'Logistyka', tTbd:'cena do ustalenia', tPerUnit:'/szt. netto', tEst:'(szac.)', tShelf:'termin przydatności', tShelfPick:'przy odbiorze',
@@ -2416,7 +2416,7 @@ const I18N = {
     noPrices:'Prices will be confirmed in a separate message.',
     logiTitle:'Logistics and shelf life', lId:'ID', lEan:'EAN', lType:'Carton type', lDims:'Carton dimensions (L×W×H)', lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lShelf:'Shelf life', lShelfPick:'Min. shelf life at pick-up',
     days:'days', shelfNote:{'360 days testing in progress':'360 days — testing in progress'},
-    foot:'Prices are net, excluding VAT. Assortment as per the approved product list of 04/11/2026. EAN and logistics data as per the GaliCrisp product table (11/2026, V2); pallet quantities are estimates (cartons ÷ cartons per pallet).',
+    foot:'Prices are net, excluding VAT. Assortment as per the approved product list of 04/11/2026. EAN and logistics data as per the GaliCrisp product table (11/2026, V2).',
     footText:'Net prices, excluding VAT. EAN and logistics data as per the GaliCrisp product table (11/2026, V2).',
     items:'ITEMS', noItems:'(no items)',
     tQty:'Quantity', tPrice:'Price', tDisc:'Discount', tValue:'Value', tLogi:'Logistics', tTbd:'price to be confirmed', tPerUnit:'/unit net', tEst:'(est.)', tShelf:'shelf life', tShelfPick:'at pick-up',
@@ -3487,6 +3487,8 @@ document.addEventListener('error', e=>{
   if (im.isConnected) im.outerHTML = docPh(prodOf(im.dataset.dpid), !!im.dataset.dred);
 }, true);
 
+/* documents show one net price per unit: line and global discounts folded in, no separate discount */
+const effPrice = it => it.price==null ? null : Math.round(it.price*(1-(it.disc||0)/100)*(1-(offer.globalDiscount||0)/100)*100)/100;
 function docInfo(c, x){
   const {D, F, T} = c, p = x.p, it = x.it, L = x.L, dash = '—';
   const n0 = v => v==null || v==='' ? dash : F.n0(v);
@@ -3496,12 +3498,12 @@ function docInfo(c, x){
     id: p.id, ean: p._ean || '', weight: typeof p.weight==='number' && p.weight>0 ? `${p.weight} g` : dash,
     line: p._line || '', cat: p._cat ? (c.lg==='pl' ? D.cats[p.category] || p._cat.pl : p._cat.en) : '',
     desc: p._k && p._k.description ? p._k.description : '', claims,
-    price: it.price==null ? null : F.n2(it.price),
-    disc: it.disc ? F.pct(it.disc) + '%' : '',
+    price: it.price==null ? null : F.n2(effPrice(it)),
+    disc: '',
     units: `${F.n0(x.u)} ${D.pcs}`, cartons: `${F.q(x.c)} ${D.ctn}`,
     pallets: x.pal==null ? dash : `${F.pal(x.pal)} ${c.lg==='pl' ? 'pal.' : D.palAbbr(x.pal)}`,
     how: it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc} ${D.pcs}` : it.mode==='pal' && p._cpp ? `${F.q(it.qty)} ${D.palAbbr(it.qty)} × ${p._cpp} × ${it.upc}` : '',
-    value: x.v==null ? dash : F.n2(x.v),
+    value: it.price==null ? dash : F.n2(effPrice(it)*x.u),
     upc: n0(L.unitsPerCarton), cpp: n0(L.cartonsPerPallet), upp: n0(L.unitsPerPallet),
     dims: L.cartonDims ? dimsTxt(L.cartonDims) : dash, height: L.palletHeight ? F.height(L.palletHeight) : dash,
     shelf: L.shelfLifeDays ? `${L.shelfLifeDays} ${D.days}` : dash, pick: L.shelfLifePickupDays ? `${L.shelfLifePickupDays} ${D.days}` : dash,
@@ -3546,7 +3548,6 @@ function totHtml(c){
 const notesHtml = c => cv('notes') ? `<div class="d-notes"><div class="d-k">${esc(c.D.notes)}</div><div class="d-nt">${esc(c.m.notes.trim())}</div></div>` : '<div style="flex:1"></div>';
 function footHtml(c){
   const n = c.lines.length, f = [];
-  if (n && c.t.unpriced) f.push(c.D.unpricedPaper(c.t.unpriced));
   if (n && !c.t.any) f.push(c.D.noPrices);
   if (c.pl) f.push(c.T.plPhoto);
   f.push(c.D.foot);
@@ -3556,9 +3557,9 @@ const secHtml = (title, sub) => `<h2 class="d-sec">${esc(title)}${sub?` <small>$
 /* compact summary table (Katalog, Premium) */
 function sumFlow(c, key){
   const {D, T, cur} = c;
-  const head = `<table class="s-tbl"><colgroup><col style="width:26px"><col><col style="width:76px"><col style="width:66px"><col style="width:56px"><col style="width:52px"><col style="width:44px"><col style="width:84px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(D.th.qty)}</th><th class="n">${esc(D.th.cartons)}</th><th class="n">${esc(D.th.pallets)}</th><th class="n">${esc(D.th.disc)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
+  const head = `<table class="s-tbl"><colgroup><col style="width:26px"><col><col style="width:76px"><col style="width:66px"><col style="width:64px"><col style="width:96px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(D.th.qty)}</th><th class="n">${esc(D.th.cartons)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
   return c.lines.map(x=>{ const q = docInfo(c, x);
-    return {row:key, head, html:`<tbody><tr><td class="s-no">${x.i+1}</td><td><b>${esc(q.name)}</b><span>${esc([q.id, q.ean ? 'EAN ' + q.ean : '', q.weight].filter(v=>v && v!=='—').join(' · '))}</span></td><td class="n">${q.price==null?'—':q.price}</td><td class="n">${c.F.n0(x.u)}</td><td class="n">${c.F.q(x.c)}</td><td class="n">${x.pal==null?'—':c.F.pal(x.pal)}</td><td class="n">${q.disc||'—'}</td><td class="n"><b>${q.value}</b></td></tr></tbody>`};
+    return {row:key, head, html:`<tbody><tr><td class="s-no">${x.i+1}</td><td><b>${esc(q.name)}</b><span>${esc([q.id, q.ean ? 'EAN ' + q.ean : '', q.weight].filter(v=>v && v!=='—').join(' · '))}</span></td><td class="n">${q.price==null?'—':q.price}</td><td class="n">${c.F.n0(x.u)}</td><td class="n">${c.F.q(x.c)}</td><td class="n"><b>${q.value}</b></td></tr></tbody>`};
   });
 }
 /* commercial terms appendix: always starts on a new page; English text, NAME = the customer */
@@ -3605,20 +3606,20 @@ const DOC_TPL = {
       out.push({html:`<div class="c-cond"><div class="c-cond-in">${condRows(c).map(([k,v])=>`<div><div class="d-k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>`});
       out.push({keep:true, html:secHtml(T.products, T.positions(c.lines.length))});
       if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
-      const head = `<table class="c-tbl"><colgroup><col style="width:26px"><col style="width:76px"><col><col style="width:84px"><col style="width:100px"><col style="width:48px"><col style="width:88px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th></th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(T.qty)}</th><th class="n">${esc(D.th.disc)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
+      const head = `<table class="c-tbl"><colgroup><col style="width:26px"><col style="width:76px"><col><col style="width:84px"><col style="width:110px"><col style="width:96px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th></th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(T.qty)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
       c.lines.forEach(x=>{
         const q = docInfo(c, x);
         out.push({row:'cp', head, html:`<tbody class="c-row"><tr class="c-main"><td class="c-no">${x.i+1}</td><td><div class="c-thumb d-pic">${docImg(x.p)}</div></td>
           <td><div class="c-name">${esc(q.name)}</div><div class="c-ids">${esc([q.id, q.weight!=='—'?q.weight:'', q.line].filter(Boolean).join(' · '))}</div>${q.ean?`<div class="c-ean"><i>EAN</i>${esc(q.ean)}</div>`:''}${descHtml(q)}${claimsHtml(q)}</td>
           <td class="n c-price">${q.price==null?`<span>${esc(D.tTbd)}</span>`:q.price}</td>
-          <td class="n c-qty"><b>${esc(q.units)}</b><span>${esc(q.cartons)}${q.pallets!=='—'?' · '+esc(q.pallets):''}</span>${q.how?`<span>${esc(q.how)}</span>`:''}</td>
-          <td class="n">${q.disc||'—'}</td><td class="n c-val">${q.value}</td></tr>
-          <tr class="c-logi"><td colspan="2"></td><td colspan="5"><div class="c-lg"><div class="c-lg-in">
+          <td class="n c-qty"><b>${esc(q.units)}</b><span>${esc(q.cartons)}</span>${q.how?`<span>${esc(q.how)}</span>`:''}</td>
+          <td class="n c-val">${q.value}</td></tr>
+          <tr class="c-logi"><td colspan="2"></td><td colspan="4"><div class="c-lg"><div class="c-lg-in">
             <div><i>${esc(T.lUpc)}</i><b>${q.upc}</b></div><div><i>${esc(T.lCpp)}</i><b>${q.cpp}</b></div><div><i>${esc(T.lUpp)}</i><b>${q.upp}</b></div><div><i>${esc(T.lHeight)}</i><b>${esc(q.height)}</b></div>
             <div><i>${esc(T.lDims)}</i><b>${esc(q.dims)}</b></div><div><i>${esc(T.lShelf)}</i><b>${esc(q.shelf)}${q.pick!=='—'?' · '+esc(T.atPick(q.pick)):''}</b></div><div class="w2"><i>${esc(T.lPack)}</i><b>${esc(q.pack)}</b></div>
           </div></div></td></tr></tbody>`});
       });
-      out.push({html:`<div class="d-sum">${notesHtml(c)}${totHtml(c)}</div>`});
+      if (cv('notes')) out.push({html:`<div class="d-sum">${notesHtml(c)}</div>`});
       out.push({html:footHtml(c)});
       return out;
     }
@@ -3645,13 +3646,13 @@ const DOC_TPL = {
           <div class="k-ean">EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q)}
           <div class="k-chips"><span><i>${esc(T.weight)}</i>${esc(q.weight)}</span><span><i>${esc(T.chipUpc)}</i>${q.upc}</span><span><i>${esc(T.chipCpp)}</i>${q.cpp}</span><span><i>${esc(T.chipUpp)}</i>${q.upp}</span><span><i>${esc(T.chipShelf)}</i>${esc(q.shelf)}${q.pick!=='—'?' / '+esc(q.pick):''}</span><span><i>${esc(T.chipDims)}</i>${esc(q.dims)}</span><span><i>${esc(T.chipH)}</i>${esc(q.height)}</span></div>
           <div class="k-pack"><i>${esc(T.lPack)}</i>${esc(q.pack)}</div><div class="k-order-sp"></div>
-          <div class="k-order"><div class="q"><i>${esc(T.qty)}</i><b>${esc(q.units)}</b> · ${esc(q.cartons)} · ${esc(q.pallets)}</div><div class="v"><i>${esc(D.th.value)}</i><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`; };
+          <div class="k-order"><div class="q"><i>${esc(T.qty)}</i><b>${esc(q.units)}</b> · ${esc(q.cartons)}</div><div class="v"><i>${esc(D.th.value)}</i><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`; };
       for (let i=0; i<c.lines.length; i+=2) out.push({html:`<div class="k-row">${card(c.lines[i])}${c.lines[i+1]?card(c.lines[i+1]):'<div></div>'}</div>`});
       if (c.lines.length){
         out.push({keep:true, html:secHtml(T.summary)});
         out.push(...sumFlow(c, 'ks'));
       }
-      out.push({html:`<div class="d-sum">${notesHtml(c)}${totHtml(c)}</div>`});
+      if (cv('notes')) out.push({html:`<div class="d-sum">${notesHtml(c)}</div>`});
       out.push({html:footHtml(c)});
       return out;
     }
@@ -3671,7 +3672,7 @@ const DOC_TPL = {
       const side = `<div class="pi-side"><div class="pi-box">${buyerHtml(c).replace('d-party buyer','d-party-x')}</div><div class="pi-box"><div class="d-k">${esc(T.cond)}</div><dl>${condRows(c).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl></div></div>`;
       out.push({brk:true, html:`<div class="pi-grid"><div class="pi-letter"><div class="pi-kick">${esc(T.introKick)}</div><h2 class="pi-h">${esc(T.greeting(cv('contact')))}</h2>${letter.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="pi-sign">${esc(T.closing)}<b>${esc(T.signTeam)}</b>${esc(COMPANY.name)}</div></div>${side}</div>`});
       out.push({html:`<div class="pi-stats">${T.stats.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>`});
-      const gl = [[T.glProducts, String(c.lines.length)], [D.totCartons, F.q(c.t.cartons)], [D.totPallets, F.pal(c.t.pallets)], [D.totTotal, c.t.any ? F.money(c.t.total, cur) : '—']];
+      const gl = [[T.glProducts, String(c.lines.length)], [D.totCartons, F.q(c.t.cartons)]];
       out.push({html:`<div class="pi-glance"><div class="k-h">${esc(T.glance)}</div>${gl.map(([a,b])=>`<div><i>${esc(a)}</i><b>${esc(b)}</b></div>`).join('')}</div>`});
       if (c.pl) out.push({html:`<div class="pi-note">${esc(T.plPhoto)}</div>`});
       out.push({fill:true, min:80, max:250, html:`<div class="pi-photo" role="img" aria-label="GaliCrisp" style="background-image:url('${c.pl ? 'img/cover.webp' : 'img/hero.webp'}');background-position:${c.pl ? '50% 82%' : '50% 50%'}"></div>`});
@@ -3681,13 +3682,13 @@ const DOC_TPL = {
         out.push({brk: j===0, html:`<article class="pr-spread"><div class="pr-stage"><div class="pr-no">${n}<span>/ ${String(c.lines.length).padStart(2,'0')}</span></div><div class="d-floor"></div><div class="pr-pic d-pic">${docImg(x.p, true)}</div>${q.claims.length?`<div class="pr-claims">${q.claims.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`:''}</div>
           <div class="pr-data"><div class="pr-line">${esc([q.cat, q.line].filter(Boolean).join(' · '))}</div><h3 class="pr-name">${esc(q.name)}</h3><div class="pr-ids">ID <b>${esc(q.id)}</b> · EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q, 'pr-desc')}
           <table class="pr-facts"><colgroup><col style="width:24%"><col style="width:26%"><col style="width:24%"><col style="width:26%"></colgroup>${facts.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td><th>${esc(r[2])}</th><td>${esc(r[3])}</td></tr>`).join('')}<tr><th>${esc(T.lPack)}</th><td colspan="3">${esc(q.pack)}</td></tr></table>
-          <div class="pr-price"><div><div class="pp-k">${esc(T.pricePer)}</div>${q.price==null?`<div class="pp-v tbd">${esc(D.tTbd)}</div>`:`<div class="pp-v">${q.price}<small>${esc(cur)}</small></div>`}<div class="pp-q">${esc(q.units)} · ${esc(q.cartons)} · ${esc(q.pallets)}${q.disc?` · ${esc(D.th.disc)} ${esc(q.disc)}`:''}</div></div>
+          <div class="pr-price"><div><div class="pp-k">${esc(T.pricePer)}</div>${q.price==null?`<div class="pp-v tbd">${esc(D.tTbd)}</div>`:`<div class="pp-v">${q.price}<small>${esc(cur)}</small></div>`}<div class="pp-q">${esc(q.units)} · ${esc(q.cartons)}</div></div>
           <div class="pp-t"><div class="pp-k">${esc(D.th.value)}</div><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`});
       });
       out.push({keep:true, html:secHtml(T.summary, T.positions(c.lines.length))});
       if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
       out.push(...sumFlow(c, 'ps'));
-      out.push({html:`<div class="d-sum">${notesHtml(c)}${totHtml(c)}</div>`});
+      if (cv('notes')) out.push({html:`<div class="d-sum">${notesHtml(c)}</div>`});
       out.push({html:footHtml(c)});
       return out;
     },
