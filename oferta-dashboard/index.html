@@ -3770,7 +3770,7 @@ const DOC_TPL = {
       const lg = c.lg, cv2 = (k,v) => k==='valid' ? F.date(v) : v;
       out.push({html:`<div class="pi-certs"><div class="pc-h2">${esc(T.certHead)}</div><div class="pc-grid">${CERTS.map(x=>`<div class="pc-cert"><div class="pc-res"><b>${esc(x.result[lg])}</b><span>${esc(x.resultLabel[lg])}</span></div><div class="pc-info"><div class="pc-name">${esc(x.name)}</div><div class="pc-ed">${esc(x.edition[lg])}</div><dl>${x.rows.map(([k,v])=>`<dt>${esc(T.certLbl[k])}</dt><dd>${esc(cv2(k,v))}</dd>`).join('')}</dl></div></div>`).join('')}</div><div class="pc-foot">${esc(T.certFoot)}</div></div>`});
       if (c.pl) out.push({html:`<div class="pi-note">${esc(T.plPhoto)}</div>`});
-      out.push({fill:true, min:80, max:250, html:`<div class="pi-photo" role="img" aria-label="GaliCrisp" style="background-image:url('${c.pl ? 'img/cover.webp' : 'img/hero.webp'}');background-position:${c.pl ? '50% 82%' : '50% 50%'}"></div>`});
+      out.push({fill:true, min:80, max:250, html:`<div class="pi-photo" role="img" aria-label="GaliCrisp" style="background-image:url('img/cover.webp');background-position:50% 82%"></div>`});
       c.lines.forEach((x, j)=>{
         const q = docInfo(c, x), n = String(x.i+1).padStart(2,'0');
         const facts = [[T.weight, q.weight, T.lUpc, q.upc], [T.lCpp, q.cpp, T.lUpp, q.upp], [T.lDims, q.dims, T.lHeight, q.height], [T.lShelf, q.shelf, T.lPick, q.pick]];
