@@ -1107,6 +1107,7 @@ table.ptable{min-width:760px}
 .c-lg-in{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0 -1px -1px 0}
 .c-lg-in > div{padding:3px 8px 4px;border-right:1px solid var(--d-line);border-bottom:1px solid var(--d-line);min-width:0}
 .c-lg-in .w2{grid-column:span 2}
+.c-lg-in .w4{grid-column:1 / -1}
 .c-lg-in i{display:block;font-style:normal;font-family:var(--d-disp);font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:var(--d-ink2);line-height:1.5}
 .c-lg-in b{font-weight:600;font-size:9px;line-height:1.3}
 
@@ -1825,7 +1826,7 @@ table.ptable{min-width:760px}
           <div class="fld c3"><label for="wzCpp">Kartony/paleta<span class="req" aria-hidden="true">*</span></label><input class="inp r" id="wzCpp" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzCppH"><span class="fhint" id="wzCppH">Kartony/warstwa × warstwy/paleta</span></div>
           <div class="fld c3"><label for="wzUpp">Szt./paleta</label><input class="inp r" id="wzUpp" type="number" min="1" step="1" inputmode="numeric" aria-describedby="wzUppH"><span class="fhint" id="wzUppH">Kartony/paleta × szt./karton</span></div>
           <div class="fld c3"><label for="wzShelf">Termin przydatności (dni)</label><input class="inp r" id="wzShelf" type="number" min="1" max="3650" step="1" inputmode="numeric" aria-describedby="wzShelfH"><span class="fhint" id="wzShelfH" hidden></span></div>
-          <div class="fld c3"><label for="wzPick">Termin przy odbiorze (dni)</label><input class="inp r" id="wzPick" type="number" min="1" max="3650" step="1" inputmode="numeric" aria-describedby="wzPickH"><span class="fhint" id="wzPickH" hidden></span></div>
+          <div class="fld c3"><label for="wzPick">Min. termin przydatności przy odbiorze (dni)</label><input class="inp r" id="wzPick" type="number" min="1" max="3650" step="1" inputmode="numeric" aria-describedby="wzPickH"><span class="fhint" id="wzPickH" hidden></span></div>
         </div>
       </section>
       <section class="wz-pane" data-pane="3" aria-labelledby="wzH3" hidden>
@@ -2386,12 +2387,12 @@ const I18N = {
     discPaper:p=>` (w tym ${p}% globalnie)`, discText:p=>` (w tym globalny ${p}%)`,
     unpricedPaper:n=>`Pozycje bez ceny (${n}) nie są wliczone do sumy.`, unpricedText:n=>`(pozycje bez ceny: ${n} — nie wliczono ich do sumy)`,
     noPrices:'Ceny zostaną potwierdzone w osobnej wiadomości.',
-    logiTitle:'Logistyka i termin przydatności', lId:'ID', lEan:'EAN', lType:'Typ kartonu', lDims:'Wymiary kartonu (dł.×szer.×wys.)', lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lShelf:'Termin przydatności', lShelfPick:'Termin przy odbiorze',
+    logiTitle:'Logistyka i termin przydatności', lId:'ID', lEan:'EAN', lType:'Typ kartonu', lDims:'Wymiary kartonu (dł.×szer.×wys.)', lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lShelf:'Termin przydatności', lShelfPick:'Minimalny termin przydatności przy odbiorze',
     days:'dni', shelfNote:{'360 days testing in progress':'360 dni — w trakcie testów'},
     foot:'Ceny netto, nie zawierają podatku VAT. Asortyment wg zestawienia AKCEPT z 04.11.2026. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026, V2).',
     footText:'Ceny netto, bez VAT. EAN i dane logistyczne wg tabeli produktów GaliCrisp (11.2026, V2).',
     items:'POZYCJE', noItems:'(brak pozycji)',
-    tQty:'Ilość', tPrice:'Cena', tDisc:'Rabat', tValue:'Wartość', tLogi:'Logistyka', tTbd:'cena do ustalenia', tPerUnit:'/szt. netto', tEst:'(szac.)', tShelf:'termin przydatności', tShelfPick:'przy odbiorze',
+    tQty:'Ilość', tPrice:'Cena', tDisc:'Rabat', tValue:'Wartość', tLogi:'Logistyka', tTbd:'cena do ustalenia', tPerUnit:'/szt. netto', tEst:'(szac.)', tShelf:'termin przydatności', tShelfPick:'minimalny termin przydatności przy odbiorze',
     ctn:'kart.', pcs:'szt.', palAbbr:()=>'pal.', perCarton:'szt./karton',
     head:['Lp.','ID','EAN','Nazwa produktu','Linia','Gramatura (g)','Cena netto/szt.','Ilość (szt.)','Szt./karton','Kartony','Palety (szac.)','Termin przydatności (dni)','Rabat %','Wartość netto'],
     sumCP:'Kartony razem / palety (szac.)', sumDisc:p=>`Rabat (w tym globalny ${p}%)`,
@@ -2414,12 +2415,12 @@ const I18N = {
     discPaper:p=>` (incl. ${p}% overall)`, discText:p=>` (incl. ${p}% overall)`,
     unpricedPaper:n=>`Items without a price (${n}) are not included in the total.`, unpricedText:n=>`(items without a price: ${n} — not included in the total)`,
     noPrices:'Prices will be confirmed in a separate message.',
-    logiTitle:'Logistics and shelf life', lId:'ID', lEan:'EAN', lType:'Carton type', lDims:'Carton dimensions (L×W×H)', lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lShelf:'Shelf life', lShelfPick:'Min. shelf life at pick-up',
+    logiTitle:'Logistics and shelf life', lId:'ID', lEan:'EAN', lType:'Carton type', lDims:'Carton dimensions (L×W×H)', lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lShelf:'Shelf life', lShelfPick:'Minimum shelf life at pick-up',
     days:'days', shelfNote:{'360 days testing in progress':'360 days — testing in progress'},
     foot:'Prices are net, excluding VAT. Assortment as per the approved product list of 04/11/2026. EAN and logistics data as per the GaliCrisp product table (11/2026, V2).',
     footText:'Net prices, excluding VAT. EAN and logistics data as per the GaliCrisp product table (11/2026, V2).',
     items:'ITEMS', noItems:'(no items)',
-    tQty:'Quantity', tPrice:'Price', tDisc:'Discount', tValue:'Value', tLogi:'Logistics', tTbd:'price to be confirmed', tPerUnit:'/unit net', tEst:'(est.)', tShelf:'shelf life', tShelfPick:'at pick-up',
+    tQty:'Quantity', tPrice:'Price', tDisc:'Discount', tValue:'Value', tLogi:'Logistics', tTbd:'price to be confirmed', tPerUnit:'/unit net', tEst:'(est.)', tShelf:'shelf life', tShelfPick:'minimum shelf life at pick-up',
     ctn:'ctn', pcs:'pcs', palAbbr:n=>palWordEn(n), perCarton:'pcs/carton',
     head:['No.','ID','EAN','Product name','Line','Weight (g)','Net price/unit','Quantity (pcs)','Units/carton','Cartons','Pallets (est.)','Shelf life (days)','Discount %','Net value'],
     sumCP:'Total cartons / pallets (est.)', sumDisc:p=>`Discount (incl. ${p}% overall)`,
@@ -2449,7 +2450,7 @@ I18N.pl.tp = {
   kickPG:'Oferta handlowa · GaliCrisp', kickPL:'Oferta Private Label · produkcja pod marką klienta',
   products:'Produkty w ofercie', positions:n=>`${n} ${n===1?'pozycja':(n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20))?'pozycje':'pozycji'}`,
   summary:'Podsumowanie oferty', product:'Produkt', qty:'Ilość', pricePer:'Cena netto za szt.', weight:'Gramatura',
-  lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lDims:'Wymiary kartonu', lShelf:'Termin przydatności', lPick:'Termin przy odbiorze', lPack:'Opakowanie',
+  lUpc:'Szt./karton', lCpp:'Kart./paleta', lUpp:'Szt./paleta', lHeight:'Wys. palety', lDims:'Wymiary kartonu', lShelf:'Termin przydatności', lPick:'Minimalny termin przydatności przy odbiorze', lPack:'Opakowanie',
   atPick:v=>`${v} przy odbiorze`,
   chipUpc:'szt./karton', chipCpp:'kart./paleta', chipUpp:'szt./paleta', chipShelf:'termin', chipDims:'karton', chipH:'wys. palety',
   claims:{'Low in sugars':'Niska zawartość cukrów','Source of fibre':'Źródło błonnika','Suitable for vegetarians':'Odpowiedni dla wegetarian','High protein':'Wysoka zawartość białka','Up to 27 g of protein per 100 g':'Do 27 g białka w 100 g'},
@@ -2489,7 +2490,7 @@ I18N.en.tp = {
   kickPG:'Commercial offer · GaliCrisp', kickPL:'Private Label offer · produced under the customer\'s brand',
   products:'Products in this offer', positions:n=>`${n} ${n===1?'item':'items'}`,
   summary:'Offer summary', product:'Product', qty:'Quantity', pricePer:'Net price per unit', weight:'Net weight',
-  lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lDims:'Carton dimensions', lShelf:'Shelf life', lPick:'Shelf life at pick-up', lPack:'Packaging',
+  lUpc:'Units/carton', lCpp:'Cartons/pallet', lUpp:'Units/pallet', lHeight:'Pallet height', lDims:'Carton dimensions', lShelf:'Shelf life', lPick:'Minimum shelf life at pick-up', lPack:'Packaging',
   atPick:v=>`${v} at pick-up`,
   chipUpc:'units/carton', chipCpp:'cartons/pallet', chipUpp:'units/pallet', chipShelf:'shelf life', chipDims:'carton', chipH:'pallet height',
   claims:{}, pack:{},
@@ -3244,7 +3245,7 @@ function qvCatalogueHtml(p){
       ${row('Typ kartonu', L.cartonType ? esc(L.cartonType) : null)}${row('Wymiary kartonu (dł.×szer.×wys.)', L.cartonDims ? esc(L.cartonDims) : null)}${row('Opakowanie', L.packaging ? `<span lang="en">${esc(L.packaging)}</span>` : null)}
       ${row('Szt./karton', L.unitsPerCarton)}${row('Kartony/warstwa', L.cartonsPerLayer)}${row('Warstwy/paleta', L.layersPerPallet)}
       ${row('Kartony/paleta', L.cartonsPerPallet)}${row('Szt./paleta', L.unitsPerPallet!=null ? nf0.format(L.unitsPerPallet) : null)}${row('Wysokość palety', L.palletHeight ? esc(L.palletHeight) : null)}
-      ${row('Termin przydatności', L.shelfLifeDays ? `${L.shelfLifeDays} dni${note}` : null)}${row('Termin przy odbiorze', L.shelfLifePickupDays ? `min. ${L.shelfLifePickupDays} dni` : null)}
+      ${row('Termin przydatności', L.shelfLifeDays ? `${L.shelfLifeDays} dni${note}` : null)}${row('Minimalny termin przydatności przy odbiorze', L.shelfLifePickupDays ? `${L.shelfLifePickupDays} dni` : null)}
     </tbody></table></div>
     ${notes.map(n=>`<p class="qv-note"><b>Uwaga</b>${esc(n)}</p>`).join('')}`;
 }
@@ -3616,7 +3617,7 @@ const DOC_TPL = {
           <td class="n c-val">${q.value}</td></tr>
           <tr class="c-logi"><td colspan="2"></td><td colspan="4"><div class="c-lg"><div class="c-lg-in">
             <div><i>${esc(T.lUpc)}</i><b>${q.upc}</b></div><div><i>${esc(T.lCpp)}</i><b>${q.cpp}</b></div><div><i>${esc(T.lUpp)}</i><b>${q.upp}</b></div><div><i>${esc(T.lHeight)}</i><b>${esc(q.height)}</b></div>
-            <div><i>${esc(T.lDims)}</i><b>${esc(q.dims)}</b></div><div><i>${esc(T.lShelf)}</i><b>${esc(q.shelf)}${q.pick!=='—'?' · '+esc(T.atPick(q.pick)):''}</b></div><div class="w2"><i>${esc(T.lPack)}</i><b>${esc(q.pack)}</b></div>
+            <div><i>${esc(T.lDims)}</i><b>${esc(q.dims)}</b></div><div><i>${esc(T.lShelf)}</i><b>${esc(q.shelf)}</b></div><div class="w2"><i>${esc(T.lPick)}</i><b>${esc(q.pick)}</b></div><div class="w4"><i>${esc(T.lPack)}</i><b>${esc(q.pack)}</b></div>
           </div></div></td></tr></tbody>`});
       });
       if (cv('notes')) out.push({html:`<div class="d-sum">${notesHtml(c)}</div>`});
@@ -3644,7 +3645,7 @@ const DOC_TPL = {
           ${q.claims.length?`<div class="k-claims">${q.claims.map(s=>`<span>${esc(s)}</span>`).join('')}</div>`:''}</div>
           <div class="k-body"><div class="k-line">${esc([q.line, q.cat].filter(Boolean).join(' · '))}</div><h3 class="k-name">${esc(q.name)}</h3>
           <div class="k-ean">EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q)}
-          <div class="k-chips"><span><i>${esc(T.weight)}</i>${esc(q.weight)}</span><span><i>${esc(T.chipUpc)}</i>${q.upc}</span><span><i>${esc(T.chipCpp)}</i>${q.cpp}</span><span><i>${esc(T.chipUpp)}</i>${q.upp}</span><span><i>${esc(T.chipShelf)}</i>${esc(q.shelf)}${q.pick!=='—'?' / '+esc(q.pick):''}</span><span><i>${esc(T.chipDims)}</i>${esc(q.dims)}</span><span><i>${esc(T.chipH)}</i>${esc(q.height)}</span></div>
+          <div class="k-chips"><span><i>${esc(T.weight)}</i>${esc(q.weight)}</span><span><i>${esc(T.chipUpc)}</i>${q.upc}</span><span><i>${esc(T.chipCpp)}</i>${q.cpp}</span><span><i>${esc(T.chipUpp)}</i>${q.upp}</span><span><i>${esc(T.lShelf)}</i>${esc(q.shelf)}</span>${q.pick!=='—'?`<span><i>${esc(T.lPick)}</i>${esc(q.pick)}</span>`:''}<span><i>${esc(T.chipDims)}</i>${esc(q.dims)}</span><span><i>${esc(T.chipH)}</i>${esc(q.height)}</span></div>
           <div class="k-pack"><i>${esc(T.lPack)}</i>${esc(q.pack)}</div><div class="k-order-sp"></div>
           <div class="k-order"><div class="q"><i>${esc(T.qty)}</i><b>${esc(q.units)}</b> · ${esc(q.cartons)}</div><div class="v"><i>${esc(D.th.value)}</i><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`; };
       for (let i=0; i<c.lines.length; i+=2) out.push({html:`<div class="k-row">${card(c.lines[i])}${c.lines[i+1]?card(c.lines[i+1]):'<div></div>'}</div>`});
@@ -4466,13 +4467,13 @@ function wzErrors(step, strict){
     if (r.f.ean){ const s = eanState(r.f.ean); if (s.level==='err' && (strict || !/^\d+$/.test(r.f.ean) || r.f.ean.length>13)) e.push(['wzEan', s.text]); }
   }
   if (step===2){
-    [['wzUpc','Szt./karton'],['wzCpl','Kartony/warstwa'],['wzLpp','Warstwy/paleta'],['wzCpp','Kartony/paleta'],['wzUpp','Szt./paleta'],['wzShelf','Termin przydatności'],['wzPick','Termin przy odbiorze']].forEach(([id,l])=>{
+    [['wzUpc','Szt./karton'],['wzCpl','Kartony/warstwa'],['wzLpp','Warstwy/paleta'],['wzCpp','Kartony/paleta'],['wzUpp','Szt./paleta'],['wzShelf','Termin przydatności'],['wzPick','Minimalny termin przydatności przy odbiorze']].forEach(([id,l])=>{
       const v = intOf(id); if (v!=null && !(Number.isInteger(v) && v>=1 && v<=10000000)) e.push([id, `${l}: liczba całkowita większa od zera.`]);
     });
     if (Number.isNaN(r.log.cartonDims)) e.push(['wzDL','Podaj wszystkie trzy wymiary kartonu w mm (liczby całkowite).']);
     if (Number.isNaN(r.log.palletHeight)) e.push(['wzPh','Wysokość palety w metrach, np. 1,80 (0,30–3,00).']);
     const s = intOf('wzShelf'), k = intOf('wzPick');
-    if (Number.isInteger(s) && Number.isInteger(k) && k>s) e.push(['wzPick','Termin przy odbiorze nie może być dłuższy niż termin przydatności.']);
+    if (Number.isInteger(s) && Number.isInteger(k) && k>s) e.push(['wzPick','Minimalny termin przydatności przy odbiorze nie może być dłuższy niż termin przydatności.']);
   }
   return e;
 }
