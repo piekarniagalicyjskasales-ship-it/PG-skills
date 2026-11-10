@@ -483,6 +483,11 @@ textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-h
 .olang-sw{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:2px;border-radius:999px;border:1px solid var(--field-border);background:var(--field);isolation:isolate}
 .olang-thumb{position:absolute;z-index:0;top:2px;bottom:2px;left:2px;width:calc(50% - 2px);border-radius:999px;background:var(--pill);transition:transform .28s var(--ease)}
 .olang-sw[data-lang="en"] .olang-thumb{transform:translateX(100%)}
+/* offer currency: PLN | EUR (same family as the language switch; mirrors the "Waluta" select in Dane oferty) */
+.ocur{align-self:stretch;display:flex;align-items:center;justify-content:flex-end;gap:6px}
+@media (min-width:1100px){.offer-head{padding-top:10px;padding-bottom:8px}.otype{gap:2px}}
+.ocur-sw[data-cur="EUR"] .olang-thumb{transform:translateX(100%)}
+.ocur-sw button{min-width:36px}
 .olang-sw button{position:relative;z-index:1;border:0;background:transparent;border-radius:999px;min-height:16px;min-width:28px;padding:0 7px;font-family:var(--f-num);font-size:11px;font-weight:700;letter-spacing:.06em;line-height:1;color:var(--ink-2);cursor:pointer;transition:color .2s,scale .12s var(--ease)}
 .olang-sw button::after{content:"";position:absolute;inset:-4px 0 -3px}
 .olang-sw button:hover{color:var(--ink)}
@@ -509,6 +514,7 @@ textarea.inp{height:auto;min-height:60px;padding:8px 10px;resize:vertical;line-h
   .olang-long{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto}
   .olang-sw button{min-height:30px;min-width:48px;padding:0 14px;font-size:var(--t-sm)}
   .olang-sw button::after{content:none}
+  .ocur{order:4;flex-basis:100%;justify-content:space-between;gap:10px}
 }
 
 .items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
@@ -1508,6 +1514,14 @@ table.ptable{min-width:760px}
             <span class="otype-thumb" aria-hidden="true"></span>
             <button type="button" role="radio" id="otype-pg" data-otype="pg" aria-checked="true" tabindex="0">Oferta PG</button>
             <button type="button" role="radio" id="otype-pl" data-otype="pl" aria-checked="false" tabindex="-1">Private Label</button>
+          </div>
+          <div class="ocur" id="ocur">
+            <span class="otype-lbl" id="ocurLbl" title="Waluta cen w ofercie (to samo pole co „Waluta” w Danych oferty)">Waluta<span class="olang-long"> oferty</span></span>
+            <div class="olang-sw ocur-sw" id="ocurSw" role="radiogroup" aria-labelledby="ocurLbl" data-cur="PLN">
+              <span class="olang-thumb" aria-hidden="true"></span>
+              <button type="button" role="radio" id="ocur-PLN" data-ocur="PLN" aria-checked="true" tabindex="0" title="Ceny w złotych (PLN)">PLN</button>
+              <button type="button" role="radio" id="ocur-EUR" data-ocur="EUR" aria-checked="false" tabindex="-1" title="Ceny w euro (EUR)">EUR</button>
+            </div>
           </div>
         </div>
         <button class="icon-btn sheet-close" id="sheetClose" type="button" aria-label="Zamknij panel oferty">
@@ -2827,6 +2841,7 @@ function renderMeta(){
   updateCustHints();
   renderType();
   renderLang();
+  renderCur();
   renderMetaSum();
   renderTermsOpt();
   renderTplPicker();
@@ -2865,6 +2880,26 @@ function renderLang(){
   sws.forEach(pre=>['pl','en'].forEach(k=>{ const b = $('#'+pre+'-'+k); b.setAttribute('aria-checked', String(k===lg)); b.tabIndex = k===lg ? 0 : -1; }));
   $('#metaLang').hidden = !en;
   $('#fabLang').hidden = !en;
+}
+/* offer currency: the header switch and the "Waluta" select (#o-cur) both edit offer.meta.currency */
+const CUR_OPTS = ['PLN','EUR'];
+let curRendered = false;
+function renderCur(){
+  const c = offer.meta.currency, sw = $('#ocurSw');
+  if (!curRendered){
+    curRendered = true;
+    const th = sw.querySelector('.olang-thumb');
+    th.style.transition = 'none';
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ th.style.transition = ''; }));
+  }
+  sw.dataset.cur = c;
+  CUR_OPTS.forEach(k=>{ const b = $('#ocur-'+k); b.setAttribute('aria-checked', String(k===c)); b.tabIndex = k===c ? 0 : -1; });
+}
+function setCur(c){
+  if (!CUR_OPTS.includes(c) || offer.meta.currency===c) return;
+  offer.meta.currency = c;
+  $('#o-cur').value = c;
+  renderCur(); updateComputed(); renderTermsOpt(); prcOnCurrency(); renderMetaSum(); persist();
 }
 function setLang(lg){
   if (!I18N[lg] || docLang()===lg) return;
@@ -3046,7 +3081,7 @@ $('#products').addEventListener('click', e=>{
 /* ---------- events: offer ---------- */
 function clearExampleFlag(){ if (offer.isExample){ offer.isExample=false; $('#exampleNote').hidden=true; } }
 document.querySelectorAll('[data-meta]').forEach(el=>{
-  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency'){ updateComputed(); renderTermsOpt(); prcOnCurrency(); } if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
+  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency'){ renderCur(); updateComputed(); renderTermsOpt(); prcOnCurrency(); } if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
 });
 $('#o-date').addEventListener('change', e=>{ if (e.target.value){ offer.meta.validUntil = addDays(e.target.value,30); $('#o-valid').value = offer.meta.validUntil; persist(); } });
 $('#g-disc').addEventListener('input', e=>{ offer.globalDiscount = Math.min(100, Math.max(0, parseNum(e.target.value)||0)); updateComputed(); persist(); });
@@ -3058,6 +3093,14 @@ $('#otypeSw').addEventListener('keydown', e=>{
   else if (k==='Home') t = 'pg'; else if (k==='End') t = 'pl';
   if (!t) return;
   e.preventDefault(); setType(t); $('#otype-'+t).focus();
+});
+$('#ocurSw').addEventListener('click', e=>{ const b = e.target.closest('[data-ocur]'); if (b){ setCur(b.dataset.ocur); b.focus(); } });
+$('#ocurSw').addEventListener('keydown', e=>{
+  const k = e.key; let c = null;
+  if (k==='ArrowLeft' || k==='ArrowUp' || k==='ArrowRight' || k==='ArrowDown') c = offer.meta.currency==='EUR' ? 'PLN' : 'EUR'; /* two options: arrows move to the other one (wrapping) */
+  else if (k==='Home') c = 'PLN'; else if (k==='End') c = 'EUR';
+  if (!c) return;
+  e.preventDefault(); setCur(c); $('#ocur-'+c).focus();
 });
 ['olang','pvLang'].forEach(pre=>{
   const sw = $('#'+pre+'Sw');
@@ -3940,7 +3983,7 @@ function stdApply(list){
   if (offer.meta.date==='' ) offer.meta.date = isoDate(new Date());
   list.forEach(x=>{ offer.meta[x.k] = x.v; const el = document.getElementById(STD_EL[x.k]); if (el){ el.value = x.v; el.classList.add('just-filled'); setTimeout(()=>el.classList.remove('just-filled'), 1800); } });
   clearExampleFlag();
-  updateComputed(); renderMetaSum(); renderTermsOpt(); persist();
+  renderCur(); updateComputed(); renderMetaSum(); renderTermsOpt(); persist();
   if (list.some(x=>x.k==='currency')) prcOnCurrency();
   if ($('#previewDlg').open) renderPaper();
   const d = $('#stdDone');
