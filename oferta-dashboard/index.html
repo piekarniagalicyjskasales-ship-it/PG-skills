@@ -1283,6 +1283,73 @@ table.ptable{min-width:760px}
 .pb-stats div + div{border-left:1px solid rgba(255,255,255,.3)}
 .pb-stats b{display:block;font-family:var(--d-serif);font-weight:500;font-size:34px;line-height:1;color:#fff}
 .pb-stats span{display:block;margin-top:6px;font-family:var(--d-disp);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#F6D0D6}
+/* ==priceList== price list (cennik): Excel template / import, automatic pricing */
+.prc-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 10px;margin:0 0 10px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--field);transition:border-color .2s,box-shadow .2s}
+.prc-bar.on{border-color:color-mix(in srgb, var(--good) 45%, transparent);box-shadow:inset 3px 0 0 var(--good)}
+.prc-bar .toggle{font-weight:600;color:var(--ink)}
+.prc-cap{margin:0;flex:1 1 150px;min-width:0;font-size:var(--t-xs);color:var(--ink-3);font-variant-numeric:tabular-nums;text-align:right}
+.prc-bar.empty .prc-cap{font-style:italic}
+.prc-btns{display:flex;flex-wrap:wrap;gap:6px;width:100%}
+.prc-btns .btn{flex:1 1 auto;min-height:30px;padding:0 10px}
+.prc-btns .btn svg,.prc-menu svg{width:15px;height:15px;flex:none}
+.btn[aria-busy="true"]{cursor:progress}
+.psrc{display:flex;flex-wrap:wrap;align-items:center;gap:3px 4px;margin-top:3px;width:max-content;max-width:calc(200% + 8px)}
+.psrc:empty{display:none}
+.ps-tag{display:inline-flex;align-items:center;min-height:20px;padding:0 7px;border-radius:999px;font-size:11px;font-weight:600;line-height:1.15;white-space:nowrap}
+.ps-tag.list{color:var(--good);background:var(--good-soft)}
+.ps-tag.man{color:var(--warn);background:var(--warn-soft)}
+.ps-tag.none{color:var(--ink-3);border:1px dashed var(--line-strong);white-space:normal}
+.ps-rev{display:inline-flex;align-items:center;min-height:20px;padding:0 7px;border-radius:999px;border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);background:var(--accent-soft);color:var(--accent-text);font:inherit;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;transition:background .15s,scale .12s var(--ease)}
+.ps-rev:hover{background:color-mix(in srgb, var(--accent) 18%, transparent)}
+.ps-rev:active{scale:.94}
+.offer.prc-drop{outline:2px dashed var(--accent);outline-offset:-6px}
+.offer.prc-drop::after{content:"Upuść plik Excel (.xlsx) z cennikiem";position:absolute;inset:6px;z-index:6;display:grid;place-items:center;padding:20px;text-align:center;border-radius:var(--r-lg);background:color-mix(in srgb, var(--glass-solid) 88%, transparent);color:var(--accent-text);font-family:var(--f-display);font-size:var(--t-md);letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+.prc-menu{margin:0;inset:auto;position:fixed;min-width:240px;max-width:calc(100vw - 32px);padding:6px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--glass-solid);color:var(--ink);box-shadow:var(--shadow)}
+.prc-menu button{display:flex;align-items:center;gap:10px;width:100%;min-height:38px;padding:0 12px;border:0;border-radius:var(--r-sm);background:transparent;color:inherit;font:inherit;font-size:var(--t-sm);text-align:left;cursor:pointer}
+.prc-menu button:hover,.prc-menu button:focus-visible{background:var(--accent-soft);outline:none}
+.prc-menu button[hidden]{display:none}
+.dlg.prc-dlg{width:min(780px, calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain}
+.prc-dlg > *{flex-shrink:0}
+.prc-dlg h4{margin:0 0 6px;font-family:var(--f-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:400}
+.prc-sub{font-size:var(--t-sm);overflow-wrap:anywhere}
+.prc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:6px}
+.prc-stat{padding:8px 10px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--field);display:flex;flex-direction:column;gap:2px}
+.prc-stat b{font-family:var(--f-num);font-size:1.35rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.prc-stat span{font-size:var(--t-xs);color:var(--ink-3)}
+.prc-stat.good b{color:var(--good)}
+.prc-stat.warn{border-color:color-mix(in srgb, var(--warn) 45%, transparent);background:var(--warn-soft)}
+.prc-stat.warn b{color:var(--warn)}
+.prc-stat.crit{border-color:color-mix(in srgb, var(--crit) 40%, transparent);background:var(--crit-soft)}
+.prc-stat.crit b{color:var(--crit)}
+.prc-issues{margin:0;padding:8px 10px 8px 26px;border-radius:var(--r-md);border:1px dashed color-mix(in srgb, var(--crit) 45%, transparent);background:var(--crit-soft);font-size:var(--t-xs);color:var(--ink-2);display:flex;flex-direction:column;gap:3px;max-height:150px;overflow:auto}
+.prc-issues b{color:var(--crit)}
+.prc-tbl-wrap{max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:var(--r-md)}
+.prc-tbl{width:100%;border-collapse:collapse;font-size:var(--t-xs);font-variant-numeric:tabular-nums}
+.prc-tbl th{position:sticky;top:0;background:var(--glass-solid);text-align:left;font-weight:600;color:var(--ink-3);padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.prc-tbl td{padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.prc-tbl tr:last-child td{border-bottom:0}
+.prc-tbl td.n,.prc-tbl th.n{text-align:right;white-space:nowrap}
+.prc-tbl .pn{display:block;font-weight:600;color:var(--ink)}
+.prc-tbl .pi{color:var(--ink-3)}
+.prc-tbl s{color:var(--ink-3)}
+.prc-tbl ins{text-decoration:none;font-weight:700;color:var(--ink)}
+.prc-tbl .tag{display:inline-block;margin-left:4px;padding:0 5px;border-radius:999px;font-size:10px;font-weight:700;color:var(--good);background:var(--good-soft)}
+.prc-yes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;max-height:200px;overflow:auto}
+.prc-yes li{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:5px 10px;border-radius:var(--r-sm);background:var(--good-soft);font-size:var(--t-xs)}
+.prc-yes li > span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.prc-yes li b{font-family:var(--f-num)}
+.prc-yes .st{color:var(--ink-3);white-space:nowrap}
+.prc-none{margin:0;font-size:var(--t-xs);color:var(--ink-3)}
+.prc-opts{display:flex;flex-direction:column;gap:6px;padding-top:4px;border-top:1px dashed var(--line-strong)}
+.prc-opt{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;align-items:start;padding:6px 10px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--field);cursor:pointer}
+.prc-opt input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--accent);cursor:pointer}
+.prc-opt b{font-size:var(--t-sm);font-weight:600;color:var(--ink)}
+.prc-opt small{grid-column:2;font-size:11.5px;color:var(--ink-3)}
+.prc-opt.off{opacity:.55;cursor:default}
+@media (max-width:560px){
+  .prc-tbl .pn{max-width:18ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .prc-tbl .hide-s{display:none}
+}
 </style>
 <!-- GSAP loads before any content is parsed, so the first paint is the fully rendered page (no shift while the CDN responds) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1381,6 +1448,10 @@ table.ptable{min-width:760px}
           <button class="btn btn-sm btn-ghost" id="expNew" type="button" hidden title="Pobierz dodane i uzupełnione produkty (JSON + CSV)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
             Eksport nowych produktów
+          </button>
+          <button class="btn btn-sm btn-ghost" id="prcMenuBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="prcMenu" popovertarget="prcMenu" title="Cennik w Excelu: szablon z produktami i wczytywanie cen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M7.5 12.5l3 4M10.5 12.5l-3 4" opacity=".9"/></svg>
+            Cennik Excel
           </button>
         </div>
         <div class="left">
@@ -1486,6 +1557,14 @@ table.ptable{min-width:760px}
         </details>
         <section>
           <h3 class="section-title"><span>Pozycje <span id="itemCount" class="tnum"></span></span></h3>
+          <div class="prc-bar empty" id="prcBar">
+            <label class="toggle" for="o-autoPrice"><input type="checkbox" id="o-autoPrice" aria-describedby="prcCap">Ceny automatycznie z cennika</label>
+            <p class="prc-cap" id="prcCap">brak cennika — wczytaj Excel</p>
+            <div class="prc-btns">
+              <button class="btn btn-sm btn-ghost" id="btnPrcTpl" type="button" data-prc="tpl" hidden title="Plik Excel ze wszystkimi produktami: wpisz ceny, zaznacz TAK przy produktach do oferty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg><span class="lbl">Pobierz szablon cen (Excel)</span></button>
+              <button class="btn btn-sm btn-ghost" id="btnPrcImp" type="button" data-prc="imp" title="Wczytaj uzupełniony szablon (.xlsx) — możesz też przeciągnąć plik na panel oferty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 20h14"/></svg><span class="lbl">Wczytaj ceny z Excela</span></button>
+            </div>
+          </div>
           <ol class="items" id="items"></ol>
         </section>
       </div>
@@ -1591,6 +1670,32 @@ table.ptable{min-width:760px}
     <div class="dlg-actions">
       <button class="btn" id="stCancel" type="button">Anuluj</button>
       <button class="btn btn-primary" id="stApply" type="button">Zastosuj</button>
+    </div>
+  </div>
+</dialog>
+
+<div class="prc-menu" id="prcMenu" popover role="menu" aria-labelledby="prcMenuBtn">
+  <button type="button" role="menuitem" id="prcMiTpl" data-prc="tpl" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg><span class="lbl">Pobierz szablon cen (Excel)</span></button>
+  <button type="button" role="menuitem" id="prcMiImp" data-prc="imp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 20h14"/></svg><span class="lbl">Wczytaj ceny z Excela</span></button>
+</div>
+<input type="file" id="prcFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+
+<dialog id="prcDlg" aria-labelledby="prcTitle" aria-describedby="prcSub">
+  <div class="dlg glass prc-dlg">
+    <h3 id="prcTitle">Import cennika z Excela</h3>
+    <p class="prc-sub" id="prcSub"></p>
+    <div class="prc-stats" id="prcStats"></div>
+    <ul class="prc-issues" id="prcIssues" aria-label="Pominięte wiersze i wartości" hidden></ul>
+    <section aria-labelledby="prcChgH"><h4 id="prcChgH">Zmiany cen</h4><div id="prcChg"></div></section>
+    <section aria-labelledby="prcYesH"><h4 id="prcYesH">Do oferty (TAK)</h4><div id="prcYes"></div></section>
+    <div class="prc-opts" role="group" aria-label="Co zrobić z danymi z pliku">
+      <label class="prc-opt" for="prcOptSave"><input type="checkbox" id="prcOptSave" checked aria-describedby="prcOptSaveH"><b>Zapisz jako aktualny cennik</b><small id="prcOptSaveH"></small></label>
+      <label class="prc-opt" for="prcOptAdd"><input type="checkbox" id="prcOptAdd" checked aria-describedby="prcOptAddH"><b>Dodaj produkty oznaczone TAK do oferty</b><small id="prcOptAddH"></small></label>
+      <label class="prc-opt" for="prcOptUpd"><input type="checkbox" id="prcOptUpd" checked aria-describedby="prcOptUpdH"><b>Zaktualizuj ceny w bieżącej ofercie</b><small id="prcOptUpdH"></small></label>
+    </div>
+    <div class="dlg-actions">
+      <button class="btn" id="prcCancel" type="button">Anuluj</button>
+      <button class="btn btn-primary" id="prcApply" type="button">Zastosuj</button>
     </div>
   </div>
 </dialog>
@@ -2252,7 +2357,7 @@ function parseCustomer(text){
 /* ---------- offer state ---------- */
 function newOffer(){
   const today = isoDate(new Date());
-  return {type:'pg',lang:'pl',meta:{client:'',contact:'',street:'',postal:'',city:'',country:'',nip:'',krs:'',email:'',phone:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null,tpl:'classic',withTerms:true};
+  return {type:'pg',lang:'pl',meta:{client:'',contact:'',street:'',postal:'',city:'',country:'',nip:'',krs:'',email:'',phone:'',date:today,validUntil:addDays(today,30),currency:'PLN',terms:'',notes:'',brand:'',packaging:'',moq:'',leadTime:''},items:[],globalDiscount:0,isExample:false,savedId:null,tpl:'classic',withTerms:true,autoPrice:false};
 }
 /* offer type: 'pg' = GaliCrisp brand (default, also for older saved offers), 'pl' = Private Label (client's brand) */
 const OTYPE_LBL = {pg:'Oferta PG', pl:'Private Label'};
@@ -2453,9 +2558,11 @@ function sanitizeOffer(o){
   const items = Array.isArray(o.items) ? o.items.filter(i=>i && okId(i.id) && !seen.has(i.id) && seen.add(i.id)).map(i=>({
     id:i.id, price: typeof i.price==='number'?i.price:null, mode: (i.mode==='szt' || (i.mode==='pal' && palOk(i.id))) ? i.mode : 'kart',
     qty: Math.max(0, Number(i.qty)||0), upc: Number(i.upc)>0?Number(i.upc):prodOf(i.id)._upc, disc: Number(i.disc)||0,
+    /* price source (automatic pricing): "list" follows the price list, "manual" was typed; older lines have none = manual */
+    ...(i.priceSrc==='list' || i.priceSrc==='manual' ? {priceSrc:i.priceSrc} : {}),
     ...(i.src && ['kart','szt','pal'].includes(i.src.mode) && Number(i.src.qty)>=0 && (i.src.mode!=='pal' || palOk(i.id)) ? {src:{mode:i.src.mode, qty:Number(i.src.qty)}} : {})
   })) : [];
-  return {type: o.type==='pl' ? 'pl' : 'pg', lang: o.lang==='en' ? 'en' : 'pl', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null, tpl:['classic','katalog','premium'].includes(o.tpl) ? o.tpl : 'classic', withTerms:o.withTerms!==false};
+  return {type: o.type==='pl' ? 'pl' : 'pg', lang: o.lang==='en' ? 'en' : 'pl', meta, items, globalDiscount:Number(o.globalDiscount)||0, isExample:!!o.isExample, savedId:o.savedId||null, tpl:['classic','katalog','premium'].includes(o.tpl) ? o.tpl : 'classic', withTerms:o.withTerms!==false, autoPrice:o.autoPrice===true};
 }
 let offer = sanitizeOffer(store.get(K_DRAFT)) || exampleOffer();
 const inOffer = id => offer.items.some(i=>i.id===id);
@@ -2682,7 +2789,7 @@ function itemHtml(it, i, n){
       </div>
     </div>
     <div class="item-fields">
-      <div class="fld"><label for="p-${p.id}" title="Cena netto za sztukę">Cena/szt.</label><input class="inp r" id="p-${p.id}" data-f="price" inputmode="decimal" placeholder="—" value="${it.price==null?'':esc(String(it.price).replace('.',','))}"></div>
+      <div class="fld"><label for="p-${p.id}" title="Cena netto za sztukę">Cena/szt.</label><input class="inp r" id="p-${p.id}" data-f="price" inputmode="decimal" placeholder="—" value="${it.price==null?'':esc(String(it.price).replace('.',','))}"><span class="psrc" id="ps-${p.id}">${gh?'':prcSrcHtml(it)}</span></div>
       <div class="fld"><label for="q-${p.id}">Ilość (${kart?'kart.':pal?'pal.':'szt.'})</label><input class="inp r" id="q-${p.id}" data-f="qty" inputmode="${pal?'decimal':'numeric'}" autocomplete="off" placeholder="0" value="${it.qty?String(it.qty).replace('.',','):''}"></div>
       <div class="fld"><label for="d-${p.id}">Rabat %</label><input class="inp r" id="d-${p.id}" data-f="disc" inputmode="decimal" autocomplete="off" value="${it.disc?String(it.disc).replace('.',','):''}" placeholder="0"></div>
       <div class="fld"><label for="u-${p.id}" title="Sztuk w kartonie">Szt./karton</label><input class="inp r" id="u-${p.id}" data-f="upc" type="number" min="1" step="1" inputmode="numeric" value="${it.upc}"><button type="button" class="cat-fix" id="uf-${p.id}" data-upcfix title="Zastosuj wartość z katalogu: ${p._upc} szt. w kartonie"${it.upc===p._upc||gh?' hidden':''}>katalog: ${p._upc}</button></div>
@@ -2710,6 +2817,7 @@ function renderMeta(){
   renderMetaSum();
   renderTermsOpt();
   renderTplPicker();
+  prcRenderBar();
 }
 let typeRendered = false;
 function renderType(){
@@ -2873,7 +2981,7 @@ function afterAdd(ids, src){
 /* ---------- mutations ---------- */
 function addProducts(ids, srcEl){
   const added = [], src = ids.length===1 ? grab(srcEl) : null;
-  ids.forEach(id=>{ if(!inOffer(id) && byId[id]){ offer.items.push({id,price:null,mode:'kart',qty:1,upc:byId[id]._upc,disc:0}); added.push(id); } });
+  ids.forEach(id=>{ if(!inOffer(id) && byId[id]){ const it = {id,price:null,mode:'kart',qty:1,upc:byId[id]._upc,disc:0}; if (offer.autoPrice) prcApplyLine(it, true); offer.items.push(it); added.push(id); } });
   if (added.length){ persist(); renderItems(); renderProducts(); renderCatChips(); afterAdd(added, src); }
   return added.length;
 }
@@ -2925,7 +3033,7 @@ $('#products').addEventListener('click', e=>{
 /* ---------- events: offer ---------- */
 function clearExampleFlag(){ if (offer.isExample){ offer.isExample=false; $('#exampleNote').hidden=true; } }
 document.querySelectorAll('[data-meta]').forEach(el=>{
-  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency'){ updateComputed(); renderTermsOpt(); } if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
+  el.addEventListener('input', ()=>{ offer.meta[el.dataset.meta] = el.value; if (el.dataset.meta==='client') clearExampleFlag(); if (el.dataset.meta==='currency'){ updateComputed(); renderTermsOpt(); prcOnCurrency(); } if (el.dataset.meta==='nip' || el.dataset.meta==='email') updateCustHints(); renderMetaSum(); persist(); });
 });
 $('#o-date').addEventListener('change', e=>{ if (e.target.value){ offer.meta.validUntil = addDays(e.target.value,30); $('#o-valid').value = offer.meta.validUntil; persist(); } });
 $('#g-disc').addEventListener('input', e=>{ offer.globalDiscount = Math.min(100, Math.max(0, parseNum(e.target.value)||0)); updateComputed(); persist(); });
@@ -2953,7 +3061,7 @@ $('#items').addEventListener('input', e=>{
   const li = e.target.closest('.item'); const f = e.target.dataset.f; if (!li || !f) return;
   const it = offer.items.find(i=>i.id===li.dataset.id); if (!it) return;
   const v = parseNum(e.target.value);
-  if (f==='price') it.price = v==null ? null : Math.max(0,v);
+  if (f==='price'){ it.price = v==null ? null : Math.max(0,v); it.priceSrc = 'manual'; prcRenderSrc(it); }
   if (f==='qty'){ it.qty = it.mode==='pal' ? Math.max(0, Math.round((v||0)*100)/100) : Math.max(0, Math.round(v||0)); delete it.src; }
   if (f==='disc') it.disc = Math.min(100, Math.max(0, v||0));
   if (f==='upc') it.upc = Math.max(1, Math.round(v||1));
@@ -2976,6 +3084,7 @@ $('#items').addEventListener('click', e=>{
     return;
   }
   if (e.target.closest('[data-rm]')){ removeProduct(id); toast(`Usunięto ${id} z oferty`); return; }
+  if (e.target.closest('[data-prcrev]')){ prcRevert(offer.items[idx]); return; }
   if (e.target.closest('[data-upcfix]')){
     const it = offer.items[idx], p = byId[id]; if (!it || !p) return;
     it.upc = p._upc;
@@ -3332,7 +3441,7 @@ let downloads = null;
     const use = window.claude?.use;
     if (typeof use !== 'function') return;
     const dl = await Promise.race([ window.claude.use('downloads'), new Promise(r=>setTimeout(()=>r(null), 10000)) ]);
-    if (dl && typeof dl.save === 'function'){ downloads = dl; $('#btnCsv').hidden = false; $('#btnPdf').hidden = false; $('#pvPdf').hidden = false; $('#btnSave').classList.remove('wide'); try { syncExportBtn(); } catch(e){} }
+    if (dl && typeof dl.save === 'function'){ downloads = dl; $('#btnCsv').hidden = false; $('#btnPdf').hidden = false; $('#pvPdf').hidden = false; $('#btnSave').classList.remove('wide'); try { syncExportBtn(); } catch(e){} try { prcSyncDl(); } catch(e){} }
   } catch(e){ /* capability unavailable: keep the button hidden */ }
 })();
 $('#btnCsv').addEventListener('click', async ()=>{
@@ -3730,6 +3839,7 @@ function stdApply(list){
   list.forEach(x=>{ offer.meta[x.k] = x.v; const el = document.getElementById(STD_EL[x.k]); if (el){ el.value = x.v; el.classList.add('just-filled'); setTimeout(()=>el.classList.remove('just-filled'), 1800); } });
   clearExampleFlag();
   updateComputed(); renderMetaSum(); renderTermsOpt(); persist();
+  if (list.some(x=>x.k==='currency')) prcOnCurrency();
   if ($('#previewDlg').open) renderPaper();
   const d = $('#stdDone');
   d.textContent = list.length ? 'Zmieniono: ' + list.map(x=>`${STD_LBL[x.k]} → ${stdShow(x.k, x.v)}`).join('; ') : 'Bez zmian.';
@@ -3866,8 +3976,8 @@ $('#btnClear').addEventListener('click', async ()=>{
   const ok = await confirmBox('Wyczyścić ofertę?', 'Usunie to wszystkie pozycje i dane klienta z bieżącego szkicu. Zapisane oferty pozostaną bez zmian.', 'Wyczyść');
   if (!ok) return;
   const cur = offer.meta.currency, typ = offer.type, lg = docLang();
-  const tpl = offer.tpl, wt = offer.withTerms;
-  offer = newOffer(); offer.meta.currency = cur; offer.type = typ; offer.lang = lg; offer.tpl = tpl || 'classic'; offer.withTerms = wt!==false;
+  const tpl = offer.tpl, wt = offer.withTerms, ap = !!offer.autoPrice;
+  offer = newOffer(); offer.meta.currency = cur; offer.type = typ; offer.lang = lg; offer.tpl = tpl || 'classic'; offer.withTerms = wt!==false; offer.autoPrice = ap;
   persist(); refreshAll(); toast('Oferta wyczyszczona');
 });
 
@@ -4120,6 +4230,7 @@ async function cpConnect(){
     try { CP.canWrite = await CP.user.canEdit(); } catch(e){ CP.canWrite = null; }
   }
   try { if (db && typeof db.collection==='function') CP.col = db.collection('products'); } catch(e){ CP.col = null; }
+  try { prcConnect(db); } catch(e){}
   if (!CP.col){ renderCpNote(); wzSyncMode(); return; }
   CP.state = 'loading'; CP.slow = false;
   CP.timer = setTimeout(()=>{ CP.slow = true; renderCpNote(); }, 10000);
@@ -4993,6 +5104,737 @@ $('#wzCopy').addEventListener('change', e=>{
   const g = G(); if (g) g.fromTo('#wizDlg [data-pane="2"] .wz-grid .inp',{backgroundColor:'rgba(45,122,76,.18)'},{backgroundColor:'rgba(45,122,76,0)', duration:.9, ease:'power1.out', clearProps:'backgroundColor'});
 });
 /* ==/addedProducts== */
+
+/* ==priceList== */
+/* ---------- price list (cennik): Excel template, Excel import, automatic pricing ----------
+   The current price list is the db document "pricelists/current" (shared, written by editors) or, without db or
+   write access, this browser's copy (localStorage gc_pricelist_v1); the newer of the two is in force. Offer lines
+   carry priceSrc: "list" (follows the price list while automatic pricing is on) or "manual" (typed by hand; older
+   lines without the field count as manual). ExcelJS is loaded from cdnjs only when a template or an import is used. */
+const K_PRICES = 'gc_pricelist_v1';
+const EXCELJS_URL = 'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js';
+const XLSX_MIME = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+const PRC = {ref:null, unsub:null, dbDoc:null, localDoc:null, state:'off', first:true, myStamp:null, timer:null, busy:false, res:null};
+const PRC_UNIT = {kart:'kart.', szt:'szt.', pal:'pal.'};
+const prcKey = cur => cur==='EUR' ? 'eur' : 'pln';
+const prcNum = (v, hi) => typeof v==='number' && isFinite(v) && v>=0 && v<=hi ? Math.round(v*10000)/10000 : null;
+/* everything read back (db, localStorage) is untrusted: validated here, escaped when rendered */
+function prcSanitize(raw, src){
+  if (!raw || typeof raw!=='object' || Array.isArray(raw)) return null;
+  const P = raw.prices && typeof raw.prices==='object' && !Array.isArray(raw.prices) ? raw.prices : {};
+  const prices = {};
+  let n = 0;
+  for (const [id, v] of Object.entries(P)){
+    if (n>=3000) break;
+    if (!/^[A-Za-z0-9_-]{1,24}$/.test(id) || !v || typeof v!=='object' || Array.isArray(v)) continue;
+    const e = {pln:prcNum(v.pln, 1e6), eur:prcNum(v.eur, 1e6), disc:prcNum(v.disc, 100)};
+    if (e.pln==null && e.eur==null && !e.disc) continue;
+    prices[id] = e; n++;
+  }
+  const t = typeof raw.updatedAt==='string' ? Date.parse(raw.updatedAt) : NaN;
+  if (isNaN(t)) return null;
+  return {updatedAt: new Date(t).toISOString(), updatedBy: cleanTxt(raw.updatedBy, 80) || null,
+    source: cleanTxt(raw.source, 20) || 'excel', fileName: cleanTxt(raw.fileName, 120) || '', prices, src};
+}
+PRC.localDoc = prcSanitize(store.get(K_PRICES), 'local');
+/* the price list in force: the newer of the shared one and this browser's copy */
+function prcCur(){
+  const a = PRC.dbDoc, b = PRC.localDoc;
+  if (a && b) return (b.updatedAt || '') > (a.updatedAt || '') ? b : a;
+  return a || b || null;
+}
+const prcSig = d => d ? d.updatedAt + '|' + JSON.stringify(d.prices) : '';
+const prcCount = (d, cur) => d ? Object.values(d.prices).filter(e=>e[prcKey(cur)]!=null).length : 0;
+function prcPrice(id, cur){ const d = prcCur(), e = d && d.prices[id]; if (!e) return null; const v = e[prcKey(cur || offer.meta.currency)]; return v==null ? null : v; }
+function prcDisc(id){ const d = prcCur(), e = d && d.prices[id]; return e && e.disc>0 ? e.disc : null; }
+const prcWhen = iso => { const d = new Date(iso); return isNaN(d) ? '' : plDate(isoDate(d)); };
+const prcTime = iso => { const d = new Date(iso); return isNaN(d) ? '' : `${plDate(isoDate(d))} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; };
+
+/* ---- offer lines ---- */
+/* price a line from the list (withDisc: also the list's default discount — only when a line is newly priced) */
+function prcApplyLine(it, withDisc){
+  const before = [it.price, it.disc, it.priceSrc].join('|');
+  it.price = prcPrice(it.id); it.priceSrc = 'list';
+  const d = withDisc ? prcDisc(it.id) : null;
+  if (d!=null) it.disc = d;
+  return before !== [it.price, it.disc, it.priceSrc].join('|');
+}
+/* automatic pricing after the price list or the currency changed: lines still priced from the list (or never priced) */
+function prcReprice(){
+  if (!offer.autoPrice || !prcCur()) return 0;
+  let n = 0;
+  offer.items.forEach(it=>{
+    if (!byId[it.id]) return;
+    if (it.priceSrc==='list' || (it.price==null && it.priceSrc!=='manual')){ if (prcApplyLine(it, false)) n++; }
+  });
+  if (n) persist();
+  return n;
+}
+function prcSrcHtml(it){
+  if (!offer.autoPrice || !byId[it.id]) return '';
+  const cur = offer.meta.currency, v = prcPrice(it.id);
+  const none = `<span class="ps-tag none" title="Ten produkt nie ma ceny ${cur} w cenniku — wpisz cenę ręcznie">brak w cenniku</span>`;
+  if (it.priceSrc==='list') return it.price==null ? none : `<span class="ps-tag list" title="Cena z cennika (${cur}) — zmieni się razem z cennikiem">z cennika</span>`;
+  const rev = v==null ? '' : `<button type="button" class="ps-rev" id="pr-${esc(it.id)}" data-prcrev title="Przywróć cenę z cennika: ${esc(money(v, cur))}" aria-label="Przywróć cenę z cennika: ${esc(money(v, cur))}">↺ z cennika</button>`;
+  if (it.price==null) return v==null ? none : rev;
+  return `<span class="ps-tag man" title="Cena wpisana ręcznie — cennik jej nie zmienia">ręcznie</span>${rev}`;
+}
+function prcRenderSrc(it){
+  const el = document.getElementById('ps-'+it.id); if (!el) return;
+  const a = document.activeElement, had = a && el.contains(a);
+  el.innerHTML = prcSrcHtml(it);
+  if (had){ const inp = document.getElementById('p-'+it.id); if (inp) inp.focus({preventScroll:true}); }
+}
+function prcRevert(it){
+  if (!it) return;
+  const v = prcPrice(it.id);
+  if (v==null) return toast(`Brak ceny ${offer.meta.currency} dla ${it.id} w cenniku`, true);
+  prcApplyLine(it, false);
+  const inp = document.getElementById('p-'+it.id);
+  if (inp) inp.value = String(it.price).replace('.',',');
+  prcRenderSrc(it); updateComputed(); persist();
+  if (inp){ inp.focus({preventScroll:true}); pulse(inp, 1.04); }
+  toast(`Przywrócono cenę z cennika: ${money(v)} (${it.id})`);
+}
+function prcOnCurrency(){
+  const n = prcReprice();
+  prcRenderBar();
+  if (offer.autoPrice) renderItemsKeepFocus();
+  if (n) toast(`Ceny z cennika w ${offer.meta.currency}: ${n} ${plN(n,'pozycja','pozycje','pozycji')}`);
+}
+function prcSetAuto(on){
+  offer.autoPrice = !!on;
+  let n = 0, kept = 0;
+  if (on && prcCur()){
+    offer.items.forEach(it=>{
+      if (!byId[it.id]) return;
+      const v = prcPrice(it.id);
+      if (it.price==null) { if (prcApplyLine(it, true)) n++; }
+      else if (it.priceSrc==='list'){ if (prcApplyLine(it, false)) n++; }
+      else if (v!=null && Math.abs(v - it.price) < 1e-9) it.priceSrc = 'list';
+      else { it.priceSrc = 'manual'; kept++; }
+    });
+  }
+  persist(); prcRenderBar(); renderItemsKeepFocus();
+  if (!on) toast('Automatyczne ceny wyłączone — ceny w ofercie zostają bez zmian');
+  else if (!prcCur()) toast('Brak cennika — wczytaj plik Excel z cenami (szablon: „Pobierz szablon cen”)', true);
+  else toast(`Ceny z cennika: ${n ? `uzupełniono ${n} ${plN(n,'pozycję','pozycje','pozycji')}` : 'pozycje aktualne'}${kept ? ` · ręczne ceny bez zmian: ${kept}` : ''}`);
+}
+
+/* ---- the price-list bar in the offer panel ---- */
+function prcRenderBar(){
+  const bar = $('#prcBar'); if (!bar) return;
+  const d = prcCur(), cur = offer.meta.currency, cap = $('#prcCap');
+  $('#o-autoPrice').checked = !!offer.autoPrice;
+  let txt, tip = '';
+  if (!d) txt = PRC.state==='loading' ? 'wczytywanie cennika…' : PRC.state==='slow' || PRC.state==='error' ? 'cennik zespołu niedostępny — wczytaj Excel' : 'brak cennika — wczytaj Excel';
+  else {
+    const n = prcCount(d, cur);
+    txt = `cennik z ${prcWhen(d.updatedAt) || '—'} · ${n} ${plN(n,'cena','ceny','cen')} ${cur}${d.src==='local' ? ' · tylko w tej przeglądarce' : ''}`;
+    tip = [d.fileName ? 'Plik: ' + d.fileName : '', d.updatedAt ? 'Zapisano: ' + prcTime(d.updatedAt) : '', d.src==='db' ? 'Wspólny cennik zespołu' : 'Cennik zapisany tylko w tej przeglądarce',
+      `Ceny PLN: ${prcCount(d,'PLN')} · EUR: ${prcCount(d,'EUR')}`].filter(Boolean).join('\n');
+  }
+  cap.textContent = txt; cap.title = tip;
+  bar.classList.toggle('on', !!offer.autoPrice);
+  bar.classList.toggle('empty', !d);
+}
+function prcSyncDl(){
+  let dl = null; try { dl = downloads; } catch(e){}
+  document.querySelectorAll('[data-prc="tpl"]').forEach(b=>{ b.hidden = !dl; });
+}
+/* the list in force changed (import here, another editor's import, first load): reprice, refresh */
+function prcChanged(announce){
+  const n = prcReprice();
+  prcRenderBar();
+  if (offer.items.length) renderItemsKeepFocus();
+  if (announce){ const d = prcCur(); toast(`Cennik zaktualizowany (${[d && d.fileName, d && prcTime(d.updatedAt)].filter(Boolean).join(' · ')})${n ? ` — nowe ceny w ${n} ${plN(n,'pozycji','pozycjach','pozycjach')} oferty` : ''}`); }
+  return n;
+}
+
+/* ---- shared store: db doc "pricelists/current" (subscribed once), localStorage fallback ---- */
+function prcConnect(db){
+  if (!db || typeof db.doc!=='function'){ prcRenderBar(); return; }
+  try { PRC.ref = db.doc('pricelists/current'); } catch(e){ PRC.ref = null; prcRenderBar(); return; }
+  PRC.state = 'loading'; prcRenderBar();
+  PRC.timer = setTimeout(()=>{ if (PRC.state==='loading'){ PRC.state = 'slow'; prcRenderBar(); } }, 10000);
+  try { PRC.unsub = PRC.ref.onSnapshot(prcSnap, prcSnapErr); } catch(e){ prcSnapErr({code:'unavailable'}); }
+}
+function prcSnap(ds){
+  let d = null;
+  try { d = ds && ds.exists ? prcSanitize(ds.data(), 'db') : null; } catch(e){ return; }
+  if (!ds.metadata || !ds.metadata.fromCache){ clearTimeout(PRC.timer); PRC.state = 'ready'; }
+  else if (PRC.state==='slow') PRC.state = 'loading';
+  const before = prcSig(prcCur());
+  PRC.dbDoc = d;
+  const first = PRC.first; PRC.first = false;
+  if (prcSig(prcCur())===before){ prcRenderBar(); return; }
+  /* an update is announced unless it is this page's own write or the first load */
+  const mine = !!(d && PRC.myStamp && d.updatedAt===PRC.myStamp);
+  prcChanged(!first && !mine && !!d && prcCur()===d);
+}
+function prcSnapErr(){
+  clearTimeout(PRC.timer);
+  PRC.state = 'error';
+  prcRenderBar();
+}
+const prcDbWritable = () => !!PRC.ref && CP.canWrite!==false && PRC.state!=='error';
+/* returns 'db' | 'local' | 'memory' (storage blocked: kept for this visit) and, after a refused shared write, the reason */
+async function prcSave(prices, fileName){
+  const body = {updatedAt:new Date().toISOString(), updatedBy:CP.me || null, source:'excel', fileName:cleanTxt(fileName, 120) || '', prices};
+  let why = '';
+  if (prcDbWritable()){
+    try {
+      PRC.myStamp = body.updatedAt;
+      await dbWrite(()=>PRC.ref.set(body));
+      PRC.dbDoc = prcSanitize(body, 'db');
+      PRC.localDoc = null; store.del(K_PRICES);
+      return {where:'db'};
+    } catch(err){
+      if (err && err.code==='invalid_argument') CP.canWrite = false;
+      if (err && err.code==='revoked'){ PRC.state = 'error'; }
+      why = dbErrMsg(err, 'zapisać cennika zespołu');
+    }
+  }
+  const ok = store.set(K_PRICES, body);
+  PRC.localDoc = prcSanitize(body, 'local');
+  return {where: ok ? 'local' : 'memory', why};
+}
+
+/* ---- ExcelJS, loaded on first use ---- */
+let xlsxLoading = null;
+function loadExcelJs(){
+  if (window.ExcelJS && window.ExcelJS.Workbook) return Promise.resolve(window.ExcelJS);
+  if (xlsxLoading) return xlsxLoading;
+  xlsxLoading = new Promise((res, rej)=>{
+    const s = document.createElement('script');
+    let t = null;
+    const fail = e => { clearTimeout(t); s.remove(); xlsxLoading = null; rej(e); };
+    t = setTimeout(()=>fail(new Error('timeout')), 45000);
+    s.onload = ()=>{ clearTimeout(t); if (window.ExcelJS && window.ExcelJS.Workbook) res(window.ExcelJS); else fail(new Error('ExcelJS missing')); };
+    s.onerror = ()=>fail(new Error('load'));
+    s.src = EXCELJS_URL; s.async = true;
+    (document.head || document.documentElement).appendChild(s);
+  });
+  return xlsxLoading;
+}
+const XL_LIB_ERR = 'Nie udało się wczytać modułu Excel — sprawdź połączenie i spróbuj ponownie';
+function prcBusy(kind, label){
+  PRC.busy = !!kind;
+  document.querySelectorAll('[data-prc]').forEach(b=>{
+    const l = b.querySelector('.lbl');
+    if (!b.dataset.lbl && l) b.dataset.lbl = l.textContent;
+    const mine = kind && b.dataset.prc===kind;
+    if (l) l.textContent = mine ? label : b.dataset.lbl;
+    b.disabled = !!kind; b.setAttribute('aria-busy', String(!!mine));
+  });
+}
+
+/* ---- template: "Pobierz szablon cen (Excel)" ---- */
+const PRC_COLS = [
+  {k:'img',   h:'Zdjęcie', w:9},
+  {k:'id',    h:'ID', w:9},
+  {k:'ean',   h:'EAN', w:16, fmt:'@'},
+  {k:'name',  h:'Nazwa / Product name', w:40},
+  {k:'cat',   h:'Kategoria', w:20},
+  {k:'line',  h:'Linia', w:26},
+  {k:'weight',h:'Gramatura (g)', w:11, fmt:'0'},
+  {k:'upc',   h:'Szt./karton', w:10, fmt:'0'},
+  {k:'cpp',   h:'Kart./paleta', w:10, fmt:'0'},
+  {k:'upp',   h:'Szt./paleta', w:11, fmt:'#,##0'},
+  {k:'shelf', h:'Termin (dni)', w:10, fmt:'0'},
+  {k:'pln',   h:'Cena netto PLN / szt.', w:15, fmt:'#,##0.00', ed:true},
+  {k:'eur',   h:'Cena netto EUR / szt.', w:15, fmt:'#,##0.00', ed:true},
+  {k:'disc',  h:'Rabat %', w:10, fmt:'General" %"', ed:true},
+  {k:'yes',   h:'Do oferty', w:11, ed:true},
+  {k:'qty',   h:'Ilość', w:10, fmt:'General', ed:true},
+  {k:'unit',  h:'Jednostka', w:11, ed:true},
+  {k:'note',  h:'Uwagi', w:34, ed:true}
+];
+const PRC_COL = Object.fromEntries(PRC_COLS.map((c,i)=>[c.k, i+1]));
+const xlColL = n => { let s = ''; while (n>0){ const m = (n-1)%26; s = String.fromCharCode(65+m) + s; n = Math.floor((n-1)/26); } return s; };
+/* packshot → small PNG (Excel cannot show WebP); same-origin files or data URLs, so the canvas stays readable */
+const thumbCache = new Map();
+function prcThumb(src){
+  if (!src) return Promise.resolve(null);
+  if (thumbCache.has(src)) return thumbCache.get(src);
+  const pr = new Promise(res=>{
+    const im = new Image();
+    const t = setTimeout(()=>res(null), 10000);
+    im.onload = ()=>{
+      clearTimeout(t);
+      try {
+        const S = 96, c = document.createElement('canvas'); c.width = c.height = S;
+        const g = c.getContext('2d'), k = Math.min(S/im.naturalWidth, S/im.naturalHeight), w = im.naturalWidth*k, h = im.naturalHeight*k;
+        g.imageSmoothingQuality = 'high';
+        g.drawImage(im, (S-w)/2, (S-h)/2, w, h);
+        res(c.toDataURL('image/png'));
+      } catch(e){ res(null); }
+    };
+    im.onerror = ()=>{ clearTimeout(t); res(null); };
+    im.src = src;
+  });
+  thumbCache.set(src, pr);
+  return pr;
+}
+async function mapLimit(list, n, fn){
+  const out = new Array(list.length); let i = 0;
+  await Promise.all(Array.from({length:Math.min(n, list.length)}, async ()=>{ while (i < list.length){ const k = i++; out[k] = await fn(list[k], k); } }));
+  return out;
+}
+function prcTemplateRows(){
+  const ci = p => { const i = CAT_ORDER.indexOf(p.category); return i<0 ? 99 : i; };
+  return PRODUCTS.slice().sort((a,b)=>ci(a)-ci(b) || a.name.localeCompare(b.name,'pl') || a.id.localeCompare(b.id,'en',{numeric:true}));
+}
+async function prcBuildWorkbook(ExcelJS){
+  const now = new Date(), today = isoDate(now), cur = offer.meta.currency;
+  const list = prcCur(), rows = prcTemplateRows();
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'GaliCrisp — kreator oferty'; wb.created = now; wb.modified = now; wb.title = 'GaliCrisp — cennik / price list';
+  const ws = wb.addWorksheet('Cennik', {properties:{defaultRowHeight:18, tabColor:{argb:'FFE11339'}}, pageSetup:{orientation:'landscape', fitToPage:true, fitToWidth:1, fitToHeight:0, paperSize:9}});
+  ws.columns = PRC_COLS.map(c=>({key:c.k, width:c.w}));
+  const N = PRC_COLS.length, last = 2 + rows.length;
+  const RED = 'FFE11339', INK = 'FF130F10', CREAM = 'FFF6EAD8', GOLD = 'FFE8C088', EDIT = 'FFFFF7D1', LINE = 'FFE8DDD0';
+  const fill = argb => ({type:'pattern', pattern:'solid', fgColor:{argb}});
+  const thin = {style:'thin', color:{argb:LINE}};
+  /* row 1: brand band */
+  const r1 = ws.getRow(1); r1.height = 34;
+  for (let c=1; c<=N; c++){ const cell = r1.getCell(c); cell.fill = fill(RED); cell.font = {name:'Calibri', size:11, color:{argb:'FFFFFFFF'}}; }
+  ws.mergeCells(1, 1, 1, 11);
+  ws.mergeCells(1, 12, 1, N);
+  r1.getCell(1).value = 'GaliCrisp — cennik / price list';
+  r1.getCell(1).font = {name:'Calibri', size:16, bold:true, color:{argb:'FFFFFFFF'}};
+  r1.getCell(1).alignment = {vertical:'middle', horizontal:'left', indent:1};
+  r1.getCell(12).value = `Piekarnia Galicyjska · stan na / as of ${plDate(today)}`;
+  r1.getCell(12).font = {name:'Calibri', size:11, bold:true, color:{argb:'FFFFFFFF'}};
+  r1.getCell(12).alignment = {vertical:'middle', horizontal:'right', indent:1};
+  /* row 2: header (frozen, filter) */
+  const r2 = ws.getRow(2); r2.height = 32;
+  PRC_COLS.forEach((c,i)=>{
+    const cell = r2.getCell(i+1);
+    cell.value = c.h;
+    cell.font = {name:'Calibri', size:10, bold:true, color:{argb: c.ed ? INK : CREAM}};
+    cell.fill = fill(c.ed ? GOLD : INK);
+    cell.alignment = {vertical:'middle', horizontal: ['img','id','ean','name','cat','line','note'].includes(c.k) ? 'left' : 'center', wrapText:true};
+    cell.border = {bottom:{style:'medium', color:{argb:RED}}};
+  });
+  const thumbs = await mapLimit(rows, 6, p => prcThumb(p._pack || p._web || null));
+  rows.forEach((p, i)=>{
+    const r = 3 + i, row = ws.getRow(r), L = p._log || {}, e = list && list.prices[p.id];
+    const line = offer.items.find(it=>it.id===p.id);
+    const v = {
+      id:p.id, ean:p._ean || '', name:p.name, cat:p._cat.pl, line:p._line || '', weight:typeof p.weight==='number' && p.weight>0 ? p.weight : null,
+      upc:L.unitsPerCarton || null, cpp:L.cartonsPerPallet || null, upp:L.unitsPerPallet || (L.unitsPerCarton && L.cartonsPerPallet ? L.unitsPerCarton*L.cartonsPerPallet : null), shelf:L.shelfLifeDays || null,
+      pln:e && e.pln!=null ? e.pln : null, eur:e && e.eur!=null ? e.eur : null, disc:e && e.disc ? e.disc : null,
+      yes: line ? 'TAK' : 'NIE', qty: line && line.qty ? line.qty : null, unit: line ? PRC_UNIT[line.mode] || 'kart.' : null,
+      note: p._draft ? 'SZKIC — produkt niekompletny' + (p._missing && p._missing.length ? ' (brak: ' + p._missing.join(', ') + ')' : '') : ''
+    };
+    /* a price typed in this offer but not in the list yet goes to the offer-currency column */
+    if (line && line.price!=null && v[prcKey(cur)]==null) v[prcKey(cur)] = line.price;
+    row.height = 40;
+    PRC_COLS.forEach((c, j)=>{
+      const cell = row.getCell(j+1);
+      if (c.k!=='img') cell.value = v[c.k]==null || v[c.k]==='' ? null : v[c.k];
+      if (c.fmt) cell.numFmt = c.fmt;
+      cell.font = {name:'Calibri', size:10, bold:c.k==='id' || c.k==='pln' || c.k==='eur', color:{argb:INK}};
+      cell.alignment = {vertical:'middle', horizontal: ['name','cat','line','note','ean','id'].includes(c.k) ? 'left' : 'center', wrapText:c.k==='name' || c.k==='note'};
+      cell.border = {bottom:thin, right:thin};
+      if (c.ed){ cell.fill = fill(EDIT); cell.protection = {locked:false}; }
+      if (c.k==='pln' || c.k==='eur') cell.dataValidation = {type:'decimal', operator:'greaterThanOrEqual', allowBlank:true, formulae:[0], showErrorMessage:true, errorStyle:'stop', errorTitle:'Cena', error:'Wpisz cenę netto za sztukę (liczba ≥ 0), np. 2,10'};
+      if (c.k==='disc') cell.dataValidation = {type:'decimal', operator:'between', allowBlank:true, formulae:[0, 100], showErrorMessage:true, errorStyle:'stop', errorTitle:'Rabat %', error:'Rabat w procentach: liczba od 0 do 100'};
+      if (c.k==='qty') cell.dataValidation = {type:'decimal', operator:'greaterThanOrEqual', allowBlank:true, formulae:[0], showErrorMessage:true, errorStyle:'stop', errorTitle:'Ilość', error:'Ilość: liczba ≥ 0'};
+      if (c.k==='yes') cell.dataValidation = {type:'list', allowBlank:true, formulae:['"TAK,NIE"'], showErrorMessage:true, errorStyle:'stop', errorTitle:'Do oferty', error:'Wybierz TAK lub NIE', showInputMessage:true, promptTitle:'Do oferty', prompt:'TAK = dodaj produkt do oferty (podaj ilość i jednostkę)'};
+      if (c.k==='unit') cell.dataValidation = {type:'list', allowBlank:true, formulae:['"kart.,szt.,pal."'], showErrorMessage:true, errorStyle:'stop', errorTitle:'Jednostka', error:'Wybierz kart., szt. lub pal.'};
+    });
+    if (p._draft) row.getCell(PRC_COL.note).font = {name:'Calibri', size:10, italic:true, color:{argb:'FF93560B'}};
+    if (thumbs[i]){
+      try {
+        const id = wb.addImage({base64:thumbs[i], extension:'png'});
+        ws.addImage(id, {tl:{col:0.14, row:r-1+0.08}, ext:{width:48, height:48}, editAs:'oneCell'});
+      } catch(e){}
+    }
+  });
+  if (rows.length){
+    ws.addConditionalFormatting({ref:`A3:${xlColL(N)}${last}`, rules:[{type:'expression', priority:1, formulae:[`$${xlColL(PRC_COL.yes)}3="TAK"`], style:{fill:{type:'pattern', pattern:'solid', bgColor:{argb:'FFD9F2E0'}}, font:{color:{argb:'FF1F5E38'}}}}]});
+  }
+  ws.autoFilter = {from:{row:2, column:1}, to:{row:Math.max(3, last), column:N}};
+  ws.views = [{state:'frozen', xSplit:4, ySplit:2, topLeftCell:'E3', activeCell:`${xlColL(PRC_COL.pln)}3`, showGridLines:false, zoomScale:100}];
+  /* locked data columns (ID, EAN…), editable yellow cells; no password: Recenzja → Nie chroń arkusza */
+  await ws.protect('', {selectLockedCells:true, selectUnlockedCells:true, formatColumns:true, formatRows:true, formatCells:false, autoFilter:true, sort:false, insertRows:false, deleteRows:false});
+
+  /* Instrukcja (PL + EN) */
+  const wi = wb.addWorksheet('Instrukcja', {properties:{tabColor:{argb:'FF130F10'}}});
+  wi.columns = [{width:112}];
+  const tl = (r, text, kind) => {
+    const c = wi.getRow(r).getCell(1); c.value = text;
+    if (kind==='title'){ c.font = {name:'Calibri', size:15, bold:true, color:{argb:'FFFFFFFF'}}; c.fill = fill(RED); wi.getRow(r).height = 30; c.alignment = {vertical:'middle', indent:1}; }
+    else if (kind==='h'){ c.font = {name:'Calibri', size:12, bold:true, color:{argb:RED}}; wi.getRow(r).height = 22; c.alignment = {vertical:'bottom'}; }
+    else { c.font = {name:'Calibri', size:11, color:{argb:INK}}; c.alignment = {wrapText:true, vertical:'top'}; }
+  };
+  const PL = [
+    '1. W arkuszu „Cennik” wpisz ceny netto za sztukę: „Cena netto PLN / szt.” i/lub „Cena netto EUR / szt.” (żółte pola). Separator dziesiętny: przecinek lub kropka.',
+    '2. Opcjonalnie „Rabat %” — domyślny rabat produktu (stosowany, gdy produkt trafia do oferty).',
+    '3. Aby dodać produkt do oferty, w kolumnie „Do oferty” wybierz TAK oraz podaj „Ilość” i „Jednostkę” (kart. / szt. / pal.). Wiersze z TAK podświetlają się na zielono.',
+    '4. Nie zmieniaj kolumn ID i EAN — po nich produkty są rozpoznawane przy wczytywaniu. Kolumny z danymi są chronione (bez hasła: Recenzja → Nie chroń arkusza).',
+    '5. Zapisz plik jako .xlsx. W kreatorze oferty kliknij „Wczytaj ceny z Excela” (albo przeciągnij plik na panel oferty), sprawdź podsumowanie i kliknij „Zastosuj”.',
+    '6. Włącz „Ceny automatycznie z cennika”, aby nowe pozycje i zmiana waluty brały ceny z cennika. Cena wpisana ręcznie w ofercie ma znacznik „ręcznie”.'
+  ];
+  const EN = [
+    '1. In the “Cennik” sheet enter net unit prices: “Cena netto PLN / szt.” and/or “Cena netto EUR / szt.” (yellow cells). Decimal comma or point both work.',
+    '2. Optional “Rabat %” — the product’s default discount (applied when it is added to an offer).',
+    '3. To add a product to the offer, set “Do oferty” to TAK (yes) and fill in “Ilość” (quantity) and “Jednostka” (unit: kart. = cartons, szt. = units, pal. = pallets).',
+    '4. Do not change the ID and EAN columns — they identify the products on import. Data columns are protected (no password: Review → Unprotect Sheet).',
+    '5. Save the file as .xlsx. In the offer builder click “Wczytaj ceny z Excela” (or drop the file on the offer panel), check the summary and click “Zastosuj” (apply).',
+    '6. Turn on “Ceny automatycznie z cennika” so new lines and currency changes take prices from the price list. Prices typed by hand are marked “ręcznie”.'
+  ];
+  tl(1, 'GaliCrisp — cennik / price list · instrukcja / how to use', 'title');
+  tl(3, 'PL — jak używać', 'h'); PL.forEach((t,i)=>tl(4+i, t));
+  tl(4+PL.length+1, 'EN — how to use', 'h'); EN.forEach((t,i)=>tl(4+PL.length+2+i, t));
+  tl(4+PL.length+2+EN.length+1, `Wygenerowano / generated: ${prcTime(now.toISOString())} · produkty / products: ${rows.length} · waluta oferty / offer currency: ${cur}`);
+  wi.getRow(4+PL.length+2+EN.length+1).getCell(1).font = {name:'Calibri', size:9, italic:true, color:{argb:'FF6E625D'}};
+
+  /* hidden "meta": schema and the product ids per row, for a robust import */
+  const wm = wb.addWorksheet('meta', {state:'hidden'});
+  [['schema','gc-pricelist'], ['version',1], ['generated', now.toISOString()], ['currency', cur], ['sheet','Cennik'], ['headerRow',2], ['firstDataRow',3],
+   ['columns', PRC_COLS.map(c=>c.k).join(',')], [], ['id','row']].forEach((r,i)=>{ if (r.length) wm.getRow(i+1).values = r; });
+  rows.forEach((p,i)=>{ wm.getRow(11+i).values = [p.id, 3+i]; });
+  return {wb, filename:`GaliCrisp_cennik_${today}.xlsx`, count:rows.length};
+}
+async function prcTemplate(){
+  if (PRC.busy) return;
+  let dl = null; try { dl = downloads; } catch(e){}
+  if (!dl) return toast('Pobieranie plików jest niedostępne w tym widoku', true);
+  prcBusy('tpl', 'Wczytuję moduł Excel…');
+  try {
+    let ExcelJS;
+    try { ExcelJS = await loadExcelJs(); } catch(e){ toast(XL_LIB_ERR, true); return; }
+    prcBusy('tpl', 'Przygotowuję Excel…');
+    const {wb, filename, count} = await prcBuildWorkbook(ExcelJS);
+    const buf = await wb.xlsx.writeBuffer();
+    prcBusy('tpl', 'Zapisywanie…');
+    await dl.save({filename, data:new Blob([buf], {type:XLSX_MIME})});
+    toast(`Zapisano ${filename} (${count} ${plN(count,'produkt','produkty','produktów')})`);
+  } catch(err){
+    if (err && err.code==='declined'){ /* the viewer cancelled the save */ }
+    else if (err && ['unavailable','not_granted','capability_disabled','capability_removed','extension_not_enabled'].includes(err.code)){ toast('Pobieranie pliku Excel jest niedostępne w tym widoku', true); }
+    else toast('Nie udało się przygotować pliku Excel: ' + (err && err.message || 'nieznany błąd'), true);
+  } finally { prcBusy(false); }
+}
+
+/* ---- import: "Wczytaj ceny z Excela" ---- */
+function xlVal(v){
+  if (v==null) return null;
+  if (v instanceof Date) return v;
+  if (typeof v==='object'){
+    if ('result' in v) return xlVal(v.result);
+    if (Array.isArray(v.richText)) return v.richText.map(t=>t && t.text || '').join('');
+    if ('text' in v) return xlVal(v.text);
+    return null;
+  }
+  return v;
+}
+const xlStr = v => v==null ? '' : v instanceof Date ? isoDate(v) : String(v).trim();
+const xlShow = v => { const s = xlStr(v); return s.length>40 ? s.slice(0,39) + '…' : s; };
+const isPctFmt = f => typeof f==='string' && /%/.test(f.replace(/"[^"]*"/g,'').replace(/\\./g,''));
+function xlNum(v, hi){
+  if (v==null) return {v:null};
+  if (typeof v==='number') return isFinite(v) && v>=0 && v<=hi ? {v:Math.round(v*10000)/10000} : {bad:true};
+  if (typeof v!=='string') return {bad:true};
+  let s = v.toLowerCase().replace(/[\s  '’]/g,'').replace(/zł|zl|pln|eur|€|%/g,'');
+  if (s==='' || s==='-' || s==='—' || s==='–') return {v:null};
+  if (s.includes(',') && s.includes('.')){ const d = Math.max(s.lastIndexOf(','), s.lastIndexOf('.')); s = s.slice(0,d).replace(/[.,]/g,'') + '.' + s.slice(d+1); }
+  else if ((s.match(/,/g) || []).length===1) s = s.replace(',', '.');
+  else if ((s.match(/\./g) || []).length>1 && /^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g,'');
+  if (!/^\d+(\.\d+)?$/.test(s)) return {bad:true};
+  const n = Number(s);
+  return isFinite(n) && n<=hi ? {v:Math.round(n*10000)/10000} : {bad:true};
+}
+const YES_W = new Set(['tak','t','x','✓','✔','✔️','☑','1','true','prawda','yes','y']);
+const NO_W = new Set(['','nie','n','0','false','fałsz','falsz','no','-','—','–','☐']);
+function xlYes(v){
+  if (v==null) return {v:false};
+  if (typeof v==='boolean') return {v};
+  if (typeof v==='number') return v===1 ? {v:true} : v===0 ? {v:false} : {bad:true};
+  const s = xlStr(v).toLowerCase();
+  return YES_W.has(s) ? {v:true} : NO_W.has(s) ? {v:false} : {bad:true};
+}
+function xlUnit(v){
+  const s = xlStr(v).toLowerCase().replace(/\.$/,'');
+  if (!s) return {v:null};
+  if (/^(kart|karton|kartony|kartonów|kartonow|krt|ctn|carton|cartons|box|boxes)$/.test(s)) return {v:'kart'};
+  if (/^(szt|sztuka|sztuki|sztuk|pcs|pc|unit|units|piece|pieces)$/.test(s)) return {v:'szt'};
+  if (/^(pal|paleta|palety|palet|plt|pallet|pallets)$/.test(s)) return {v:'pal'};
+  return {bad:true};
+}
+const PRC_HDR = [
+  ['id', s=>/^(id|indeks|index|sku)$/.test(s)],
+  ['ean', s=>/^ean/.test(s)],
+  ['pln', s=>/(cena|price)/.test(s) && /pln|zł/.test(s)],
+  ['eur', s=>/(cena|price)/.test(s) && /eur|€/.test(s)],
+  ['disc', s=>/^(rabat|discount)/.test(s)],
+  ['yes', s=>/do oferty|to offer|w ofercie/.test(s)],
+  ['qty', s=>/^(ilość|ilosc|qty|quantity)/.test(s)],
+  ['unit', s=>/^(jednostka|unit|j\.? ?m\.?$)/.test(s)]
+];
+const PRC_LBL = {pln:'Cena netto PLN', eur:'Cena netto EUR', disc:'Rabat %', yes:'Do oferty', qty:'Ilość', unit:'Jednostka'};
+function prcParse(wb, fileName){
+  const sheets = wb.worksheets.filter(w=>w && w.state!=='hidden' && w.state!=='veryHidden');
+  const order = [wb.getWorksheet('Cennik'), ...sheets].filter(Boolean);
+  let ws = null, hr = 0, map = null;
+  for (const w of order){
+    for (let r=1; r<=Math.min(20, w.rowCount); r++){
+      const m = {};
+      w.getRow(r).eachCell({includeEmpty:false}, (cell, col)=>{
+        const s = xlStr(xlVal(cell.value)).toLowerCase().replace(/\s+/g,' ');
+        if (!s) return;
+        for (const [k, test] of PRC_HDR) if (!m[k] && test(s)){ m[k] = col; break; }
+      });
+      if ((m.id || m.ean) && (m.pln || m.eur || m.yes)){ ws = w; hr = r; map = m; break; }
+    }
+    if (ws) break;
+  }
+  if (!ws) return {error:'Nie rozpoznano kolumn z cenami (ID / EAN, Cena netto PLN / EUR) — użyj pliku z „Pobierz szablon cen (Excel)”'};
+  const idIdx = new Map(PRODUCTS.map(p=>[p.id.toUpperCase(), p]));
+  const eanIdx = new Map(); PRODUCTS.forEach(p=>{ if (p._ean) eanIdx.set(p._ean, eanIdx.has(p._ean) ? null : p); });
+  const unknown = [], invalid = [], entries = [], seen = new Map();
+  const lastRow = Math.min(ws.rowCount, hr + 5000);
+  let rowsRead = 0;
+  for (let r=hr+1; r<=lastRow; r++){
+    const row = ws.getRow(r);
+    const raw = {}, fmt = {};
+    Object.entries(map).forEach(([k, col])=>{ const c = row.getCell(col); raw[k] = xlVal(c.value); fmt[k] = c.numFmt; if (typeof raw[k]==='string' && !raw[k].trim()) raw[k] = null; });
+    if (Object.values(raw).every(v=>v==null)) continue;
+    rowsRead++;
+    const id = xlStr(raw.id).toUpperCase(), ean = raw.ean==null ? '' : typeof raw.ean==='number' ? String(Math.round(raw.ean)) : xlStr(raw.ean).replace(/\D/g,'');
+    let p = id ? idIdx.get(id) : null;
+    if (!p && ean && eanIdx.get(ean)) p = eanIdx.get(ean);
+    if (!p){
+      /* a row whose only content is a price list's own leftovers (no id, no ean, nothing to apply) is not worth reporting */
+      unknown.push({row:r, id:xlShow(raw.id), ean});
+      continue;
+    }
+    if (seen.has(p.id)){ invalid.push({row:r, field:'ID', value:p.id, msg:`produkt powtórzony (pierwszy raz w wierszu ${seen.get(p.id)}) — pominięto`}); continue; }
+    seen.set(p.id, r);
+    const e = {p, row:r};
+    const bad = (k, v, msg) => invalid.push({row:r, id:p.id, field:PRC_LBL[k], value:xlShow(v), msg});
+    ['pln','eur'].forEach(k=>{ if (!map[k]) { e[k] = undefined; return; } const x = xlNum(raw[k], 1e6); if (x.bad){ bad(k, raw[k], 'nieprawidłowa cena — pozostaje poprzednia'); e[k] = undefined; } else e[k] = x.v; });
+    if (map.disc){
+      let dv = raw.disc;
+      if (typeof dv==='number' && isPctFmt(fmt.disc)) dv = Math.round(dv*100*10000)/10000;
+      const x = xlNum(dv, 100);
+      if (x.bad){ bad('disc', raw.disc, 'rabat musi być liczbą 0–100 — pozostaje poprzedni'); e.disc = undefined; } else e.disc = x.v;
+    } else e.disc = undefined;
+    let yes = false;
+    if (map.yes){ const x = xlYes(raw.yes); if (x.bad) bad('yes', raw.yes, 'oczekiwano TAK lub NIE — pominięto'); else yes = x.v; }
+    if (yes){
+      let qty = null, mode = null, qOk = true;
+      if (map.unit){ const u = xlUnit(raw.unit); if (u.bad){ bad('unit', raw.unit, 'oczekiwano kart. / szt. / pal. — ilość pominięta'); qOk = false; } else mode = u.v; }
+      if (mode==='pal' && !p._cpp){ bad('unit', raw.unit, 'brak danych paletowych produktu — ilość pominięta'); qOk = false; mode = null; }
+      if (qOk && map.qty){ const x = xlNum(raw.qty, 1e7); if (x.bad){ bad('qty', raw.qty, 'nieprawidłowa ilość — pominięta'); qOk = false; } else qty = x.v; }
+      if (!qOk){ qty = null; mode = null; }
+      if (qty!=null) qty = (mode || 'kart')==='pal' ? Math.round(qty*100)/100 : Math.round(qty);
+      e.yes = {qty, mode};
+    }
+    entries.push(e);
+  }
+  /* merge with the price list in force */
+  const base = prcCur(), old = base ? base.prices : {};
+  const next = {};
+  Object.entries(old).forEach(([k,v])=>{ next[k] = {pln:v.pln, eur:v.eur, disc:v.disc}; });
+  const same = (a, b) => (a==null && b==null) || (a!=null && b!=null && Math.abs(a-b) < 1e-9);
+  const changes = [];
+  let updated = 0, added = 0, unchanged = 0;
+  entries.forEach(e=>{
+    const o = old[e.p.id] || {pln:null, eur:null, disc:null};
+    const n = {pln: e.pln===undefined ? o.pln : e.pln, eur: e.eur===undefined ? o.eur : e.eur, disc: e.disc===undefined ? o.disc : (e.disc || null)};
+    const had = o.pln!=null || o.eur!=null || !!o.disc, has = n.pln!=null || n.eur!=null || !!n.disc;
+    if (has) next[e.p.id] = n; else delete next[e.p.id];
+    if (!had && !has) return;
+    const diff = !same(o.pln, n.pln) || !same(o.eur, n.eur) || !same(o.disc || null, n.disc || null);
+    if (!diff){ unchanged++; return; }
+    if (had) updated++; else added++;
+    changes.push({p:e.p, o, n, isNew:!had});
+  });
+  return {fileName, sheet:ws.name, rowsRead, entries, unknown, invalid, changes, updated, added, unchanged, next,
+    yes:entries.filter(e=>e.yes), touched:new Set(entries.map(e=>e.p.id)), hadList:!!base};
+}
+async function prcImportFile(file){
+  if (!file || PRC.busy) return;
+  if (!/\.xlsx$/i.test(file.name || '') && file.type!==XLSX_MIME){
+    return toast(/\.(xls|ods|csv)$/i.test(file.name || '') ? 'Zapisz plik w formacie Excel .xlsx i wczytaj ponownie' : 'Wybierz plik Excel .xlsx (np. pobrany szablon cen)', true);
+  }
+  if (file.size > 20*1024*1024) return toast('Plik jest za duży (maks. 20 MB)', true);
+  prcBusy('imp', 'Wczytuję moduł Excel…');
+  try {
+    let ExcelJS;
+    try { ExcelJS = await loadExcelJs(); } catch(e){ toast(XL_LIB_ERR, true); return; }
+    prcBusy('imp', 'Czytam plik…');
+    const wb = new ExcelJS.Workbook();
+    try { await wb.xlsx.load(await file.arrayBuffer()); }
+    catch(e){ toast('Nie udało się odczytać pliku — czy to na pewno skoroszyt Excel .xlsx?', true); return; }
+    const res = prcParse(wb, cleanTxt(file.name, 120) || 'cennik.xlsx');
+    if (res.error) return toast(res.error, true);
+    prcOpenReview(res);
+  } catch(err){
+    toast('Nie udało się wczytać cennika: ' + (err && err.message || 'nieznany błąd'), true);
+  } finally { prcBusy(false); }
+}
+
+/* ---- review dialog ---- */
+const fmtP = v => v==null ? '—' : nf2.format(v);
+const fmtD = v => v ? fmtQ(v) + '%' : '—';
+function prcOpenReview(res){
+  PRC.res = res;
+  const n = res.rowsRead, cur = offer.meta.currency;
+  $('#prcSub').textContent = `${res.fileName} · arkusz „${res.sheet}” · ${n} ${plN(n,'wiersz','wiersze','wierszy')} z danymi${res.hadList ? '' : ' · pierwszy cennik'}`;
+  const st = (v, l, cls) => `<div class="prc-stat${v && cls ? ' '+cls : ''}"><b>${v}</b><span>${l}</span></div>`;
+  $('#prcStats').innerHTML = st(res.updated, 'zmienione ceny', 'good') + st(res.added, 'nowe ceny', 'good') + st(res.unchanged, 'bez zmian') + st(res.unknown.length, 'nieznane wiersze', 'warn') + st(res.invalid.length, 'błędne wartości', 'crit');
+  const iss = [
+    ...res.unknown.map(u=>[u.row, `<li><b>Wiersz ${u.row}</b> · ${u.id || u.ean ? `${u.id ? 'ID „'+esc(u.id)+'”' : ''}${u.id && u.ean ? ' / ' : ''}${u.ean ? 'EAN „'+esc(u.ean)+'”' : ''}` : 'brak ID i EAN'} — nie ma takiego produktu, pominięto</li>`]),
+    ...res.invalid.map(x=>[x.row, `<li><b>Wiersz ${x.row}</b>${x.id ? ' · ' + esc(x.id) : ''} · ${esc(x.field)}: „${esc(x.value)}” — ${esc(x.msg)}</li>`])
+  ].sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
+  const il = $('#prcIssues'); il.innerHTML = iss.join(''); il.hidden = !iss.length;
+  $('#prcChg').innerHTML = res.changes.length ? `<div class="prc-tbl-wrap" tabindex="0" role="region" aria-label="Zmiany cen"><table class="prc-tbl"><thead><tr><th>Produkt</th><th class="n">PLN / szt.</th><th class="n">EUR / szt.</th><th class="n hide-s">Rabat</th></tr></thead><tbody>${
+    res.changes.map(c=>{
+      const cell = (k, f) => same2(c.o[k], c.n[k]) ? `<span>${f(c.n[k])}</span>` : `${c.o[k]==null || (k==='disc' && !c.o[k]) ? '' : `<s>${f(c.o[k])}</s> → `}<ins>${f(c.n[k])}</ins>`;
+      return `<tr><td><span class="pn" title="${esc(c.p.name)}">${esc(c.p.name)}</span><span class="pi">${esc(c.p.id)}</span>${c.isNew ? '<span class="tag">nowa</span>' : ''}</td><td class="n">${cell('pln', fmtP)}</td><td class="n">${cell('eur', fmtP)}</td><td class="n hide-s">${cell('disc', fmtD)}</td></tr>`;
+    }).join('')}</tbody></table></div>` : '<p class="prc-none">Brak zmian w cenach.</p>';
+  $('#prcYes').innerHTML = res.yes.length ? `<ul class="prc-yes">${res.yes.map(e=>{
+    const it = offer.items.find(i=>i.id===e.p.id);
+    const q = e.yes.qty!=null ? `<b>${fmtQ(e.yes.qty)}</b> ${PRC_UNIT[e.yes.mode || (it ? it.mode : 'kart')]}` : it ? 'ilość bez zmian' : `<b>1</b> kart. (domyślnie)`;
+    const s = it ? (prcQtyChange(e) ? 'w ofercie — nowa ilość' : 'już w ofercie') : 'nowa pozycja';
+    return `<li><span><b>${esc(e.p.id)}</b> ${esc(e.p.name)}</span><span>${q} <span class="st">· ${s}</span></span></li>`;
+  }).join('')}</ul>` : '<p class="prc-none">Żaden produkt nie ma „TAK” w kolumnie „Do oferty”.</p>';
+  /* options */
+  const priceN = res.updated + res.added;
+  const upd = prcUpdTargets(res);
+  const db = prcDbWritable();
+  setOpt('prcOptSave', priceN>0, priceN>0 ? `${priceN} ${plN(priceN,'nowa lub zmieniona cena','nowe lub zmienione ceny','nowych lub zmienionych cen')} · ${db ? 'wspólny cennik zespołu' : PRC.ref && CP.canWrite===false ? 'tylko w tej przeglądarce — wspólny cennik zapisują edytorzy' : 'w tej przeglądarce'}` : 'brak zmian w cenach');
+  const newN = res.yes.filter(e=>!inOffer(e.p.id)).length, qN = res.yes.filter(e=>prcQtyChange(e)).length;
+  setOpt('prcOptAdd', newN + qN > 0, res.yes.length ? [newN ? `nowe pozycje: ${newN}` : '', qN ? `zmiana ilości: ${qN}` : '', res.yes.length - newN - qN ? `bez zmian: ${res.yes.length - newN - qN}` : ''].filter(Boolean).join(' · ') + ` · ceny w ${cur}` : 'brak produktów z TAK');
+  setOpt('prcOptUpd', upd>0, upd ? `${upd} ${plN(upd,'pozycja','pozycje','pozycji')} oferty dostanie cenę ${cur} z pliku (także wpisane ręcznie)` : `ceny ${cur} w ofercie są aktualne`);
+  try { $('#prcDlg').showModal(); } catch(e){}
+  $('#prcApply').focus({preventScroll:true});
+  $('#prcDlg .prc-dlg').scrollTop = 0;
+}
+/* a TAK row for a product already in the offer changes its quantity only when it gives a different one */
+function prcQtyChange(e){
+  const it = offer.items.find(i=>i.id===e.p.id);
+  if (!it || e.yes.qty==null) return false;
+  const m = e.yes.mode || it.mode;
+  return (m!=='pal' || !!cppOf(it)) && (m!==it.mode || Math.abs((it.qty||0) - e.yes.qty) > 1e-9);
+}
+const same2 = (a, b) => (a==null || a===0) && (b==null || b===0) ? true : a!=null && b!=null && Math.abs(a-b) < 1e-9;
+function setOpt(id, on, hint){
+  const cb = $('#'+id); cb.checked = on; cb.disabled = !on;
+  cb.closest('.prc-opt').classList.toggle('off', !on);
+  $('#'+id+'H').textContent = hint;
+}
+/* offer lines that would get a different price from the file */
+function prcUpdTargets(res){
+  const k = prcKey(offer.meta.currency);
+  return offer.items.filter(it=>{ if (!byId[it.id] || !res.touched.has(it.id)) return false; const e = res.next[it.id], v = e ? e[k] : null; return v!=null && (it.price==null || Math.abs(v-it.price) > 1e-9 || it.priceSrc!=='list'); }).length;
+}
+async function prcApply(){
+  const res = PRC.res; if (!res) return;
+  const o = {save:$('#prcOptSave').checked, add:$('#prcOptAdd').checked, upd:$('#prcOptUpd').checked};
+  const btn = $('#prcApply'); btn.disabled = true;
+  const k = prcKey(offer.meta.currency), cur = offer.meta.currency;
+  const priceFor = id => { const e = res.next[id]; return e && e[k]!=null ? e[k] : null; };
+  const parts = [];
+  try {
+    if (o.save){
+      const before = prcSig(prcCur());
+      const r = await prcSave(res.next, res.fileName);
+      const n = Object.keys(res.next).length;
+      parts.push(`cennik: ${n} ${plN(n,'produkt','produkty','produktów')}${r.where==='db' ? '' : r.where==='local' ? ' (w tej przeglądarce)' : ' (tylko do zamknięcia strony)'}`);
+      if (r.why) toast(r.why + ' Cennik zapisano w tej przeglądarce.', true);
+      if (prcSig(prcCur())!==before){ const n2 = prcReprice(); if (n2 && !o.upd) parts.push(`ceny z cennika: ${n2}`); }
+    }
+    let upd = 0;
+    if (o.upd){
+      offer.items.forEach(it=>{
+        if (!byId[it.id] || !res.touched.has(it.id)) return;
+        const v = priceFor(it.id); if (v==null) return;
+        if (it.price==null || Math.abs(v-it.price) > 1e-9 || it.priceSrc!=='list') upd++;
+        it.price = v; it.priceSrc = 'list';
+      });
+      if (upd) parts.push(`zaktualizowane ceny: ${upd}`);
+    }
+    const addedIds = [];
+    if (o.add){
+      let qn = 0;
+      res.yes.forEach(e=>{
+        const it = offer.items.find(i=>i.id===e.p.id);
+        if (it){
+          if (!prcQtyChange(e)) return;
+          it.mode = e.yes.mode || it.mode; it.qty = e.yes.qty; delete it.src; qn++;
+          return;
+        }
+        if (!byId[e.p.id]) return;
+        const ne = res.next[e.p.id];
+        offer.items.push({id:e.p.id, price:priceFor(e.p.id), priceSrc:'list', mode:e.yes.mode || 'kart', qty:e.yes.qty!=null ? e.yes.qty : 1, upc:e.p._upc, disc:ne && ne.disc ? ne.disc : 0});
+        addedIds.push(e.p.id);
+      });
+      if (addedIds.length) parts.push(`dodane pozycje: ${addedIds.length}`);
+      if (qn) parts.push(`zmienione ilości: ${qn}`);
+    }
+    $('#prcDlg').close();
+    PRC.res = null;
+    persist(); renderItems(); renderProducts(); renderCatChips(); prcRenderBar(); syncQv();
+    if (addedIds.length) afterAdd(addedIds, null);
+    const skipped = res.unknown.length + res.invalid.length;
+    toast(`Zastosowano: ${parts.length ? parts.join(' · ') : 'bez zmian'}${skipped ? ` · pominięto ${skipped} (zob. raport)` : ''}`);
+  } catch(err){
+    toast('Nie udało się zastosować cennika: ' + (err && err.message || 'nieznany błąd'), true);
+  } finally { btn.disabled = false; }
+}
+$('#prcApply').addEventListener('click', prcApply);
+$('#prcCancel').addEventListener('click', ()=>$('#prcDlg').close());
+$('#prcDlg').addEventListener('close', ()=>{ PRC.res = null; });
+$('#o-autoPrice').addEventListener('change', e=>prcSetAuto(e.target.checked));
+const prcPick = () => { const f = $('#prcFile'); f.value = ''; f.click(); };
+$('#prcFile').addEventListener('change', e=>{ const f = e.target.files && e.target.files[0]; if (f) prcImportFile(f); e.target.value = ''; });
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-prc]'); if (!b || b.disabled) return;
+  const m = $('#prcMenu'); try { if (m.matches(':popover-open')) m.hidePopover(); } catch(err){}
+  if (b.dataset.prc==='tpl') prcTemplate(); else prcPick();
+});
+/* toolbar overflow menu: native popover (light dismiss, Esc), placed under its button */
+(function prcMenu(){
+  const m = $('#prcMenu'), btn = $('#prcMenuBtn');
+  if (typeof m.showPopover!=='function'){ btn.removeAttribute('popovertarget'); btn.addEventListener('click', ()=>prcPick()); return; }
+  m.addEventListener('toggle', e=>{
+    const open = e.newState==='open';
+    btn.setAttribute('aria-expanded', String(open));
+    if (!open) return;
+    const r = btn.getBoundingClientRect(), w = m.offsetWidth, vw = document.documentElement.clientWidth;
+    m.style.left = Math.max(16, Math.min(r.left, vw - w - 16)) + 'px';
+    m.style.top = Math.round(r.bottom + 6) + 'px';
+    const first = [...m.querySelectorAll('button')].find(x=>!x.hidden); if (first) first.focus();
+  });
+  m.addEventListener('keydown', e=>{
+    if (e.key!=='ArrowDown' && e.key!=='ArrowUp') return;
+    const items = [...m.querySelectorAll('button')].filter(x=>!x.hidden), i = items.indexOf(document.activeElement);
+    e.preventDefault(); items[(i + (e.key==='ArrowDown' ? 1 : -1) + items.length) % items.length].focus();
+  });
+  window.addEventListener('resize', ()=>{ try { if (m.matches(':popover-open')) m.hidePopover(); } catch(err){} });
+})();
+/* drag & drop an .xlsx onto the offer panel */
+(function prcDrop(){
+  const o = $('#offer');
+  let depth = 0;
+  const files = e => !!(e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files'));
+  o.addEventListener('dragenter', e=>{ if (!files(e)) return; e.preventDefault(); depth++; o.classList.add('prc-drop'); });
+  o.addEventListener('dragover', e=>{ if (!files(e)) return; e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+  o.addEventListener('dragleave', e=>{ if (!files(e)) return; depth = Math.max(0, depth-1); if (!depth) o.classList.remove('prc-drop'); });
+  o.addEventListener('drop', e=>{
+    if (!files(e)) return;
+    e.preventDefault(); depth = 0; o.classList.remove('prc-drop');
+    const f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) prcImportFile(f);
+  });
+})();
+/* ==/priceList== */
 
 /* ---------- init ---------- */
 /* products added in this browser render with the first paint; the shared ones arrive later (cpConnect) */
