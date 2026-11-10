@@ -1069,6 +1069,14 @@ table.ptable{min-width:760px}
 .page .t-tbl .yn.no{color:var(--d-ink2)}
 .page .t-tbl.t-params td:first-child{font-weight:600;color:var(--d-ink)}
 .page .t-gap{height:4px}
+.page.p-terms .pg-bd{overflow:hidden}
+.page .t-fit{transform-origin:0 0}
+.page .t-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 20px;align-items:start}
+.page .t-cols > div{min-width:0}
+.page .t-sec .t-tbl{width:100%}
+.page .t-cols .t-costs col + col{width:21%!important}
+.page .t-cols .t-params col:first-child{width:34%!important}
+.page .t-cols .t-pack col:first-child{width:24%!important}
 
 /* --- Klasyczny --- */
 .tpl-classic .pg-hd{height:86px;padding:16px 56px 0;border-top:6px solid var(--d-red)}
@@ -3571,7 +3579,7 @@ function termsFlow(c){
   const nm = s => esc(s).replace(/\bNAME\b(\.?)/g, (x, dot) => `<span class="t-name">${esc(who)}</span>${dot && !/\.$/.test(who) ? '.' : ''}`);
   const yn = s => /^yes/i.test(s) ? 'yes' : /^no/i.test(s) ? 'no' : '';
   const party = c.lg==='pl' ? `<div class="t-party">${client ? T.termsParty(`<b>${esc(client)}</b>`) : esc(T.termsPartyNone)}</div>` : '';
-  const out = [{brk:'soft', keep:true, html:`<div class="t-head" lang="en"><div class="t-kick" lang="${c.lg}">${esc(T.termsHead)}</div><h2 class="t-title">${esc(doc.title)}</h2>${party}</div>`}];
+  const out = [{keep:true, html:`<div class="t-head" lang="en"><div class="t-kick" lang="${c.lg}">${esc(T.termsHead)}</div><h2 class="t-title">${esc(doc.title)}</h2>${party}</div>`}];
   const li = x => ({html:`<div class="t-li" lang="en"><span class="t-n">${x.n}.</span><p>${nm(x.text)}</p></div>`});
   const para = s => ({html:`<p class="t-p" lang="en">${nm(s)}</p>`});
   const tblRows = (key, cols, rows, cls, colgroup, cellCls) => {
@@ -3724,6 +3732,7 @@ function paginate(stage, flow, chrome){
       continue;
     }
     if (it.page){ const pg = docEl(it.page); stage.appendChild(pg); pages.push(pg); bd = null; continue; }
+    if (it.termsPage){ open(); pages[pages.length-1].classList.add('p-terms'); fitTerms(bd, termsEl(it.termsPage)); bd = null; continue; }
     /* full printing: a hard break opens a page; a soft break does so only when less than ~30% of the page is left */
     let softCont = false;
     if (!bd || it.brk===true) open();
@@ -3759,8 +3768,8 @@ function balancePages(pages){
   const fits = bd => { const l = bd.lastElementChild; return !l || l.offsetTop + l.offsetHeight <= bd.clientHeight + .5; };
   for (let i = 1; i < pages.length; i++){
     const B = bdOf(pages[i]), A = bdOf(pages[i-1]);
-    if (!A || !B) continue;
-    const last = i===pages.length-1 || !bdOf(pages[i+1]);
+    if (!A || !B || pages[i].classList.contains('p-terms') || pages[i-1].classList.contains('p-terms')) continue;
+    const last = i===pages.length-1 || !bdOf(pages[i+1]) || pages[i+1].classList.contains('p-terms');
     if (!last || fill(B) >= .35) continue;
     let guard = 60;
     while (guard-- > 0 && fill(B) < .35){
@@ -3785,6 +3794,51 @@ function balancePages(pages){
     }
   }
 }
+/* commercial terms on ONE page: sections laid out in one or two columns, then scaled to fit the page body */
+function termsEl(items){
+  const box = document.createElement('div'); box.className = 't-fit'; let sec = null;
+  items.forEach(it=>{
+    if (it.row){
+      let tb = sec && sec.lastElementChild;
+      if (!(tb && tb.tagName==='TABLE' && tb.dataset.tb===it.row)){ tb = docEl(it.head); tb.dataset.tb = it.row; (sec || box).appendChild(tb); }
+      tb.appendChild(docRowEl(it.html));
+    } else {
+      const el = docEl(it.html);
+      if (el.classList.contains('t-h')){ sec = document.createElement('div'); sec.className = 't-sec'; box.appendChild(sec); }
+      (sec && !el.classList.contains('t-head') ? sec : box).appendChild(el);
+    }
+  });
+  return box;
+}
+function fitTerms(bd, box){
+  bd.appendChild(box);
+  const cs = getComputedStyle(bd), H = bd.clientHeight - box.offsetTop - parseFloat(cs.paddingBottom || 0) - 2;
+  const scaleFor = () => { box.style.width = '100%'; let h = box.offsetHeight, s = 1; if (h <= H) return 1;
+    for (let k = 0; k < 5; k++){ s = Math.min(1, H / h); box.style.width = (100 / s) + '%'; h = box.offsetHeight; }
+    /* width and scale must match exactly: shrink until the scaled block fits both ways */
+    s = Math.min(1, H / h) * .995; box.style.width = (100 / s) + '%'; h = box.offsetHeight;
+    for (let k = 0; k < 40 && h * s > H; k++){ s *= .99; box.style.width = (100 / s) + '%'; h = box.offsetHeight; }
+    return s; };
+  const s1 = scaleFor();
+  let s = s1;
+  if (s1 < .9){
+    /* two columns, split between sections where the columns come out most even */
+    const head = box.querySelector('.t-head'), secs = [...box.querySelectorAll(':scope > .t-sec')];
+    const grid = document.createElement('div'); grid.className = 't-cols';
+    const L = document.createElement('div'), R = document.createElement('div'); grid.append(L, R); box.appendChild(grid);
+    box.style.width = '100%'; secs.forEach(x=>L.appendChild(x));
+    const hs = secs.map(x=>x.offsetHeight), tot = hs.reduce((a,b)=>a+b, 0);
+    let best = secs.length, bestMax = Infinity, acc = 0;
+    for (let k = 1; k <= secs.length; k++){ acc += hs[k-1]; const m = Math.max(acc, tot - acc); if (m < bestMax){ bestMax = m; best = k; } }
+    secs.slice(best).forEach(x=>R.appendChild(x));
+    const s2 = scaleFor();
+    if (s2 > s1) s = s2;
+    else { secs.forEach(x=>box.insertBefore(x, grid)); grid.remove(); s = scaleFor(); }
+    if (head) box.insertBefore(head, box.firstChild);
+  }
+  box.style.transform = s < 1 ? `scale(${s})` : '';
+  box.dataset.scale = String(Math.round(s*1000)/1000);
+}
 function docStage(id){
   let s = document.getElementById(id);
   if (!s){ s = document.createElement('div'); s.id = id; s.className = 'doc-stage'; s.setAttribute('aria-hidden','true'); document.body.appendChild(s); }
@@ -3793,7 +3847,8 @@ function docStage(id){
 }
 function buildDoc(stage){
   const c = docCtx(), impl = DOC_TPL[c.tpl];
-  const flow = impl.flow(c).concat(termsFlow(c), impl.tail ? impl.tail(c) : []);
+  const terms = termsFlow(c);
+  const flow = impl.flow(c).concat(terms.length ? [{termsPage:terms}] : [], impl.tail ? impl.tail(c) : []);
   const pages = paginate(stage, flow, () => impl.chrome(c));
   pages.forEach((pg, i)=>{ pg.dataset.page = String(i+1); pg.setAttribute('aria-label', c.T.pageOf(i+1, pages.length)); const n = pg.querySelector('.pg-num'); if (n) n.textContent = c.T.pageOf(i+1, pages.length); });
   return pages;
