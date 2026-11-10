@@ -1069,6 +1069,7 @@ table.ptable{min-width:760px}
 .page .t-tbl .yn.no{color:var(--d-ink2)}
 .page .t-tbl.t-params td:first-child{font-weight:600;color:var(--d-ink)}
 .page .t-gap{height:4px}
+.pdf-mode .page,.pdf-mode .page *{font-variant-numeric:normal!important;font-feature-settings:normal!important}
 .page.p-terms .pg-bd{overflow:hidden}
 .page .t-fit{transform-origin:0 0}
 .page .t-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 20px;align-items:start}
@@ -1229,8 +1230,7 @@ table.ptable{min-width:760px}
 .pi-grid{display:grid;grid-template-columns:minmax(0,1fr) 224px;gap:34px}
 .pi-kick{font-family:var(--d-disp);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--d-caramel)}
 .pi-h{font-family:var(--d-serif);font-weight:500;font-size:28px;line-height:1.15;margin:8px 0 18px}
-.pi-letter p{font-size:11.5px;line-height:1.68;color:#2B2422;padding-bottom:11px}
-.pi-letter p:first-of-type::first-letter{font-family:var(--d-serif);font-size:15px;font-weight:500}
+.pi-letter p{font-size:11.5px;line-height:1.68;color:#2B2422;padding-bottom:11px;font-variant-numeric:normal;font-feature-settings:normal}
 .pi-sign{margin-top:8px;font-size:11px;color:var(--d-ink2)}
 .pi-sign b{display:block;font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:17px;color:var(--d-ink);margin-top:4px}
 .pi-side{display:flex;flex-direction:column;gap:12px}
@@ -3996,6 +3996,8 @@ async function makePdf(){
   try {
     try { if (document.fonts) await document.fonts.ready; } catch(e){}
     stage = docStage('docStagePdf');
+    /* canvas text has no tabular figures: lay the PDF pages out with the same (proportional) digits it draws */
+    stage.classList.add('pdf-mode');
     const pages = buildDoc(stage);
     await settleImages(stage);
     const pdf = new JsPDF({orientation:'portrait', unit:'mm', format:'a4', compress:true});
