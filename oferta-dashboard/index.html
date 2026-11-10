@@ -1035,6 +1035,7 @@ table.ptable{min-width:760px}
 .page .d-sum{display:flex;gap:18px;align-items:flex-start;margin-top:14px}
 .page .d-notes{flex:1;min-width:0;padding:10px 12px;border-left:3px solid var(--d-gold);background:var(--d-tint);font-size:10px;line-height:1.5}
 .page .d-nt{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:3px}
+.page .pg-bd > .soft-brk{margin-top:26px;padding-top:18px;border-top:1px solid var(--d-line)}
 .page .d-foot{margin-top:12px;font-size:8px;line-height:1.5;color:var(--d-ink2)}
 .page .d-empty{padding:30px;text-align:center;border:1px dashed var(--d-rule);border-radius:6px;color:var(--d-ink2);font-size:12px}
 .page .d-pltag{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#FBE4E8;color:var(--d-deep);font-weight:600;font-size:10px}
@@ -3570,7 +3571,7 @@ function termsFlow(c){
   const nm = s => esc(s).replace(/\bNAME\b(\.?)/g, (x, dot) => `<span class="t-name">${esc(who)}</span>${dot && !/\.$/.test(who) ? '.' : ''}`);
   const yn = s => /^yes/i.test(s) ? 'yes' : /^no/i.test(s) ? 'no' : '';
   const party = c.lg==='pl' ? `<div class="t-party">${client ? T.termsParty(`<b>${esc(client)}</b>`) : esc(T.termsPartyNone)}</div>` : '';
-  const out = [{brk:true, keep:true, html:`<div class="t-head" lang="en"><div class="t-kick" lang="${c.lg}">${esc(T.termsHead)}</div><h2 class="t-title">${esc(doc.title)}</h2>${party}</div>`}];
+  const out = [{brk:'soft', keep:true, html:`<div class="t-head" lang="en"><div class="t-kick" lang="${c.lg}">${esc(T.termsHead)}</div><h2 class="t-title">${esc(doc.title)}</h2>${party}</div>`}];
   const li = x => ({html:`<div class="t-li" lang="en"><span class="t-n">${x.n}.</span><p>${nm(x.text)}</p></div>`});
   const para = s => ({html:`<p class="t-p" lang="en">${nm(s)}</p>`});
   const tblRows = (key, cols, rows, cls, colgroup, cellCls) => {
@@ -3723,7 +3724,10 @@ function paginate(stage, flow, chrome){
       continue;
     }
     if (it.page){ const pg = docEl(it.page); stage.appendChild(pg); pages.push(pg); bd = null; continue; }
-    if (!bd || it.brk) open();
+    /* full printing: a hard break opens a page; a soft break does so only when less than ~30% of the page is left */
+    let softCont = false;
+    if (!bd || it.brk===true) open();
+    else if (it.brk==='soft'){ const l = bd.lastElementChild, used = l ? l.offsetTop + l.offsetHeight : 0; if (bd.clientHeight - used < bd.clientHeight*.3) open(); else softCont = !!l; }
     if (it.row){
       let tb = bd.lastElementChild; if (!tb || tb.dataset.tb!==it.row) tb = newTable(it, false);
       const row = docRowEl(it.html); tb.appendChild(row);
@@ -3737,11 +3741,49 @@ function paginate(stage, flow, chrome){
       }
     } else {
       const el = docEl(it.html); if (it.keep) el.dataset.keep = '1';
+      if (softCont) el.classList.add('soft-brk');
       bd.appendChild(el);
-      if (over() && el!==bd.firstElementChild){ el.remove(); const old = bd; open(); carry(old); bd.appendChild(el); }
+      if (over() && el!==bd.firstElementChild){
+        el.remove(); el.classList.remove('soft-brk'); const old = bd; open(); carry(old); bd.appendChild(el);
+      }
     }
   }
+  balancePages(pages);
   return pages;
+}
+/* full printing: the last page of a run (before a full-page sheet or the end) is never left almost empty —
+   it takes blocks / table rows over from the page before, as long as that page stays well filled */
+function balancePages(pages){
+  const bdOf = pg => pg.querySelector('.pg-bd');
+  const fill = bd => { const l = bd.lastElementChild; return l ? (l.offsetTop + l.offsetHeight) / bd.clientHeight : 0; };
+  const fits = bd => { const l = bd.lastElementChild; return !l || l.offsetTop + l.offsetHeight <= bd.clientHeight + .5; };
+  for (let i = 1; i < pages.length; i++){
+    const B = bdOf(pages[i]), A = bdOf(pages[i-1]);
+    if (!A || !B) continue;
+    const last = i===pages.length-1 || !bdOf(pages[i+1]);
+    if (!last || fill(B) >= .35) continue;
+    let guard = 60;
+    while (guard-- > 0 && fill(B) < .35){
+      const a = A.lastElementChild;
+      if (!a || a===A.firstElementChild) break;
+      let undo;
+      if (a.tagName==='TABLE' && a.tBodies.length > 1){
+        const row = a.tBodies[a.tBodies.length-1];
+        let tb = B.firstElementChild;
+        if (!(tb && tb.tagName==='TABLE' && tb.dataset.tb && tb.dataset.tb===a.dataset.tb)){
+          tb = a.cloneNode(false); [...a.children].forEach(ch=>{ if (ch.tagName!=='TBODY') tb.appendChild(ch.cloneNode(true)); });
+          tb.classList.add('cont'); B.insertBefore(tb, B.firstElementChild);
+          const made = tb; undo = () => { a.appendChild(row); made.remove(); };
+        } else { const t0 = tb; undo = () => { a.appendChild(row); if (!t0.tBodies.length) t0.remove(); }; }
+        tb.insertBefore(row, tb.tBodies[0] || null);
+      } else if (a.tagName==='TABLE') break;
+      else { B.insertBefore(a, B.firstElementChild); undo = () => A.appendChild(a); }
+      /* a heading must not stay alone at the bottom of the page before */
+      const moved = [];
+      while (A.lastElementChild && A.lastElementChild!==A.firstElementChild && A.lastElementChild.dataset.keep){ const k = A.lastElementChild; B.insertBefore(k, B.firstElementChild); moved.push(k); }
+      if (!fits(B) || fill(A) < .35){ moved.forEach(k=>A.appendChild(k)); undo(); break; }
+    }
+  }
 }
 function docStage(id){
   let s = document.getElementById(id);
