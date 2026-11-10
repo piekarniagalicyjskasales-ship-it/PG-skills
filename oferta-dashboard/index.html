@@ -1077,8 +1077,6 @@ table.ptable{min-width:760px}
 .page .t-gap{height:4px}
 .pdf-mode .page,.pdf-mode .page *{font-variant-numeric:normal!important;font-feature-settings:normal!important}
 /* html2canvas paints rounded box-shadows over the logo: plain pills in the PDF */
-.pdf-mode .pc-logo,.pdf-mode .pb-logo{box-shadow:none!important}
-.pdf-mode .pb-logo{display:block;width:max-content;margin:0 auto}
 .page.p-terms .pg-bd{overflow:hidden}
 .page .t-head.cont{padding-bottom:8px;margin-bottom:4px;border-bottom-width:1px}
 .page .t-head.cont .t-title{font-size:13px}
@@ -1220,9 +1218,10 @@ table.ptable{min-width:760px}
 .tpl-premium .t-kick{color:var(--d-caramel)}
 .p-cover{background:#130F10;color:#fff}
 .pc-photo{position:absolute;left:0;top:0;width:794px;height:700px;background-color:#B3101F;background-size:cover;background-position:50% 50%;background-repeat:no-repeat}
-.pc-shade{position:absolute;left:0;top:470px;width:794px;height:232px;background:linear-gradient(180deg, rgba(19,15,16,0) 0%, rgba(19,15,16,.72) 55%, #130F10 100%)}
+.pc-shade{position:absolute;left:0;top:0;width:794px;height:702px;background:linear-gradient(180deg, rgba(19,15,16,0) 0%, rgba(19,15,16,0) 66%, rgba(19,15,16,.72) 86%, #130F10 100%)}
 .pc-top{position:absolute;left:56px;right:56px;top:44px;display:flex;align-items:center;justify-content:space-between}
-.pc-logo{padding:9px 20px;border-radius:999px;background:#FFFDF9;box-shadow:0 10px 24px -10px rgba(0,0,0,.6)}
+.pc-logo,.pb-logo{display:block;width:max-content;padding:6px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.16) 55%,rgba(255,255,255,.03) 100%);border:1px solid rgba(255,255,255,.28);box-shadow:none}
+.lg-glass{padding:11px 22px;border-radius:11px;background:linear-gradient(150deg,rgba(255,255,255,.97) 0%,rgba(255,252,249,.9) 60%,rgba(255,248,244,.82) 100%);border:1px solid rgba(255,255,255,.85)}
 .pc-logo img{height:38px;width:auto;max-height:none;max-width:none}
 .pc-logo .d-wm b{font-size:16px}
 .pc-mfr{font-family:var(--d-disp);font-size:15px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;text-align:right;line-height:1.75;color:#fff;text-shadow:0 1px 8px rgba(60,0,4,.55)}
@@ -1288,7 +1287,7 @@ table.ptable{min-width:760px}
 .pp-t b{display:block;font-family:var(--d-num);font-size:16px;font-weight:700;margin-top:3px;white-space:nowrap}
 .p-back{background:var(--d-stage);color:#fff}
 .pb-in{position:absolute;left:80px;right:80px;top:210px;text-align:center}
-.pb-logo{display:inline-block;padding:12px 26px;border-radius:999px;background:#FFFDF9;box-shadow:0 14px 30px -12px rgba(40,0,4,.7)}
+.pb-logo{margin:0 auto}
 .pb-logo img{height:46px;width:auto;max-height:none;max-width:none}
 .pb-h{font-family:var(--d-serif);font-style:italic;font-weight:500;font-size:56px;line-height:1.05;margin:40px 0 16px;color:#fff}
 .pb-txt{font-size:13px;line-height:1.6;color:#FBE0E4;margin:0 auto;max-width:470px}
@@ -1300,6 +1299,13 @@ table.ptable{min-width:760px}
 .pi-glance > div + div{border-left:1px solid rgba(232,192,136,.22)}
 .pi-glance i{display:block;font-style:normal;font-family:var(--d-disp);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#B9AA9B}
 .pi-glance b{display:block;margin-top:5px;font-family:var(--d-num);font-weight:700;font-size:19px;line-height:1.1;color:var(--d-gold);white-space:nowrap}
+.tpl-premium{--d-caramel:#B80F2E;--d-ink3:#6E625D;--d-cream2:#F5EEE8;--d-rule:#E0D2C6;--d-tint:#FAF6F2}
+.tpl-premium .ft-co{color:var(--d-ink2)}
+.tpl-premium .t-head{border-bottom-color:var(--d-red)}
+.pi-box{border:1px solid #E6D9CE}
+.pc-for{color:#D9CCBF!important}
+.pc-meta i{color:#CFC2B5!important}
+.pi-glance i{color:#D6C9BC!important}
 .pi-glance .k-h{grid-column:1 / -1;padding:10px 16px 0;font-family:var(--d-disp);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--d-gold)}
 .pi-photo{margin-top:22px;border-radius:4px;background-color:#B3101F;background-size:cover;background-position:50% 50%;background-repeat:no-repeat}
 .pb-stats{display:flex;justify-content:center;gap:0;margin:34px auto 0;max-width:520px}
@@ -3725,8 +3731,8 @@ const DOC_TPL = {
       const head = c.pl ? esc(T.heroPL).replace(/\.\s+(.+)$/, '.<br><em>$1</em>') : esc(T.heroPG).replace(/(\S+)$/, '<em>$1</em>');
       const mark = `<img src="img/logo.png" alt="GaliCrisp" width="420" height="204">`;
       out.push({page:`<section class="page tpl-premium p-cover"><div class="pc-photo" style="background-image:url('img/cover.webp')"></div><div class="pc-shade"></div>
-        <div class="pc-top">${c.pl ? '<div></div>' : `<div class="pc-logo">${mark}</div>`}<div class="pc-mfr">${T.stats.map(([a,b])=>`<b>${esc(a)}</b>${esc(b)}`).join('<br>')}</div></div>
-        <div class="pc-main${c.pl ? ' with-logo' : ''}">${c.pl ? `<div class="pc-logo pc-logo-main">${mark}</div>` : ''}<div class="pc-kick">${esc(docTitle(c.lg))}</div><h1 class="pc-h">${head}</h1><div class="pc-rule"></div><div class="pc-for">${esc(T.preparedFor)}</div><div class="pc-client">${esc(client) || '—'}</div>${c.pl && cv('brand') ? `<div class="pc-brand">${esc(D.plSub)}: ${esc(cv('brand'))}</div>` : ''}</div>
+        <div class="pc-top">${c.pl ? '<div></div>' : `<div class="pc-logo"><div class="lg-glass">${mark}</div></div>`}<div class="pc-mfr">${T.stats.map(([a,b])=>`<b>${esc(a)}</b>${esc(b)}`).join('<br>')}</div></div>
+        <div class="pc-main${c.pl ? ' with-logo' : ''}">${c.pl ? `<div class="pc-logo pc-logo-main"><div class="lg-glass">${mark}</div></div>` : ''}<div class="pc-kick">${esc(docTitle(c.lg))}</div><h1 class="pc-h">${head}</h1><div class="pc-rule"></div><div class="pc-for">${esc(T.preparedFor)}</div><div class="pc-client">${esc(client) || '—'}</div>${c.pl && cv('brand') ? `<div class="pc-brand">${esc(D.plSub)}: ${esc(cv('brand'))}</div>` : ''}</div>
         <div class="pc-meta"><div><i>${esc(D.offerType)}</i><b>${esc(D.otype[offer.type])}</b></div><div><i>${esc(T.no)}</i><b>${esc(c.no)}</b></div><div><i>${esc(D.date)}</i><b>${esc(F.dateLong(m.date))}</b></div><div><i>${esc(D.valid)}</i><b>${esc(F.dateLong(m.validUntil))}</b></div></div>
         <span class="pg-num" hidden></span></section>`});
       const letter = (c.pl ? T.letterPL : T.letterPG)(client, cv('brand'));
@@ -3756,7 +3762,7 @@ const DOC_TPL = {
     tail(c){
       const {T} = c, co = COMPANY;
       const mark = `<img src="img/logo.png" alt="GaliCrisp" width="420" height="204">`;
-      return [{page:`<section class="page tpl-premium p-back"><div class="pb-in"><div class="pb-logo">${mark}</div><h2 class="pb-h">${esc(T.backH)}</h2><p class="pb-txt">${esc(T.backTxt(c.no))}</p><div class="pb-stats">${T.stats.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
+      return [{page:`<section class="page tpl-premium p-back"><div class="pb-in"><div class="pb-logo"><div class="lg-glass">${mark}</div></div><h2 class="pb-h">${esc(T.backH)}</h2><p class="pb-txt">${esc(T.backTxt(c.no))}</p><div class="pb-stats">${T.stats.map(([a,b])=>`<div><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('')}</div>
         <div class="pb-co"><b>${esc(co.name)}</b><br>${co.addressLines.map(esc).join(', ')}, ${esc(T.country)}<br>${esc(c.D.taxId)} ${esc(co.taxId)}<br>${esc(c.D.phoneShort)} ${esc(co.phone)} · ${esc(co.email)}</div></div>
         <div class="pb-foot">${esc(c.pl ? T.plFoot : T.heroPG)}</div><span class="pg-num" hidden></span></section>`}];
     }
