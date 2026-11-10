@@ -3969,7 +3969,8 @@ $('#savedList').addEventListener('click', e=>{
   if (e.target.closest('[data-load]')){
     const o = sanitizeOffer(entry.offer); if (!o) return toast('Nie można wczytać tej oferty', true);
     o.savedId = sid; o.isExample = false; offer = o;
-    persist(); refreshAll(); $('#savedDlg').close(); toast(`Wczytano „${entry.name}”`);
+    let rp = 0; try { rp = prcReprice(); prcRenderBar(); } catch(err){}
+    persist(); refreshAll(); $('#savedDlg').close(); toast(`Wczytano „${entry.name}”${rp ? ` · ceny z aktualnego cennika: ${rp} ${plN(rp,'pozycja','pozycje','pozycji')}` : ''}`);
   }
 });
 $('#btnClear').addEventListener('click', async ()=>{
@@ -5200,7 +5201,8 @@ function prcOnCurrency(){
   const n = prcReprice();
   prcRenderBar();
   if (offer.autoPrice) renderItemsKeepFocus();
-  if (n) toast(`Ceny z cennika w ${offer.meta.currency}: ${n} ${plN(n,'pozycja','pozycje','pozycji')}`);
+  const man = offer.autoPrice ? offer.items.filter(it=>byId[it.id] && it.price!=null && it.priceSrc!=='list').length : 0;
+  if (n || man) toast(`${n ? `Ceny z cennika w ${offer.meta.currency}: ${n} ${plN(n,'pozycja','pozycje','pozycji')}` : `Waluta: ${offer.meta.currency}`}${man ? ` · ceny ręczne bez przeliczenia: ${man} — sprawdź je` : ''}`, !!man);
 }
 function prcSetAuto(on){
   offer.autoPrice = !!on;
@@ -5230,7 +5232,7 @@ function prcRenderBar(){
   if (!d) txt = PRC.state==='loading' ? 'wczytywanie cennika…' : PRC.state==='slow' || PRC.state==='error' ? 'cennik zespołu niedostępny — wczytaj Excel' : 'brak cennika — wczytaj Excel';
   else {
     const n = prcCount(d, cur);
-    txt = `cennik z ${prcWhen(d.updatedAt) || '—'} · ${n} ${plN(n,'cena','ceny','cen')} ${cur}${d.src==='local' ? ' · tylko w tej przeglądarce' : ''}`;
+    txt = `cennik z ${prcWhen(d.updatedAt) || '—'} · ${n} ${plN(n,'cena','ceny','cen')} ${cur}${d.src==='local' ? (d.mem ? ' · tylko do zamknięcia strony' : ' · tylko w tej przeglądarce') : ''}`;
     tip = [d.fileName ? 'Plik: ' + d.fileName : '', d.updatedAt ? 'Zapisano: ' + prcTime(d.updatedAt) : '', d.src==='db' ? 'Wspólny cennik zespołu' : 'Cennik zapisany tylko w tej przeglądarce',
       `Ceny PLN: ${prcCount(d,'PLN')} · EUR: ${prcCount(d,'EUR')}`].filter(Boolean).join('\n');
   }
@@ -5297,6 +5299,7 @@ async function prcSave(prices, fileName){
   }
   const ok = store.set(K_PRICES, body);
   PRC.localDoc = prcSanitize(body, 'local');
+  if (PRC.localDoc && !ok) PRC.localDoc.mem = true;
   return {where: ok ? 'local' : 'memory', why};
 }
 
