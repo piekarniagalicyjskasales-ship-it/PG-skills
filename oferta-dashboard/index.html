@@ -1080,6 +1080,8 @@ table.ptable{min-width:760px}
 .pdf-mode .pc-logo,.pdf-mode .pb-logo{box-shadow:none!important}
 .pdf-mode .pb-logo{display:block;width:max-content;margin:0 auto}
 .page.p-terms .pg-bd{overflow:hidden}
+.page .t-head.cont{padding-bottom:8px;margin-bottom:4px;border-bottom-width:1px}
+.page .t-head.cont .t-title{font-size:13px}
 .page .t-fit{transform-origin:0 0}
 .page .t-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 20px;align-items:start}
 .page .t-cols > div{min-width:0}
@@ -2407,7 +2409,7 @@ const I18N = {
     cStreet:'Ulica i nr', cPostal:'Kod pocztowy', cCity:'Miejscowość', cCountry:'Kraj', cTaxId:'NIP', cKrs:'KRS / REGON',
     valid:'Ważna do', currency:'Waluta', terms:'Incoterms / warunki', termsShort:'Warunki', curTerms:'Waluta · warunki', notes:'Uwagi',
     dated:(d,v)=>`z dnia ${d} · ważna do ${v}`,
-    th:{no:'Lp.', prod:'Produkt · EAN', price:'Cena netto/szt.', qty:'Ilość (szt.)', upc:'Szt./ karton', cartons:'Kartony', pallets:'Palety (szac.)', disc:'Rabat', value:'Wartość netto'},
+    th:{no:'Lp.', prod:'Produkt · EAN', price:'Cena netto/szt.', qty:'Ilość (szt.)', upc:'Szt./ karton', cartons:'Kartony', pallets:'Palety (szac.)', disc:'Rabat', value:'Wartość netto', valueCtn:'Wartość netto za karton'},
     emptyRow:'Brak pozycji w ofercie',
     totCartons:'Kartony razem', totPallets:'Palety (szac.)', totGross:'Suma netto', totGrossLong:'Suma netto (przed rabatem)', totDisc:'Rabat', totTotal:'Razem netto', totTotalCaps:'RAZEM NETTO',
     discPaper:p=>` (w tym ${p}% globalnie)`, discText:p=>` (w tym globalny ${p}%)`,
@@ -2435,7 +2437,7 @@ const I18N = {
     cStreet:'Street address', cPostal:'Postal code', cCity:'City', cCountry:'Country', cTaxId:'VAT ID', cKrs:'Company reg. no. (KRS / REGON)',
     valid:'Valid until', currency:'Currency', terms:'Incoterms / terms', termsShort:'Terms', curTerms:'Currency · terms', notes:'Notes',
     dated:(d,v)=>`dated ${d} · valid until ${v}`,
-    th:{no:'No.', prod:'Product · EAN', price:'Net price/unit', qty:'Quantity (pcs)', upc:'Units/ carton', cartons:'Cartons', pallets:'Pallets (est.)', disc:'Discount', value:'Net value'},
+    th:{no:'No.', prod:'Product · EAN', price:'Net price/unit', qty:'Quantity (pcs)', upc:'Units/ carton', cartons:'Cartons', pallets:'Pallets (est.)', disc:'Discount', value:'Net value', valueCtn:'Net value per carton box'},
     emptyRow:'No items in this offer',
     totCartons:'Total cartons', totPallets:'Pallets (est.)', totGross:'Net subtotal', totGrossLong:'Net subtotal (before discount)', totDisc:'Discount', totTotal:'Net total', totTotalCaps:'NET TOTAL',
     discPaper:p=>` (incl. ${p}% overall)`, discText:p=>` (incl. ${p}% overall)`,
@@ -3559,7 +3561,7 @@ function docInfo(c, x){
     units: `${F.n0(x.u)} ${D.pcs}`, cartons: `${F.q(x.c)} ${D.ctn}`,
     pallets: x.pal==null ? dash : `${F.pal(x.pal)} ${c.lg==='pl' ? 'pal.' : D.palAbbr(x.pal)}`,
     how: it.mode==='kart' ? `${F.n0(it.qty)} ${D.ctn} × ${it.upc} ${D.pcs}` : it.mode==='pal' && p._cpp ? `${F.q(it.qty)} ${D.palAbbr(it.qty)} × ${p._cpp} × ${it.upc}` : '',
-    value: it.price==null ? dash : F.n2(effPrice(it)*x.u),
+    value: it.price==null || !it.upc ? dash : F.n2(effPrice(it)*it.upc),
     upc: n0(L.unitsPerCarton), cpp: n0(L.cartonsPerPallet), upp: n0(L.unitsPerPallet),
     dims: L.cartonDims ? dimsTxt(L.cartonDims) : dash, height: L.palletHeight ? F.height(L.palletHeight) : dash,
     shelf: L.shelfLifeDays ? `${L.shelfLifeDays} ${D.days}` : dash, pick: L.shelfLifePickupDays ? `${L.shelfLifePickupDays} ${D.days}` : dash,
@@ -3613,7 +3615,7 @@ const secHtml = (title, sub) => `<h2 class="d-sec">${esc(title)}${sub?` <small>$
 /* compact summary table (Katalog, Premium) */
 function sumFlow(c, key){
   const {D, T, cur} = c;
-  const head = `<table class="s-tbl"><colgroup><col style="width:26px"><col><col style="width:76px"><col style="width:66px"><col style="width:64px"><col style="width:96px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(D.th.qty)}</th><th class="n">${esc(D.th.cartons)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
+  const head = `<table class="s-tbl"><colgroup><col style="width:26px"><col><col style="width:76px"><col style="width:66px"><col style="width:64px"><col style="width:96px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(D.th.qty)}</th><th class="n">${esc(D.th.cartons)}</th><th class="n">${esc(D.th.valueCtn)} (${esc(cur)})</th></tr></thead></table>`;
   return c.lines.map(x=>{ const q = docInfo(c, x);
     return {row:key, head, html:`<tbody><tr><td class="s-no">${x.i+1}</td><td><b>${esc(q.name)}</b><span>${esc([q.id, q.ean ? 'EAN ' + q.ean : '', q.weight].filter(v=>v && v!=='—').join(' · '))}</span></td><td class="n">${q.price==null?'—':q.price}</td><td class="n">${c.F.n0(x.u)}</td><td class="n">${c.F.q(x.c)}</td><td class="n"><b>${q.value}</b></td></tr></tbody>`};
   });
@@ -3662,7 +3664,7 @@ const DOC_TPL = {
       out.push({html:`<div class="c-cond"><div class="c-cond-in">${condRows(c).map(([k,v])=>`<div><div class="d-k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join('')}</div></div>`});
       out.push({keep:true, html:secHtml(T.products, T.positions(c.lines.length))});
       if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
-      const head = `<table class="c-tbl"><colgroup><col style="width:26px"><col style="width:76px"><col><col style="width:84px"><col style="width:110px"><col style="width:96px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th></th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(T.qty)}</th><th class="n">${esc(D.th.value)} (${esc(cur)})</th></tr></thead></table>`;
+      const head = `<table class="c-tbl"><colgroup><col style="width:26px"><col style="width:76px"><col><col style="width:84px"><col style="width:110px"><col style="width:96px"></colgroup><thead><tr><th>${esc(D.th.no)}</th><th></th><th>${esc(T.product)}</th><th class="n">${esc(D.th.price)} (${esc(cur)})</th><th class="n">${esc(T.qty)}</th><th class="n">${esc(D.th.valueCtn)} (${esc(cur)})</th></tr></thead></table>`;
       c.lines.forEach(x=>{
         const q = docInfo(c, x);
         out.push({row:'cp', head, html:`<tbody class="c-row"><tr class="c-main"><td class="c-no">${x.i+1}</td><td><div class="c-thumb d-pic">${docImg(x.p)}</div></td>
@@ -3702,7 +3704,7 @@ const DOC_TPL = {
           <div class="k-ean">EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q)}
           <div class="k-chips"><span><i>${esc(T.weight)}</i>${esc(q.weight)}</span><span><i>${esc(T.chipUpc)}</i>${q.upc}</span><span><i>${esc(T.chipCpp)}</i>${q.cpp}</span><span><i>${esc(T.chipUpp)}</i>${q.upp}</span><span><i>${esc(T.lShelf)}</i>${esc(q.shelf)}</span>${q.pick!=='—'?`<span><i>${esc(T.lPick)}</i>${esc(q.pick)}</span>`:''}<span><i>${esc(T.chipDims)}</i>${esc(q.dims)}</span><span><i>${esc(T.chipH)}</i>${esc(q.height)}</span></div>
           <div class="k-pack"><i>${esc(T.lPack)}</i>${esc(q.pack)}</div><div class="k-order-sp"></div>
-          <div class="k-order"><div class="q"><i>${esc(T.qty)}</i><b>${esc(q.units)}</b> · ${esc(q.cartons)}</div><div class="v"><i>${esc(D.th.value)}</i><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`; };
+          <div class="k-order"><div class="q"><i>${esc(T.qty)}</i><b>${esc(q.units)}</b> · ${esc(q.cartons)}</div><div class="v"><i>${esc(D.th.valueCtn)}</i><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`; };
       for (let i=0; i<c.lines.length; i+=2) out.push({html:`<div class="k-row">${card(c.lines[i])}${c.lines[i+1]?card(c.lines[i+1]):'<div></div>'}</div>`});
       if (c.lines.length){
         out.push({keep:true, html:secHtml(T.summary)});
@@ -3739,7 +3741,7 @@ const DOC_TPL = {
           <div class="pr-data"><div class="pr-line">${esc([q.cat, q.line].filter(Boolean).join(' · '))}</div><h3 class="pr-name">${esc(q.name)}</h3><div class="pr-ids">ID <b>${esc(q.id)}</b> · EAN <b>${esc(q.ean || '—')}</b></div>${descHtml(q, 'pr-desc')}
           <table class="pr-facts"><colgroup><col style="width:24%"><col style="width:26%"><col style="width:24%"><col style="width:26%"></colgroup>${facts.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td><th>${esc(r[2])}</th><td>${esc(r[3])}</td></tr>`).join('')}<tr><th>${esc(T.lPack)}</th><td colspan="3">${esc(q.pack)}</td></tr></table>
           <div class="pr-price"><div><div class="pp-k">${esc(T.pricePer)}</div>${q.price==null?`<div class="pp-v tbd">${esc(D.tTbd)}</div>`:`<div class="pp-v">${q.price}<small>${esc(cur)}</small></div>`}<div class="pp-q">${esc(q.units)} · ${esc(q.cartons)}</div></div>
-          <div class="pp-t"><div class="pp-k">${esc(D.th.value)}</div><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`});
+          <div class="pp-t"><div class="pp-k">${esc(D.th.valueCtn)}</div><b>${q.value==='—'?'—':q.value+' '+esc(cur)}</b></div></div></div></article>`});
       });
       out.push({keep:true, html:secHtml(T.summary, T.positions(c.lines.length))});
       if (!c.lines.length) out.push({html:`<div class="d-empty">${esc(D.emptyRow)}</div>`});
@@ -3778,7 +3780,28 @@ function paginate(stage, flow, chrome){
       continue;
     }
     if (it.page){ const pg = docEl(it.page); stage.appendChild(pg); pages.push(pg); bd = null; continue; }
-    if (it.termsPage){ open(); pages[pages.length-1].classList.add('p-terms'); fitTerms(bd, termsEl(it.termsPage)); bd = null; continue; }
+    if (it.termsPage){
+      /* commercial terms: up to 4 separate full pages, sections kept whole and spread as evenly as possible */
+      open(); pages[pages.length-1].classList.add('p-terms');
+      const all = termsEl(it.termsPage); bd.appendChild(all);
+      const head = all.querySelector(':scope > .t-head'), secs = [...all.querySelectorAll(':scope > .t-sec')];
+      const hs = secs.map(x=>x.offsetHeight);
+      all.remove();
+      const groups = splitEven(hs, Math.min(4, secs.length) || 1);
+      const boxes = groups.map((g, gi)=>{
+        if (gi){ open(); pages[pages.length-1].classList.add('p-terms'); }
+        const box = document.createElement('div'); box.className = 't-fit';
+        if (head){ const h = gi ? head.cloneNode(true) : head; if (gi){ h.classList.add('cont'); const pt = h.querySelector('.t-party'); if (pt) pt.remove(); } box.appendChild(h); }
+        g.forEach(k=>box.appendChild(secs[k]));
+        bd.appendChild(box);
+        return {bd, box};
+      });
+      /* one common text size on all terms pages: as large as the fullest page allows (up to 1.35×) */
+      const common = Math.min(...boxes.map(({bd, box})=>termsScale(bd, box, 1.35)));
+      if (common >= .85) boxes.forEach(({bd, box})=>applyTermsScale(bd, box, common));
+      else boxes.forEach(({bd, box})=>{ box.remove(); fitTerms(bd, box); });
+      bd = null; continue;
+    }
     /* full printing: a hard break opens a page; a soft break does so only when less than ~30% of the page is left */
     let softCont = false;
     if (!bd || it.brk===true) open();
@@ -3839,6 +3862,34 @@ function balancePages(pages){
       if (!fits(B) || fill(A) < .35){ moved.forEach(k=>A.appendChild(k)); undo(); break; }
     }
   }
+}
+/* contiguous split of section heights into k groups with the smallest largest group */
+function splitEven(hs, k){
+  const n = hs.length; let best = null, bestMax = Infinity;
+  const rec = (start, left, acc) => {
+    if (left===1){ const g = [...acc, [...Array(n-start).keys()].map(i=>i+start)]; const m = Math.max(...g.map(x=>x.reduce((a,i)=>a+hs[i],0))); if (m < bestMax){ bestMax = m; best = g; } return; }
+    for (let end = start+1; end <= n-left+1; end++) rec(end, left-1, [...acc, [...Array(end-start).keys()].map(i=>i+start)]);
+  };
+  if (!n) return [];
+  rec(0, Math.min(k, n), []);
+  return best;
+}
+const termsAvail = (bd, box) => { const cs = getComputedStyle(bd); return bd.clientHeight - box.offsetTop - parseFloat(cs.paddingBottom || 0) - 2; };
+/* largest scale (≤ cap) at which the block, laid out at width 100%/scale, fits the page body */
+function termsScale(bd, box, cap){
+  const H = termsAvail(bd, box); let s = 1;
+  box.style.width = '100%'; let h = box.offsetHeight;
+  for (let k = 0; k < 6; k++){ s = Math.min(cap, H / h); box.style.width = (100 / s) + '%'; h = box.offsetHeight; }
+  s = Math.min(cap, H / h) * .995; box.style.width = (100 / s) + '%'; h = box.offsetHeight;
+  for (let k = 0; k < 40 && h * s > H; k++){ s *= .99; box.style.width = (100 / s) + '%'; h = box.offsetHeight; }
+  return s;
+}
+function applyTermsScale(bd, box, s){
+  const H = termsAvail(bd, box);
+  box.style.width = (100 / s) + '%';
+  box.style.transform = Math.abs(s - 1) > .001 ? `scale(${s})` : '';
+  box.dataset.scale = String(Math.round(s*1000)/1000);
+  if (box.offsetHeight * s > H + 1) { box.style.transform = ''; box.style.width = '100%'; fitTerms(bd, (box.remove(), box)); }
 }
 /* commercial terms on ONE page: sections laid out in one or two columns, then scaled to fit the page body */
 function termsEl(items){
