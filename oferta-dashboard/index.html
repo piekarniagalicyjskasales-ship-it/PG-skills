@@ -1070,6 +1070,9 @@ table.ptable{min-width:760px}
 .page .t-tbl.t-params td:first-child{font-weight:600;color:var(--d-ink)}
 .page .t-gap{height:4px}
 .pdf-mode .page,.pdf-mode .page *{font-variant-numeric:normal!important;font-feature-settings:normal!important}
+/* html2canvas paints rounded box-shadows over the logo: plain pills in the PDF */
+.pdf-mode .pc-logo,.pdf-mode .pb-logo{box-shadow:none!important}
+.pdf-mode .pb-logo{display:block;width:max-content;margin:0 auto}
 .page.p-terms .pg-bd{overflow:hidden}
 .page .t-fit{transform-origin:0 0}
 .page .t-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 20px;align-items:start}
